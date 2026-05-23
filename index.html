@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chung-Han Tsai — Product Design Leader</title>
+<meta name="description" content="Chung-Han Tsai — a product design leader building enterprise data platforms and AI workflows.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #FAF8F3; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #2A3B47;
+  -webkit-font-smoothing: antialiased; line-height: 1.5; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+
+.site { max-width: 1060px; margin: 0 auto; padding: 0 32px; }
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 28px 0; }
+.brand { display: flex; align-items: center; gap: 11px; }
+.mark { width: 30px; height: 30px; border-radius: 8px; background: #2A3B47; position: relative; }
+.mark::after { content: ""; position: absolute; left: 7px; top: 7px; width: 12px; height: 12px; border-radius: 50% 0 0 0; background: #FAF8F3; }
+.brand b { font-size: 17px; font-weight: 700; letter-spacing: -.02em; }
+.nav-links { display: flex; gap: 26px; font-size: 15px; color: #6E7A82; }
+.nav-links a { text-decoration: none; }
+
+.hero { padding: 72px 0 60px; }
+.hero .hello { font-size: 16px; color: #6E7A82; }
+.hero h1 { font-size: clamp(2.3rem, 5vw, 3.7rem); font-weight: 700; letter-spacing: -.035em;
+  line-height: 1.08; margin-top: 14px; max-width: 17em; }
+.stats { font-size: 17px; color: #8A929A; margin-top: 26px; }
+.stats b { font-weight: 700; color: #2A3B47; }
+.stats .sep { color: #CDD1D3; margin: 0 8px; }
+
+.section { padding: 58px 0; }
+.sec-label { font-size: 14px; font-weight: 700; color: #1E9145; }
+.sec-h { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 700; letter-spacing: -.03em; margin-top: 6px; }
+
+.work-list { margin-top: 30px; display: flex; flex-direction: column; gap: 18px; }
+.wrow { display: flex; gap: 30px; align-items: center; background: #FFFFFF; border-radius: 20px;
+  padding: 22px; cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; }
+.wrow:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -26px rgba(42,59,71,.4); }
+.wshot { width: 38%; flex-shrink: 0; aspect-ratio: 16 / 10; background: #F0EFEA; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.wshot img { max-width: 90%; max-height: 84%; border-radius: 6px; box-shadow: 0 12px 22px -12px rgba(20,28,36,.55); }
+.wbody { flex: 1; }
+.wnum { font-size: 14px; font-weight: 700; color: #A8AEB4; }
+.wttl { font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 700; letter-spacing: -.025em; line-height: 1.15; margin-top: 3px; }
+.wline { font-size: 16px; color: #6E7A82; margin-top: 9px; }
+.wtags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 15px; }
+.tag { font-size: 12.5px; font-weight: 700; background: #EDEBE3; color: #5A6670; border-radius: 30px; padding: 5px 12px; }
+.wopen { font-size: 14.5px; font-weight: 700; color: #1E9145; margin-top: 16px; }
+
+.vibe { display: flex; gap: 20px; margin-top: 26px; }
+.vibe-card { flex: 1; background: #FFFFFF; border-radius: 18px; padding: 24px; }
+.vibe-card .vk { font-size: 18px; font-weight: 700; letter-spacing: -.02em; }
+.vibe-card p { font-size: 15px; color: #6E7A82; margin-top: 7px; }
+.vibe-card .vlink { font-size: 14.5px; font-weight: 700; color: #1E9145; margin-top: 14px; display: inline-block; text-decoration: none; }
+
+.prin { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 26px; }
+.prin-card { background: #FFFFFF; border-radius: 18px; padding: 24px; }
+.prin-card h3 { font-size: 17px; font-weight: 700; letter-spacing: -.02em; }
+.prin-card p { font-size: 14.5px; color: #6E7A82; margin-top: 9px; line-height: 1.55; }
+
+.contact { background: #2A3B47; border-radius: 24px; padding: 52px 44px; text-align: center; margin-top: 30px; }
+.contact h2 { color: #FFFFFF; font-size: clamp(1.6rem, 3.4vw, 2.4rem); font-weight: 700; letter-spacing: -.03em; max-width: 16em; margin: 0 auto; }
+.contact .cbtn { display: inline-block; margin-top: 26px; background: #34C759; color: #10371E;
+  font-size: 16px; font-weight: 700; text-decoration: none; padding: 14px 28px; border-radius: 40px; }
+.contact .clinks { margin-top: 20px; font-size: 14px; color: #93A0AA; }
+.contact .clinks a { color: #C6D0D6; text-decoration: none; }
+.foot { display: flex; justify-content: space-between; padding: 34px 0 56px; font-size: 14px; color: #9AA3AB; }
+.foot a { text-decoration: none; }
+
+.reader { position: fixed; inset: 0; background: #FFFFFF; z-index: 50; display: flex; flex-direction: column;
+  transform: translateY(100%); transition: transform .46s cubic-bezier(.62,0,.2,1); }
+.reader.open { transform: translateY(0); }
+.r-bar { display: flex; align-items: center; justify-content: space-between; padding: 22px 32px 14px; max-width: 1120px; margin: 0 auto; width: 100%; }
+.r-close { display: flex; align-items: center; gap: 7px; font-size: 15px; font-weight: 700; color: #2A3B47;
+  background: #F1F0EB; border: none; border-radius: 40px; padding: 10px 18px; cursor: pointer; font-family: inherit; }
+.r-title { font-size: 15px; font-weight: 700; color: #9AA3AD; }
+.r-dots { display: flex; gap: 8px; }
+.r-dot { width: 9px; height: 9px; border-radius: 50%; background: #E2E0D9; transition: background .2s; }
+.r-dot.on { background: #34C759; }
+.r-track-area { flex: 1; overflow: hidden; }
+.r-track { display: flex; height: 100%; transition: transform .5s cubic-bezier(.62,0,.2,1); }
+.page { min-width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 24px 32px; }
+.page-in { max-width: 1010px; margin: 0 auto; width: 100%; }
+.p-meta { font-size: 14px; font-weight: 700; color: #1E9145; }
+.p-h { font-size: clamp(1.6rem, 3.3vw, 2.5rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.12; margin-top: 9px; }
+.p-b { font-size: clamp(1rem, 1.7vw, 1.2rem); color: #6E7A82; margin-top: 11px; max-width: 30em; }
+.pcols { display: flex; gap: 44px; align-items: center; }
+.pcol { flex: 1; }
+.textled { max-width: 22em; }
+.textled .p-h { font-size: clamp(1.9rem, 3.8vw, 2.9rem); }
+.shot { width: 100%; border-radius: 12px; box-shadow: 0 26px 46px -26px rgba(20,28,36,.55); }
+.shot-cap { font-size: 13.5px; color: #9AA3AD; margin-top: 12px; }
+.funnel { width: 100%; height: auto; margin-top: 14px; }
+.bp { display: flex; gap: 40px; margin-top: 14px; }
+.bp > div { flex: 1; }
+.bp .tg { font-size: 14px; font-weight: 700; }
+.bp .tg.a { color: #9AA3AD; } .bp .tg.b { color: #1E9145; }
+.bp p { font-size: 16px; color: #46535F; margin-top: 7px; }
+.quote { font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.18; }
+.quote-attr { font-size: 15px; color: #9AA3AD; margin-top: 13px; }
+.evrow { display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
+.statcard { background: #1A1A1A; border-radius: 14px; padding: 22px 26px; }
+.statcard b { display: block; font-size: 2.4rem; font-weight: 700; color: #fff; line-height: 1; letter-spacing: -.03em; }
+.statcard span { display: block; font-size: 13px; color: rgba(255,255,255,.62); margin-top: 9px; }
+.r-end { text-align: center; }
+.r-end .page-in { max-width: 34em; }
+.r-end .p-b { margin-left: auto; margin-right: auto; }
+.endcta { display: flex; gap: 12px; justify-content: center; margin-top: 26px; }
+.btn { font-size: 15px; font-weight: 700; background: #1A1A1A; color: #fff; border: none;
+  border-radius: 40px; padding: 13px 24px; cursor: pointer; font-family: inherit; text-decoration: none; display: inline-block; }
+.btn.soft { background: #F1F0EB; color: #2A3B47; }
+.r-nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 32px 26px; max-width: 1120px; margin: 0 auto; width: 100%; }
+.r-count { font-size: 14px; color: #9AA3AD; }
+
+@media (max-width: 720px) {
+  .wrow { flex-direction: column; align-items: stretch; } .wshot { width: 100%; }
+  .vibe { flex-direction: column; } .prin { grid-template-columns: 1fr; }
+  .pcols, .bp { flex-direction: column; gap: 24px; }
+}
+@media (prefers-reduced-motion: reduce) { .reader, .r-track, .wrow { transition: none; } }
+</style>
+</head>
+<body>
+
+<div class="site">
+  <nav class="nav">
+    <div class="brand"><span class="mark"></span><b>Chung-Han Tsai</b></div>
+    <div class="nav-links"><a href="#work">Work</a><a href="#vibe">Vibe Coding</a><a href="#principles">Principles</a><a href="#contact">Contact</a></div>
+  </nav>
+
+  <header class="hero">
+    <div class="hello">Hi, I'm Chung Han</div>
+    <h1>I design enterprise products that make complex data feel obvious.</h1>
+    <div class="stats"><b>14 years</b> in industry<span class="sep">·</span><b>8 years</b> leading design<span class="sep">·</span><b>5 years</b> managing teams<span class="sep">·</span><b>3 years</b> designing with AI</div>
+  </header>
+
+  <section class="section" id="work">
+    <div class="sec-label">Selected work</div>
+    <h2 class="sec-h">Four projects, each told in five steps.</h2>
+    <div class="work-list" id="workList"></div>
+  </section>
+
+  <section class="section" id="vibe">
+    <div class="sec-label">Vibe coding</div>
+    <h2 class="sec-h">Building with AI, beyond the day job.</h2>
+    <div class="vibe">
+      <div class="vibe-card">
+        <div class="vk">Introducing TFF Filler</div>
+        <p>Using Claude Code to solve a repetitive permit-paperwork problem — start small, ship what works.</p>
+        <a class="vlink" href="https://chunghantsai.substack.com/p/introducing-tff-filler">Read on &rarr;</a>
+      </div>
+      <div class="vibe-card">
+        <div class="vk">More on Substack</div>
+        <p>An ongoing log of building real tools with AI — the wins, the dead ends, the lessons.</p>
+        <a class="vlink" href="https://chunghantsai.substack.com/">Visit the Substack &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="principles">
+    <div class="sec-label">How I lead</div>
+    <h2 class="sec-h">Three principles I run a team on.</h2>
+    <div class="prin">
+      <div class="prin-card"><h3>Continuous growth culture</h3><p>Weekly knowledge-sharing and a monthly AI learning club turn individual curiosity into team capability.</p></div>
+      <div class="prin-card"><h3>Data-driven evaluation</h3><p>Telemetry and research define the OKRs, so quality is measured against outcomes — not asserted.</p></div>
+      <div class="prin-card"><h3>Transparent leadership</h3><p>Direct, data-backed communication and leading by show-and-tell, so cross-functional partners stay aligned.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="contact">
+      <h2>Building something that needs a design leader with an analytical mindset?</h2>
+      <a class="cbtn" href="mailto:hello@chunghan.work">Let's solve data challenges at scale</a>
+      <div class="clinks"><a href="https://www.linkedin.com/in/chunghantsai/">LinkedIn</a> &nbsp;·&nbsp; <a href="mailto:hello@chunghan.work">hello@chunghan.work</a></div>
+    </div>
+  </section>
+
+  <footer class="foot"><span>Crafted by Chung-Han Tsai</span><a href="#">Résumé &rarr;</a></footer>
+</div>
+
+<div class="reader" id="reader">
+  <div class="r-bar">
+    <button class="r-close" id="closeBtn">&larr;&nbsp; Back to work</button>
+    <div class="r-title" id="rTitle"></div>
+    <div class="r-dots" id="dots"></div>
+  </div>
+  <div class="r-track-area"><div class="r-track" id="track"></div></div>
+  <div class="r-nav">
+    <button class="btn soft" id="prevBtn">&larr; Back</button>
+    <span class="r-count" id="count"></span>
+    <button class="btn" id="nextBtn">Next &rarr;</button>
+  </div>
+</div>
+
+<script>
+const CASES = [
+  {
+    title: "Unified Data Observability", client: "Splunk · Cisco",
+    tags: ["0 to 1", "Strategy", "Research-driven"],
+    teaser: "Leading a pivot away from a feature everyone already liked.",
+    shelf: "assets/topology-map.png",
+    bg: { background: "I led design for Monitoring & Troubleshooting at Splunk — a surface spanning the whole data pipeline.",
+          problem: "Research narrowed it down: troubleshooting was fragmented, and customers' #1 unmet need.",
+          wide: ["Ingestion", "Processing", "Dashboards"], focus: "Troubleshooting", focusSub: "the one problem we chose" },
+    start: { heading: "We started with a live topology map.", body: "The first vision — see status, errors and throughput at every stage of the pipeline, in real time.", img: "assets/topology-map.png", cap: "The Topology Map we built first" },
+    turn: { before: "It earned positive feedback and leadership buy-in — but it wouldn't scale to the job users actually had.", quote: "Why do I need to stare at this all day?", attr: "A user, in a research session", after: "So I reframed the work around jobs-to-be-done, and validated before committing further." },
+    conclusion: { heading: "A monitoring maturity framework.", body: "Staged monitoring — Active, Reactive, Proactive — that meets users where they are.", img: "assets/alerts.png", cap: "Shipped — reactive alerts with guided investigation" },
+    evaluation: { heading: "What it returned.", stats: [["120+", "Weekly active users"], ["1st", "Unified monitoring portal at Splunk"]], learning: "What made it work: proactive curiosity over comfortable momentum, research-driven decisions, and disagree-and-commit." },
+    invitation: { heading: "That's the five-minute version.", body: "The harder story — leading a pivot when the team already liked v1 — is better in person." }
+  },
+  {
+    title: "Topology-Driven Onboarding", client: "Splunk · Cisco",
+    tags: ["Adoption", "AI", "0 to 1"],
+    teaser: "AI-guided setup — time-to-value from months to minutes.",
+    shelf: "assets/ks-onboarding.png",
+    bg: { background: "Splunk customers have to connect Splunk to their own infrastructure — one platform, many possible ways in.",
+          problem: "They were stuck before they started: \"I don't know which Splunk solution, or the right setup, for my use case.\"",
+          wide: ["Solutions", "Configurations", "Use cases"], focus: "Time-to-value", focusSub: "the gap we set out to close" },
+    start: { heading: "We started with an AI-guided topology map.", body: "An end-to-end view of the setup, with AI suggesting the right configuration for each customer's infrastructure.", img: "assets/ks-onboarding.png", cap: "The AI-guided topology map" },
+    turn: { before: "It tested well, and the plan was to launch in six months. But exploring the information architecture surfaced a deeper question.", quote: "Our logic worked for the system — but did it work for the user?", attr: "The question that reset the project", after: "I switched the model from teaching users the system to supporting the task they were actually trying to do." },
+    conclusion: { heading: "An intent-driven setup, built into the workspace.", body: "After testing conversational and canvas approaches, we shipped the one closest to user intent — prefilled, guided, and canvas-native.", img: null },
+    evaluation: { heading: "Where it stands.", stats: [["15+", "Customers validated"], ["2026", "Alpha preview, then GA"]], learning: "What made it work: rapid prototyping, framework-driven exploration, and heavy investment in research." },
+    invitation: { heading: "That's the five-minute version.", body: "The full story — the six-month plan we chose to walk back, and why — is a good conversation." }
+  },
+  {
+    title: "Human-in-the-loop AI", client: "Splunk · Cisco",
+    tags: ["AI", "Adoption", "Framework"],
+    teaser: "Designing AI decision points people can actually trust.",
+    shelf: "assets/ks-ai.png",
+    bg: { background: "Before Splunk users get any insight, they fight their data — wrangling raw, unstructured machine logs into something usable.",
+          problem: "The goal: free people from data prep so they spend their time on the insight, not the cleanup.",
+          wide: ["Onboarding", "Cleansing", "Troubleshooting"], focus: "Trust in AI", focusSub: "what every step depended on" },
+    start: { heading: "We started with AI that extracts the fields for you.", body: "Auto Field Extraction — with trust built in: visible progress, and a human-in-the-loop where the AI suggests and the person decides.", img: null },
+    turn: { before: "It worked. But a validation session cut straight to the bone.", quote: "It works… but I could just use Regex101. What's the difference?", attr: "A user, testing the feature", after: "The reframe: stop extracting fields, start enabling outcomes — design for the use case, not the technical step." },
+    conclusion: { heading: "Connect the data to a real outcome.", body: "The AI maps extracted data to a Data Model and a real use case, compliance included — and the same trustworthy-AI pattern carries into troubleshooting.", img: "assets/ks-ai.png", cap: "The shipped Data Model experience" },
+    evaluation: { heading: "Where it stands.", stats: [["Q1 2026", "Auto Field Extraction shipped"], ["GA 2026", "Positive feedback from .conf 2025"]], learning: "The lesson: same mental model, new context — trustworthy AI as a pattern you reuse, not rebuild." },
+    invitation: { heading: "That's the five-minute version.", body: "How we earned trust in an AI feature — the part worth talking through in person." }
+  },
+  {
+    title: "Unified Data Acquisition", client: "Splunk · Cisco",
+    tags: ["0 to 1", "Framework", "Design system"],
+    teaser: "One modular framework for messy, fragmented data.",
+    shelf: "assets/ks-acquisition.png",
+    bg: { background: "Splunk's architecture grew like an app store — 100+ data-ingestion products, built by different teams over a decade, each with its own way in.",
+          problem: "Getting data into Splunk meant bouncing between the product, the docs and the forums. Setup was confusing, and slow.",
+          wide: ["100+ products", "Separate flows", "1000+ sources"], focus: "One journey", focusSub: "the consistency we had to build" },
+    start: { heading: "We started by borrowing from smart-home onboarding.", body: "Leading a team of three designers, I set one principle: reduce friction — a single guided journey, with in-app guidance and email handoff.", img: "assets/ks-acquisition.png", cap: "The guided onboarding concept, adapted from smart-home setup" },
+    turn: { before: "The journey worked — until we tried to scale it across the team.", quote: "The same data source, designed twice, came out two different ways.", attr: "The scaling problem we hit", after: "The fix wasn't more screens — it was a system: an atomic design system and a shared component library, aligned with engineering." },
+    conclusion: { heading: "A scalable, modular ingestion framework.", body: "One consistent onboarding journey across 1000+ data sources, backed by a component library that keeps every team in sync.", img: null },
+    evaluation: { heading: "What it returned.", stats: [["400+", "Weekly active users"], ["1000+", "Data inputs created"], ["61%", "Daily velocity"]], learning: "What made it work: framework thinking, and consistency held at scale." },
+    invitation: { heading: "That's the five-minute version.", body: "Designing a system — not just screens — and leading a team to hold it together is a good conversation." }
+  }
+];
+
+const REFRAME = '<svg viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:380px"><path d="M24 64 L210 64" stroke="#D9DCE0" stroke-width="11" stroke-linecap="round"/><rect x="224" y="44" width="44" height="44" rx="12" fill="#F1D9D4"/><path d="M236 56 L256 76 M256 56 L236 76" stroke="#BC4631" stroke-width="7" stroke-linecap="round"/><circle cx="30" cy="140" r="10" fill="#34C759"/><path d="M30 140 Q30 188 120 188 L250 188" stroke="#34C759" stroke-width="11" stroke-linecap="round" fill="none"/><path d="M240 177 L266 188 L240 199 Z" fill="#34C759"/></svg>';
+
+function funnelSVG(w, focus, sub) {
+  return '<svg class="funnel" viewBox="0 0 940 190" xmlns="http://www.w3.org/2000/svg">' +
+    '<path d="M24 20 L560 72 L560 118 L24 170 Z" fill="#F0EFEA"/>' +
+    '<text x="112" y="68" font-family="Plus Jakarta Sans" font-size="20" font-weight="700" fill="#AEB4BA">' + w[0] + '</text>' +
+    '<text x="112" y="102" font-family="Plus Jakarta Sans" font-size="20" font-weight="700" fill="#AEB4BA">' + w[1] + '</text>' +
+    '<text x="112" y="136" font-family="Plus Jakarta Sans" font-size="20" font-weight="700" fill="#AEB4BA">' + w[2] + '</text>' +
+    '<path d="M560 95 L626 95" stroke="#CCD0D4" stroke-width="4" stroke-linecap="round"/>' +
+    '<path d="M618 86 L634 95 L618 104 Z" fill="#CCD0D4"/>' +
+    '<rect x="640" y="58" width="282" height="74" rx="18" fill="#E7F6EC"/>' +
+    '<text x="781" y="92" font-family="Plus Jakarta Sans" font-size="23" font-weight="700" fill="#1B8F42" text-anchor="middle">' + focus + '</text>' +
+    '<text x="781" y="116" font-family="Plus Jakarta Sans" font-size="14" font-weight="400" fill="#46AE6E" text-anchor="middle">' + sub + '</text>' +
+    '</svg>';
+}
+function pageBg(c) {
+  return '<div class="page"><div class="page-in">' +
+    '<div class="p-meta">Step 01 · Background &amp; Problem</div>' +
+    funnelSVG(c.bg.wide, c.bg.focus, c.bg.focusSub) +
+    '<div class="bp"><div><div class="tg a">Background</div><p>' + c.bg.background + '</p></div>' +
+    '<div><div class="tg b">The problem</div><p>' + c.bg.problem + '</p></div></div>' +
+    '</div></div>';
+}
+function pageMedia(step, meta) {
+  if (step.img) {
+    return '<div class="page"><div class="page-in"><div class="pcols">' +
+      '<div class="pcol"><div class="p-meta">' + meta + '</div><div class="p-h">' + step.heading + '</div>' +
+      '<p class="p-b">' + step.body + '</p></div>' +
+      '<div class="pcol"><img class="shot" src="' + step.img + '" alt=""><div class="shot-cap">' + step.cap + '</div></div>' +
+      '</div></div></div>';
+  }
+  return '<div class="page"><div class="page-in textled">' +
+    '<div class="p-meta">' + meta + '</div><div class="p-h">' + step.heading + '</div>' +
+    '<p class="p-b">' + step.body + '</p></div></div>';
+}
+function pageTurn(c) {
+  return '<div class="page"><div class="page-in"><div class="pcols">' +
+    '<div class="pcol"><div class="p-meta">Step 03 · The Turn</div>' +
+    '<p class="p-b" style="margin-top:9px">' + c.turn.before + '</p>' +
+    '<blockquote class="quote" style="margin-top:14px">&ldquo;' + c.turn.quote + '&rdquo;</blockquote>' +
+    '<div class="quote-attr">' + c.turn.attr + '</div>' +
+    '<p class="p-b">' + c.turn.after + '</p></div>' +
+    '<div class="pcol" style="text-align:center">' + REFRAME + '</div>' +
+    '</div></div></div>';
+}
+function pageEval(c) {
+  var stats = c.evaluation.stats.map(function (s) {
+    return '<div class="statcard"><b>' + s[0] + '</b><span>' + s[1] + '</span></div>';
+  }).join('');
+  return '<div class="page"><div class="page-in">' +
+    '<div class="p-meta">Step 05 · Evaluation</div>' +
+    '<div class="p-h">' + c.evaluation.heading + '</div>' +
+    '<div class="evrow">' + stats + '</div>' +
+    '<p class="p-b" style="max-width:34em">' + c.evaluation.learning + '</p>' +
+    '</div></div>';
+}
+function pageInvitation(c) {
+  return '<div class="page r-end"><div class="page-in">' +
+    '<div class="p-meta">The invitation</div>' +
+    '<div class="p-h">' + c.invitation.heading + '</div>' +
+    '<p class="p-b">' + c.invitation.body + '</p>' +
+    '<div class="endcta"><a class="btn" href="mailto:hello@chunghan.work">Email Chung-Han</a>' +
+    '<button class="btn soft" data-close>Back to work</button></div>' +
+    '</div></div>';
+}
+
+const TOTAL = 6, STEPS = 5;
+let open = false, idx = 0;
+const reader = document.getElementById("reader");
+const track = document.getElementById("track");
+const dots = document.getElementById("dots");
+const rTitle = document.getElementById("rTitle");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const count = document.getElementById("count");
+
+for (let i = 0; i < STEPS; i++) {
+  const d = document.createElement("span");
+  d.className = "r-dot";
+  dots.appendChild(d);
+}
+
+document.getElementById("workList").innerHTML = CASES.map(function (c, i) {
+  return '<div class="wrow" data-case="' + i + '">' +
+    '<div class="wshot"><img src="' + c.shelf + '" alt=""></div>' +
+    '<div class="wbody"><div class="wnum">0' + (i + 1) + '</div>' +
+    '<div class="wttl">' + c.title + '</div>' +
+    '<div class="wline">' + c.teaser + '</div>' +
+    '<div class="wtags">' + c.tags.map(function (t) { return '<span class="tag">' + t + '</span>'; }).join('') + '</div>' +
+    '<div class="wopen">Read the 5-step story &rarr;</div></div></div>';
+}).join('');
+
+function goStep(i) {
+  idx = Math.max(0, Math.min(TOTAL - 1, i));
+  track.style.transform = "translateX(-" + (idx * 100) + "%)";
+  [...dots.children].forEach((d, n) => d.classList.toggle("on", n <= Math.min(idx, STEPS - 1)));
+  prevBtn.style.visibility = idx === 0 ? "hidden" : "visible";
+  if (idx >= STEPS) { nextBtn.style.visibility = "hidden"; count.textContent = ""; }
+  else {
+    nextBtn.style.visibility = "visible";
+    nextBtn.innerHTML = idx === STEPS - 1 ? "Finish &rarr;" : "Next &rarr;";
+    count.textContent = "0" + (idx + 1) + " / 0" + STEPS;
+  }
+}
+function openCase(i) {
+  const c = CASES[i];
+  rTitle.textContent = c.title + "  ·  " + c.client;
+  track.innerHTML = pageBg(c) + pageMedia(c.start, "Step 02 · The Start") + pageTurn(c) +
+    pageMedia(c.conclusion, "Step 04 · The Conclusion") + pageEval(c) + pageInvitation(c);
+  track.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", closeReader));
+  open = true; goStep(0); reader.classList.add("open"); document.body.style.overflow = "hidden";
+}
+function closeReader() { open = false; reader.classList.remove("open"); document.body.style.overflow = ""; }
+
+document.querySelectorAll("[data-case]").forEach(r => r.addEventListener("click", () => openCase(+r.dataset.case)));
+document.getElementById("closeBtn").addEventListener("click", closeReader);
+prevBtn.addEventListener("click", () => goStep(idx - 1));
+nextBtn.addEventListener("click", () => goStep(idx + 1));
+document.addEventListener("keydown", e => {
+  if (!open) return;
+  if (e.key === "ArrowRight") goStep(idx + 1);
+  if (e.key === "ArrowLeft") goStep(idx - 1);
+  if (e.key === "Escape") closeReader();
+});
+</script>
+</body>
+</html>
