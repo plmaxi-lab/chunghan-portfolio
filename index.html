@@ -694,7 +694,7 @@ const CASES = [
     start: { heading: "We started building a flexible, customizable dashboard.", body: "Inspired by tools like Tableau and Chartio, we designed a system where users could add their own metric panels, configure thresholds, and save custom layouts.", img: "assets/sbf-v1-config.png", cap: "First iteration: step-by-step configuration panel for custom dashboard setup" },
     turn: { heading: "A workshop in February changed everything.", img: "assets/sbf-salesstrategy.png", cap: "The sales strategy that exposed a fundamental mismatch in our assumptions", before: "At the February 2020 all-hands, our EMEA sales lead stopped the room with one observation that cut through all the design work we'd done.", quote: "None of them are willing to start from scratch first — they want a quick and simple out-of-box experience. If we can provide some basic but useful reports, that will help us convince the business buyers.", attr: "EMEA Sales Lead, February 2020 workshop" },
     conclusion: { heading: "One bottleneck report. No setup required.", body: "We shipped a pre-canned Bottleneck Report — surfacing the steps with the largest duration increase, with outlier journeys highlighted and a path to drill in. Insight on first load, customization available when needed.", img: "assets/sbf-v2-bottleneck.png", cap: "The Bottleneck Report — insight on first load, no configuration needed", layout: 'stack' },
-    evaluation: { heading: "What it returned.", stats: [["4+ Stars", ".conf 2020 satisfaction"], ["#4", "Ranked in .conf survey"], ["3", "User types served"], ["1Q", "From workshop pivot to MVP"]], learning: "The lesson: a technically correct solution can still miss the mark. Business users needed insight on load — not a blank canvas to configure." },
+    evaluation: { heading: "What it returned.", gif: "assets/demo_v8b_hd.gif", stats: [["4+ Stars", ".conf 2020 satisfaction"], ["#4", "Ranked in .conf survey"], ["3", "User types served"], ["1Q", "From workshop pivot to MVP"]], learning: "The lesson: a technically correct solution can still miss the mark. Business users needed insight on load — not a blank canvas to configure." },
     invitation: { heading: "That's the five-minute version.", body: "What it felt like to pivot mid-project after one sentence from a sales lead — that's the part worth a conversation." }
   }
 ];
@@ -1316,7 +1316,7 @@ function pageEval(c) {
     return '<div class="statcard"><b>' + s[0] + '</b><span>' + s[1] + '</span></div>';
   }).join('');
   return '<div class="page"><div class="page-in"><div class="pcols" style="align-items:center">' +
-    '<div class="pcol"><img src="assets/demo_v2c_hd.gif" alt="Product demo" style="width:100%;border-radius:12px;box-shadow:0 26px 46px -26px rgba(20,28,36,.45)"></div>' +
+    '<div class="pcol"><img src="' + (c.evaluation.gif || 'assets/demo_v2c_hd.gif') + '" alt="Product demo" style="width:100%;border-radius:12px;box-shadow:0 26px 46px -26px rgba(20,28,36,.45)"></div>' +
     '<div class="pcol">' +
     '<div class="p-meta">Step 05 · The Outcome</div>' +
     '<div class="p-h">' + c.evaluation.heading + '</div>' +
