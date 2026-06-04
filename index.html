@@ -1575,12 +1575,13 @@ function pageEval(c) {
       return '<button class="tab-btn' + (i === 0 ? ' on' : '') + '" onclick="switchTab(this,\'etab-' + t.id + '\')">' + t.name + '</button>';
     }).join('');
     var ePanes = c.evaluation.tabs.map(function(t, i) {
-      return '<div class="tab-pane' + (i === 0 ? ' on' : '') + '" id="etab-' + t.id + '">' +
-        '<img src="' + t.gif + '" alt="" style="width:100%;border-radius:12px;box-shadow:0 26px 46px -26px rgba(20,28,36,.45)">' +
-        (t.cap ? '<div class="shot-cap">' + t.cap + '</div>' : '') +
+      return '<div class="tab-pane' + (i === 0 ? ' on' : '') + '" id="etab-' + t.id + '" style="position:absolute;inset:0">' +
+        '<img src="' + t.gif + '" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:12px;box-shadow:0 26px 46px -26px rgba(20,28,36,.45);display:block">' +
         '</div>';
     }).join('');
-    mediaCol = '<div class="pcol"><div class="tab-ui"><div class="tab-nav">' + eBtns + '</div>' + ePanes + '</div></div>';
+    mediaCol = '<div class="pcol"><div class="tab-ui"><div class="tab-nav">' + eBtns + '</div>' +
+      '<div style="position:relative;aspect-ratio:1400/933;overflow:hidden;border-radius:12px">' + ePanes + '</div>' +
+      '</div></div>';
   } else {
     mediaCol = '<div class="pcol"><img src="' + (c.evaluation.gif || 'assets/demo_v2c_hd.gif') + '" alt="Product demo" style="width:100%;border-radius:12px;box-shadow:0 26px 46px -26px rgba(20,28,36,.45)"></div>';
   }
