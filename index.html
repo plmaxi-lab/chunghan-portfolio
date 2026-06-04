@@ -1517,10 +1517,10 @@ function pageTurn(c) {
     var turnSvgMap = { 'uda-inconsistency': UDA_INCONSISTENCY_SVG, 'uda-direction': UDA_DIRECTION_SVG, 'embed-value': EMBED_VALUE_SVG, 'agentic-assist': AGENTIC_ASSIST_SVG, 'rca-trust': RCA_TRUST_SVG, 'img-placeholder': IMG_PLACEHOLDER_SVG };
     var leftVis = c.turn.svgL
       ? '<div style="border-radius:12px;overflow:hidden;border:1.5px solid #E8E8E3;flex:1;display:flex;align-items:center">' + (turnSvgMap[c.turn.svgL] || '') + '</div>'
-      : '<div class="turn-img-wrap" style="' + (c.turn.coverL ? 'padding:0' : '') + '"><img src="' + c.turn.signalImgL + '" class="turn-half-img" style="' + (c.turn.coverL ? 'object-fit:cover' : '') + '" alt=""></div>';
+      : '<div class="turn-img-wrap" style="' + (c.turn.coverL ? 'padding-bottom:0' : '') + '"><img src="' + c.turn.signalImgL + '" class="turn-half-img" alt=""></div>';
     var rightVis = c.turn.svgR
       ? '<div style="border-radius:12px;overflow:hidden;border:1.5px solid #E8E8E3;flex:1;display:flex;align-items:center">' + (turnSvgMap[c.turn.svgR] || '') + '</div>'
-      : '<div class="turn-img-wrap" style="' + (c.turn.coverR ? 'padding:0' : '') + '"><img src="' + c.turn.signalImgR + '" class="turn-half-img" style="' + (c.turn.coverR ? 'object-fit:cover' : '') + '" alt=""></div>';
+      : '<div class="turn-img-wrap" style="' + (c.turn.coverR ? 'padding-bottom:0' : '') + '"><img src="' + c.turn.signalImgR + '" class="turn-half-img" alt=""></div>';
     return '<div class="page page-turn"><div class="page-in">' +
       '<div class="turn-header">' +
       '<div class="p-meta">Step 03 · The Turn</div>' +
