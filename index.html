@@ -1581,12 +1581,12 @@ function pageEval(c) {
     }).join('');
     var ePanes = c.evaluation.tabs.map(function(t, i) {
       return '<div class="tab-pane' + (i === 0 ? ' on' : '') + '" id="etab-' + t.id + '">' +
-        '<img src="' + t.gif + '" alt="" style="width:100%;border-radius:12px;box-shadow:0 26px 46px -26px rgba(20,28,36,.45);display:block">' +
+        '<img src="' + t.gif + '" alt="" style="width:100%;border-radius:12px;display:block">' +
         '</div>';
     }).join('');
     mediaCol = '<div class="pcol"><div class="tab-ui"><div class="tab-nav">' + eBtns + '</div>' + ePanes + '</div></div>';
   } else {
-    mediaCol = '<div class="pcol"><img src="' + (c.evaluation.gif || 'assets/demo_v2c_hd.gif') + '" alt="Product demo" style="width:100%;border-radius:12px;box-shadow:0 26px 46px -26px rgba(20,28,36,.45)"></div>';
+    mediaCol = '<div class="pcol"><img src="' + (c.evaluation.gif || 'assets/demo_v2c_hd.gif') + '" alt="Product demo" style="width:100%;border-radius:12px"></div>';
   }
   return '<div class="page"><div class="page-in"><div class="pcols" style="align-items:flex-start">' +
     mediaCol +
