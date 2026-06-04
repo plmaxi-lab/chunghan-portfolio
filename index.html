@@ -697,10 +697,13 @@ const CASES = [
     overview: "I designed Splunk Business Flow — Splunk's first process mining product for business analysts, outside its traditional IT and Security market. A single workshop pivoted our entire direction from flexible dashboards to pre-canned bottleneck reports.",
     role: "Product Designer — Process Mining, Business Analytics",
     period: "2019 – 2020",
-    bg: { wide: ["IT & Security", "Data Modelers", "Business Analysts"], focus: "Business Analysts", focusSub: "Splunk's first venture into business analytics",
-          background: "Splunk Business Flow (SBF) was Splunk's push beyond IT and Security — a process mining product that let business users visualize workflows and discover bottlenecks without writing a single query.",
-          problem: "The Overview dashboard only showed totals: journey count, average duration. Users had no actionable place to start." },
-    start: { heading: "The Overview page had no traffic.", body: "Users landed on a dashboard of totals — journey counts and session distributions — but never stayed. We needed to rethink what they actually wanted to see and which key moments deserved a dedicated view.", img: "assets/sbf-overview.png", cap: "The original Overview dashboard — totals with no actionable starting point" },
+    bg: { chart: true, chartImg: 'assets/sbf-overview.png',
+          chartCap: "The original Overview dashboard — totals with no actionable starting point",
+          heading: "The Overview page had no traffic.",
+          background: "Splunk Business Flow launched with an Overview dashboard — total journeys, total events, session distributions. But users never stayed. There was no clear next step, and no answer to the question that actually mattered: what should I look at first?",
+          problemHeadline: "What do people actually want to monitor?",
+          bullets: ["The dashboard only showed totals — journey count and duration averages", "No actionable starting point; users had nowhere meaningful to go"] },
+    start: { heading: "We started building a flexible, customizable dashboard.", body: "Inspired by tools like Tableau and Chartio, we designed a system where users could add their own metric panels, configure thresholds, and save custom layouts.", gif: "assets/demo_v8b_hd.gif", cap: "First iteration: step-by-step configuration panel for custom dashboard setup" },
     turn: { heading: "A workshop in February changed everything.", before: "At the February 2020 all-hands, our EMEA sales lead stopped the room with one observation that cut through all the design work we'd done.", signalImgL: "assets/sbf-confused-analyst.png", coverL: true, labelL: "THE PROBLEM", capL: "Business analysts are not familiar with customized dashboard configuration.", svgR: "img-placeholder", labelR: "THE INSIGHT", capR: "Business analysts prefer a pre-canned template with easy apply.", capRStyle: "green" },
     conclusion: { heading: "One bottleneck report. No setup required.", body: "We shipped a pre-canned Bottleneck Report — surfacing the steps with the largest duration increase, with outlier journeys highlighted and a path to drill in. Insight on first load, customization available when needed.", img: "assets/sbf-v2-bottleneck.png", cap: "The Bottleneck Report — insight on first load, no configuration needed", layout: 'stack' },
     evaluation: { heading: "What it returned.", gif: "assets/splunk_sbf_v2b.gif", stats: [["4+ Stars", ".conf 2020 satisfaction"], ["#4", "Ranked in .conf survey"], ["3", "User types served"], ["1Q", "From workshop pivot to MVP"]], learning: "The lesson: a technically correct solution can still miss the mark. Business users needed insight on load — not a blank canvas to configure." },
@@ -1421,7 +1424,7 @@ function pageBg(c) {
       '<div class="p-h">' + c.bg.heading + '</div>' +
       '<p class="p-b" style="max-width:none">' + c.bg.background + '</p>' +
       '<div class="bg-split">' +
-      '<div class="bg-split-chart">' + ({infra: INFRA_COMPLEXITY_SVG, uda: UDA_FRAGMENTATION_SVG, hitl: HITL_CONTEXT_SVG, cust: CUSTOMER_AI_SVG}[c.bg.chartSvg] || OPPTYGAP_SVG) + '</div>' +
+      '<div class="bg-split-chart">' + (c.bg.chartImg ? '<img src="' + c.bg.chartImg + '" style="width:100%;border-radius:12px;display:block">' : ({infra: INFRA_COMPLEXITY_SVG, uda: UDA_FRAGMENTATION_SVG, hitl: HITL_CONTEXT_SVG, cust: CUSTOMER_AI_SVG}[c.bg.chartSvg] || OPPTYGAP_SVG)) + '</div>' +
       '<div class="bg-split-arrow">' + arrowSVG + '</div>' +
       '<div class="bg-split-problem">' +
       '<div class="bg-prob-label">The problem</div>' +
