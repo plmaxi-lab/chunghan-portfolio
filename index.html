@@ -41,7 +41,7 @@ a { color: inherit; }
 .work-list { margin-top: 30px; display: flex; flex-direction: column; gap: 18px; }
 .wrow { display: flex; gap: 30px; align-items: center; background: #FFFFFF; border-radius: 20px;
   padding: 22px; cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; }
-.wrow:hover { transform: translateY(-4px); box-shadow: 0 22px 40px -26px rgba(42,59,71,.4); }
+.wrow:hover { transform: translateX(6px); box-shadow: 0 22px 40px -26px rgba(42,59,71,.4); }
 .wshot { width: 38%; flex-shrink: 0; aspect-ratio: 16 / 10; background: #F0EFEA; border-radius: 12px;
   display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .wshot img { max-width: 90%; max-height: 84%; border-radius: 6px; box-shadow: 0 12px 22px -12px rgba(20,28,36,.55); }
@@ -85,8 +85,8 @@ a { color: inherit; }
 .foot a { text-decoration: none; }
 
 .reader { position: fixed; inset: 0; background: #FFFFFF; z-index: 50; display: flex; flex-direction: column;
-  transform: translateY(100%); transition: transform .46s cubic-bezier(.62,0,.2,1); }
-.reader.open { transform: translateY(0); }
+  transform: translateX(100%); transition: transform .34s cubic-bezier(.4,0,1,.8); will-change: transform; }
+.reader.open { transform: translateX(0); transition: transform .52s cubic-bezier(.32,.72,0,1); }
 .r-bar { display: flex; align-items: center; justify-content: space-between; padding: 22px 32px 14px; max-width: 1120px; margin: 0 auto; width: 100%; }
 .r-close { display: flex; align-items: center; gap: 7px; font-size: 15px; font-weight: 700; color: #2A3B47;
   background: #F1F0EB; border: none; border-radius: 40px; padding: 10px 18px; cursor: pointer; font-family: inherit; }
@@ -100,7 +100,7 @@ a { color: inherit; }
 .page-in { max-width: 1010px; margin: 0 auto; width: 100%; }
 .p-meta { font-size: 14px; font-weight: 700; color: #1E9145; }
 .p-h { font-size: clamp(1.6rem, 3.3vw, 2.5rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.12; margin-top: 9px; }
-.p-b { font-size: clamp(1rem, 1.7vw, 1.2rem); color: #6E7A82; margin-top: 11px; max-width: 30em; }
+.p-b { font-size: 1.05rem; color: #6E7A82; margin-top: 11px; max-width: 30em; }
 .pcols { display: flex; gap: 44px; align-items: center; }
 .pcol { flex: 1; }
 .textled { max-width: 22em; }
@@ -112,7 +112,7 @@ a { color: inherit; }
 .bp > div { flex: 1; }
 .bp .tg { font-size: 14px; font-weight: 700; }
 .bp .tg.a { color: #9AA3AD; } .bp .tg.b { color: #1E9145; }
-.bp p { font-size: 16px; color: #46535F; margin-top: 7px; }
+.bp p { font-size: 1.05rem; color: #46535F; margin-top: 7px; }
 .quote { font-size: clamp(1.7rem, 3.5vw, 2.6rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.18; }
 .quote-attr { font-size: 15px; color: #9AA3AD; margin-top: 13px; }
 .evrow { display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
@@ -127,7 +127,7 @@ a { color: inherit; }
 .sugg-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #9AA3AD; margin-bottom: 12px; }
 .sugg-card { flex: 1; cursor: pointer; border-radius: 14px; overflow: hidden; background: #F5F4EF; border: 1.5px solid #E8E6E0; transition: transform .18s, box-shadow .18s; display: flex; margin-bottom: 24px; }
 .sugg-card:last-child { margin-bottom: 0; }
-.sugg-card:hover { transform: translateY(-2px); box-shadow: 0 10px 22px -10px rgba(20,28,36,.18); }
+.sugg-card:hover { transform: translateX(4px); box-shadow: 0 10px 22px -10px rgba(20,28,36,.18); }
 .sugg-thumb { width: 116px; flex-shrink: 0; overflow: hidden; background: #E8E6E0; }
 .sugg-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .sugg-info { padding: 15px 16px; flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
@@ -155,8 +155,8 @@ a { color: inherit; }
 .turn-header { flex-shrink: 0; margin-bottom: 14px; }
 .turn-pair { display: flex; gap: 14px; }
 .turn-half { flex: 1; display: flex; flex-direction: column; gap: 10px; }
-.turn-img-wrap { width: 100%; aspect-ratio: 16 / 7; border-radius: 14px; overflow: hidden; border: 1.5px solid #E8E8E3; box-shadow: 0 6px 18px -8px rgba(20,28,36,.1); }
-.turn-half-img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.turn-img-wrap { width: 100%; aspect-ratio: 16 / 7; border-radius: 14px; overflow: hidden; border: 1.5px solid #E8E8E3; box-shadow: 0 6px 18px -8px rgba(20,28,36,.1); background: #F5F4EF; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
+.turn-half-img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
 .turn-cap { flex-shrink: 0; border-radius: 12px; padding: 13px 16px; border-top: 3px solid; }
 .turn-cap-label { display: block; font-size: 9.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
 .turn-cap-quote { font-size: clamp(.85rem, 1.3vw, 1rem); font-weight: 700; line-height: 1.4; letter-spacing: -.01em; }
@@ -616,7 +616,7 @@ const CASES = [
       { id: 'proactive', name: 'Proactive', desc: 'The system anticipates issues and provides actionable insights before problems arise.', features: [{icon:'anomaly',label:'Anomaly Detection'},{icon:'rootcause',label:'Root Cause Analysis'},{icon:'predictive',label:'Predictive Analytics'}] },
       { id: 'automation', name: 'Automation', desc: 'The system executes tasks autonomously without requiring user interaction.', features: [{icon:'rpa',label:'RPA'}] }
     ]},
-    evaluation: { heading: "What it returned.", stats: [["120+", "Weekly active users"], ["1st", "Unified monitoring portal at Splunk"], ["3", "Monitoring maturity stages"], ["0→1", "New product surface"]], learning: "What made it work: proactive curiosity over comfortable momentum, research-driven decisions, and disagree-and-commit." },
+    evaluation: { heading: "What it returned.", gif: "assets/demo_v7c_hd.gif", stats: [["120+", "Weekly active users"], ["1st", "Unified monitoring portal at Splunk"], ["3", "Monitoring maturity stages"], ["0→1", "New product surface"]], learning: "What made it work: proactive curiosity over comfortable momentum, research-driven decisions, and disagree-and-commit." },
     invitation: { heading: "That's the five-minute version.", body: "The harder story — leading a pivot when the team already liked v1 — is better in person." }
   },
   {
@@ -647,24 +647,33 @@ const CASES = [
     title: "Human-in-the-loop AI", client: "Splunk · Cisco",
     tags: ["AI", "Adoption", "Framework"],
     teaser: "Designing AI decision points people can actually trust.",
-    shelf: "assets/ks-ai.png",
+    shelf: "assets/hitl-thumbnail.svg",
     overview: "I designed the trust model for Splunk's AI-assisted data preparation features — creating reusable human-in-the-loop patterns that let users stay in control while the AI does the heavy lifting.",
     role: "Lead Product Designer — AI/ML UX, Framework Design",
     period: "2025 – 2026",
-    bg: { background: "Before Splunk users get any insight, they fight their data — wrangling raw, unstructured machine logs into something usable.",
-          problem: "The goal: free people from data prep so they spend their time on the insight, not the cleanup.",
-          wide: ["Onboarding", "Cleansing", "Troubleshooting"], focus: "Trust in AI", focusSub: "what every step depended on" },
-    start: { heading: "We started with AI that extracts the fields for you.", body: "Auto Field Extraction — with trust built in: visible progress, and a human-in-the-loop where the AI suggests and the person decides.", img: null },
-    turn: { heading: "It worked. But was it different from Regex101?", img: "assets/ks-ai.png", cap: "Auto Field Extraction — working, but missing the outcome", before: "It worked. But a validation session cut straight to the bone.", quote: "It works… but I could just use Regex101. What's the difference?", attr: "A user, testing the feature", after: "The reframe: stop extracting fields, start enabling outcomes — design for the use case, not the technical step." },
-    conclusion: { heading: "Connect the data to a real outcome.", body: "The AI maps extracted data to a Data Model and a real use case, compliance included — and the same trustworthy-AI pattern carries into troubleshooting.", img: "assets/ks-ai.png", cap: "The shipped Data Model experience" },
-    evaluation: { heading: "Where it stands.", stats: [["Q1 2026", "Auto Field Extraction shipped"], ["GA 2026", "Positive .conf 2025 feedback"], ["2", "HITL trust patterns"], ["1", "Reusable AI framework"]], learning: "The lesson: same mental model, new context — trustworthy AI as a pattern you reuse, not rebuild." },
+    bg: { chart: true, chartSvg: "cust",
+          chartCap: "AI efficiency — the top ask across Security Analysts, Data Admins, and IT Operations",
+          heading: "People wanted to know where Splunk stands on AI.",
+          background: "A new level of digital resilience, with AI as our strategy in 2025. Customers across every segment were asking the same question: will Splunk AI actually make my work faster?",
+          problemHeadline: "The pressure to act",
+          bullets: ["AI demand spans every customer type — Security, Data, IT Ops", "Efficiency became the defining expectation for 2025"] },
+    start: { heading: "We responded with our 2025 AI strategy.", body: "We set out to incorporate AI across three critical workflows — Onboarding, Cleansing, and Troubleshooting — each with a specific feature designed to help customers work faster and with greater confidence.", svg: 'hitl' },
+    turn: { heading: "The embedding matters. And results alone don't build trust.", before: "Auto Field Extraction matched Regex101's output — but embedded in Splunk, it changed the workflow entirely. For Root Cause Analysis, surfacing the diagnosis wasn't enough; users needed to understand the evidence before they could act.", svgL: 'embed-value', labelL: "PROCESSING SUGGESTIONS", capL: "The embedding in the interface — not the extraction itself — is where the value lives.", svgR: 'agentic-assist', labelR: "ROOT CAUSE ANALYSIS", capR: "Mix agentic detection with assistive explanation — trust comes from understanding, not just results.", capRStyle: "green" },
+    conclusion: { heading: "Connect the data to a real outcome.", body: "For Processing Suggestions, the AI maps extracted fields to a Data Model and a real use case. For Root Cause Analysis, we designed around three principles — trust in the diagnosis, direction to the right investigation, and actionable next steps.", style: 'tabs', tabs: [
+      { id: 'processing', name: 'Processing Suggestions', svg: 'processing-pivot', cap: "AI maps fields to Data Models → real compliance outcome" },
+      { id: 'rca', name: 'Root Cause Analysis', svg: 'rca-trust', cap: "The three design principles behind Root Cause Analysis" }
+    ]},
+    evaluation: { heading: "Where it stands.", tabs: [
+      { id: 'hitl-processing', name: 'Processing Suggestions', gif: 'assets/splunk_dmx_v2.gif' },
+      { id: 'hitl-rca', name: 'Root Cause Analysis', gif: 'assets/demo_v3d_hd_hitl.gif' }
+    ], stats: [["Q1 2026", "Auto Field Extraction shipped"], ["GA 2026", "Positive .conf 2025 feedback"], ["2", "HITL trust patterns"], ["1", "Reusable AI framework"]], learning: "The lesson: same mental model, new context — trustworthy AI as a pattern you reuse, not rebuild." },
     invitation: { heading: "That's the five-minute version.", body: "How we earned trust in an AI feature — the part worth talking through in person." }
   },
   {
     title: "Unified Data Acquisition", client: "Splunk · Cisco",
     tags: ["0 to 1", "Framework", "Design system"],
     teaser: "One modular framework for messy, fragmented data.",
-    shelf: "assets/uda-thumbnail.png",
+    shelf: "assets/uda-cloudwatch.png",
     overview: "I led a team of three designers to consolidate Splunk's 100+ fragmented data-ingestion flows into a single modular framework — one guided journey backed by a shared component library.",
     role: "Lead Product Designer — Design System, Team Lead (3 designers)",
     period: "2022 – 2023",
@@ -691,10 +700,10 @@ const CASES = [
     bg: { wide: ["IT & Security", "Data Modelers", "Business Analysts"], focus: "Business Analysts", focusSub: "Splunk's first venture into business analytics",
           background: "Splunk Business Flow (SBF) was Splunk's push beyond IT and Security — a process mining product that let business users visualize workflows and discover bottlenecks without writing a single query.",
           problem: "The Overview dashboard only showed totals: journey count, average duration. Users had no actionable place to start." },
-    start: { heading: "We started building a flexible, customizable dashboard.", body: "Inspired by tools like Tableau and Chartio, we designed a system where users could add their own metric panels, configure thresholds, and save custom layouts.", img: "assets/sbf-v1-config.png", cap: "First iteration: step-by-step configuration panel for custom dashboard setup" },
-    turn: { heading: "A workshop in February changed everything.", img: "assets/sbf-salesstrategy.png", cap: "The sales strategy that exposed a fundamental mismatch in our assumptions", before: "At the February 2020 all-hands, our EMEA sales lead stopped the room with one observation that cut through all the design work we'd done.", quote: "None of them are willing to start from scratch first — they want a quick and simple out-of-box experience. If we can provide some basic but useful reports, that will help us convince the business buyers.", attr: "EMEA Sales Lead, February 2020 workshop" },
+    start: { heading: "We started building a flexible, customizable dashboard.", body: "Inspired by tools like Tableau and Chartio, we designed a system where users could add their own metric panels, configure thresholds, and save custom layouts.", gif: "assets/demo_v8b_hd.gif", cap: "First iteration: step-by-step configuration panel for custom dashboard setup" },
+    turn: { heading: "A workshop in February changed everything.", before: "At the February 2020 all-hands, our EMEA sales lead stopped the room with one observation that cut through all the design work we'd done.", signalImgL: "assets/sbf-confused-analyst.png", labelL: "THE PROBLEM", capL: "Business analysts are not familiar with customized dashboard configuration.", svgR: "img-placeholder", labelR: "THE INSIGHT", capR: "Business analysts prefer a pre-canned template with easy apply.", capRStyle: "green" },
     conclusion: { heading: "One bottleneck report. No setup required.", body: "We shipped a pre-canned Bottleneck Report — surfacing the steps with the largest duration increase, with outlier journeys highlighted and a path to drill in. Insight on first load, customization available when needed.", img: "assets/sbf-v2-bottleneck.png", cap: "The Bottleneck Report — insight on first load, no configuration needed", layout: 'stack' },
-    evaluation: { heading: "What it returned.", gif: "assets/demo_v8b_hd.gif", stats: [["4+ Stars", ".conf 2020 satisfaction"], ["#4", "Ranked in .conf survey"], ["3", "User types served"], ["1Q", "From workshop pivot to MVP"]], learning: "The lesson: a technically correct solution can still miss the mark. Business users needed insight on load — not a blank canvas to configure." },
+    evaluation: { heading: "What it returned.", gif: "assets/splunk_sbf_v2b.gif", stats: [["4+ Stars", ".conf 2020 satisfaction"], ["#4", "Ranked in .conf survey"], ["3", "User types served"], ["1Q", "From workshop pivot to MVP"]], learning: "The lesson: a technically correct solution can still miss the mark. Business users needed insight on load — not a blank canvas to configure." },
     invitation: { heading: "That's the five-minute version.", body: "What it felt like to pivot mid-project after one sentence from a sales lead — that's the part worth a conversation." }
   }
 ];
@@ -906,6 +915,15 @@ const UDA_FRAGMENTATION_SVG = `<svg viewBox="0 0 480 282" xmlns="http://www.w3.o
   <text x="252" y="234" font-family="Plus Jakarta Sans,sans-serif" font-size="8" fill="#9AA3AD">Each combination = a different setup flow</text>
   <line x1="14" y1="250" x2="466" y2="250" stroke="#D8DCE2" stroke-width="1"/>
   <text x="240" y="268" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" fill="#9AA3AD" text-anchor="middle">Every path through this funnel is a unique onboarding experience — with no shared design system</text>
+</svg>`;
+
+const IMG_PLACEHOLDER_SVG = `<svg viewBox="0 0 480 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+  <rect width="480" height="210" fill="#F5F4EF"/>
+  <rect x="4" y="4" width="472" height="202" rx="10" fill="none" stroke="#D8D5CE" stroke-width="1.5" stroke-dasharray="8 5"/>
+  <rect x="199" y="66" width="82" height="68" rx="9" fill="none" stroke="#C4BFB6" stroke-width="2"/>
+  <circle cx="222" cy="88" r="7" fill="none" stroke="#C4BFB6" stroke-width="2"/>
+  <path d="M199,114 L222,92 L245,110 L260,98 L281,114" stroke="#C4BFB6" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="240" y="156" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="11" fill="#C4BFB6" font-weight="600" letter-spacing=".04em">Image coming soon</text>
 </svg>`;
 
 const UDA_INCONSISTENCY_SVG = `<svg viewBox="0 0 480 222" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
@@ -1123,6 +1141,235 @@ const EERO_SVG = `<svg viewBox="0 0 480 278" xmlns="http://www.w3.org/2000/svg" 
   <text x="405" y="247" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">Next</text>
 </svg>`;
 
+const JTBD_SVG = `<svg viewBox="0 0 480 224" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+  <rect width="480" height="224" rx="14" fill="#111827"/>
+  <text x="240" y="16" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" font-weight="700" letter-spacing=".12em" fill="rgba(255,255,255,.18)">WHERE AI CREATES VALUE</text>
+  <rect x="10" y="22" width="140" height="194" rx="10" fill="rgba(129,140,248,.1)"/>
+  <rect x="10" y="22" width="140" height="3" rx="1.5" fill="#818CF8"/>
+  <rect x="170" y="22" width="140" height="194" rx="10" fill="rgba(45,212,191,.08)"/>
+  <rect x="170" y="22" width="140" height="3" rx="1.5" fill="#2DD4BF"/>
+  <rect x="330" y="22" width="140" height="194" rx="10" fill="rgba(167,139,250,.08)"/>
+  <rect x="330" y="22" width="140" height="3" rx="1.5" fill="#A78BFA"/>
+  <circle cx="80" cy="80" r="30" fill="rgba(129,140,248,.18)"/>
+  <circle cx="80" cy="80" r="19" fill="none" stroke="#818CF8" stroke-width="2" stroke-opacity=".7"/>
+  <path d="M70 80l7 7 13-14" stroke="#818CF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="80" y="128" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="12" font-weight="700" fill="#818CF8">Onboarding</text>
+  <line x1="24" y1="142" x2="136" y2="142" stroke="rgba(129,140,248,.2)" stroke-width="1"/>
+  <path d="M80,154 l1.8,4.2 4.2,1.8 -4.2,1.8 -1.8,4.2 -1.8,-4.2 -4.2,-1.8 4.2,-1.8z" fill="#818CF8"/>
+  <text x="80" y="180" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="13.5" font-weight="700" fill="rgba(255,255,255,.92)">Guided</text>
+  <text x="80" y="198" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="13.5" font-weight="700" fill="rgba(255,255,255,.92)">Onboarding</text>
+  <circle cx="240" cy="80" r="30" fill="rgba(45,212,191,.14)"/>
+  <path d="M222,64 L258,64 L250,76 L250,92 L230,92 L230,76 Z" fill="rgba(45,212,191,.35)" stroke="#2DD4BF" stroke-width="1.5" stroke-linejoin="round"/>
+  <text x="240" y="128" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="12" font-weight="700" fill="#2DD4BF">Cleansing</text>
+  <line x1="184" y1="142" x2="296" y2="142" stroke="rgba(45,212,191,.18)" stroke-width="1"/>
+  <path d="M240,154 l1.8,4.2 4.2,1.8 -4.2,1.8 -1.8,4.2 -1.8,-4.2 -4.2,-1.8 4.2,-1.8z" fill="#2DD4BF"/>
+  <text x="240" y="180" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="13.5" font-weight="700" fill="rgba(255,255,255,.92)">Processing</text>
+  <text x="240" y="198" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="13.5" font-weight="700" fill="rgba(255,255,255,.92)">Suggestions</text>
+  <circle cx="400" cy="80" r="30" fill="rgba(167,139,250,.12)"/>
+  <circle cx="396" cy="76" r="14" stroke="#A78BFA" stroke-width="2" fill="rgba(167,139,250,.2)"/>
+  <path d="M406 86 l10 10" stroke="#A78BFA" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="400" y="128" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="12" font-weight="700" fill="#A78BFA">Troubleshoot</text>
+  <line x1="344" y1="142" x2="456" y2="142" stroke="rgba(167,139,250,.18)" stroke-width="1"/>
+  <path d="M400,154 l1.8,4.2 4.2,1.8 -4.2,1.8 -1.8,4.2 -1.8,-4.2 -4.2,-1.8 4.2,-1.8z" fill="#A78BFA"/>
+  <text x="400" y="180" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="13.5" font-weight="700" fill="rgba(255,255,255,.92)">Root Cause</text>
+  <text x="400" y="198" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="13.5" font-weight="700" fill="rgba(255,255,255,.92)">Analysis</text>
+</svg>`;
+
+const EMBED_VALUE_SVG = `<svg viewBox="0 0 480 248" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+  <rect width="480" height="248" rx="14" fill="#111827"/>
+  <text x="111" y="22" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" font-weight="700" letter-spacing=".1em" fill="rgba(255,255,255,.25)">EXTERNAL TOOL</text>
+  <rect x="16" y="28" width="190" height="158" rx="12" fill="#1C2130" stroke="#2E3447" stroke-width="1.5"/>
+  <rect x="16" y="28" width="190" height="30" rx="12" fill="#242B3D"/>
+  <rect x="16" y="46" width="190" height="12" fill="#242B3D"/>
+  <circle cx="32" cy="43" r="5" fill="#FF5F57"/>
+  <circle cx="47" cy="43" r="5" fill="#FFBD2E"/>
+  <circle cx="62" cy="43" r="5" fill="#28C840"/>
+  <rect x="78" y="37" width="118" height="12" rx="6" fill="#181E2C"/>
+  <text x="137" y="47" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="7.5" fill="rgba(255,255,255,.3)">regex101.com</text>
+  <rect x="28" y="70" width="166" height="13" rx="3" fill="rgba(255,255,255,.05)"/>
+  <text x="36" y="81" font-family="Courier New,Courier,monospace" font-size="9" fill="rgba(96,165,250,.65)">[a-z]{1,3}\.\d+\.\d+</text>
+  <rect x="28" y="89" width="136" height="13" rx="3" fill="rgba(255,255,255,.04)"/>
+  <text x="36" y="100" font-family="Courier New,Courier,monospace" font-size="9" fill="rgba(96,165,250,.5)">(src|dst)_ip\s+=\s+</text>
+  <rect x="28" y="108" width="150" height="13" rx="3" fill="rgba(255,255,255,.03)"/>
+  <text x="36" y="119" font-family="Courier New,Courier,monospace" font-size="9" fill="rgba(96,165,250,.4)">\d{2}:\d{2}:\d{2}</text>
+  <text x="111" y="155" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,.28)">Manual pattern building</text>
+  <rect x="16" y="196" width="190" height="28" rx="7" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.18)" stroke-width="1"/>
+  <text x="111" y="214" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="rgba(239,68,68,.7)">Leaves your workflow</text>
+  <path d="M218 120 L262 120" stroke="rgba(255,255,255,.18)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M256 113 L264 120 L256 127" stroke="rgba(255,255,255,.18)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="369" y="22" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" font-weight="700" letter-spacing=".1em" fill="rgba(45,212,191,.6)">IN YOUR WORKFLOW</text>
+  <rect x="274" y="28" width="190" height="158" rx="12" fill="#0D1520" stroke="rgba(45,212,191,.28)" stroke-width="1.5"/>
+  <rect x="274" y="28" width="190" height="26" rx="12" fill="#162035"/>
+  <rect x="274" y="42" width="190" height="12" fill="#162035"/>
+  <text x="330" y="45" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="700" fill="rgba(255,255,255,.6)">Splunk</text>
+  <text x="350" y="45" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.28)">› Field Extraction</text>
+  <rect x="286" y="62" width="166" height="20" rx="4" fill="rgba(255,255,255,.05)"/>
+  <text x="294" y="76" font-family="Courier New,Courier,monospace" font-size="7.5" fill="rgba(255,255,255,.4)">Firebox01 src_ip=10.1.2.34...</text>
+  <rect x="286" y="88" width="166" height="38" rx="6" fill="rgba(45,212,191,.12)" stroke="rgba(45,212,191,.3)" stroke-width="1"/>
+  <path d="M294,104 l1.2,2.8 2.8,1.2 -2.8,1.2 -1.2,2.8 -1.2,-2.8 -2.8,-1.2 2.8,-1.2z" fill="#2DD4BF"/>
+  <text x="304" y="102" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="700" fill="#2DD4BF">AI detected fields</text>
+  <rect x="304" y="110" width="34" height="12" rx="3" fill="rgba(45,212,191,.22)"/>
+  <text x="321" y="120" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(45,212,191,.9)">src_ip</text>
+  <rect x="342" y="110" width="28" height="12" rx="3" fill="rgba(45,212,191,.16)"/>
+  <text x="356" y="120" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(45,212,191,.75)">proto</text>
+  <rect x="374" y="110" width="34" height="12" rx="3" fill="rgba(45,212,191,.13)"/>
+  <text x="391" y="120" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(45,212,191,.65)">action</text>
+  <rect x="286" y="134" width="76" height="16" rx="5" fill="#1D4ED8"/>
+  <text x="324" y="146" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="600" fill="white">✓ Apply</text>
+  <rect x="274" y="196" width="190" height="28" rx="7" fill="rgba(52,211,153,.1)" stroke="rgba(52,211,153,.24)" stroke-width="1"/>
+  <text x="369" y="214" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="#34D399">Stays in your workflow</text>
+</svg>`;
+
+const AGENTIC_ASSIST_SVG = `<svg viewBox="0 0 480 248" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+  <rect width="480" height="248" rx="14" fill="#111827"/>
+  <rect x="16" y="16" width="200" height="200" rx="12" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.2)" stroke-width="1.5"/>
+  <rect x="16" y="16" width="200" height="38" rx="12" fill="rgba(167,139,250,.16)"/>
+  <rect x="16" y="42" width="200" height="12" fill="rgba(167,139,250,.16)"/>
+  <path d="M30,34 l1.5,3.5 3.5,1.5 -3.5,1.5 -1.5,3.5 -1.5,-3.5 -3.5,-1.5 3.5,-1.5z" fill="#A78BFA"/>
+  <text x="44" y="38" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="10" font-weight="700" fill="#A78BFA">Investigation Summary</text>
+  <text x="44" y="50" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.4)">Generated by AI · 4 Aug 2025</text>
+  <text x="116" y="92" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" fill="rgba(255,255,255,.35)" letter-spacing=".07em">SUSPECTED ROOT CAUSE</text>
+  <text x="116" y="116" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,.92)">Schema drift</text>
+  <text x="116" y="134" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9.5" fill="rgba(255,255,255,.4)">Field order changed in raw log</text>
+  <rect x="46" y="150" width="140" height="9" rx="4" fill="rgba(255,255,255,.07)"/>
+  <rect x="46" y="150" width="112" height="9" rx="4" fill="rgba(167,139,250,.4)"/>
+  <text x="116" y="176" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" fill="rgba(255,255,255,.3)">High confidence</text>
+  <rect x="16" y="224" width="200" height="26" rx="7" fill="rgba(167,139,250,.1)" stroke="rgba(167,139,250,.2)" stroke-width="1"/>
+  <text x="116" y="241" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="#A78BFA">AI is confident</text>
+  <path d="M228 124 L252 124" stroke="rgba(255,255,255,.18)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M246 117 L254 124 L246 131" stroke="rgba(255,255,255,.18)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <rect x="264" y="16" width="200" height="200" rx="12" fill="rgba(245,158,11,.07)" stroke="rgba(245,158,11,.2)" stroke-width="1.5"/>
+  <circle cx="364" cy="82" r="26" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
+  <circle cx="355" cy="78" r="3" fill="rgba(255,255,255,.5)"/>
+  <circle cx="373" cy="78" r="3" fill="rgba(255,255,255,.5)"/>
+  <path d="M354 89 Q364 83 374 89" stroke="rgba(255,255,255,.3)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <text x="364" y="148" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="56" font-weight="800" fill="rgba(245,158,11,.3)">?</text>
+  <text x="364" y="178" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="rgba(255,255,255,.55)">How do I know</text>
+  <text x="364" y="194" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="rgba(255,255,255,.55)">this is right?</text>
+  <rect x="264" y="224" width="200" height="26" rx="7" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.22)" stroke-width="1"/>
+  <text x="364" y="241" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="#F59E0B">User is not sure</text>
+</svg>`;
+
+const PROCESSING_PIVOT_SVG = `<svg viewBox="0 0 480 264" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+  <rect width="480" height="264" rx="14" fill="#111827"/>
+  <text x="240" y="22" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" font-weight="700" letter-spacing=".1em" fill="rgba(255,255,255,.2)">THE PIVOT · PROCESSING SUGGESTIONS</text>
+  <text x="240" y="46" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="16" font-weight="700" fill="rgba(255,255,255,.88)">Stop extracting fields.</text>
+  <text x="240" y="67" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="16" font-weight="700" fill="#4ADE80">Start enabling outcomes.</text>
+  <rect x="16" y="84" width="184" height="152" rx="10" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.09)" stroke-width="1"/>
+  <circle cx="108" cy="130" r="26" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="2"/>
+  <text x="105" y="124" text-anchor="middle" font-family="monospace,system-ui" font-size="9" font-weight="700" fill="rgba(255,255,255,.4)">101</text>
+  <text x="105" y="136" text-anchor="middle" font-family="monospace,system-ui" font-size="9" font-weight="700" fill="#F59E0B" opacity=".8">10</text>
+  <line x1="127" y1="148" x2="136" y2="157" stroke="rgba(255,255,255,.2)" stroke-width="3" stroke-linecap="round"/>
+  <text x="108" y="172" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="7.5" font-weight="700" letter-spacing=".08em" fill="rgba(255,255,255,.25)">TECHNICAL THINKING</text>
+  <text x="108" y="188" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,.5)">Extract fields from raw data</text>
+  <path d="M226,154 L240,162 L226,170" fill="#1E9145" opacity=".45"/>
+  <path d="M240,154 L254,162 L240,170" fill="#1E9145"/>
+  <rect x="280" y="84" width="184" height="152" rx="10" fill="rgba(30,145,69,.06)" stroke="rgba(30,145,69,.22)" stroke-width="1"/>
+  <rect x="346" y="104" width="48" height="48" rx="11" fill="none" stroke="rgba(30,145,69,.45)" stroke-width="1.5"/>
+  <circle cx="361" cy="120" r="3.5" fill="#1E9145" opacity=".75"/>
+  <circle cx="379" cy="120" r="3.5" fill="#1E9145" opacity=".75"/>
+  <path d="M358,133 Q370,141 382,133" stroke="#1E9145" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <circle cx="349" cy="112" r="1.5" fill="rgba(30,145,69,.35)"/>
+  <circle cx="391" cy="112" r="1.5" fill="rgba(30,145,69,.35)"/>
+  <text x="372" y="172" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="7.5" font-weight="700" letter-spacing=".08em" fill="rgba(30,145,69,.6)">USER THINKING</text>
+  <text x="372" y="188" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,.65)">Format my data for</text>
+  <rect x="308" y="197" width="128" height="21" rx="10.5" fill="rgba(30,145,69,.15)" stroke="rgba(30,145,69,.35)" stroke-width="1"/>
+  <text x="372" y="212" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9.5" font-weight="700" fill="#4ADE80">compliance use case</text>
+  <text x="240" y="251" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.18)">AI maps fields to Data Models → real compliance outcome</text>
+</svg>`;
+
+const RCA_TRUST_SVG = `<svg viewBox="0 0 480 264" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+  <rect width="480" height="264" rx="14" fill="#111827"/>
+  <text x="240" y="20" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" font-weight="700" letter-spacing=".1em" fill="rgba(255,255,255,.2)">ROOT CAUSE ANALYSIS · THE CHALLENGE</text>
+  <rect x="12" y="28" width="456" height="62" rx="10" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.2)" stroke-width="1"/>
+  <circle cx="46" cy="59" r="20" fill="rgba(245,158,11,.15)"/>
+  <text x="46" y="65" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="17" font-weight="700" fill="#F59E0B">?</text>
+  <text x="80" y="49" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="700" letter-spacing=".07em" fill="rgba(245,158,11,.6)">TRUST</text>
+  <text x="80" y="66" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="13" font-weight="700" fill="rgba(255,255,255,.88)">"Is this really the root cause?"</text>
+  <rect x="382" y="41" width="76" height="22" rx="11" fill="rgba(245,158,11,.14)" stroke="rgba(245,158,11,.28)" stroke-width="1"/>
+  <text x="420" y="56" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="600" fill="#F59E0B">Trust gap</text>
+  <rect x="12" y="100" width="456" height="62" rx="10" fill="rgba(96,165,250,.07)" stroke="rgba(96,165,250,.17)" stroke-width="1"/>
+  <circle cx="46" cy="131" r="20" fill="rgba(96,165,250,.14)"/>
+  <path d="M40,120 L46,128 L46,142 M46,128 L52,120" stroke="#60A5FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="80" y="121" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="700" letter-spacing=".07em" fill="rgba(96,165,250,.55)">EFFECTIVENESS</text>
+  <text x="80" y="138" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="13" font-weight="700" fill="rgba(255,255,255,.88)">"Am I investigating the right thing?"</text>
+  <rect x="382" y="113" width="76" height="22" rx="11" fill="rgba(96,165,250,.11)" stroke="rgba(96,165,250,.22)" stroke-width="1"/>
+  <text x="420" y="128" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="600" fill="#60A5FA">Direction gap</text>
+  <rect x="12" y="172" width="456" height="62" rx="10" fill="rgba(167,139,250,.07)" stroke="rgba(167,139,250,.17)" stroke-width="1"/>
+  <circle cx="46" cy="203" r="20" fill="rgba(167,139,250,.13)"/>
+  <path d="M49,191 L41,206 L46,206 L42,215 L51,200 L46,200 Z" fill="#A78BFA"/>
+  <text x="80" y="193" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="700" letter-spacing=".07em" fill="rgba(167,139,250,.55)">ACTION</text>
+  <text x="80" y="210" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="13" font-weight="700" fill="rgba(255,255,255,.88)">"What should I actually do next?"</text>
+  <rect x="382" y="185" width="76" height="22" rx="11" fill="rgba(167,139,250,.11)" stroke="rgba(167,139,250,.22)" stroke-width="1"/>
+  <text x="420" y="200" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="600" fill="#A78BFA">Action gap</text>
+</svg>`;
+
+const CUSTOMER_AI_SVG = `<svg viewBox="0 0 480 298" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+  <rect width="480" height="298" rx="14" fill="#1A1A1A"/>
+  <text x="24" y="26" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="rgba(255,255,255,.28)" letter-spacing=".08em">CUSTOMER DEMAND · SPLUNK USERS · 2025</text>
+  <circle cx="36" cy="64" r="18" fill="#1E3A5F"/>
+  <text x="36" y="69" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="10" font-weight="700" fill="#60A5FA">SA</text>
+  <rect x="62" y="38" width="400" height="52" rx="8" fill="rgba(96,165,250,.1)" stroke="rgba(96,165,250,.25)" stroke-width="1"/>
+  <text x="74" y="57" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="rgba(96,165,250,.65)" letter-spacing=".04em">SECURITY ANALYST</text>
+  <text x="74" y="76" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,.85)">"How can AI shorten my investigation time?"</text>
+  <circle cx="36" cy="154" r="18" fill="#14302E"/>
+  <text x="36" y="159" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="10" font-weight="700" fill="#2DD4BF">DA</text>
+  <rect x="62" y="128" width="400" height="52" rx="8" fill="rgba(45,212,191,.08)" stroke="rgba(45,212,191,.22)" stroke-width="1"/>
+  <text x="74" y="147" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="rgba(45,212,191,.6)" letter-spacing=".04em">DATA ADMIN</text>
+  <text x="74" y="166" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,.85)">"Can AI automate my data preparation steps?"</text>
+  <circle cx="36" cy="244" r="18" fill="#2D1B4E"/>
+  <text x="36" y="249" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="10" font-weight="700" fill="#A78BFA">IT</text>
+  <rect x="62" y="218" width="400" height="52" rx="8" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.22)" stroke-width="1"/>
+  <text x="74" y="237" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="rgba(167,139,250,.6)" letter-spacing=".04em">IT OPERATIONS</text>
+  <text x="74" y="256" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,.85)">"Will AI find root causes before I even notice?"</text>
+  <text x="460" y="286" text-anchor="end" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" fill="rgba(255,255,255,.18)">AI efficiency — the top ask across every customer segment</text>
+</svg>`;
+
+const HITL_CONTEXT_SVG = `<svg viewBox="0 0 480 298" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+  <rect width="480" height="298" rx="14" fill="#111827"/>
+  <text x="240" y="20" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" font-weight="700" letter-spacing=".1em" fill="rgba(255,255,255,.2)">AI INTEGRATION ACROSS THE DATA LIFECYCLE · 2025</text>
+  <rect x="12" y="30" width="132" height="226" rx="10" fill="rgba(129,140,248,.1)" stroke="rgba(129,140,248,.2)" stroke-width="1"/>
+  <circle cx="78" cy="74" r="24" fill="rgba(129,140,248,.18)"/>
+  <circle cx="78" cy="74" r="15" fill="none" stroke="#818CF8" stroke-width="1.8" stroke-opacity=".7"/>
+  <path d="M70 74 l5.5 5.5 10-11" stroke="#818CF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="78" y="116" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="13" font-weight="700" fill="#818CF8">Onboarding</text>
+  <line x1="28" y1="130" x2="128" y2="130" stroke="rgba(129,140,248,.2)" stroke-width="1"/>
+  <text x="78" y="148" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" font-weight="700" letter-spacing=".08em" fill="rgba(255,255,255,.3)">AI FEATURE</text>
+  <path d="M78,161 l1.4,3.3 3.3,1.4 -3.3,1.4 -1.4,3.3 -1.4,-3.3 -3.3,-1.4 3.3,-1.4z" fill="#818CF8"/>
+  <text x="78" y="184" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="12" font-weight="700" fill="rgba(255,255,255,.9)">Guided</text>
+  <text x="78" y="200" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="12" font-weight="700" fill="rgba(255,255,255,.9)">Onboarding</text>
+  <rect x="22" y="214" width="108" height="28" rx="14" fill="rgba(129,140,248,.15)" stroke="rgba(129,140,248,.3)" stroke-width="1"/>
+  <text x="78" y="232" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="600" fill="#818CF8">Faster time-to-value</text>
+  <path d="M144 153 L171 153" stroke="rgba(255,255,255,.18)" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M165 147 L173 153 L165 159 Z" fill="rgba(255,255,255,.18)"/>
+  <rect x="174" y="30" width="132" height="226" rx="10" fill="rgba(45,212,191,.08)" stroke="rgba(45,212,191,.18)" stroke-width="1"/>
+  <circle cx="240" cy="74" r="24" fill="rgba(45,212,191,.14)"/>
+  <path d="M226,60 L254,60 L248,72 L248,86 L232,86 L232,72 Z" fill="rgba(45,212,191,.35)" stroke="#2DD4BF" stroke-width="1.5" stroke-linejoin="round"/>
+  <text x="240" y="116" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="13" font-weight="700" fill="#2DD4BF">Cleansing</text>
+  <line x1="190" y1="130" x2="290" y2="130" stroke="rgba(45,212,191,.18)" stroke-width="1"/>
+  <text x="240" y="148" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" font-weight="700" letter-spacing=".08em" fill="rgba(255,255,255,.3)">AI FEATURE</text>
+  <path d="M240,161 l1.4,3.3 3.3,1.4 -3.3,1.4 -1.4,3.3 -1.4,-3.3 -3.3,-1.4 3.3,-1.4z" fill="#2DD4BF"/>
+  <text x="240" y="184" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="12" font-weight="700" fill="rgba(255,255,255,.9)">Processing</text>
+  <text x="240" y="200" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="12" font-weight="700" fill="rgba(255,255,255,.9)">Suggestions</text>
+  <rect x="184" y="214" width="108" height="28" rx="14" fill="rgba(45,212,191,.12)" stroke="rgba(45,212,191,.25)" stroke-width="1"/>
+  <text x="240" y="232" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="600" fill="#2DD4BF">Higher data quality</text>
+  <path d="M306 153 L333 153" stroke="rgba(255,255,255,.18)" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M327 147 L335 153 L327 159 Z" fill="rgba(255,255,255,.18)"/>
+  <rect x="336" y="30" width="132" height="226" rx="10" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.18)" stroke-width="1"/>
+  <circle cx="402" cy="74" r="24" fill="rgba(167,139,250,.12)"/>
+  <circle cx="398" cy="70" r="12" stroke="#A78BFA" stroke-width="1.8" fill="rgba(167,139,250,.15)"/>
+  <path d="M406 78 l8 8" stroke="#A78BFA" stroke-width="2.2" stroke-linecap="round"/>
+  <text x="402" y="116" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="13" font-weight="700" fill="#A78BFA">Troubleshoot</text>
+  <line x1="352" y1="130" x2="452" y2="130" stroke="rgba(167,139,250,.18)" stroke-width="1"/>
+  <text x="402" y="148" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" font-weight="700" letter-spacing=".08em" fill="rgba(255,255,255,.3)">AI FEATURE</text>
+  <path d="M402,161 l1.4,3.3 3.3,1.4 -3.3,1.4 -1.4,3.3 -1.4,-3.3 -3.3,-1.4 3.3,-1.4z" fill="#A78BFA"/>
+  <text x="402" y="184" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="12" font-weight="700" fill="rgba(255,255,255,.9)">Root Cause</text>
+  <text x="402" y="200" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="12" font-weight="700" fill="rgba(255,255,255,.9)">Analysis</text>
+  <rect x="346" y="214" width="108" height="28" rx="14" fill="rgba(167,139,250,.12)" stroke="rgba(167,139,250,.25)" stroke-width="1"/>
+  <text x="402" y="232" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="600" fill="#A78BFA">Faster resolution</text>
+  <text x="460" y="284" text-anchor="end" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" fill="rgba(255,255,255,.18)">AI as a consistent pattern, not a one-off feature</text>
+</svg>`;
+
 function funnelSVG(w, focus, sub) {
   return '<svg class="funnel" viewBox="0 0 940 190" xmlns="http://www.w3.org/2000/svg">' +
     '<path d="M24 20 L560 72 L560 118 L24 170 Z" fill="#F0EFEA"/>' +
@@ -1174,7 +1421,7 @@ function pageBg(c) {
       '<div class="p-h">' + c.bg.heading + '</div>' +
       '<p class="p-b" style="max-width:none">' + c.bg.background + '</p>' +
       '<div class="bg-split">' +
-      '<div class="bg-split-chart">' + ({infra: INFRA_COMPLEXITY_SVG, uda: UDA_FRAGMENTATION_SVG}[c.bg.chartSvg] || OPPTYGAP_SVG) + '</div>' +
+      '<div class="bg-split-chart">' + ({infra: INFRA_COMPLEXITY_SVG, uda: UDA_FRAGMENTATION_SVG, hitl: HITL_CONTEXT_SVG, cust: CUSTOMER_AI_SVG}[c.bg.chartSvg] || OPPTYGAP_SVG) + '</div>' +
       '<div class="bg-split-arrow">' + arrowSVG + '</div>' +
       '<div class="bg-split-problem">' +
       '<div class="bg-prob-label">The problem</div>' +
@@ -1197,10 +1444,13 @@ function pageMedia(step, meta) {
     var tabBtns = step.tabs.map(function(t, i) {
       return '<button class="tab-btn' + (i === 0 ? ' on' : '') + '" onclick="switchTab(this,\'tab-' + t.id + '\')">' + t.name + '</button>';
     }).join('');
-    var maxFeats = step.tabs.reduce(function(m, t) { return Math.max(m, t.features.length); }, 0);
+    var maxFeats = step.tabs.reduce(function(m, t) { return Math.max(m, (t.features || []).length); }, 0);
     var tabPanes = step.tabs.map(function(t, i) {
       var content;
-      if (t.versus && t.features.length === 2) {
+      if (t.svg) {
+        var tabSvgMap = { 'rca-trust': RCA_TRUST_SVG, 'processing-pivot': PROCESSING_PIVOT_SVG };
+        content = (tabSvgMap[t.svg] || '') + (t.cap ? '<div class="shot-cap">' + t.cap + '</div>' : '');
+      } else if (t.versus && t.features.length === 2) {
         var vOpts = t.features.map(function(f, fi) {
           var sel = fi === 1;
           return '<div class="vs-option' + (sel ? ' vs-option--selected' : '') + '">' +
@@ -1221,7 +1471,7 @@ function pageMedia(step, meta) {
         content = '<div class="tab-feat-list">' + items.join('') + '</div>';
       }
       return '<div class="tab-pane' + (i === 0 ? ' on' : '') + '" id="tab-' + t.id + '">' +
-        (t.versus ? '' : '<div class="tab-desc">' + t.desc + '</div>') +
+        (t.versus || t.svg ? '' : '<div class="tab-desc">' + t.desc + '</div>') +
         content +
         '</div>';
     }).join('');
@@ -1232,29 +1482,30 @@ function pageMedia(step, meta) {
       '</div></div></div>';
   }
   if (step.svg) {
-    var mediasvgs = { eero: EERO_SVG };
+    var mediasvgs = { eero: EERO_SVG, jtbd: JTBD_SVG, hitl: HITL_CONTEXT_SVG, 'rca-trust': RCA_TRUST_SVG };
     return '<div class="page"><div class="page-in"><div class="pcols">' +
       '<div class="pcol"><div class="p-meta">' + meta + '</div><div class="p-h">' + step.heading + '</div>' +
       '<p class="p-b">' + step.body + '</p></div>' +
       '<div class="pcol">' + (mediasvgs[step.svg] || '') + (step.cap ? '<div class="shot-cap">' + step.cap + '</div>' : '') + '</div>' +
       '</div></div></div>';
   }
-  if (step.img && step.layout === 'stack') {
+  var mediaSrc = step.gif || step.img;
+  if (mediaSrc && step.layout === 'stack') {
     return '<div class="page" style="justify-content:flex-start"><div class="page-in" style="display:flex;flex-direction:column;height:100%;padding-top:4px">' +
       '<div style="flex-shrink:0">' +
       '<div class="p-meta">' + meta + '</div>' +
       '<div style="font-size:clamp(1rem,2vw,1.5rem);font-weight:700;letter-spacing:-.025em;line-height:1.2;color:#2A3B47;margin-top:6px">' + step.heading + '</div>' +
-      '<p style="font-size:clamp(.85rem,1.1vw,.95rem);color:#6E7A82;line-height:1.55;margin-top:6px;max-width:44em">' + step.body + '</p>' +
+      '<p style="font-size:1.05rem;color:#6E7A82;line-height:1.55;margin-top:6px;max-width:44em">' + step.body + '</p>' +
       '</div>' +
-      '<img src="' + step.img + '" alt="" style="flex:1;min-height:0;object-fit:contain;object-position:top center;width:100%;border-radius:10px;box-shadow:none;margin-top:14px">' +
+      '<img src="' + mediaSrc + '" alt="" style="flex:1;min-height:0;object-fit:contain;object-position:top center;width:100%;border-radius:10px;box-shadow:none;margin-top:14px">' +
       (step.cap ? '<div class="shot-cap" style="flex-shrink:0;margin-top:8px">' + step.cap + '</div>' : '') +
       '</div></div>';
   }
-  if (step.img) {
+  if (mediaSrc) {
     return '<div class="page"><div class="page-in"><div class="pcols">' +
       '<div class="pcol"><div class="p-meta">' + meta + '</div><div class="p-h">' + step.heading + '</div>' +
       '<p class="p-b">' + step.body + '</p></div>' +
-      '<div class="pcol"><img class="shot" src="' + step.img + '" alt=""><div class="shot-cap">' + step.cap + '</div></div>' +
+      '<div class="pcol"><img class="shot" src="' + mediaSrc + '" alt=""><div class="shot-cap">' + step.cap + '</div></div>' +
       '</div></div></div>';
   }
   return '<div class="page"><div class="page-in textled">' +
@@ -1263,12 +1514,12 @@ function pageMedia(step, meta) {
 }
 function pageTurn(c) {
   if (c.turn.signalImgL || c.turn.svgL) {
-    var turnSvgMap = { 'uda-inconsistency': UDA_INCONSISTENCY_SVG, 'uda-direction': UDA_DIRECTION_SVG };
+    var turnSvgMap = { 'uda-inconsistency': UDA_INCONSISTENCY_SVG, 'uda-direction': UDA_DIRECTION_SVG, 'embed-value': EMBED_VALUE_SVG, 'agentic-assist': AGENTIC_ASSIST_SVG, 'rca-trust': RCA_TRUST_SVG, 'img-placeholder': IMG_PLACEHOLDER_SVG };
     var leftVis = c.turn.svgL
-      ? '<div style="border-radius:12px;overflow:hidden;border:1.5px solid #E8E8E3">' + (turnSvgMap[c.turn.svgL] || '') + '</div>'
+      ? '<div style="border-radius:12px;overflow:hidden;border:1.5px solid #E8E8E3;flex:1;display:flex;align-items:center">' + (turnSvgMap[c.turn.svgL] || '') + '</div>'
       : '<div class="turn-img-wrap"><img src="' + c.turn.signalImgL + '" class="turn-half-img" alt=""></div>';
     var rightVis = c.turn.svgR
-      ? '<div style="border-radius:12px;overflow:hidden;border:1.5px solid #E8E8E3">' + (turnSvgMap[c.turn.svgR] || '') + '</div>'
+      ? '<div style="border-radius:12px;overflow:hidden;border:1.5px solid #E8E8E3;flex:1;display:flex;align-items:center">' + (turnSvgMap[c.turn.svgR] || '') + '</div>'
       : '<div class="turn-img-wrap"><img src="' + c.turn.signalImgR + '" class="turn-half-img" alt=""></div>';
     return '<div class="page page-turn"><div class="page-in">' +
       '<div class="turn-header">' +
@@ -1295,8 +1546,8 @@ function pageTurn(c) {
       '<div class="signal-bubble"><div class="signal-bubble-label">' + (c.turn.attr || '') + '</div>' +
       '<div class="signal-bubble-quote">&ldquo;' + (c.turn.quote || '') + '&rdquo;</div></div>' +
       '</div>'
-    : c.turn.img
-      ? '<div class="pcol"><img class="shot" src="' + c.turn.img + '" alt=""><div class="shot-cap">' + (c.turn.cap || '') + '</div></div>'
+    : (c.turn.img || c.turn.gif)
+      ? '<div class="pcol"><img class="shot" src="' + (c.turn.gif || c.turn.img) + '" alt=""><div class="shot-cap">' + (c.turn.cap || '') + '</div></div>'
       : '<div class="pcol" style="text-align:center;display:flex;align-items:center;justify-content:center">' + REFRAME + '</div>';
   var rightBody = c.turn.svg
     ? '<p class="p-b">' + c.turn.before + '</p>'
@@ -1315,8 +1566,23 @@ function pageEval(c) {
   var stats = c.evaluation.stats.slice(0, 2).map(function(s) {
     return '<div class="statcard"><b>' + s[0] + '</b><span>' + s[1] + '</span></div>';
   }).join('');
+  var mediaCol;
+  if (c.evaluation.tabs) {
+    var eBtns = c.evaluation.tabs.map(function(t, i) {
+      return '<button class="tab-btn' + (i === 0 ? ' on' : '') + '" onclick="switchTab(this,\'etab-' + t.id + '\')">' + t.name + '</button>';
+    }).join('');
+    var ePanes = c.evaluation.tabs.map(function(t, i) {
+      return '<div class="tab-pane' + (i === 0 ? ' on' : '') + '" id="etab-' + t.id + '">' +
+        '<img src="' + t.gif + '" alt="" style="width:100%;border-radius:12px;box-shadow:0 26px 46px -26px rgba(20,28,36,.45)">' +
+        (t.cap ? '<div class="shot-cap">' + t.cap + '</div>' : '') +
+        '</div>';
+    }).join('');
+    mediaCol = '<div class="pcol"><div class="tab-ui"><div class="tab-nav">' + eBtns + '</div>' + ePanes + '</div></div>';
+  } else {
+    mediaCol = '<div class="pcol"><img src="' + (c.evaluation.gif || 'assets/demo_v2c_hd.gif') + '" alt="Product demo" style="width:100%;border-radius:12px;box-shadow:0 26px 46px -26px rgba(20,28,36,.45)"></div>';
+  }
   return '<div class="page"><div class="page-in"><div class="pcols" style="align-items:center">' +
-    '<div class="pcol"><img src="' + (c.evaluation.gif || 'assets/demo_v2c_hd.gif') + '" alt="Product demo" style="width:100%;border-radius:12px;box-shadow:0 26px 46px -26px rgba(20,28,36,.45)"></div>' +
+    mediaCol +
     '<div class="pcol">' +
     '<div class="p-meta">Step 05 · The Outcome</div>' +
     '<div class="p-h">' + c.evaluation.heading + '</div>' +
