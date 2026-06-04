@@ -1424,7 +1424,12 @@ function pageBg(c) {
       '<div class="p-h">' + c.bg.heading + '</div>' +
       '<p class="p-b" style="max-width:none">' + c.bg.background + '</p>' +
       '<div class="bg-split">' +
-      '<div class="bg-split-chart">' + (c.bg.chartImg ? '<img src="' + c.bg.chartImg + '" style="width:100%;border-radius:12px;display:block">' : ({infra: INFRA_COMPLEXITY_SVG, uda: UDA_FRAGMENTATION_SVG, hitl: HITL_CONTEXT_SVG, cust: CUSTOMER_AI_SVG}[c.bg.chartSvg] || OPPTYGAP_SVG)) + '</div>' +
+      '<div class="bg-split-chart">' + (c.bg.chartImg ?
+        '<div style="position:relative;border-radius:12px;overflow:hidden;border:1.5px solid #E8E8E3">' +
+          '<img src="' + c.bg.chartImg + '" style="width:100%;display:block">' +
+          '<div style="position:absolute;inset:0;background:linear-gradient(to right,transparent 68%,rgba(255,255,255,.7) 85%,#fff 100%);pointer-events:none"></div>' +
+        '</div>'
+        : ({infra: INFRA_COMPLEXITY_SVG, uda: UDA_FRAGMENTATION_SVG, hitl: HITL_CONTEXT_SVG, cust: CUSTOMER_AI_SVG}[c.bg.chartSvg] || OPPTYGAP_SVG)) + '</div>' +
       '<div class="bg-split-arrow">' + arrowSVG + '</div>' +
       '<div class="bg-split-problem">' +
       '<div class="bg-prob-label">The problem</div>' +
