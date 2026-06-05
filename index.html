@@ -1578,21 +1578,21 @@ function pageEval(c) {
         '<img src="' + t.gif + '" alt="" style="width:100%;border-radius:12px;display:block">' +
         '</div>';
     }).join('');
-    mediaCol = '<div class="pcol"><div class="tab-ui"><div class="tab-nav">' + eBtns + '</div>' +
+    mediaCol = '<div style="flex:1.9;min-width:0"><div class="tab-ui"><div class="tab-nav">' + eBtns + '</div>' +
       '<div style="aspect-ratio:1400/933;display:flex;flex-direction:column;justify-content:flex-start">' + ePanes + '</div>' +
       '</div></div>';
   } else {
-    mediaCol = '<div class="pcol"><img src="' + (c.evaluation.gif || 'assets/demo_v2c_hd.gif') + '" alt="Product demo" style="width:100%;border-radius:12px"></div>';
+    mediaCol = '<div style="flex:1.9;min-width:0"><img src="' + (c.evaluation.gif || 'assets/demo_v2c_hd.gif') + '" alt="Product demo" style="width:100%;border-radius:12px"></div>';
   }
   return '<div class="page"><div class="page-in"><div class="pcols" style="align-items:flex-start">' +
-    mediaCol +
-    '<div class="pcol">' +
+    '<div class="pcol" style="flex:1">' +
     '<div class="p-meta">Step 05 · The Outcome</div>' +
     '<div class="p-h">' + c.evaluation.heading + '</div>' +
     '<div class="eval-stats">' + stats + '</div>' +
     '<div class="outcome-learning" style="margin-top:14px"><div class="learn-label">KEY LEARNING</div>' +
     '<p>' + c.evaluation.learning + '</p></div>' +
     '</div>' +
+    mediaCol +
     '</div></div></div>';
 }
 function pageInvitation(c, caseIdx) {
