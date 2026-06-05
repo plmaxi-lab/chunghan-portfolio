@@ -658,7 +658,7 @@ const CASES = [
           problemHeadline: "The pressure to act",
           bullets: ["AI demand spans every customer type — Security, Data, IT Ops", "Efficiency became the defining expectation for 2025"] },
     start: { heading: "We responded with our 2025 AI strategy.", body: "We set out to incorporate AI across three critical workflows — Onboarding, Cleansing, and Troubleshooting — each with a specific feature designed to help customers work faster and with greater confidence.", svg: 'hitl' },
-    turn: { heading: "The embedding matters. And results alone don't build trust.", before: "Auto Field Extraction matched Regex101's output — but embedded in Splunk, it changed the workflow entirely. For Root Cause Analysis, surfacing the diagnosis wasn't enough; users needed to understand the evidence before they could act.", svgL: 'embed-value', labelL: "PROCESSING SUGGESTIONS", capL: "The embedding in the interface — not the extraction itself — is where the value lives.", svgR: 'agentic-assist', labelR: "ROOT CAUSE ANALYSIS", capR: "Mix agentic detection with assistive explanation — trust comes from understanding, not just results.", capRStyle: "green" },
+    turn: { heading: "Context shifts value. Evidence builds trust.", before: "Embedding AI in the workflow changed how users saw the output. A confident diagnosis still left users asking: how do I know this is right?", svgL: 'embed-value', labelL: "PROCESSING SUGGESTIONS", capL: "Value is in the context, not the output.", svgR: 'agentic-assist', labelR: "ROOT CAUSE ANALYSIS", capR: "Trust needs evidence, not just a verdict.", capRStyle: "green" },
     conclusion: { heading: "Connect the data to a real outcome.", body: "For Processing Suggestions, the AI maps extracted fields to a Data Model and a real use case. For Root Cause Analysis, we designed around three principles — trust in the diagnosis, direction to the right investigation, and actionable next steps.", style: 'tabs', tabs: [
       { id: 'processing', name: 'Processing Suggestions', svg: 'processing-pivot', cap: "AI maps fields to Data Models → real compliance outcome" },
       { id: 'rca', name: 'Root Cause Analysis', svg: 'rca-trust', cap: "The three design principles behind Root Cause Analysis" }
@@ -1180,77 +1180,71 @@ const JTBD_SVG = `<svg viewBox="0 0 480 224" xmlns="http://www.w3.org/2000/svg" 
 
 const EMBED_VALUE_SVG = `<svg viewBox="0 0 480 248" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
   <rect width="480" height="248" rx="14" fill="#111827"/>
-  <text x="111" y="22" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" font-weight="700" letter-spacing=".1em" fill="rgba(255,255,255,.25)">EXTERNAL TOOL</text>
-  <rect x="16" y="28" width="190" height="158" rx="12" fill="#1C2130" stroke="#2E3447" stroke-width="1.5"/>
-  <rect x="16" y="28" width="190" height="30" rx="12" fill="#242B3D"/>
-  <rect x="16" y="46" width="190" height="12" fill="#242B3D"/>
-  <circle cx="32" cy="43" r="5" fill="#FF5F57"/>
-  <circle cx="47" cy="43" r="5" fill="#FFBD2E"/>
-  <circle cx="62" cy="43" r="5" fill="#28C840"/>
-  <rect x="78" y="37" width="118" height="12" rx="6" fill="#181E2C"/>
-  <text x="137" y="47" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="7.5" fill="rgba(255,255,255,.3)">regex101.com</text>
-  <rect x="28" y="70" width="166" height="13" rx="3" fill="rgba(255,255,255,.05)"/>
-  <text x="36" y="81" font-family="Courier New,Courier,monospace" font-size="9" fill="rgba(96,165,250,.65)">[a-z]{1,3}\.\d+\.\d+</text>
-  <rect x="28" y="89" width="136" height="13" rx="3" fill="rgba(255,255,255,.04)"/>
-  <text x="36" y="100" font-family="Courier New,Courier,monospace" font-size="9" fill="rgba(96,165,250,.5)">(src|dst)_ip\s+=\s+</text>
-  <rect x="28" y="108" width="150" height="13" rx="3" fill="rgba(255,255,255,.03)"/>
-  <text x="36" y="119" font-family="Courier New,Courier,monospace" font-size="9" fill="rgba(96,165,250,.4)">\d{2}:\d{2}:\d{2}</text>
-  <text x="111" y="155" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,.28)">Manual pattern building</text>
-  <rect x="16" y="196" width="190" height="28" rx="7" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.18)" stroke-width="1"/>
-  <text x="111" y="214" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="rgba(239,68,68,.7)">Leaves your workflow</text>
-  <path d="M218 120 L262 120" stroke="rgba(255,255,255,.18)" stroke-width="2" stroke-linecap="round"/>
-  <path d="M256 113 L264 120 L256 127" stroke="rgba(255,255,255,.18)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  <text x="369" y="22" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" font-weight="700" letter-spacing=".1em" fill="rgba(45,212,191,.6)">IN YOUR WORKFLOW</text>
-  <rect x="274" y="28" width="190" height="158" rx="12" fill="#0D1520" stroke="rgba(45,212,191,.28)" stroke-width="1.5"/>
-  <rect x="274" y="28" width="190" height="26" rx="12" fill="#162035"/>
-  <rect x="274" y="42" width="190" height="12" fill="#162035"/>
-  <text x="330" y="45" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="700" fill="rgba(255,255,255,.6)">Splunk</text>
-  <text x="350" y="45" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.28)">› Field Extraction</text>
-  <rect x="286" y="62" width="166" height="20" rx="4" fill="rgba(255,255,255,.05)"/>
-  <text x="294" y="76" font-family="Courier New,Courier,monospace" font-size="7.5" fill="rgba(255,255,255,.4)">Firebox01 src_ip=10.1.2.34...</text>
-  <rect x="286" y="88" width="166" height="38" rx="6" fill="rgba(45,212,191,.12)" stroke="rgba(45,212,191,.3)" stroke-width="1"/>
-  <path d="M294,104 l1.2,2.8 2.8,1.2 -2.8,1.2 -1.2,2.8 -1.2,-2.8 -2.8,-1.2 2.8,-1.2z" fill="#2DD4BF"/>
-  <text x="304" y="102" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="700" fill="#2DD4BF">AI detected fields</text>
-  <rect x="304" y="110" width="34" height="12" rx="3" fill="rgba(45,212,191,.22)"/>
-  <text x="321" y="120" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(45,212,191,.9)">src_ip</text>
-  <rect x="342" y="110" width="28" height="12" rx="3" fill="rgba(45,212,191,.16)"/>
-  <text x="356" y="120" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(45,212,191,.75)">proto</text>
-  <rect x="374" y="110" width="34" height="12" rx="3" fill="rgba(45,212,191,.13)"/>
-  <text x="391" y="120" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(45,212,191,.65)">action</text>
-  <rect x="286" y="134" width="76" height="16" rx="5" fill="#1D4ED8"/>
-  <text x="324" y="146" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="600" fill="white">✓ Apply</text>
-  <rect x="274" y="196" width="190" height="28" rx="7" fill="rgba(52,211,153,.1)" stroke="rgba(52,211,153,.24)" stroke-width="1"/>
-  <text x="369" y="214" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="#34D399">Stays in your workflow</text>
+  <!-- Left: External Tool -->
+  <text x="111" y="20" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" font-weight="700" letter-spacing=".1em" fill="rgba(255,255,255,.25)">EXTERNAL TOOL</text>
+  <rect x="16" y="28" width="190" height="190" rx="12" fill="#1C2130" stroke="#2E3447" stroke-width="1.5"/>
+  <rect x="16" y="28" width="190" height="28" rx="12" fill="#242B3D"/>
+  <rect x="16" y="44" width="190" height="12" fill="#242B3D"/>
+  <circle cx="30" cy="42" r="4" fill="#FF5F57" opacity=".8"/>
+  <circle cx="43" cy="42" r="4" fill="#FFBD2E" opacity=".8"/>
+  <circle cx="56" cy="42" r="4" fill="#28C840" opacity=".8"/>
+  <text x="137" y="43" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="7.5" fill="rgba(255,255,255,.3)">regex101.com</text>
+  <rect x="30" y="68" width="162" height="10" rx="5" fill="rgba(96,165,250,.18)"/>
+  <rect x="30" y="84" width="124" height="10" rx="5" fill="rgba(96,165,250,.12)"/>
+  <rect x="30" y="100" width="144" height="10" rx="5" fill="rgba(96,165,250,.08)"/>
+  <text x="111" y="140" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,.3)">Manual pattern building</text>
+  <rect x="16" y="206" width="190" height="26" rx="7" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.2)" stroke-width="1"/>
+  <text x="111" y="223" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="rgba(239,68,68,.7)">Leaves your workflow</text>
+  <!-- Arrow -->
+  <path d="M218 124 L262 124" stroke="rgba(255,255,255,.2)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M256 117 L264 124 L256 131" stroke="rgba(255,255,255,.2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Right: In Workflow -->
+  <text x="369" y="20" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" font-weight="700" letter-spacing=".1em" fill="rgba(45,212,191,.6)">IN YOUR WORKFLOW</text>
+  <rect x="274" y="28" width="190" height="190" rx="12" fill="#0D1520" stroke="rgba(45,212,191,.28)" stroke-width="1.5"/>
+  <rect x="274" y="28" width="190" height="28" rx="12" fill="#162035"/>
+  <rect x="274" y="44" width="190" height="12" fill="#162035"/>
+  <text x="369" y="43" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="700" fill="rgba(255,255,255,.55)">Splunk › Field Extraction</text>
+  <rect x="286" y="68" width="166" height="32" rx="8" fill="rgba(45,212,191,.12)" stroke="rgba(45,212,191,.3)" stroke-width="1"/>
+  <path d="M295,83 l1.2,2.8 2.8,1.2 -2.8,1.2 -1.2,2.8 -1.2,-2.8 -2.8,-1.2 2.8,-1.2z" fill="#2DD4BF"/>
+  <text x="310" y="88" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="#2DD4BF">AI detected fields</text>
+  <rect x="286" y="108" width="38" height="14" rx="7" fill="rgba(45,212,191,.22)"/>
+  <text x="305" y="119" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(45,212,191,.9)">src_ip</text>
+  <rect x="330" y="108" width="32" height="14" rx="7" fill="rgba(45,212,191,.16)"/>
+  <text x="346" y="119" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(45,212,191,.75)">proto</text>
+  <rect x="368" y="108" width="36" height="14" rx="7" fill="rgba(45,212,191,.13)"/>
+  <text x="386" y="119" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(45,212,191,.65)">action</text>
+  <rect x="316" y="132" width="74" height="20" rx="6" fill="#1D4ED8"/>
+  <text x="353" y="146" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="white">✓ Apply</text>
+  <rect x="274" y="206" width="190" height="26" rx="7" fill="rgba(52,211,153,.1)" stroke="rgba(52,211,153,.24)" stroke-width="1"/>
+  <text x="369" y="223" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="#34D399">Stays in your workflow</text>
 </svg>`;
 
 const AGENTIC_ASSIST_SVG = `<svg viewBox="0 0 480 248" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
   <rect width="480" height="248" rx="14" fill="#111827"/>
-  <rect x="16" y="16" width="200" height="200" rx="12" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.2)" stroke-width="1.5"/>
-  <rect x="16" y="16" width="200" height="38" rx="12" fill="rgba(167,139,250,.16)"/>
-  <rect x="16" y="42" width="200" height="12" fill="rgba(167,139,250,.16)"/>
-  <path d="M30,34 l1.5,3.5 3.5,1.5 -3.5,1.5 -1.5,3.5 -1.5,-3.5 -3.5,-1.5 3.5,-1.5z" fill="#A78BFA"/>
-  <text x="44" y="38" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="10" font-weight="700" fill="#A78BFA">Investigation Summary</text>
-  <text x="44" y="50" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.4)">Generated by AI · 4 Aug 2025</text>
-  <text x="116" y="92" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" fill="rgba(255,255,255,.35)" letter-spacing=".07em">SUSPECTED ROOT CAUSE</text>
-  <text x="116" y="116" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,.92)">Schema drift</text>
-  <text x="116" y="134" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9.5" fill="rgba(255,255,255,.4)">Field order changed in raw log</text>
-  <rect x="46" y="150" width="140" height="9" rx="4" fill="rgba(255,255,255,.07)"/>
-  <rect x="46" y="150" width="112" height="9" rx="4" fill="rgba(167,139,250,.4)"/>
-  <text x="116" y="176" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" fill="rgba(255,255,255,.3)">High confidence</text>
-  <rect x="16" y="224" width="200" height="26" rx="7" fill="rgba(167,139,250,.1)" stroke="rgba(167,139,250,.2)" stroke-width="1"/>
-  <text x="116" y="241" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="#A78BFA">AI is confident</text>
+  <!-- Left: AI output -->
+  <rect x="16" y="16" width="200" height="216" rx="12" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.2)" stroke-width="1.5"/>
+  <rect x="16" y="16" width="200" height="34" rx="12" fill="rgba(167,139,250,.16)"/>
+  <rect x="16" y="38" width="200" height="12" fill="rgba(167,139,250,.16)"/>
+  <path d="M30,32 l1.5,3.5 3.5,1.5 -3.5,1.5 -1.5,3.5 -1.5,-3.5 -3.5,-1.5 3.5,-1.5z" fill="#A78BFA"/>
+  <text x="44" y="36" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="10" font-weight="700" fill="#A78BFA">Investigation Summary</text>
+  <text x="116" y="82" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.35)" letter-spacing=".07em">SUSPECTED ROOT CAUSE</text>
+  <text x="116" y="108" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="20" font-weight="800" fill="rgba(255,255,255,.92)">Schema drift</text>
+  <text x="116" y="126" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,.4)">Field order changed in raw log</text>
+  <rect x="46" y="148" width="140" height="8" rx="4" fill="rgba(255,255,255,.07)"/>
+  <rect x="46" y="148" width="112" height="8" rx="4" fill="rgba(167,139,250,.4)"/>
+  <text x="116" y="172" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,.3)">High confidence</text>
+  <rect x="16" y="210" width="200" height="22" rx="7" fill="rgba(167,139,250,.1)" stroke="rgba(167,139,250,.2)" stroke-width="1"/>
+  <text x="116" y="225" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="#A78BFA">AI is confident</text>
+  <!-- Arrow -->
   <path d="M228 124 L252 124" stroke="rgba(255,255,255,.18)" stroke-width="2" stroke-linecap="round"/>
   <path d="M246 117 L254 124 L246 131" stroke="rgba(255,255,255,.18)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  <rect x="264" y="16" width="200" height="200" rx="12" fill="rgba(245,158,11,.07)" stroke="rgba(245,158,11,.2)" stroke-width="1.5"/>
-  <circle cx="364" cy="82" r="26" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1.5"/>
-  <circle cx="355" cy="78" r="3" fill="rgba(255,255,255,.5)"/>
-  <circle cx="373" cy="78" r="3" fill="rgba(255,255,255,.5)"/>
-  <path d="M354 89 Q364 83 374 89" stroke="rgba(255,255,255,.3)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <text x="364" y="148" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="56" font-weight="800" fill="rgba(245,158,11,.3)">?</text>
-  <text x="364" y="178" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="rgba(255,255,255,.55)">How do I know</text>
-  <text x="364" y="194" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="10.5" font-weight="600" fill="rgba(255,255,255,.55)">this is right?</text>
-  <rect x="264" y="224" width="200" height="26" rx="7" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.22)" stroke-width="1"/>
-  <text x="364" y="241" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="#F59E0B">User is not sure</text>
+  <!-- Right: User reality -->
+  <rect x="264" y="16" width="200" height="216" rx="12" fill="rgba(245,158,11,.07)" stroke="rgba(245,158,11,.2)" stroke-width="1.5"/>
+  <text x="364" y="130" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="72" font-weight="800" fill="rgba(245,158,11,.25)">?</text>
+  <text x="364" y="160" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,.55)">How do I know</text>
+  <text x="364" y="178" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,.55)">this is right?</text>
+  <rect x="264" y="210" width="200" height="22" rx="7" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.22)" stroke-width="1"/>
+  <text x="364" y="225" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="#F59E0B">User is not sure</text>
 </svg>`;
 
 const PROCESSING_PIVOT_SVG = `<svg viewBox="0 0 480 264" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
