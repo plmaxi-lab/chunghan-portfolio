@@ -442,6 +442,30 @@ a { color: inherit; }
 </style>
 </head>
 <body>
+<script>if(sessionStorage.getItem('auth')==='1'){document.documentElement.style.setProperty('--gate-display','none');}</script>
+<div id="gate" style="display:var(--gate-display,flex)">
+  <nav class="gate-nav">
+    <div class="brand">
+      <div class="mark"></div>
+      <b>Chung-Han Tsai</b>
+    </div>
+  </nav>
+  <div class="gate-center">
+    <div class="gate-illus-wrap" id="gate-illus">
+      <img src="assets/walking.png" alt="Chung-Han walking Brynn">
+      <div class="gate-bubble" id="gate-bubble">?</div>
+    </div>
+    <p class="gate-hello">Hi, I'm Chung Han</p>
+    <h1 class="gate-headline">Ready to see how I turn complex data problems into products people actually use?</h1>
+    <p class="gate-sub">Enter the password to find out.</p>
+    <div class="gate-form">
+      <input type="password" id="gate-input" autocomplete="current-password" placeholder="Password">
+      <div class="gate-error" id="gate-error"></div>
+      <button id="gate-btn">Let me in →</button>
+    </div>
+    <a class="gate-cta" href="mailto:plmaxi@gmail.com?subject=Requesting%20Portfolio%20Password&body=Hi%20Chung-Han%2C%0A%0AI%27d%20love%20to%20see%20your%20portfolio.%20Could%20you%20share%20the%20password%3F">No password? Say hello →</a>
+  </div>
+</div>
 
 <div class="site">
   <nav class="nav">
