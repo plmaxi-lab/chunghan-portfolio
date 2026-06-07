@@ -1,24 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 752">
 <style>
-path { fill: #2A3B47; }
-#person { animation: p-bob .85s ease-in-out infinite; }
-#dog    { animation: dog-bob .85s ease-in-out infinite .18s; }
-@keyframes p-bob {
-  0%,50%,100% { transform: translateY(0) rotate(0deg); }
-  25%         { transform: translateY(-8px) rotate(.6deg); }
-  75%         { transform: translateY(-5px) rotate(-.5deg); }
-}
-@keyframes dog-bob {
-  0%,50%,100% { transform: translateY(0) rotate(0deg); }
-  25%         { transform: translateY(-6px) rotate(-.5deg); }
-  75%         { transform: translateY(-8px) rotate(.4deg); }
-}
-@media (prefers-reduced-motion: reduce) {
-  #person, #dog { animation: none; }
-}
+  svg { background: transparent; }
+  path { fill: #2A3B47; }
+  #person { animation: p-bob .85s ease-in-out infinite; }
+  #dog    { animation: dog-bob .85s ease-in-out infinite .18s; }
+  @keyframes p-bob {
+    0%,50%,100% { transform: translateY(0) rotate(0deg); }
+    25%         { transform: translateY(-8px) rotate(.6deg); }
+    75%         { transform: translateY(-5px) rotate(-.5deg); }
+  }
+  @keyframes dog-bob {
+    0%,50%,100% { transform: translateY(0) rotate(0deg); }
+    25%         { transform: translateY(-6px) rotate(-.5deg); }
+    75%         { transform: translateY(-8px) rotate(.4deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #person, #dog { animation: none; }
+  }
 </style>
 <g id="person">
-  <path d="
+  <path fill-rule="evenodd" d="
 M338.999817,199.012466 
 	C338.999817,199.012466 339.025085,199.050339 338.863220,198.353577 
 	C338.505798,197.608765 338.302246,196.719208 337.762695,196.145782 
@@ -385,7 +386,7 @@ M369.520874,193.964966
 z"/>
 </g>
 <g id="dog">
-  <path d="
+  <path fill-rule="evenodd" d="
 M775.853638,600.803711 
 	C773.543091,603.841431 772.897278,607.500977 769.337646,609.769409 
 	C777.577576,612.060547 784.315125,615.434570 789.754761,621.384827 
