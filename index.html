@@ -330,19 +330,39 @@ a { color: inherit; }
 
 .gate-illus-wrap {
   position: relative;
-  width: 320px; max-width: 90vw;
+  width: 380px; max-width: 92vw;
 }
-.gate-illus-wrap img {
-  width: 100%; height: auto; display: block;
+.gate-spacer {
+  width: 100%; height: auto; display: block; visibility: hidden;
+}
+.gate-person, .gate-dog {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: auto;
   mix-blend-mode: multiply;
-  animation: walking-bob 0.8s ease-in-out infinite;
+}
+.gate-person {
+  clip-path: inset(0 36% 0 0);
+  animation: walk-person 1s ease-in-out infinite;
+}
+.gate-dog {
+  clip-path: inset(0 0 0 54%);
+  animation: walk-dog 1s ease-in-out infinite 0.18s;
+}
+.gate-illus-wrap.walking-off {
+  animation: walk-off .7s ease-in forwards;
+}
+.gate-illus-wrap.walking-off .gate-person,
+.gate-illus-wrap.walking-off .gate-dog {
+  animation: none;
 }
 
+.gate-hello { font-size: 14px; color: #8A929A; margin: 0; }
+
 .gate-headline {
-  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
   font-weight: 700; color: #2A3B47;
   letter-spacing: -.035em; line-height: 1.2;
-  margin: 0;
+  margin: 0; max-width: 640px;
 }
 
 .gate-sub { font-size: 15px; color: #6E7A82; margin: 0; }
@@ -388,15 +408,21 @@ a { color: inherit; }
 }
 .gate-cta:hover { text-decoration: underline; }
 
-.gate-illus-wrap.walking-off img {
-  animation: walk-off .7s ease-in forwards !important;
-}
 
-@keyframes walking-bob {
+@keyframes walk-person {
   0%   { transform: translateY(0)    rotate(0deg); }
-  25%  { transform: translateY(-6px) rotate(.6deg); }
-  50%  { transform: translateY(0)    rotate(0deg); }
-  75%  { transform: translateY(-4px) rotate(-.6deg); }
+  20%  { transform: translateY(-7px) rotate(.7deg); }
+  40%  { transform: translateY(-1px) rotate(.1deg); }
+  60%  { transform: translateY(-6px) rotate(-.6deg); }
+  80%  { transform: translateY(-1px) rotate(-.1deg); }
+  100% { transform: translateY(0)    rotate(0deg); }
+}
+@keyframes walk-dog {
+  0%   { transform: translateY(0)    rotate(0deg); }
+  20%  { transform: translateY(-5px) rotate(-.4deg); }
+  40%  { transform: translateY(-1px) rotate(0deg); }
+  60%  { transform: translateY(-7px) rotate(.5deg); }
+  80%  { transform: translateY(-2px) rotate(.1deg); }
   100% { transform: translateY(0)    rotate(0deg); }
 }
 @keyframes shake {
@@ -411,8 +437,8 @@ a { color: inherit; }
   100% { transform: translateX(110vw); opacity: .6; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .gate-illus-wrap img { animation: none; }
-  .gate-illus-wrap.walking-off img { animation: none !important; opacity: 0; }
+  .gate-person, .gate-dog { animation: none; }
+  .gate-illus-wrap.walking-off { animation: none; opacity: 0; }
 }
 </style>
 </head>
@@ -427,8 +453,11 @@ a { color: inherit; }
   </nav>
   <div class="gate-center">
     <div class="gate-illus-wrap" id="gate-illus">
-      <img src="assets/walking.png" alt="Chung-Han walking Brynn">
+      <img src="assets/walking.png" class="gate-spacer" aria-hidden="true">
+      <img src="assets/walking.png" class="gate-person" alt="Chung-Han walking">
+      <img src="assets/walking.png" class="gate-dog" aria-hidden="true">
     </div>
+    <p class="gate-hello">Hi, I'm Chung-Han</p>
     <h1 class="gate-headline">Ready to see how I turn complex data problems into products people actually use?</h1>
     <p class="gate-sub">Enter the password to find out.</p>
     <div class="gate-form">
