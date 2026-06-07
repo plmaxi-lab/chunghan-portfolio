@@ -304,6 +304,141 @@ a { color: inherit; }
   .chart-dot-4{transform-origin:center;transform-box:fill-box;animation:dotPop 3.6s ease-in-out .6s infinite}
 
 @media (prefers-reduced-motion: reduce) { *, .reader, .r-track, .wrow { animation: none !important; transition: none !important; } }
+
+/* ── PASSWORD GATE ─────────────────────────── */
+#gate {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #FAF8F3;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 28px 24px;
+  transition: opacity .5s ease;
+}
+#gate.gate-fading { opacity: 0; pointer-events: none; }
+
+.gate-nav {
+  position: absolute; top: 0; left: 0; right: 0;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 28px 32px;
+}
+
+.gate-center {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 12px;
+  max-width: 480px; width: 100%; text-align: center;
+}
+
+.gate-illus-wrap {
+  position: relative;
+  width: 320px; max-width: 90vw;
+}
+.gate-illus-wrap img {
+  width: 100%; height: auto; display: block;
+  animation: walking-bob 0.65s ease-in-out infinite;
+}
+
+.gate-bubble {
+  position: absolute;
+  top: -10px; right: 18%;
+  width: 46px; height: 46px;
+  background: #E8F5EE; border: 1.5px solid #C5E5CF;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 700; color: #1E9145;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  animation: float-bubble 2s ease-in-out infinite;
+  transition: opacity .3s ease;
+  pointer-events: none;
+}
+.gate-bubble.bubble-lightbulb { font-size: 20px; }
+.gate-bubble.bubble-pulse { animation: bubble-pulse .4s ease forwards; }
+
+.gate-hello { font-size: 14px; color: #8A929A; margin: 0; }
+
+.gate-headline {
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-weight: 700; color: #2A3B47;
+  letter-spacing: -.035em; line-height: 1.2;
+  margin: 0;
+}
+
+.gate-sub { font-size: 15px; color: #6E7A82; margin: 0; }
+
+.gate-form {
+  width: 100%; display: flex; flex-direction: column; gap: 10px;
+  margin-top: 4px;
+}
+
+#gate-input {
+  width: 100%; padding: 13px 16px;
+  border: 1.5px solid #CDD1D3; border-radius: 12px;
+  background: #fff; font-family: inherit;
+  font-size: 15px; color: #2A3B47;
+  outline: none; transition: border-color .2s;
+  box-sizing: border-box;
+  letter-spacing: .1em;
+}
+#gate-input:focus { border-color: #2A3B47; }
+#gate-input.input-shake { animation: shake .4s ease; }
+
+#gate-btn {
+  width: 100%; padding: 13px;
+  background: #2A3B47; color: #FAF8F3;
+  border: none; border-radius: 12px;
+  font-family: inherit; font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: opacity .15s;
+}
+#gate-btn:hover { opacity: .88; }
+
+.gate-error {
+  font-size: 13px; color: #E05252;
+  min-height: 18px;
+  transition: opacity .3s;
+  opacity: 0;
+}
+.gate-error.visible { opacity: 1; }
+
+.gate-cta {
+  font-size: 13px; font-weight: 700;
+  color: #1E9145; text-decoration: none;
+  margin-top: 4px;
+}
+.gate-cta:hover { text-decoration: underline; }
+
+.gate-illus-wrap.walking-off img {
+  animation: walk-off .7s ease-in forwards !important;
+}
+
+@keyframes walking-bob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes float-bubble {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-8px); }
+  40%       { transform: translateX(8px); }
+  60%       { transform: translateX(-6px); }
+  80%       { transform: translateX(6px); }
+}
+@keyframes walk-off {
+  0%   { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(110vw); opacity: .6; }
+}
+@keyframes bubble-pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gate-illus-wrap img { animation: none; }
+  .gate-bubble { animation: none; }
+  .gate-illus-wrap.walking-off img { animation: none !important; opacity: 0; }
+}
 </style>
 </head>
 <body>
