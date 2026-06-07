@@ -331,22 +331,13 @@ a { color: inherit; }
 .gate-illus-wrap {
   width: 420px; max-width: 92vw;
 }
-.gate-illus-wrap svg { width: 100%; display: block; overflow: visible; }
+.gate-illus-wrap img {
+  width: 100%; height: auto; display: block;
+  mix-blend-mode: multiply;
+  animation: walk-bob .85s ease-in-out infinite;
+}
 .gate-illus-wrap.walking-off { animation: walk-off .75s ease-in forwards; }
-
-/* Person */
-.p-bob  { animation: p-bob  .85s ease-in-out infinite; }
-.leg-l  { transform-origin: 145px 202px; animation: leg-l  .85s ease-in-out infinite; }
-.leg-r  { transform-origin: 165px 202px; animation: leg-r  .85s ease-in-out infinite; }
-.arm-l  { transform-origin: 133px 143px; animation: arm-l  .85s ease-in-out infinite; }
-/* Dog */
-.dog-bob   { animation: dog-bob .85s ease-in-out infinite .12s; }
-.dleg-a    { animation: dleg   .85s ease-in-out infinite; }
-.dleg-b    { animation: dleg   .85s ease-in-out infinite .425s; }
-.tail-wag  { transform-origin: 360px 226px; animation: tail-wag .42s ease-in-out infinite alternate; }
-/* Ground puffs */
-.puff-l { animation: puff .85s ease-in-out infinite; }
-.puff-r { animation: puff .85s ease-in-out infinite .425s; }
+.gate-illus-wrap.walking-off img { animation: none; }
 
 .gate-hello { font-size: 14px; color: #8A929A; margin: 0; }
 
@@ -401,42 +392,10 @@ a { color: inherit; }
 .gate-cta:hover { text-decoration: underline; }
 
 
-/* Walk keyframes */
-@keyframes p-bob {
-  0%,50%,100% { transform: translateY(0); }
-  25%,75%     { transform: translateY(-6px); }
-}
-@keyframes dog-bob {
-  0%,50%,100% { transform: translateY(0); }
-  25%,75%     { transform: translateY(-5px); }
-}
-@keyframes leg-l {
-  0%   { transform: rotate(-28deg); }
-  50%  { transform: rotate(22deg); }
-  100% { transform: rotate(-28deg); }
-}
-@keyframes leg-r {
-  0%   { transform: rotate(22deg); }
-  50%  { transform: rotate(-28deg); }
-  100% { transform: rotate(22deg); }
-}
-@keyframes arm-l {
-  0%   { transform: rotate(20deg); }
-  50%  { transform: rotate(-20deg); }
-  100% { transform: rotate(20deg); }
-}
-@keyframes dleg {
-  0%   { transform: rotate(-22deg); }
-  50%  { transform: rotate(20deg); }
-  100% { transform: rotate(-22deg); }
-}
-@keyframes tail-wag {
-  from { transform: rotate(-14deg); }
-  to   { transform: rotate(18deg); }
-}
-@keyframes puff {
-  0%,100%  { opacity: 0; transform: scale(.7); }
-  35%,65%  { opacity: 1; transform: scale(1); }
+@keyframes walk-bob {
+  0%,50%,100% { transform: translateY(0) rotate(0deg); }
+  25%         { transform: translateY(-7px) rotate(.5deg); }
+  75%         { transform: translateY(-5px) rotate(-.4deg); }
 }
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
@@ -450,7 +409,7 @@ a { color: inherit; }
   100% { transform: translateX(110vw); opacity: .6; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .p-bob,.leg-l,.leg-r,.arm-l,.dog-bob,.dleg-a,.dleg-b,.tail-wag,.puff-l,.puff-r { animation: none; }
+  .gate-illus-wrap img { animation: none; }
   .gate-illus-wrap.walking-off { animation: none; opacity: 0; }
 }
 </style>
@@ -466,127 +425,7 @@ a { color: inherit; }
   </nav>
   <div class="gate-center">
     <div class="gate-illus-wrap" id="gate-illus">
-    <svg viewBox="0 0 450 295" xmlns="http://www.w3.org/2000/svg" aria-label="Chung-Han walking Brynn">
-
-      <!-- Leash -->
-      <path d="M 206,178 C 232,180 262,210 279,232" fill="none" stroke="#2A3B47" stroke-width="1.8" stroke-linecap="round"/>
-
-      <!-- ── PERSON ── -->
-      <g class="p-bob">
-
-        <!-- Left arm (swings back when left leg is forward) -->
-        <g class="arm-l">
-          <path d="M 133,143 Q 117,162 112,183" fill="none" stroke="#2A3B47" stroke-width="5" stroke-linecap="round"/>
-          <circle cx="110" cy="186" r="5" fill="#FAF8F3" stroke="#2A3B47" stroke-width="2"/>
-        </g>
-
-        <!-- Left leg -->
-        <g class="leg-l">
-          <line x1="145" y1="202" x2="138" y2="238" stroke="#2A3B47" stroke-width="8" stroke-linecap="round"/>
-          <line x1="138" y1="238" x2="133" y2="264" stroke="#2A3B47" stroke-width="7" stroke-linecap="round"/>
-          <path d="M 118,264 Q 118,271 126,271 L 148,269 Q 153,267 153,263 Q 153,260 148,260 L 130,260 Z" fill="#2A3B47"/>
-        </g>
-
-        <!-- Right leg -->
-        <g class="leg-r">
-          <line x1="165" y1="202" x2="172" y2="238" stroke="#2A3B47" stroke-width="8" stroke-linecap="round"/>
-          <line x1="172" y1="238" x2="178" y2="264" stroke="#2A3B47" stroke-width="7" stroke-linecap="round"/>
-          <path d="M 163,264 Q 163,271 171,271 L 193,269 Q 198,267 198,263 Q 198,260 193,260 L 175,260 Z" fill="#2A3B47"/>
-        </g>
-
-        <!-- Upper body (rendered on top of legs) -->
-        <!-- Head -->
-        <circle cx="155" cy="85" r="30" fill="#FAF8F3" stroke="#2A3B47" stroke-width="2.5"/>
-        <!-- Hair -->
-        <path d="M 130,74 Q 155,58 180,74" fill="none" stroke="#2A3B47" stroke-width="3" stroke-linecap="round"/>
-        <!-- Glasses left -->
-        <rect x="136" y="84" width="15" height="10" rx="3.5" fill="none" stroke="#2A3B47" stroke-width="1.8"/>
-        <!-- Glasses right -->
-        <rect x="154" y="84" width="15" height="10" rx="3.5" fill="none" stroke="#2A3B47" stroke-width="1.8"/>
-        <line x1="151" y1="89" x2="154" y2="89" stroke="#2A3B47" stroke-width="1.5"/>
-        <line x1="136" y1="89" x2="130" y2="88" stroke="#2A3B47" stroke-width="1.5"/>
-        <line x1="169" y1="89" x2="175" y2="88" stroke="#2A3B47" stroke-width="1.5"/>
-        <!-- Beard -->
-        <path d="M 148,109 Q 155,115 162,109" fill="none" stroke="#2A3B47" stroke-width="2" stroke-linecap="round"/>
-        <!-- Jacket body (dark fill covers leg tops) -->
-        <path d="M 128,125 Q 128,119 141,117 L 155,114 L 169,117 Q 182,119 182,125 L 182,202 Q 182,207 169,207 L 141,207 Q 128,207 128,202 Z"
-              fill="#2A3B47" stroke="#2A3B47" stroke-width="1.5" stroke-linejoin="round"/>
-        <!-- Collar V -->
-        <path d="M 143,117 L 155,129 L 167,117" fill="none" stroke="#FAF8F3" stroke-width="1.5" stroke-linejoin="round" opacity="0.4"/>
-        <!-- Zipper -->
-        <line x1="155" y1="130" x2="155" y2="202" stroke="#FAF8F3" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
-        <!-- Right arm (forward, holds leash) -->
-        <path d="M 182,148 Q 196,160 207,176" fill="none" stroke="#2A3B47" stroke-width="5" stroke-linecap="round"/>
-        <circle cx="209" cy="179" r="5" fill="#FAF8F3" stroke="#2A3B47" stroke-width="2"/>
-
-      </g><!-- /p-bob -->
-
-      <!-- Ground puffs — person -->
-      <g class="puff-l">
-        <path d="M 112,274 L 107,282" stroke="#2A3B47" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M 120,277 L 116,286" stroke="#2A3B47" stroke-width="1.8" stroke-linecap="round"/>
-      </g>
-      <g class="puff-r">
-        <path d="M 198,274 L 193,282" stroke="#2A3B47" stroke-width="1.8" stroke-linecap="round"/>
-        <path d="M 206,277 L 202,286" stroke="#2A3B47" stroke-width="1.8" stroke-linecap="round"/>
-      </g>
-
-      <!-- ── DOG ── -->
-      <g class="dog-bob">
-        <!-- Body (fluffy rings) -->
-        <ellipse cx="322" cy="234" rx="43" ry="26" fill="#FAF8F3" stroke="#2A3B47" stroke-width="2.2"/>
-        <circle cx="300" cy="234" r="15" fill="#FAF8F3" stroke="#2A3B47" stroke-width="1.5" opacity="0.65"/>
-        <circle cx="322" cy="229" r="17" fill="#FAF8F3" stroke="#2A3B47" stroke-width="1.5" opacity="0.55"/>
-        <circle cx="342" cy="236" r="14" fill="#FAF8F3" stroke="#2A3B47" stroke-width="1.5" opacity="0.55"/>
-        <!-- Head -->
-        <circle cx="288" cy="218" r="23" fill="#FAF8F3" stroke="#2A3B47" stroke-width="2.2"/>
-        <circle cx="288" cy="218" r="17" fill="none" stroke="#2A3B47" stroke-width="1.2" opacity="0.35"/>
-        <!-- Snout -->
-        <ellipse cx="274" cy="224" rx="12" ry="8" fill="#FAF8F3" stroke="#2A3B47" stroke-width="1.8"/>
-        <!-- Nose -->
-        <ellipse cx="269" cy="222" rx="4.5" ry="3.5" fill="#2A3B47"/>
-        <!-- Eye -->
-        <circle cx="281" cy="211" r="3.5" fill="#2A3B47"/>
-        <circle cx="282" cy="210" r="1.2" fill="white"/>
-        <!-- Ear -->
-        <path d="M 277,198 Q 264,186 261,200" fill="none" stroke="#2A3B47" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- Smile -->
-        <path d="M 272,231 Q 278,235 284,231" fill="none" stroke="#2A3B47" stroke-width="1.5" stroke-linecap="round"/>
-        <!-- Collar -->
-        <path d="M 280,235 Q 285,239 293,239" fill="none" stroke="#2A3B47" stroke-width="5" stroke-linecap="round"/>
-        <!-- Tail -->
-        <path class="tail-wag" d="M 365,226 Q 378,210 382,197" fill="none" stroke="#2A3B47" stroke-width="2.5" stroke-linecap="round"/>
-        <!-- Dog front-left leg (phase A) -->
-        <g class="dleg-a" style="transform-origin:302px 256px">
-          <line x1="302" y1="256" x2="296" y2="274" stroke="#2A3B47" stroke-width="3" stroke-linecap="round"/>
-          <line x1="296" y1="274" x2="292" y2="280" stroke="#2A3B47" stroke-width="2.5" stroke-linecap="round"/>
-        </g>
-        <!-- Dog front-right leg (phase B) -->
-        <g class="dleg-b" style="transform-origin:313px 256px">
-          <line x1="313" y1="256" x2="319" y2="274" stroke="#2A3B47" stroke-width="3" stroke-linecap="round"/>
-          <line x1="319" y1="274" x2="323" y2="280" stroke="#2A3B47" stroke-width="2.5" stroke-linecap="round"/>
-        </g>
-        <!-- Dog back-left leg (phase B) -->
-        <g class="dleg-b" style="transform-origin:331px 256px">
-          <line x1="331" y1="256" x2="325" y2="274" stroke="#2A3B47" stroke-width="3" stroke-linecap="round"/>
-          <line x1="325" y1="274" x2="321" y2="280" stroke="#2A3B47" stroke-width="2.5" stroke-linecap="round"/>
-        </g>
-        <!-- Dog back-right leg (phase A) -->
-        <g class="dleg-a" style="transform-origin:342px 256px">
-          <line x1="342" y1="256" x2="348" y2="274" stroke="#2A3B47" stroke-width="3" stroke-linecap="round"/>
-          <line x1="348" y1="274" x2="352" y2="280" stroke="#2A3B47" stroke-width="2.5" stroke-linecap="round"/>
-        </g>
-      </g><!-- /dog-bob -->
-
-      <!-- Ground puffs — dog -->
-      <g class="puff-l">
-        <path d="M 283,282 L 279,290" stroke="#2A3B47" stroke-width="1.5" stroke-linecap="round"/>
-      </g>
-      <g class="puff-r">
-        <path d="M 350,282 L 346,290" stroke="#2A3B47" stroke-width="1.5" stroke-linecap="round"/>
-      </g>
-
-    </svg>
+      <img src="assets/walking.svg" alt="Chung-Han walking Brynn">
     </div>
     <p class="gate-hello">Hi, I'm Chung-Han</p>
     <h1 class="gate-headline">Ready to see how I turn complex data problems into products people actually use?</h1>
