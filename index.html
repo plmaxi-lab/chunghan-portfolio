@@ -331,8 +331,13 @@ a { color: inherit; }
 .gate-illus-wrap {
   width: 440px; max-width: 92vw;
 }
-.gate-illus-wrap object { background: transparent; display: block; width: 100%; }
+.gate-illus-wrap img {
+  width: 100%; height: auto; display: block;
+  mix-blend-mode: multiply;
+  animation: walk-bob .85s ease-in-out infinite;
+}
 .gate-illus-wrap.walking-off { animation: walk-off .75s ease-in forwards; }
+.gate-illus-wrap.walking-off img { animation: none; }
 
 .gate-hello { font-size: 14px; color: #8A929A; margin: 0; }
 
@@ -387,6 +392,11 @@ a { color: inherit; }
 .gate-cta:hover { text-decoration: underline; }
 
 
+@keyframes walk-bob {
+  0%,50%,100% { transform: translateY(0) rotate(0deg); }
+  25%         { transform: translateY(-8px) rotate(.6deg); }
+  75%         { transform: translateY(-5px) rotate(-.4deg); }
+}
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   20%       { transform: translateX(-8px); }
@@ -399,6 +409,7 @@ a { color: inherit; }
   100% { transform: translateX(110vw); opacity: .6; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .gate-illus-wrap img { animation: none; }
   .gate-illus-wrap.walking-off { animation: none; opacity: 0; }
 }
 </style>
@@ -414,7 +425,7 @@ a { color: inherit; }
   </nav>
   <div class="gate-center">
     <div class="gate-illus-wrap" id="gate-illus">
-      <object type="image/svg+xml" data="assets/walking.svg" aria-label="Chung-Han walking Brynn" style="width:100%;height:auto;display:block;pointer-events:none;"></object>
+      <img src="assets/walking.png" alt="Chung-Han walking Brynn">
     </div>
     <p class="gate-hello">Hi, I'm Chung-Han</p>
     <h1 class="gate-headline">Ready to see how I turn complex data problems into products people actually use?</h1>
