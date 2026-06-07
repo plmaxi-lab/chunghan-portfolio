@@ -1849,5 +1849,62 @@ document.addEventListener("keydown", e => {
   if (e.key === "Escape") closeReader();
 });
 </script>
+<script>
+(function () {
+  var PASSWORD = 'ctsaiwork2026';
+
+  var gate   = document.getElementById('gate');
+  var input  = document.getElementById('gate-input');
+  var btn    = document.getElementById('gate-btn');
+  var errEl  = document.getElementById('gate-error');
+  var bubble = document.getElementById('gate-bubble');
+  var illus  = document.getElementById('gate-illus');
+
+  if (!gate) return; // already bypassed via sessionStorage
+
+  function showError() {
+    input.classList.remove('input-shake');
+    void input.offsetWidth;
+    input.classList.add('input-shake');
+    errEl.textContent = 'Not quite. Try again.';
+    errEl.classList.add('visible');
+    bubble.textContent = '!';
+    setTimeout(function () {
+      bubble.textContent = '?';
+      errEl.classList.remove('visible');
+    }, 1500);
+  }
+
+  function unlock() {
+    bubble.textContent = '💡';
+    bubble.classList.add('bubble-lightbulb', 'bubble-pulse');
+    setTimeout(function () { illus.classList.add('walking-off'); }, 500);
+    setTimeout(function () { gate.classList.add('gate-fading'); }, 900);
+    setTimeout(function () {
+      gate.parentNode.removeChild(gate);
+      sessionStorage.setItem('auth', '1');
+    }, 1450);
+  }
+
+  function handleSubmit() {
+    if (input.value.trim() === PASSWORD) {
+      btn.disabled = true;
+      input.disabled = true;
+      unlock();
+    } else {
+      showError();
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  btn.addEventListener('click', handleSubmit);
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') handleSubmit();
+  });
+
+  input.focus();
+})();
+</script>
 </body>
 </html>
