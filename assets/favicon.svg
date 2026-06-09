@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .bg  { fill: #2A3B47; }
+    .cut { fill: #FAF8F3; }
+    @media (prefers-color-scheme: dark) {
+      .bg  { fill: #FAF8F3; }
+      .cut { fill: #2A3B47; }
+    }
+  </style>
+  <!-- Rounded square -->
+  <rect class="bg" width="32" height="32" rx="8.5"/>
+  <!-- Curved cutout: mirrors .mark::after (left:7 top:7 width:12 height:12 border-radius:50% 0 0 0) scaled to 32px -->
+  <path class="cut" d="M20.3,7.5 L13.9,7.5 A6.4,6.4 0 0,0 7.5,13.9 L7.5,20.3 L20.3,20.3 Z"/>
+</svg>
