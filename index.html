@@ -33,7 +33,7 @@ a { color: inherit; }
 .hero h1 { font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 700; letter-spacing: -.035em;
   line-height: 1.1; margin-top: 13px; }
 .stats { font-size: 15.5px; color: #8A929A; margin-top: 22px; line-height: 1.95; }
-.stats b { font-weight: 700; color: #2A3B47; }
+.stats b { font-weight: 700; color: #2A3B47; margin-right: 5px; }
 .stats .sep { color: #CDD1D3; margin: 0 7px; }
 
 .section { padding: 58px 0; }
@@ -64,6 +64,7 @@ a { color: inherit; }
 .cover-meta-block--period { flex: 0 0 auto; min-width: 160px; }
 .cover-meta-label { font-size: 9.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #9AA3AD; margin-bottom: 8px; }
 .cover-meta-body { font-size: 13px; color: #4B5563; line-height: 1.6; }
+.cover-meta-body b { color: #2A3B47; font-size: 14px; }
 .cover-period { font-size: 22px; font-weight: 700; color: #2A3B47; letter-spacing: -.02em; line-height: 1.2; }
 
 .vibe { display: flex; gap: 20px; margin-top: 26px; }
@@ -157,8 +158,8 @@ a { color: inherit; }
 .turn-header { flex-shrink: 0; margin-bottom: 14px; }
 .turn-pair { display: flex; gap: 14px; }
 .turn-half { flex: 1; display: flex; flex-direction: column; gap: 10px; }
-.turn-img-wrap { width: 100%; aspect-ratio: 16 / 7; border-radius: 14px; overflow: hidden; border: 1.5px solid #E8E8E3; box-shadow: 0 6px 18px -8px rgba(20,28,36,.1); background: #F5F4EF; display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box; }
-.turn-half-img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
+.turn-img-wrap { width: 100%; aspect-ratio: 16 / 7; border-radius: 14px; overflow: hidden; border: 1.5px solid #E8E8E3; box-shadow: 0 6px 18px -8px rgba(20,28,36,.1); background: #F5F4EF; display: flex; align-items: flex-end; justify-content: center; padding: 20px 20px 0; box-sizing: border-box; }
+.turn-half-img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; display: block; transform: scale(1.08); transform-origin: bottom center; }
 .turn-cap { flex-shrink: 0; border-radius: 12px; padding: 13px 16px; border-top: 3px solid; }
 .turn-cap-label { display: block; font-size: 9.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
 .turn-cap-quote { font-size: clamp(.85rem, 1.3vw, 1rem); font-weight: 700; line-height: 1.4; letter-spacing: -.01em; }
@@ -171,7 +172,7 @@ a { color: inherit; }
 .turn-cap-g { background: #F0F8F3; border-top-color: #1E9145; }
 .turn-cap-g .turn-cap-label { color: #1E9145; }
 .turn-cap-g .turn-cap-quote { color: #1A5C36; }
-.signal-card { border-radius: 14px; overflow: hidden; border: 1.5px solid #E8E6E0; }
+.signal-card { border-radius: 14px; overflow: hidden; }
 .signal-img { width: 100%; aspect-ratio: 16/7; overflow: hidden; background: #F5F5F0; }
 .signal-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .signal-bubble { padding: 13px 16px; background: #F5F4EF; border-top: 2.5px solid #2A3B47; }
@@ -430,7 +431,7 @@ a { color: inherit; }
       <img src="assets/walking.svg" alt="Chung-Han walking Brynn">
     </div>
     <p class="gate-hello">Hi, I'm Chung-Han</p>
-    <h1 class="gate-headline">Ready to see how I turn complex data problems into products people actually use?</h1>
+    <h1 class="gate-headline">Ready to see how I turn complex data problems into products?</h1>
     <p class="gate-sub">Enter the password to find out.</p>
     <div class="gate-form">
       <input type="password" id="gate-input" autocomplete="current-password" placeholder="Password">
@@ -451,7 +452,7 @@ a { color: inherit; }
     <div class="hero-text">
       <div class="hello">Hi, I'm Chung Han</div>
       <h1>I turn complex data problems into products people actually use.</h1>
-      <div class="stats"><b>14 years</b> in industry<span class="sep">·</span><b>8 years</b> leading design<span class="sep">·</span><b>5 years</b> leading cross-functional teams<span class="sep">·</span><b>3 years</b> designing with AI</div>
+      <div class="stats"><b>14 yrs</b> in product design<br><b>8 yrs</b> in leading teams<br><b>5 yrs</b> in owning roadmaps</div>
     </div>
     <div class="hero-art">
       <svg viewBox="0 0 1200 894" xmlns="http://www.w3.org/2000/svg" role="img"
@@ -652,22 +653,22 @@ a { color: inherit; }
 
   <section class="section" id="work">
     <div class="sec-label">Selected work</div>
-    <h2 class="sec-h">Four products, each told in five steps.</h2>
+    <h2 class="sec-h">How I ship: products told in five steps.</h2>
     <div class="work-list" id="workList"></div>
   </section>
 
   <section class="section" id="vibe">
     <div class="sec-label">Vibe coding</div>
-    <h2 class="sec-h">Building with AI, beyond the day job.</h2>
+    <h2 class="sec-h">How I build on the side: AI tools beyond the day job.</h2>
     <div class="vibe">
       <div class="vibe-card">
         <div class="vk">Introducing TFF Filler</div>
-        <p>Using Claude Code to solve a repetitive permit-paperwork problem — start small, ship what works.</p>
+        <p>Using Claude Code to solve a repetitive permit-paperwork problem. Start small, ship what works.</p>
         <a class="vlink" href="https://chunghantsai.substack.com/p/introducing-tff-filler">Read on &rarr;</a>
       </div>
       <div class="vibe-card">
         <div class="vk">More on Substack</div>
-        <p>An ongoing log of building real tools with AI — the wins, the dead ends, the lessons.</p>
+        <p>An ongoing log of building real tools with AI: the wins, the dead ends, the lessons.</p>
         <a class="vlink" href="https://chunghantsai.substack.com/">Visit the Substack &rarr;</a>
       </div>
     </div>
@@ -675,10 +676,10 @@ a { color: inherit; }
 
   <section class="section" id="principles">
     <div class="sec-label">How I lead</div>
-    <h2 class="sec-h">Three principles I build products and teams on.</h2>
+    <h2 class="sec-h">How I lead: three principles I come back to every time.</h2>
     <div class="prin">
       <div class="prin-card"><h3>Continuous growth culture</h3><p>Weekly knowledge-sharing and a monthly AI learning club turn individual curiosity into team capability.</p></div>
-      <div class="prin-card"><h3>Data-driven evaluation</h3><p>Telemetry and research define the OKRs, so quality is measured against outcomes — not asserted.</p></div>
+      <div class="prin-card"><h3>Data-driven evaluation</h3><p>Telemetry and research define the OKRs, so quality is measured against outcomes, not asserted.</p></div>
       <div class="prin-card"><h3>Transparent leadership</h3><p>Direct, data-backed communication and leading by show-and-tell, so cross-functional partners stay aligned.</p></div>
     </div>
   </section>
@@ -730,117 +731,117 @@ const CASES = [
   {
     title: "Unified Data Observability", client: "Splunk · Cisco",
     tags: ["0 to 1", "Strategy", "Research-driven"],
-    teaser: "Leading a pivot away from a feature everyone already liked.",
+    teaser: "Pivoting from an unexecutable vision to something that shipped.",
     shelf: "assets/udo-thumbnail.png",
-    overview: "I identified Splunk's #1 unmet user need and led the design strategy from zero to shipped — with a research-driven pivot midway.",
-    role: "Lead Product Designer — Strategy, 0→1, Research",
-    period: "2023 – 2024",
+    overview: "Translated the #1 customer ask into a shipped monitoring & observability product, research-driven pivot included.",
+    role: "<b>Design Manager</b><br>•&nbsp;Led 2 designers + 1 director-level IC<br>•&nbsp;Defined strategy & research direction<br>•&nbsp;Reshaped roadmap, delivered 0→1",
+    period: "2024",
     bg: { chart: true, chartCap: "Annual survey: <b>Importance</b> and <b>satisfaction</b> across data management needs",
           heading: "The #1 under-served need: Easy Troubleshooting.",
           background: "In 2024, we identified and began tackling a critical gap in the monitoring and troubleshooting experience.",
           problemHeadline: "Scattered solutions",
           bullets: ["Not sure where to start", "Waste time on investigation"],
           wide: ["Ingestion", "Processing", "Dashboards"], focus: "Troubleshooting", focusSub: "the one problem we chose" },
-    start: { heading: "We started with a live topology map.", body: "The first vision — see status, errors and throughput at every stage of the pipeline, in real time.", img: "assets/topology-map.png", cap: "The Topology Map we built first" },
-    turn: { heading: "Two signals, one clear direction.", before: "User research and engineering both pointed the same way — the topology was good, but built for the wrong job.", signalImgL: "assets/turn-signal-user.png", signalImgR: "assets/turn-signal-eng.png", capL: "Looks good — but why stare at this all day?", labelL: "User Signal", capR: "Backend complexity is blocking forward progress.", labelR: "Engineering Signal" },
+    start: { heading: "We started with a live topology map.", body: "The first vision: see status, errors, and throughput across every stage of the data flow, in real time.", img: "assets/topology-map.png", cap: "The Topology Map we built first" },
+    turn: { heading: "Two signals, one clear direction.", before: "Engineering hit a wall. Evaluating customer needs revealed a higher-value area we hadn't yet fully explored.", signalImgL: "assets/turn-signal-eng.png", signalImgR: "assets/turn-signal-user.png", capL: "Backend complexity is blocking forward progress.", labelL: "Engineering Signal", capLStyle: "red", capR: "Looks good, but why stare at this all day?", labelR: "User Signal", capRStyle: "default" },
     conclusion: { heading: "A monitoring maturity framework.", body: "Staged monitoring that meets users where they are — from real-time visibility to full automation.", style: 'tabs', tabs: [
       { id: 'active', name: 'Active', desc: 'Users actively interact with the system and monitor data or insights in real-time.', features: [{icon:'dashboard',label:'Dashboard'},{icon:'query',label:'Query / Search'},{icon:'topology',label:'Topology'}] },
-      { id: 'reactive', name: 'Reactive', desc: 'Users are prompted to take action based on system notifications or alerts — no continuous presence required.', features: [{icon:'alert',label:'Alert'},{icon:'troubleshoot',label:'Troubleshoot'}] },
+      { id: 'reactive', name: 'Reactive', desc: 'Users are prompted to take action based on system notifications or alerts, with no continuous presence required.', features: [{icon:'alert',label:'Alert'},{icon:'troubleshoot',label:'Troubleshoot'}] },
       { id: 'proactive', name: 'Proactive', desc: 'The system anticipates issues and provides actionable insights before problems arise.', features: [{icon:'anomaly',label:'Anomaly Detection'},{icon:'rootcause',label:'Root Cause Analysis'},{icon:'predictive',label:'Predictive Analytics'}] },
-      { id: 'automation', name: 'Automation', desc: 'The system executes tasks autonomously without requiring user interaction.', features: [{icon:'rpa',label:'RPA'}] }
+      { id: 'automation', name: 'Automation', desc: 'The system executes tasks autonomously without requiring user interaction.', features: [{icon:'rpa',label:'Robotic Process Automation (RPA)'}] }
     ]},
-    evaluation: { heading: "What it returned.", gif: "assets/demo_v7c_hd.gif", stats: [["120+", "Weekly active users"], ["1st", "Unified monitoring portal at Splunk"], ["3", "Monitoring maturity stages"], ["0→1", "New product surface"]], learning: "What made it work: proactive curiosity over comfortable momentum, research-driven decisions, and disagree-and-commit." },
-    invitation: { heading: "That's the five-minute version.", body: "The pivot story — leading a direction change when the team already liked v1 — is better in person." }
+    evaluation: { heading: "What it returned.", gif: "assets/demo_v7c_hd.gif", stats: [["120+", "Weekly active users"], ["1st", "Unified portal for data monitoring"], ["3", "Monitoring maturity stages"], ["0→1", "New product surface"]], learning: "What made it work: proactive curiosity over comfortable momentum, research-driven decisions, and pushing for the right value." },
+    invitation: { heading: "That's the five-minute version.", body: "Curious how I convinced a team already committed to one vision to pursue a better one? Let's talk." }
   },
   {
     title: "Topology-Driven Onboarding", client: "Splunk · Cisco",
     tags: ["Adoption", "AI", "0 to 1"],
-    teaser: "AI-guided setup — time-to-value from months to minutes.",
+    teaser: "Cutting time-to-value from months to minutes with AI-guided setup.",
     shelf: "assets/ks-onboarding.png",
-    overview: "I led the redesign of Splunk's data onboarding — introducing AI-guided topology setup to cut time-to-value from months to minutes.",
-    role: "Lead Product Designer — AI UX, Onboarding, Research",
-    period: "2024 – 2025",
+    overview: "I led the execution of an ambitious AI onboarding vision, turning a concept into something that could actually ship.",
+    role: "<b>Lead Product Designer</b><br>•&nbsp;Designed AI-guided onboarding from scratch<br>•&nbsp;Built & demoed at Splunk .conf 2025<br>•&nbsp;Rebuilt 6-month plan, validated with 15+ customers",
+    period: "Mid–End 2025",
     bg: { chart: true, chartSvg: "infra",
-          chartCap: "7+ infrastructure types, each requiring a different Splunk configuration",
+          chartCap: "Various infrastructure types, each requiring a different Splunk configuration",
           heading: "One platform. Countless ways in.",
-          background: "Splunk connects to nearly any infrastructure — but every customer arrives with different systems, different needs, and no clear path to the right configuration.",
+          background: "Splunk connects to nearly any infrastructure, but every customer arrives with different systems, different needs, and no clear path to the right configuration.",
           problemHeadline: "Complexity delays Time to Value",
           bullets: ["Every user brings different infrastructure", "No clear path to the right setup"] },
-    start: { heading: "The vision got its first public stage at .conf 2025.", body: "My UX architect and I built the demo — a holistic infrastructure view with AI-guided configurations surfaced at each step. The room responded.", img: "assets/ks-onboarding-conf.png", cap: "Live demo at Splunk .conf 2025" },
-    turn: { heading: "Building AI-native product unlike the traditional way.", svg: "ai-cascade", before: "AI products broke our process. Engineers couldn't hand us a spec — the outcome was unpredictable by nature. Design had to lead.", quote: "Unpredictable outcomes demand more ideation from design, not less.", attr: "The shift that redefined how our team worked" },
-    conclusion: { heading: "Three angles, one direction.", body: "Prototyping both conversational and canvas approaches revealed what to ship — intent-driven, canvas-native, aligned to how users actually think.", style: 'tabs', tabs: [
+    start: { heading: "The vision got its first public stage at .conf 2025.", body: "We built the demo and showcased it at .conf 2025: a holistic infrastructure view with AI-guided configurations surfaced at each step. Attendees were eager to get their hands on it.", img: "assets/ks-onboarding-conf.png", cap: "Live demo at Splunk .conf 2025" },
+    turn: { heading: "Building AI-native product unlike the traditional way.", svg: "ai-cascade", before: "AI products broke our process. Engineers couldn't hand us a spec. The outcome was unpredictable by nature. Design had to lead.", quote: "Unpredictable outcomes demand more ideation from design, not less.", attr: "The shift that redefined how our team worked" },
+    conclusion: { heading: "A design framework that unblocked engineering.", body: "Heavy ideation helped engineering think through backend architecture and data needs. From that, three principles framed the end-to-end solution.", style: 'tabs', tabs: [
       { id: 'content-init', name: 'How to Start', versus: true, features: [{icon:'intent',label:'Intent Driven',desc:'User describes their goal; system maps intent to the right configuration path.'},{icon:'template',label:'Prefilled Template',desc:'A default starting point is shown; user edits to match their existing setup.'}] },
-      { id: 'interaction', name: 'Interaction Model', versus: true, features: [{icon:'chat',label:'Conversational',desc:'Chat-based flow — user types requests, system responds step by step.'},{icon:'canvas',label:'Canvas Focused',desc:'Visual workspace — user configures directly on an infrastructure canvas.'}] },
+      { id: 'interaction', name: 'Interaction Model', versus: true, features: [{icon:'chat',label:'Conversational',desc:'Chat-based flow where users type requests and the system responds step by step.'},{icon:'canvas',label:'Canvas Focused',desc:'Visual workspace where users configure directly on an infrastructure canvas.'}] },
       { id: 'ia', name: 'What to Surface', versus: true, features: [{icon:'topology',label:'System Element Structure',desc:'Organized by infrastructure components: map nodes, sources, and pipelines.'},{icon:'mental',label:'User Mental Model',desc:'Organized by user actions: instructions, decisions, and next steps.'}] }
     ]},
-    evaluation: { heading: "Where it stands.", stats: [["15+", "Customers validated"], ["2026", "Alpha preview, then GA"], ["2", "Approaches prototyped"], ["6mo", "Plan rebuilt from scratch"]], learning: "What made it work: rapid prototyping, framework-driven exploration, and heavy investment in research." },
-    invitation: { heading: "There's a bigger story here.", body: "The full story — the six-month plan we chose to walk back, and why — is a good conversation." }
+    evaluation: { heading: "Where it stands.", stats: [["15+", "Customers validated"], ["2026", "Alpha preview, then GA"], ["2", "Approaches prototyped"], ["6mo", "Plan rebuilt from scratch"]], learning: "Rapid prototyping, framework-driven exploration, and heavy research investment made the difference." },
+    invitation: { heading: "There's a bigger story here.", body: "Curious how we approached building an AI product when traditional product development no longer applied? Let's talk." }
   },
   {
     title: "Human-in-the-loop AI", client: "Splunk · Cisco",
     tags: ["AI", "Adoption", "Framework"],
-    teaser: "Designing AI decision points people can actually trust.",
+    teaser: "Building the trust framework behind Splunk's AI.",
     shelf: "assets/hitl-thumbnail.svg",
-    overview: "I defined and designed the trust framework for Splunk's AI features — establishing reusable human-in-the-loop patterns that balanced AI efficiency with user confidence.",
-    role: "Lead Product Designer — AI/ML UX, Framework Design",
-    period: "2025 – 2026",
+    overview: "I defined and designed the trust framework for Splunk's AI features, establishing reusable human-in-the-loop patterns that balanced AI efficiency with user confidence.",
+    role: "<b>Design Manager</b><br>•&nbsp;Led Splunk's 2025 AI design strategy via JTBD<br>•&nbsp;Validated direction through internal & external research<br>•&nbsp;Shipped Auto Field Extraction Q1 2026<br>•&nbsp;Defined assistive and agentic AI interaction patterns",
+    period: "Mid–End 2025",
     bg: { chart: true, chartSvg: "cust",
-          chartCap: "AI efficiency — the top ask across Security Analysts, Data Admins, and IT Operations",
-          heading: "People wanted to know where Splunk stands on AI.",
-          background: "A new level of digital resilience, with AI as our strategy in 2025. Customers across every segment were asking the same question: will Splunk AI actually make my work faster?",
+          chartCap: "AI efficiency, the top ask across Security Analysts, Data Admins, and IT Operations",
+          heading: "AI became Splunk's 2025 strategy.",
+          background: "Customers had one question: will it actually make my work faster?",
           problemHeadline: "The pressure to act",
-          bullets: ["AI demand spans every customer type — Security, Data, IT Ops", "Efficiency became the defining expectation for 2025"] },
-    start: { heading: "We responded with our 2025 AI strategy.", body: "We set out to incorporate AI across three critical workflows — Onboarding, Cleansing, and Troubleshooting — each with a specific feature designed to help customers work faster and with greater confidence.", svg: 'hitl' },
-    turn: { heading: "Context shifts value. Evidence builds trust.", before: "Embedding AI in the workflow changed how users saw the output. A confident diagnosis still left users asking: how do I know this is right?", svgL: 'embed-value', labelL: "PROCESSING SUGGESTIONS", capL: "Value is in the context, not the output.", svgR: 'agentic-assist', labelR: "ROOT CAUSE ANALYSIS", capR: "Trust needs evidence, not just a verdict.", capRStyle: "green" },
-    conclusion: { heading: "Connect the data to a real outcome.", body: "For Processing Suggestions, the AI maps extracted fields to a Data Model and a real use case. For Root Cause Analysis, we designed around three principles — trust in the diagnosis, direction to the right investigation, and actionable next steps.", style: 'tabs', tabs: [
+          bullets: ["AI demand spans every customer type: Security, Data, IT Ops", "Efficiency became the defining expectation for 2025"] },
+    start: { heading: "Using JTBD to find where AI could help most.", body: "Rechecking the full data management journey revealed three workflows where AI could have the greatest impact: Onboarding, Cleansing, and Troubleshooting.", svg: 'hitl' },
+    turn: { heading: "Context shifts value. Evidence builds trust.", before: "Value expands when people have enough context to trust what they are looking at.", svgL: 'embed-value', labelL: "PROCESSING SUGGESTIONS", capL: "Value is in the context, not the output.", svgR: 'agentic-assist', labelR: "ROOT CAUSE ANALYSIS", capR: "Trust needs evidence, not just a verdict.", capRStyle: "default" },
+    conclusion: { heading: "Connect the data to a real outcome.", body: "AI output only creates value when it connects to what users need to do next.", style: 'tabs', tabs: [
       { id: 'processing', name: 'Processing Suggestions', svg: 'processing-pivot', cap: "AI maps fields to Data Models → real compliance outcome" },
       { id: 'rca', name: 'Root Cause Analysis', svg: 'rca-trust', cap: "The three design principles behind Root Cause Analysis" }
     ]},
     evaluation: { heading: "Where it stands.", tabs: [
       { id: 'hitl-processing', name: 'Processing Suggestions', gif: 'assets/splunk_dmx_v2.gif' },
       { id: 'hitl-rca', name: 'Root Cause Analysis', gif: 'assets/demo_v3d_hd_hitl.gif' }
-    ], stats: [["Q1 2026", "Auto Field Extraction shipped"], ["GA 2026", "Positive .conf 2025 feedback"], ["2", "HITL trust patterns"], ["1", "Reusable AI framework"]], learning: "The lesson: same mental model, new context — trustworthy AI as a pattern you reuse, not rebuild." },
-    invitation: { heading: "That's the overview.", body: "How we earned trust in an AI feature — and built a framework the whole team reuses — is worth a conversation." }
+    ], stats: [["GA 2026", "Positive .conf 2025 feedback"]], learning: "Start with the end-to-end story, not individual features. Research iteration is what surfaces what users actually need." },
+    invitation: { heading: "That's the overview.", body: "Curious how we designed trust into AI features people could actually rely on? Let's talk." }
   },
   {
     title: "Unified Data Acquisition", client: "Splunk · Cisco",
     tags: ["0 to 1", "Framework", "Design system"],
-    teaser: "One modular framework for messy, fragmented data.",
+    teaser: "Unifying cloud data ingestion into one consistent, scalable portal.",
     shelf: "assets/uda-cloudwatch.png",
     overview: "I led three designers to consolidate 100+ fragmented data-ingestion flows into a single modular framework, backed by a shared component library.",
-    role: "Lead Product Designer — Design System, Team Lead (3 designers)",
+    role: "<b>Design Manager</b><br>•&nbsp;Led 3 designers across 1000+ data sources<br>•&nbsp;Defined unified ingestion framework<br>•&nbsp;Built shared component library, 400+ weekly users",
     period: "2022 – 2023",
     bg: { chart: true, chartSvg: "uda",
-          chartCap: "12 cloud providers shown · 30+ log types · each with its own ingestion path into Splunk",
+          chartCap: "3 CSPs shown · each with multiple log types · each supported by a different onboarding method",
           heading: "100+ products, zero unified path.",
-          background: "Splunk's architecture grew like an app store — 100+ data-ingestion products, built by different teams over a decade, each with its own way in.",
+          background: "Splunk's data ingestion grew product by product, with no shared framework to tie them together.",
           problemHeadline: "Fragmented onboarding",
           bullets: ["Users bounced between product UI, docs, and community forums", "Setup was confusing, inconsistent, and slow"] },
-    start: { heading: "We started by borrowing from smart-home onboarding.", body: "Leading a team of three designers, I set one principle: reduce friction — a single guided journey, with in-app guidance and email handoff.", svg: 'eero', cap: "The eero onboarding pattern — adapted for Splunk data ingestion" },
-    turn: { heading: "The same source, designed twice, came out different.", before: "Two designers working on different Azure data sources produced inconsistent forms — even when syncing regularly.", svgL: 'uda-inconsistency', labelL: "THE INCONSISTENCY", capL: "Same data source, two designers — the outputs diverged even after syncing.", svgR: 'uda-direction', labelR: "THE DIRECTION", capR: "Build a component library to standardize form content and align engineering on metadata formatting.", capRStyle: "green" },
-    conclusion: { heading: "One consistent journey, any data source.", body: "We defined a four-step flow — Select, Prerequisites, Configure, Manage — and scaled it across 1000+ data sources using the component library we built. No more one-off designs.", img: "assets/uda-journey.jpg", cap: "The unified ingestion journey, consistent across every data source", layout: 'stack' },
-    evaluation: { heading: "What it returned.", gif: "assets/splunk_data_input_v3.gif", stats: [["400+", "Weekly active users"], ["1000+", "Data inputs created"], ["61%", "Daily velocity"], ["1", "Shared design system"]], learning: "What made it work: framework thinking, and consistency held at scale." },
-    invitation: { heading: "That's the summary.", body: "Designing a system — not just screens — and leading a team to hold it together is a good conversation." }
+    start: { heading: "We started by borrowing from smart-home onboarding.", body: "Leading a team of three designers, I set one principle: reduce friction: a single guided journey, with in-app guidance and email handoff.", svg: 'eero', cap: "The eero onboarding pattern, adapted for Splunk data ingestion" },
+    turn: { heading: "The same source, designed twice, came out different.", before: "Two designers working on different Azure data sources produced inconsistent forms, even when syncing regularly.", svgL: 'uda-inconsistency', labelL: "THE INCONSISTENCY", capL: "Same data source, two designers. The outputs diverged even after syncing.", svgR: 'uda-direction', labelR: "THE DIRECTION", capR: "Build a component library to standardize form content and align engineering on metadata formatting.", capRStyle: "green" },
+    conclusion: { heading: "One consistent journey, any data source.", body: "We defined a four-step flow (Select, Prerequisites, Configure, Manage) and scaled it across 1000+ data sources using the component library we built. No more one-off designs.", img: "assets/uda-journey.jpg", cap: "The unified ingestion journey, consistent across every data source", layout: 'stack' },
+    evaluation: { heading: "What it returned.", gif: "assets/splunk_data_input_v3.gif", stats: [["400+", "Weekly active users"], ["1000+", "Data inputs created"], ["61%", "Daily velocity"], ["1", "Shared design system"]], learning: "Consistency at scale does not happen by syncing more. It happens by designing the framework first." },
+    invitation: { heading: "That's the summary.", body: "Curious how three designers stayed aligned building a framework across 1000+ data sources? Let's talk." }
   },
   {
     title: "Process Mining UX", client: "Splunk",
     tags: ["0 to 1", "Process Mining", "Business Users"],
-    teaser: "When your users aren't who you thought they were.",
+    teaser: "Turning a bypassed page into a report that showed value on first load.",
     shelf: "assets/sbf-finalmock.png",
-    overview: "I designed Splunk's first process mining product for business analysts. One workshop insight pivoted the entire direction — from flexible dashboards to pre-canned reports.",
-    role: "Product Designer — Process Mining, Business Analytics",
-    period: "2019 – 2020",
+    overview: "I owned the end-to-end design of the Bottleneck Report within Splunk's first process mining product. One workshop insight pivoted the entire direction, from flexible dashboards to pre-canned reports.",
+    role: "<b>Lead Product Designer</b><br>•&nbsp;Sole UX designer for Splunk's process mining product<br>•&nbsp;Led research & workshop discovery<br>•&nbsp;Pivoted to bottleneck report, shipped in 1 quarter",
+    period: "Early 2020",
     bg: { chart: true, chartImg: 'assets/sbf-overview.png',
-          chartCap: "The original Overview dashboard — totals with no actionable starting point",
+          chartCap: "The original Overview dashboard: simple journey metrics",
           heading: "The Overview page had no traffic.",
-          background: "Splunk Business Flow launched with an Overview dashboard — total journeys, total events, session distributions. But users never stayed. There was no clear next step, and no answer to the question that actually mattered: what should I look at first?",
+          background: "The numbers were there. A reason to act on them was not.",
           problemHeadline: "What do people actually want to monitor?",
-          bullets: ["The dashboard only showed totals — journey count and duration averages", "No actionable starting point; users had nowhere meaningful to go"] },
+          bullets: ["No benchmark or context for the numbers shown", "No path from the dashboard to a meaningful action"] },
     start: { heading: "We started building a flexible, customizable dashboard.", body: "Inspired by tools like Tableau and Chartio, we designed a system where users could add their own metric panels, configure thresholds, and save custom layouts.", gif: "assets/demo_v8b_hd.gif", cap: "First iteration: step-by-step configuration panel for custom dashboard setup" },
-    turn: { heading: "A workshop in February changed everything.", before: "At the February 2020 all-hands, our EMEA sales lead stopped the room with one observation that cut through all the design work we'd done.", signalImgL: "assets/sbf-confused-analyst.png", coverL: true, labelL: "THE PROBLEM", capL: "Business analysts are not familiar with customized dashboard configuration.", signalImgR: "assets/sbf-happy-analyst.png", coverR: true, labelR: "THE INSIGHT", capR: "Business analysts prefer a pre-canned template with easy apply.", capRStyle: "green" },
-    conclusion: { heading: "One bottleneck report. No setup required.", body: "We shipped a pre-canned Bottleneck Report — surfacing the steps with the largest duration increase, with outlier journeys highlighted and a path to drill in. Insight on first load, customization available when needed.", img: "assets/sbf-v2-bottleneck.png", cap: "The Bottleneck Report — insight on first load, no configuration needed" },
-    evaluation: { heading: "What it returned.", gif: "assets/splunk_sbf_v2b.gif", stats: [["4+ Stars", ".conf 2020 satisfaction"], ["#4", "Ranked in .conf survey"], ["3", "User types served"], ["1Q", "From workshop pivot to MVP"]], learning: "The lesson: a technically correct solution can still miss the mark. Business users needed insight on load — not a blank canvas to configure." },
-    invitation: { heading: "One sentence changed everything.", body: "What it felt like to pivot mid-project — and what that taught me about listening over building — is worth a conversation." }
+    turn: { heading: "A workshop in February changed everything.", before: "Our EMEA sales lead shared why the product was hard to sell, and it changed the direction entirely.", signalImgL: "assets/sbf-confused-analyst.png", coverL: true, labelL: "THE PROBLEM", capL: "Business analysts are not familiar with customized dashboard configuration.", signalImgR: "assets/sbf-happy-analyst.png", coverR: true, labelR: "THE INSIGHT", capR: "Business analysts prefer a pre-canned template with easy apply.", capRStyle: "green" },
+    conclusion: { heading: "One bottleneck report. No setup required.", body: "We shipped a pre-canned Bottleneck Report, surfacing the steps with the largest duration increase, with outlier journeys highlighted and a path to drill in. Insight on first load, customization available when needed.", img: "assets/sbf-v2-bottleneck.png", cap: "The Bottleneck Report: insight on first load, no configuration needed" },
+    evaluation: { heading: "What it returned.", gif: "assets/splunk_sbf_v2b.gif", stats: [["#4", "Ranked in 2020 .conf survey"], ["1+", "Enterprise deal won (Chewy)"], ["1Q", "From workshop pivot to MVP"]], learning: "Too much flexibility becomes friction when users just want an answer." },
+    invitation: { heading: "One sentence changed everything.", body: "Curious how one insight from the sales team redirected our entire product direction? Let's talk." }
   }
 ];
 
@@ -1004,53 +1005,53 @@ const AI_CASCADE_SVG = `<svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000
 </svg>`;
 
 const UDA_FRAGMENTATION_SVG = `<svg viewBox="0 0 480 282" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
-  <rect width="480" height="282" rx="14" fill="#F0F4FF"/>
-  <text x="120" y="18" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="700" fill="#9AA3AD" letter-spacing=".08em" text-anchor="middle">1000+ DATA SOURCES</text>
+  <rect width="480" height="282" rx="14" fill="#111827"/>
+  <text x="120" y="18" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="700" fill="rgba(255,255,255,.28)" letter-spacing=".08em" text-anchor="middle">1000+ DATA SOURCES</text>
   <polygon points="12,24 228,24 202,74 38,74" fill="#1E3A8A"/>
   <text x="120" y="46" font-family="Plus Jakarta Sans,sans-serif" font-size="10" font-weight="700" fill="rgba(255,255,255,.95)" text-anchor="middle">Cloud Service Provider</text>
-  <text x="120" y="62" font-family="Plus Jakarta Sans,sans-serif" font-size="8" fill="rgba(255,255,255,.65)" text-anchor="middle">AWS · Azure · Google Cloud · Cloudflare…</text>
+  <text x="120" y="62" font-family="Plus Jakarta Sans,sans-serif" font-size="8" fill="rgba(255,255,255,.7)" text-anchor="middle">AWS · Azure · Google Cloud · Cloudflare…</text>
   <polygon points="38,78 202,78 176,128 64,128" fill="#1D4ED8"/>
   <text x="120" y="100" font-family="Plus Jakarta Sans,sans-serif" font-size="10" font-weight="700" fill="rgba(255,255,255,.95)" text-anchor="middle">Use Case &amp; Service</text>
-  <text x="120" y="116" font-family="Plus Jakarta Sans,sans-serif" font-size="8" fill="rgba(255,255,255,.65)" text-anchor="middle">CloudWatch · CloudTrail · VPC · S3…</text>
+  <text x="120" y="116" font-family="Plus Jakarta Sans,sans-serif" font-size="8" fill="rgba(255,255,255,.7)" text-anchor="middle">CloudWatch · CloudTrail · VPC · S3…</text>
   <polygon points="64,132 176,132 150,182 90,182" fill="#2563EB"/>
   <text x="120" y="155" font-family="Plus Jakarta Sans,sans-serif" font-size="10" font-weight="700" fill="rgba(255,255,255,.95)" text-anchor="middle">Data Source</text>
-  <text x="120" y="171" font-family="Plus Jakarta Sans,sans-serif" font-size="8" fill="rgba(255,255,255,.65)" text-anchor="middle">VPC Flow Logs · Auth Events…</text>
+  <text x="120" y="171" font-family="Plus Jakarta Sans,sans-serif" font-size="8" fill="rgba(255,255,255,.7)" text-anchor="middle">VPC Flow Logs · Auth Events…</text>
   <polygon points="90,186 150,186 120,236" fill="#3B82F6"/>
   <text x="120" y="211" font-family="Plus Jakarta Sans,sans-serif" font-size="9.5" font-weight="700" fill="rgba(255,255,255,.95)" text-anchor="middle">Onboarding</text>
   <text x="120" y="225" font-family="Plus Jakarta Sans,sans-serif" font-size="9.5" font-weight="700" fill="rgba(255,255,255,.95)" text-anchor="middle">Method</text>
-  <line x1="232" y1="49" x2="248" y2="49" stroke="#C8D0DC" stroke-width="1"/>
-  <line x1="232" y1="103" x2="248" y2="103" stroke="#C8D0DC" stroke-width="1"/>
-  <line x1="232" y1="157" x2="248" y2="157" stroke="#C8D0DC" stroke-width="1"/>
-  <line x1="232" y1="210" x2="248" y2="210" stroke="#C8D0DC" stroke-width="1"/>
-  <text x="252" y="35" font-family="Plus Jakarta Sans,sans-serif" font-size="8" font-weight="700" fill="#9AA3AD" letter-spacing=".06em">EXAMPLES</text>
-  <rect x="252" y="41" width="44" height="18" rx="4" fill="rgba(255,153,0,.12)" stroke="rgba(255,153,0,.38)" stroke-width="1"/>
-  <text x="274" y="54" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" font-weight="700" fill="#B45309" text-anchor="middle">AWS</text>
-  <rect x="302" y="41" width="46" height="18" rx="4" fill="rgba(29,78,216,.1)" stroke="rgba(29,78,216,.28)" stroke-width="1"/>
-  <text x="325" y="54" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" font-weight="700" fill="#1D4ED8" text-anchor="middle">Azure</text>
-  <rect x="354" y="41" width="72" height="18" rx="4" fill="rgba(67,56,202,.1)" stroke="rgba(67,56,202,.28)" stroke-width="1"/>
-  <text x="390" y="54" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" font-weight="700" fill="#4338CA" text-anchor="middle">Google Cloud</text>
-  <text x="252" y="73" font-family="Plus Jakarta Sans,sans-serif" font-size="8" fill="#9AA3AD">+ Cloudflare, Okta, Palo Alto…</text>
-  <rect x="252" y="94" width="76" height="18" rx="4" fill="rgba(42,59,71,.06)" stroke="#D8DCE2" stroke-width="1"/>
-  <text x="290" y="107" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" fill="#46535F" text-anchor="middle">CloudWatch</text>
-  <rect x="334" y="94" width="60" height="18" rx="4" fill="rgba(42,59,71,.06)" stroke="#D8DCE2" stroke-width="1"/>
-  <text x="364" y="107" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" fill="#46535F" text-anchor="middle">S3 Access</text>
-  <rect x="400" y="94" width="62" height="18" rx="4" fill="rgba(42,59,71,.06)" stroke="#D8DCE2" stroke-width="1"/>
-  <text x="431" y="107" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" fill="#46535F" text-anchor="middle">CloudTrail</text>
-  <text x="252" y="127" font-family="Plus Jakarta Sans,sans-serif" font-size="8" fill="#9AA3AD">Security · Observability · Compliance · Network…</text>
-  <rect x="252" y="148" width="80" height="18" rx="4" fill="rgba(42,59,71,.06)" stroke="#D8DCE2" stroke-width="1"/>
-  <text x="292" y="161" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" fill="#46535F" text-anchor="middle">VPC Flow Logs</text>
-  <rect x="338" y="148" width="74" height="18" rx="4" fill="rgba(42,59,71,.06)" stroke="#D8DCE2" stroke-width="1"/>
-  <text x="375" y="161" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" fill="#46535F" text-anchor="middle">Auth Events</text>
-  <rect x="418" y="148" width="44" height="18" rx="4" fill="rgba(30,58,138,.12)" stroke="rgba(30,58,138,.28)" stroke-width="1"/>
-  <text x="440" y="161" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" font-weight="700" fill="#1E3A8A" text-anchor="middle">1000+</text>
-  <text x="252" y="181" font-family="Plus Jakarta Sans,sans-serif" font-size="8" fill="#9AA3AD">Each source has a different schema &amp; format</text>
-  <rect x="252" y="201" width="84" height="18" rx="4" fill="rgba(30,58,138,.1)" stroke="rgba(30,58,138,.22)" stroke-width="1"/>
-  <text x="294" y="214" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" font-weight="700" fill="#1E3A8A" text-anchor="middle">Single Account</text>
-  <rect x="342" y="201" width="80" height="18" rx="4" fill="rgba(30,58,138,.1)" stroke="rgba(30,58,138,.22)" stroke-width="1"/>
-  <text x="382" y="214" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" font-weight="700" fill="#1E3A8A" text-anchor="middle">Organization</text>
-  <text x="252" y="234" font-family="Plus Jakarta Sans,sans-serif" font-size="8" fill="#9AA3AD">Each combination = a different setup flow</text>
-  <line x1="14" y1="250" x2="466" y2="250" stroke="#D8DCE2" stroke-width="1"/>
-  <text x="240" y="268" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" fill="#9AA3AD" text-anchor="middle">Every path through this funnel is a unique onboarding experience — with no shared design system</text>
+  <line x1="232" y1="49" x2="248" y2="49" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+  <line x1="232" y1="103" x2="248" y2="103" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+  <line x1="232" y1="157" x2="248" y2="157" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+  <line x1="232" y1="210" x2="248" y2="210" stroke="rgba(255,255,255,.2)" stroke-width="1"/>
+  <text x="252" y="35" font-family="Plus Jakarta Sans,sans-serif" font-size="8" font-weight="700" fill="rgba(255,255,255,.35)" letter-spacing=".06em">EXAMPLES</text>
+  <rect x="252" y="41" width="44" height="18" rx="4" fill="rgba(255,153,0,.18)" stroke="rgba(255,153,0,.45)" stroke-width="1"/>
+  <text x="274" y="54" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" font-weight="700" fill="#FCA333" text-anchor="middle">AWS</text>
+  <rect x="302" y="41" width="46" height="18" rx="4" fill="rgba(96,165,250,.15)" stroke="rgba(96,165,250,.35)" stroke-width="1"/>
+  <text x="325" y="54" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" font-weight="700" fill="#60A5FA" text-anchor="middle">Azure</text>
+  <rect x="354" y="41" width="72" height="18" rx="4" fill="rgba(129,140,248,.15)" stroke="rgba(129,140,248,.35)" stroke-width="1"/>
+  <text x="390" y="54" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" font-weight="700" fill="#A5B4FC" text-anchor="middle">Google Cloud</text>
+  <text x="252" y="73" font-family="Plus Jakarta Sans,sans-serif" font-size="8" fill="rgba(255,255,255,.35)">+ Cloudflare, Okta, Palo Alto…</text>
+  <rect x="252" y="94" width="76" height="18" rx="4" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+  <text x="290" y="107" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" fill="rgba(255,255,255,.65)" text-anchor="middle">CloudWatch</text>
+  <rect x="334" y="94" width="60" height="18" rx="4" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+  <text x="364" y="107" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" fill="rgba(255,255,255,.65)" text-anchor="middle">S3 Access</text>
+  <rect x="400" y="94" width="62" height="18" rx="4" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+  <text x="431" y="107" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" fill="rgba(255,255,255,.65)" text-anchor="middle">CloudTrail</text>
+  <text x="252" y="127" font-family="Plus Jakarta Sans,sans-serif" font-size="8" fill="rgba(255,255,255,.32)">Security · Observability · Compliance · Network…</text>
+  <rect x="252" y="148" width="80" height="18" rx="4" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+  <text x="292" y="161" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" fill="rgba(255,255,255,.65)" text-anchor="middle">VPC Flow Logs</text>
+  <rect x="338" y="148" width="74" height="18" rx="4" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+  <text x="375" y="161" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" fill="rgba(255,255,255,.65)" text-anchor="middle">Auth Events</text>
+  <rect x="418" y="148" width="44" height="18" rx="4" fill="rgba(96,165,250,.18)" stroke="rgba(96,165,250,.35)" stroke-width="1"/>
+  <text x="440" y="161" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" font-weight="700" fill="#60A5FA" text-anchor="middle">1000+</text>
+  <text x="252" y="181" font-family="Plus Jakarta Sans,sans-serif" font-size="8" fill="rgba(255,255,255,.32)">Each source has a different schema &amp; format</text>
+  <rect x="252" y="201" width="84" height="18" rx="4" fill="rgba(96,165,250,.12)" stroke="rgba(96,165,250,.28)" stroke-width="1"/>
+  <text x="294" y="214" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" font-weight="700" fill="#93C5FD" text-anchor="middle">Single Account</text>
+  <rect x="342" y="201" width="80" height="18" rx="4" fill="rgba(96,165,250,.12)" stroke="rgba(96,165,250,.28)" stroke-width="1"/>
+  <text x="382" y="214" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" font-weight="700" fill="#93C5FD" text-anchor="middle">Organization</text>
+  <text x="252" y="234" font-family="Plus Jakarta Sans,sans-serif" font-size="8" fill="rgba(255,255,255,.32)">Each combination = a different setup flow</text>
+  <line x1="14" y1="250" x2="466" y2="250" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+  <text x="240" y="268" font-family="Plus Jakarta Sans,sans-serif" font-size="8.5" fill="rgba(255,255,255,.35)" text-anchor="middle">Every path through this funnel is a unique onboarding experience, with no shared design system</text>
 </svg>`;
 
 const IMG_PLACEHOLDER_SVG = `<svg viewBox="0 0 480 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
@@ -1311,73 +1312,55 @@ const JTBD_SVG = `<svg viewBox="0 0 480 224" xmlns="http://www.w3.org/2000/svg" 
   <text x="400" y="198" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="13.5" font-weight="700" fill="rgba(255,255,255,.92)">Analysis</text>
 </svg>`;
 
-const EMBED_VALUE_SVG = `<svg viewBox="0 0 480 248" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
-  <rect width="480" height="248" rx="14" fill="#111827"/>
-  <!-- Left: External Tool -->
-  <text x="111" y="20" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" font-weight="700" letter-spacing=".1em" fill="rgba(255,255,255,.25)">EXTERNAL TOOL</text>
-  <rect x="16" y="28" width="190" height="190" rx="12" fill="#1C2130" stroke="#2E3447" stroke-width="1.5"/>
-  <rect x="16" y="28" width="190" height="28" rx="12" fill="#242B3D"/>
-  <rect x="16" y="44" width="190" height="12" fill="#242B3D"/>
-  <circle cx="30" cy="42" r="4" fill="#FF5F57" opacity=".8"/>
-  <circle cx="43" cy="42" r="4" fill="#FFBD2E" opacity=".8"/>
-  <circle cx="56" cy="42" r="4" fill="#28C840" opacity=".8"/>
-  <text x="137" y="43" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="7.5" fill="rgba(255,255,255,.3)">regex101.com</text>
-  <rect x="30" y="68" width="162" height="10" rx="5" fill="rgba(96,165,250,.18)"/>
-  <rect x="30" y="84" width="124" height="10" rx="5" fill="rgba(96,165,250,.12)"/>
-  <rect x="30" y="100" width="144" height="10" rx="5" fill="rgba(96,165,250,.08)"/>
-  <text x="111" y="140" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,.3)">Manual pattern building</text>
-  <rect x="16" y="206" width="190" height="26" rx="7" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.2)" stroke-width="1"/>
-  <text x="111" y="223" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="rgba(239,68,68,.7)">Leaves your workflow</text>
+const EMBED_VALUE_SVG = `<svg viewBox="0 0 480 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+  <rect width="480" height="220" rx="14" fill="#111827"/>
+  <!-- Left panel -->
+  <rect x="20" y="24" width="190" height="172" rx="12" fill="#1C2130" stroke="rgba(255,255,255,.09)" stroke-width="1.5"/>
+  <text x="115" y="46" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" letter-spacing=".07em" fill="rgba(255,255,255,.28)">BEFORE</text>
+  <circle cx="115" cy="92" r="26" fill="rgba(239,68,68,.1)" stroke="rgba(239,68,68,.2)" stroke-width="1.5"/>
+  <path d="M107 92 L123 92 M117 85 L124 92 L117 99" stroke="rgba(239,68,68,.7)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="115" y="136" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,.5)">Leave to external tool</text>
+  <text x="115" y="154" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,.28)">Manual pattern building</text>
+  <rect x="20" y="176" width="190" height="20" rx="6" fill="rgba(239,68,68,.08)" stroke="rgba(239,68,68,.15)" stroke-width="1"/>
+  <text x="115" y="190" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="700" fill="rgba(239,68,68,.75)">Workflow interrupted</text>
   <!-- Arrow -->
-  <path d="M218 124 L262 124" stroke="rgba(255,255,255,.2)" stroke-width="2" stroke-linecap="round"/>
-  <path d="M256 117 L264 124 L256 131" stroke="rgba(255,255,255,.2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  <!-- Right: In Workflow -->
-  <text x="369" y="20" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" font-weight="700" letter-spacing=".1em" fill="rgba(45,212,191,.6)">IN YOUR WORKFLOW</text>
-  <rect x="274" y="28" width="190" height="190" rx="12" fill="#0D1520" stroke="rgba(45,212,191,.28)" stroke-width="1.5"/>
-  <rect x="274" y="28" width="190" height="28" rx="12" fill="#162035"/>
-  <rect x="274" y="44" width="190" height="12" fill="#162035"/>
-  <text x="369" y="43" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="700" fill="rgba(255,255,255,.55)">Splunk › Field Extraction</text>
-  <rect x="286" y="68" width="166" height="32" rx="8" fill="rgba(45,212,191,.12)" stroke="rgba(45,212,191,.3)" stroke-width="1"/>
-  <path d="M295,83 l1.2,2.8 2.8,1.2 -2.8,1.2 -1.2,2.8 -1.2,-2.8 -2.8,-1.2 2.8,-1.2z" fill="#2DD4BF"/>
-  <text x="310" y="88" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="#2DD4BF">AI detected fields</text>
-  <rect x="286" y="108" width="38" height="14" rx="7" fill="rgba(45,212,191,.22)"/>
-  <text x="305" y="119" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(45,212,191,.9)">src_ip</text>
-  <rect x="330" y="108" width="32" height="14" rx="7" fill="rgba(45,212,191,.16)"/>
-  <text x="346" y="119" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(45,212,191,.75)">proto</text>
-  <rect x="368" y="108" width="36" height="14" rx="7" fill="rgba(45,212,191,.13)"/>
-  <text x="386" y="119" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(45,212,191,.65)">action</text>
-  <rect x="316" y="132" width="74" height="20" rx="6" fill="#1D4ED8"/>
-  <text x="353" y="146" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="white">✓ Apply</text>
-  <rect x="274" y="206" width="190" height="26" rx="7" fill="rgba(52,211,153,.1)" stroke="rgba(52,211,153,.24)" stroke-width="1"/>
-  <text x="369" y="223" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="#34D399">Stays in your workflow</text>
+  <line x1="222" y1="110" x2="258" y2="110" stroke="rgba(255,255,255,.18)" stroke-width="2" stroke-linecap="round"/>
+  <polyline points="252,103 260,110 252,117" stroke="rgba(255,255,255,.18)" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Right panel -->
+  <rect x="270" y="24" width="190" height="172" rx="12" fill="#0D1520" stroke="rgba(45,212,191,.22)" stroke-width="1.5"/>
+  <text x="365" y="46" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" letter-spacing=".07em" fill="rgba(45,212,191,.7)">AFTER</text>
+  <circle cx="365" cy="92" r="26" fill="rgba(45,212,191,.1)" stroke="rgba(45,212,191,.25)" stroke-width="1.5"/>
+  <path d="M365,80 L367,87 L374,89 L367,91 L365,98 L363,91 L356,89 L363,87 Z" fill="#2DD4BF"/>
+  <text x="365" y="136" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,.75)">AI fields detected</text>
+  <text x="365" y="154" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,.35)">Inside Splunk</text>
+  <rect x="270" y="176" width="190" height="20" rx="6" fill="rgba(52,211,153,.08)" stroke="rgba(52,211,153,.2)" stroke-width="1"/>
+  <text x="365" y="190" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="700" fill="#34D399">Workflow intact</text>
 </svg>`;
 
-const AGENTIC_ASSIST_SVG = `<svg viewBox="0 0 480 248" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
-  <rect width="480" height="248" rx="14" fill="#111827"/>
-  <!-- Left: AI output -->
-  <rect x="16" y="16" width="200" height="216" rx="12" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.2)" stroke-width="1.5"/>
-  <rect x="16" y="16" width="200" height="34" rx="12" fill="rgba(167,139,250,.16)"/>
-  <rect x="16" y="38" width="200" height="12" fill="rgba(167,139,250,.16)"/>
-  <path d="M30,32 l1.5,3.5 3.5,1.5 -3.5,1.5 -1.5,3.5 -1.5,-3.5 -3.5,-1.5 3.5,-1.5z" fill="#A78BFA"/>
-  <text x="44" y="36" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="10" font-weight="700" fill="#A78BFA">Investigation Summary</text>
-  <text x="116" y="82" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8" fill="rgba(255,255,255,.35)" letter-spacing=".07em">SUSPECTED ROOT CAUSE</text>
-  <text x="116" y="108" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="20" font-weight="800" fill="rgba(255,255,255,.92)">Schema drift</text>
-  <text x="116" y="126" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,.4)">Field order changed in raw log</text>
-  <rect x="46" y="148" width="140" height="8" rx="4" fill="rgba(255,255,255,.07)"/>
-  <rect x="46" y="148" width="112" height="8" rx="4" fill="rgba(167,139,250,.4)"/>
-  <text x="116" y="172" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,.3)">High confidence</text>
-  <rect x="16" y="210" width="200" height="22" rx="7" fill="rgba(167,139,250,.1)" stroke="rgba(167,139,250,.2)" stroke-width="1"/>
-  <text x="116" y="225" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="#A78BFA">AI is confident</text>
+const AGENTIC_ASSIST_SVG = `<svg viewBox="0 0 480 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+  <rect width="480" height="220" rx="14" fill="#111827"/>
+  <!-- Left panel: AI diagnosis -->
+  <rect x="20" y="24" width="190" height="172" rx="12" fill="rgba(167,139,250,.07)" stroke="rgba(167,139,250,.2)" stroke-width="1.5"/>
+  <text x="115" y="46" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" letter-spacing=".07em" fill="rgba(167,139,250,.6)">AI DIAGNOSIS</text>
+  <text x="115" y="74" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" letter-spacing=".06em" fill="rgba(255,255,255,.28)">SUSPECTED ROOT CAUSE</text>
+  <text x="115" y="106" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="22" font-weight="800" fill="rgba(255,255,255,.88)">Schema drift</text>
+  <text x="115" y="124" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9.5" fill="rgba(255,255,255,.35)">Field order changed in raw log</text>
+  <rect x="38" y="140" width="134" height="7" rx="3.5" fill="rgba(255,255,255,.06)"/>
+  <rect x="38" y="140" width="107" height="7" rx="3.5" fill="rgba(167,139,250,.5)"/>
+  <text x="115" y="160" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" fill="rgba(167,139,250,.6)">High confidence</text>
+  <rect x="20" y="176" width="190" height="20" rx="6" fill="rgba(167,139,250,.08)" stroke="rgba(167,139,250,.18)" stroke-width="1"/>
+  <text x="115" y="190" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="700" fill="#A78BFA">AI is confident</text>
   <!-- Arrow -->
-  <path d="M228 124 L252 124" stroke="rgba(255,255,255,.18)" stroke-width="2" stroke-linecap="round"/>
-  <path d="M246 117 L254 124 L246 131" stroke="rgba(255,255,255,.18)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  <!-- Right: User reality -->
-  <rect x="264" y="16" width="200" height="216" rx="12" fill="rgba(245,158,11,.07)" stroke="rgba(245,158,11,.2)" stroke-width="1.5"/>
-  <text x="364" y="130" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="72" font-weight="800" fill="rgba(245,158,11,.25)">?</text>
-  <text x="364" y="160" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,.55)">How do I know</text>
-  <text x="364" y="178" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,.55)">this is right?</text>
-  <rect x="264" y="210" width="200" height="22" rx="7" fill="rgba(245,158,11,.1)" stroke="rgba(245,158,11,.22)" stroke-width="1"/>
-  <text x="364" y="225" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" fill="#F59E0B">User is not sure</text>
+  <line x1="222" y1="110" x2="258" y2="110" stroke="rgba(255,255,255,.18)" stroke-width="2" stroke-linecap="round"/>
+  <polyline points="252,103 260,110 252,117" stroke="rgba(255,255,255,.18)" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Right panel: User doubt -->
+  <rect x="270" y="24" width="190" height="172" rx="12" fill="rgba(245,158,11,.06)" stroke="rgba(245,158,11,.18)" stroke-width="1.5"/>
+  <text x="365" y="46" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="9" font-weight="700" letter-spacing=".07em" fill="rgba(245,158,11,.6)">USER REACTION</text>
+  <text x="365" y="110" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="60" font-weight="800" fill="rgba(245,158,11,.18)">?</text>
+  <text x="365" y="140" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,.5)">How do I know</text>
+  <text x="365" y="158" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,.5)">this is right?</text>
+  <rect x="270" y="176" width="190" height="20" rx="6" fill="rgba(245,158,11,.08)" stroke="rgba(245,158,11,.18)" stroke-width="1"/>
+  <text x="365" y="190" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="8.5" font-weight="700" fill="#F59E0B">No evidence provided</text>
 </svg>`;
 
 const PROCESSING_PIVOT_SVG = `<svg viewBox="0 0 480 264" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
@@ -1665,11 +1648,11 @@ function pageTurn(c) {
       '<div class="turn-pair">' +
       '<div class="turn-half">' +
       leftVis +
-      '<div class="turn-cap turn-cap-l"><span class="turn-cap-label">' + c.turn.labelL + '</span><div class="turn-cap-quote">&ldquo;' + c.turn.capL + '&rdquo;</div></div>' +
+      '<div class="turn-cap ' + (c.turn.capLStyle === 'red' ? 'turn-cap-r' : c.turn.capLStyle === 'green' ? 'turn-cap-g' : 'turn-cap-l') + '"><span class="turn-cap-label">' + c.turn.labelL + '</span><div class="turn-cap-quote">&ldquo;' + c.turn.capL + '&rdquo;</div></div>' +
       '</div>' +
       '<div class="turn-half">' +
       rightVis +
-      '<div class="turn-cap ' + (c.turn.capRStyle === 'green' ? 'turn-cap-g' : 'turn-cap-r') + '"><span class="turn-cap-label">' + c.turn.labelR + '</span><div class="turn-cap-quote">&ldquo;' + c.turn.capR + '&rdquo;</div></div>' +
+      '<div class="turn-cap ' + (c.turn.capRStyle === 'green' ? 'turn-cap-g' : c.turn.capRStyle === 'default' ? 'turn-cap-l' : 'turn-cap-r') + '"><span class="turn-cap-label">' + c.turn.labelR + '</span><div class="turn-cap-quote">&ldquo;' + c.turn.capR + '&rdquo;</div></div>' +
       '</div>' +
       '</div>' +
       '</div></div>';
@@ -1677,9 +1660,9 @@ function pageTurn(c) {
   var svgs = { 'user-staring': USER_STARING_SVG, 'ai-cascade': AI_CASCADE_SVG };
   var leftCol = c.turn.svg
     ? '<div class="pcol" style="display:flex;flex-direction:column;gap:12px">' +
-      '<div style="border-radius:14px;overflow:hidden;border:1.5px solid #E8E6E0">' + (svgs[c.turn.svg] || REFRAME) + '</div>' +
-      '<div class="signal-bubble"><div class="signal-bubble-label">' + (c.turn.attr || '') + '</div>' +
-      '<div class="signal-bubble-quote">&ldquo;' + (c.turn.quote || '') + '&rdquo;</div></div>' +
+      '<div style="border-radius:14px;overflow:hidden">' + (svgs[c.turn.svg] || REFRAME) + '</div>' +
+      '<div class="signal-card"><div class="signal-bubble"><div class="signal-bubble-label">' + (c.turn.attr || '') + '</div>' +
+      '<div class="signal-bubble-quote">&ldquo;' + (c.turn.quote || '') + '&rdquo;</div></div></div>' +
       '</div>'
     : (c.turn.img || c.turn.gif)
       ? '<div class="pcol"><img class="shot" src="' + (c.turn.gif || c.turn.img) + '" alt=""><div class="shot-cap">' + (c.turn.cap || '') + '</div></div>'
