@@ -1996,9 +1996,11 @@ document.addEventListener("keydown", e => {
       hamBtn.setAttribute('aria-expanded', 'false');
       mobMenu.setAttribute('aria-hidden', 'true');
       if (target) {
-        var navH = document.querySelector('.nav').offsetHeight;
-        var top = target.getBoundingClientRect().top + window.pageYOffset - navH - 8;
-        window.scrollTo({ top: top, behavior: 'smooth' });
+        setTimeout(function () {
+          var navH = document.querySelector('.nav-wrap').offsetHeight;
+          var top = target.getBoundingClientRect().top + window.pageYOffset - navH - 8;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }, 340);
       }
     });
   });
