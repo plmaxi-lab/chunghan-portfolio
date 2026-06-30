@@ -224,6 +224,8 @@ a { color: inherit; }
 @media (max-width: 720px) {
   /* --- Homepage --- */
   .site { padding: 0 16px; }
+  .nav-wrap { position: sticky; top: 0; z-index: 40; background: #FAF8F3; box-shadow: 0 1px 0 rgba(42,59,71,.09); margin: 0 -16px; padding: 0 16px; }
+  .section, header { scroll-margin-top: 68px; }
   .nav { padding: 18px 0; }
   .nav-links { display: none; }
   .ham { display: flex; }
@@ -541,6 +543,7 @@ a { color: inherit; }
 </div>
 
 <div class="site">
+  <div class="nav-wrap">
   <nav class="nav">
     <div class="brand"><span class="mark"></span><b>Chung-Han Tsai</b></div>
     <div class="nav-links"><a href="#work">Work</a><a href="#vibe">Vibe Coding</a><a href="#principles">Principles</a><a href="#contact">Contact</a></div>
@@ -558,6 +561,7 @@ a { color: inherit; }
     <a href="#principles" class="mob-link">Principles</a>
     <a href="#contact" class="mob-link">Contact</a>
   </div>
+  </div><!-- /nav-wrap -->
 
   <header class="hero">
     <div class="hero-text">
@@ -1932,7 +1936,11 @@ document.addEventListener("keydown", e => {
   var illus = document.getElementById('gate-illus');
 
   if (!gate) return; // already bypassed via sessionStorage
-  if (sessionStorage.getItem('auth') !== '1') document.body.style.overflow = 'hidden';
+  if (sessionStorage.getItem('auth') !== '1') {
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+  }
 
   function showError() {
     input.classList.remove('input-shake');
@@ -1952,6 +1960,8 @@ document.addEventListener("keydown", e => {
       gate.parentNode.removeChild(gate);
       sessionStorage.setItem('auth', '1');
       document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
       window.scrollTo(0, 0);
     }, 1250);
   }
