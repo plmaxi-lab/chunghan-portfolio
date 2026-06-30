@@ -2009,11 +2009,18 @@ document.addEventListener("keydown", e => {
     mobMenu.setAttribute('aria-hidden', String(!isOpen));
   });
   mobMenu.querySelectorAll('.mob-link').forEach(function (a) {
-    a.addEventListener('click', function () {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
       mobMenu.classList.remove('open');
       hamBtn.classList.remove('open');
       hamBtn.setAttribute('aria-expanded', 'false');
       mobMenu.setAttribute('aria-hidden', 'true');
+      if (target) {
+        var navH = document.querySelector('.nav').offsetHeight;
+        var top = target.getBoundingClientRect().top + window.pageYOffset - navH - 8;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
     });
   });
 })();
