@@ -1932,6 +1932,7 @@ document.addEventListener("keydown", e => {
   var illus = document.getElementById('gate-illus');
 
   if (!gate) return; // already bypassed via sessionStorage
+  if (sessionStorage.getItem('auth') !== '1') document.body.style.overflow = 'hidden';
 
   function showError() {
     input.classList.remove('input-shake');
@@ -1950,6 +1951,7 @@ document.addEventListener("keydown", e => {
     setTimeout(function () {
       gate.parentNode.removeChild(gate);
       sessionStorage.setItem('auth', '1');
+      document.body.style.overflow = '';
       window.scrollTo(0, 0);
     }, 1250);
   }
