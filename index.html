@@ -87,6 +87,14 @@ a { color: inherit; }
 .foot { display: flex; justify-content: space-between; padding: 34px 0 56px; font-size: 14px; color: #9AA3AB; }
 .foot a { text-decoration: none; }
 
+/* Hamburger + mobile menu */
+.ham { display: none; background: none; border: none; cursor: pointer; padding: 6px; line-height: 0; flex-shrink: 0; }
+.ham-l1, .ham-l2, .ham-l3 { transition: transform .25s ease, opacity .2s ease; transform-box: fill-box; transform-origin: center; }
+.ham.open .ham-l1 { transform: translateY(7px) rotate(45deg); }
+.ham.open .ham-l2 { opacity: 0; transform: scaleX(0); }
+.ham.open .ham-l3 { transform: translateY(-7px) rotate(-45deg); }
+.mob-menu { display: none; }
+
 .reader { position: fixed; inset: 0; background: #FFFFFF; z-index: 50; display: flex; flex-direction: column;
   transform: translateX(100%); transition: transform .34s cubic-bezier(.4,0,1,.8); will-change: transform; }
 .reader.open { transform: translateX(0); transition: transform .52s cubic-bezier(.32,.72,0,1); }
@@ -216,8 +224,13 @@ a { color: inherit; }
 @media (max-width: 720px) {
   /* --- Homepage --- */
   .site { padding: 0 16px; }
-  .nav { padding: 18px 0; gap: 10px; }
-  .nav-links { gap: 14px; flex-wrap: wrap; }
+  .nav { padding: 18px 0; }
+  .nav-links { display: none; }
+  .ham { display: flex; }
+  .mob-menu { display: flex; flex-direction: column; margin: 0 -16px; background: #fff; border-bottom: 1.5px solid #E8E6E0; max-height: 0; overflow: hidden; transition: max-height .32s cubic-bezier(.4,0,.2,1); }
+  .mob-menu.open { max-height: 260px; }
+  .mob-link { display: block; font-size: 16px; font-weight: 700; color: #2A3B47; text-decoration: none; padding: 15px 16px; border-bottom: 1px solid #F0EFEA; letter-spacing: -.01em; }
+  .mob-link:last-child { border-bottom: none; }
   .section { padding: 40px 0; }
   .hero { flex-direction: column; align-items: stretch; gap: 14px; padding: 24px 0 28px; }
   .hero-art { align-self: center; max-width: 320px; }
@@ -497,7 +510,20 @@ a { color: inherit; }
   <nav class="nav">
     <div class="brand"><span class="mark"></span><b>Chung-Han Tsai</b></div>
     <div class="nav-links"><a href="#work">Work</a><a href="#vibe">Vibe Coding</a><a href="#principles">Principles</a><a href="#contact">Contact</a></div>
+    <button class="ham" id="hamBtn" aria-label="Menu" aria-expanded="false">
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line class="ham-l1" x1="1" y1="1" x2="21" y2="1" stroke="#2A3B47" stroke-width="2" stroke-linecap="round"/>
+        <line class="ham-l2" x1="1" y1="8" x2="21" y2="8" stroke="#2A3B47" stroke-width="2" stroke-linecap="round"/>
+        <line class="ham-l3" x1="1" y1="15" x2="21" y2="15" stroke="#2A3B47" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
   </nav>
+  <div class="mob-menu" id="mobMenu" aria-hidden="true">
+    <a href="#work" class="mob-link">Work</a>
+    <a href="#vibe" class="mob-link">Vibe Coding</a>
+    <a href="#principles" class="mob-link">Principles</a>
+    <a href="#contact" class="mob-link">Contact</a>
+  </div>
 
   <header class="hero">
     <div class="hero-text">
@@ -1908,6 +1934,27 @@ document.addEventListener("keydown", e => {
   });
 
   input.focus();
+})();
+</script>
+<script>
+(function () {
+  var hamBtn = document.getElementById('hamBtn');
+  var mobMenu = document.getElementById('mobMenu');
+  if (!hamBtn || !mobMenu) return;
+  hamBtn.addEventListener('click', function () {
+    var isOpen = mobMenu.classList.toggle('open');
+    hamBtn.classList.toggle('open', isOpen);
+    hamBtn.setAttribute('aria-expanded', String(isOpen));
+    mobMenu.setAttribute('aria-hidden', String(!isOpen));
+  });
+  mobMenu.querySelectorAll('.mob-link').forEach(function (a) {
+    a.addEventListener('click', function () {
+      mobMenu.classList.remove('open');
+      hamBtn.classList.remove('open');
+      hamBtn.setAttribute('aria-expanded', 'false');
+      mobMenu.setAttribute('aria-hidden', 'true');
+    });
+  });
 })();
 </script>
 </body>
