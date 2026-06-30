@@ -479,6 +479,40 @@ a { color: inherit; }
   .gate-illus-wrap img { animation: none; }
   .gate-illus-wrap.walking-off { animation: none; opacity: 0; }
 }
+
+/* ── Rotate hint (portrait mobile only) ── */
+.rotate-hint { display: none; align-items: center; gap: 10px; background: #2A3B47; color: #FAF8F3; padding: 9px 16px; font-size: 13px; font-weight: 600; letter-spacing: -.01em; flex-shrink: 0; }
+.rotate-hint span { flex: 1; }
+.rotate-dismiss { background: none; border: none; color: rgba(255,255,255,.5); cursor: pointer; font-size: 20px; line-height: 1; padding: 0 2px; font-family: inherit; flex-shrink: 0; }
+@media (max-width: 900px) and (orientation: portrait) {
+  .rotate-hint { display: flex; }
+}
+
+/* ── Reader: compact vertical rhythm for mobile landscape ── */
+@media (orientation: landscape) and (max-height: 520px) {
+  .r-bar { padding: 7px 24px 5px; }
+  .r-nav { padding: 5px 24px 7px; }
+  .page { padding: 8px 24px; }
+  .p-meta { font-size: 12px; }
+  .p-h { font-size: clamp(1.1rem, 2.4vh, 1.6rem); margin-top: 4px; }
+  .p-b { font-size: .9rem; margin-top: 5px; }
+  .cover-title { font-size: clamp(1.3rem, 3.5vh, 1.9rem); margin-bottom: 6px; }
+  .cover-teaser { font-size: .875rem; margin-bottom: 10px; }
+  .cover-meta-row { padding-top: 10px; }
+  .cover-meta-label { margin-bottom: 3px; }
+  .cover-meta-body { font-size: 12px; line-height: 1.4; }
+  .cover-period { font-size: 17px; }
+  .statcard { padding: 12px 16px; }
+  .statcard b { font-size: 1.5rem; }
+  .outcome-learning { padding: 12px 14px; }
+  .outcome-learning p { font-size: 13px; }
+  .turn-header { margin-bottom: 8px; }
+  .bg-prob-h { margin-bottom: 10px; padding-bottom: 10px; }
+  .bg-bullet + .bg-bullet { margin-top: 8px; }
+  .bg-btext { font-size: 14px; }
+  .end-center { padding-bottom: 16px; }
+  .endcta { margin-top: 16px; }
+}
 </style>
 </head>
 <body>
@@ -777,6 +811,10 @@ a { color: inherit; }
     <button class="r-close" id="closeBtn">&larr;&nbsp; Back to work</button>
     <div class="r-title" id="rTitle"></div>
     <div class="r-dots" id="dots"></div>
+  </div>
+  <div class="rotate-hint" id="rotateHint">
+    <span>↻&nbsp; Rotate for the best experience</span>
+    <button class="rotate-dismiss" id="rotateDismiss" aria-label="Dismiss">×</button>
   </div>
   <div class="r-track-area"><div class="r-track" id="track"></div></div>
   <div class="r-nav">
@@ -1937,6 +1975,17 @@ document.addEventListener("keydown", e => {
 })();
 </script>
 <script>
+(function () {
+  var hint = document.getElementById('rotateHint');
+  var dismissBtn = document.getElementById('rotateDismiss');
+  if (hint && dismissBtn) {
+    if (sessionStorage.getItem('rotateHintDismissed')) hint.style.display = 'none';
+    dismissBtn.addEventListener('click', function () {
+      hint.style.display = 'none';
+      sessionStorage.setItem('rotateHintDismissed', '1');
+    });
+  }
+})();
 (function () {
   var hamBtn = document.getElementById('hamBtn');
   var mobMenu = document.getElementById('mobMenu');
