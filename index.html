@@ -1886,6 +1886,7 @@ document.addEventListener("keydown", e => {
     setTimeout(function () {
       gate.parentNode.removeChild(gate);
       sessionStorage.setItem('auth', '1');
+      window.scrollTo(0, 0);
     }, 1250);
   }
 
