@@ -482,14 +482,6 @@ a { color: inherit; }
   .gate-illus-wrap.walking-off { animation: none; opacity: 0; }
 }
 
-/* ── Rotate hint (portrait mobile only) ── */
-.rotate-hint { display: none; align-items: center; gap: 10px; background: #2A3B47; color: #FAF8F3; padding: 9px 16px; font-size: 13px; font-weight: 600; letter-spacing: -.01em; flex-shrink: 0; }
-.rotate-hint span { flex: 1; }
-.rotate-dismiss { background: none; border: none; color: rgba(255,255,255,.5); cursor: pointer; font-size: 20px; line-height: 1; padding: 0 2px; font-family: inherit; flex-shrink: 0; }
-@media (max-width: 900px) and (orientation: portrait) {
-  .rotate-hint { display: flex; }
-}
-
 /* ── Reader: compact vertical rhythm for mobile landscape ── */
 @media (orientation: landscape) and (max-height: 520px) {
   .r-bar { padding: 7px 24px 5px; }
@@ -815,10 +807,6 @@ a { color: inherit; }
     <button class="r-close" id="closeBtn">&larr;&nbsp; Back to work</button>
     <div class="r-title" id="rTitle"></div>
     <div class="r-dots" id="dots"></div>
-  </div>
-  <div class="rotate-hint" id="rotateHint">
-    <span>↻&nbsp; Rotate for the best experience</span>
-    <button class="rotate-dismiss" id="rotateDismiss" aria-label="Dismiss">×</button>
   </div>
   <div class="r-track-area"><div class="r-track" id="track"></div></div>
   <div class="r-nav">
@@ -1987,17 +1975,6 @@ document.addEventListener("keydown", e => {
 })();
 </script>
 <script>
-(function () {
-  var hint = document.getElementById('rotateHint');
-  var dismissBtn = document.getElementById('rotateDismiss');
-  if (hint && dismissBtn) {
-    if (sessionStorage.getItem('rotateHintDismissed')) hint.style.display = 'none';
-    dismissBtn.addEventListener('click', function () {
-      hint.style.display = 'none';
-      sessionStorage.setItem('rotateHintDismissed', '1');
-    });
-  }
-})();
 (function () {
   var hamBtn = document.getElementById('hamBtn');
   var mobMenu = document.getElementById('mobMenu');
