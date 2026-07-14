@@ -4802,7 +4802,7 @@ render();
   }
 
   function handleSubmit() {
-    if (input.value.trim() === PASSWORD) {
+    if (input.value.trim().toLowerCase() === PASSWORD.toLowerCase()) {
       btn.disabled = true;
       input.disabled = true;
       unlock();
