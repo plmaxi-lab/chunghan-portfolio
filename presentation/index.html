@@ -53,6 +53,7 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
 .btn{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:6px 14px;font-family:inherit;font-size:12px;font-weight:700;color:var(--ink);cursor:pointer;transition:.15s;}
 .btn:hover{background:var(--muted);}
 .btn:disabled{opacity:.3;cursor:default;}
+.mode-hidden{width:0!important;min-width:0!important;overflow:hidden!important;flex-shrink:0;}
 .nav.dark{background:var(--dk);border-color:rgba(255,255,255,.08);}
 .nav.dark .mono{background:rgba(255,255,255,.1);color:#fff;}
 .nav.dark .nav-name{color:rgba(255,255,255,.8);}
@@ -510,6 +511,95 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════
+     ELS-1 · ELSEVIER ORIGIN STORY — curated mode only
+     Flyer left · English annotations + event photos right
+════════════════════════════════════════════════════════════════ -->
+<section class="slide" data-mode="curated">
+<div class="body" style="flex-direction:column;padding:0;gap:0;">
+
+  <!-- Header — full width -->
+  <div style="padding:24px 36px 16px 36px;flex-shrink:0;">
+    <div class="kicker g" style="margin-bottom:7px;">2009–2012 · Elsevier Taiwan</div>
+    <h1 style="font-size:clamp(1.2rem,1.8vw,1.6rem);line-height:1.08;letter-spacing:-.03em;white-space:nowrap;">Fun fact: my work has always connected to sales.</h1>
+  </div>
+
+  <!-- Content: 80% activities + 20% outcome -->
+  <div style="flex:1;display:flex;gap:0;min-height:0;">
+
+    <!-- Activities wrapper — 80% -->
+    <div style="flex:0 0 80%;display:flex;min-height:0;">
+
+      <!-- Activity 01: Training — 35% of activities -->
+      <div style="flex:0 0 35%;display:flex;flex-direction:column;gap:10px;padding:0 16px 24px 36px;">
+        <div style="padding-top:16px;">
+          <div style="font-size:.55rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--dim);margin-bottom:4px;">Activity 01</div>
+          <div style="font-size:.82rem;font-weight:700;color:var(--ink);">Campus training</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:5px;min-height:0;">
+          <div style="flex:65;border-radius:8px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.18);min-height:0;">
+            <img src="assets/intro/Presenting.png"
+                 style="width:100%;height:100%;object-fit:cover;object-position:75% center;display:block;">
+          </div>
+          <div style="flex:35;border-radius:8px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.18);min-height:0;">
+            <img src="assets/intro/Audience.png"
+                 style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;">
+          </div>
+        </div>
+        <div style="font-size:.63rem;color:var(--sub);line-height:1.45;">Hands-on workshops for faculty and students at partner universities.</div>
+      </div>
+
+      <!-- Activity 02: Campaign — 65% of activities -->
+      <div style="flex:1;display:flex;flex-direction:column;gap:10px;padding:16px 20px 24px 20px;">
+        <div>
+          <div style="font-size:.55rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--dim);margin-bottom:4px;">Activity 02</div>
+          <div style="font-size:.82rem;font-weight:700;color:var(--ink);">Usage campaign</div>
+        </div>
+        <!-- Newsletter + annotation rail -->
+        <div style="flex:1;display:flex;gap:0;min-height:0;">
+          <div style="flex:0 0 48%;border-radius:8px;overflow:hidden;background:#8a0033;box-shadow:0 3px 14px rgba(0,0,0,.15);">
+            <img src="assets/intro/WhiteValentineQuiz2-SD-DM.jpg"
+                 style="width:100%;height:100%;object-fit:contain;object-position:top center;display:block;">
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:14px;padding:10px 0 10px 18px;justify-content:center;">
+            <div style="display:flex;gap:9px;align-items:flex-start;">
+              <div style="flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--g);margin-top:5px;"></div>
+              <div>
+                <div style="font-size:.67rem;font-weight:700;color:var(--ink);">Prize quiz</div>
+                <div style="font-size:.6rem;color:var(--sub);">"Which brain region does chocolate stimulate mood?" · 77 prizes</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:9px;align-items:flex-start;">
+              <div style="flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--g);margin-top:5px;"></div>
+              <div>
+                <div style="font-size:.67rem;font-weight:700;color:var(--ink);">Search ScienceDirect</div>
+                <div style="font-size:.6rem;color:var(--sub);">Find the answer → download the paper</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:9px;align-items:flex-start;">
+              <div style="flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--g);margin-top:5px;"></div>
+              <div>
+                <div style="font-size:.67rem;font-weight:700;color:var(--ink);">Submit answer → enter draw</div>
+                <div style="font-size:.6rem;color:var(--sub);">Closed the loop: engage → use database → win</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:.63rem;color:var(--sub);line-height:1.45;">"White Valentine's Day" quiz — answer hidden in a ScienceDirect article.</div>
+      </div>
+
+    </div><!-- end activities wrapper -->
+
+    <!-- Sales outcome — 20%, green -->
+    <div style="flex:0 0 20%;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:20px 36px 20px 20px;background:var(--g2);">
+      <div style="font-size:.55rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--g);">Sales outcome</div>
+      <div style="font-size:clamp(.95rem,1.5vw,1.3rem);font-weight:800;color:var(--ink);line-height:1.2;">More usage gave sales real leverage in renewal talks.</div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
      I-2 · CAREER JOURNEY — interactive: click company → work shows above
 ════════════════════════════════════════════════════════════════ -->
 <section class="slide">
@@ -818,40 +908,6 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════
-     I-4 · FUN FACT — 3-photo editorial layout
-════════════════════════════════════════════════════════════════ -->
-<section class="slide">
-<div class="body">
-  <div class="ff-wrap">
-
-    <!-- Left: Teappo market photo -->
-    <div class="ff-main">
-      <img src="assets/intro/market.png" alt="Teappo at the farmers market" onerror="this.parentNode.style.background='var(--muted)'">
-    </div>
-
-    <!-- Right: 2 photos + text -->
-    <div class="ff-side">
-      <div class="ff-grid">
-        <img src="assets/intro/family.png" alt="Family at the beach" onerror="this.parentNode.style.background='var(--muted)'">
-        <img src="assets/intro/dog.png" alt="Cha Cha" onerror="this.parentNode.style.background='var(--muted)'">
-      </div>
-      <div class="ff-txt">
-        <div class="kicker g">Outside the office</div>
-        <div class="ff-h">Tea. Family.<br>Dog.</div>
-        <div class="ff-facts">
-          <div class="ff-fact"><strong>Teappo</strong> — co-founded a premium tea brand sourced from Taiwan &amp; Japan.</div>
-          <div class="ff-fact">Dad to a <strong>3-year-old</strong> + co-parent to <strong>Cha Cha</strong> the cockapoo — <strong>72K Instagram followers</strong>.</div>
-          <div class="ff-fact"><strong>Running a real business</strong> made me more empathetic to the users I design for.</div>
-        </div>
-        <div class="ff-tools">Shopify · QuickBooks · Claude · Gemini · Faire</div>
-      </div>
-    </div>
-
-  </div>
-</div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════
      I-5 · PROJECT INDEX — 4 projects + 2 bonus links
 ════════════════════════════════════════════════════════════════ -->
 <section class="slide">
@@ -866,7 +922,7 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
     <!-- 4 Splunk project cards -->
     <div class="idx-projects">
 
-      <div class="idx-card" onclick="go(7);">
+      <div class="idx-card" onclick="goToSection('udo')">
         <div class="idx-thumb"><img src="assets/thumbnail/udo-thumbnail.png" alt="Unified Data Observability"></div>
         <div class="idx-info">
           <div class="idx-tag">Splunk · Cisco · 2024</div>
@@ -879,7 +935,7 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
         </div>
       </div>
 
-      <div class="idx-card" onclick="go(17);">
+      <div class="idx-card" onclick="goToSection('onboarding')">
         <div class="idx-thumb"><img src="assets/thumbnail/ks-onboarding.png" alt="Guided Onboarding"></div>
         <div class="idx-info">
           <div class="idx-tag">Splunk · Cisco · Mid-End 2025</div>
@@ -892,7 +948,7 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
         </div>
       </div>
 
-      <div class="idx-card" onclick="go(27);">
+      <div class="idx-card" onclick="goToSection('hitl')">
         <div class="idx-thumb"><img src="assets/thumbnail/hitl-thumbnail.svg" alt="Human-in-the-loop AI"></div>
         <div class="idx-info">
           <div class="idx-tag">Splunk · Cisco · Mid-End 2025</div>
@@ -905,7 +961,7 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
         </div>
       </div>
 
-      <div class="idx-card" onclick="go(35);">
+      <div class="idx-card" onclick="goToSection('uda')">
         <div class="idx-thumb"><img src="assets/thumbnail/uda-thumbnail.png" alt="Unified Data Acquisition"></div>
         <div class="idx-info">
           <div class="idx-tag">Splunk · Cisco · 2022–2023</div>
@@ -925,14 +981,14 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
 
     <!-- 2 compact bonus links -->
     <div class="idx-bonus">
-      <a class="idx-bonus-link" href="javascript:void(0)" onclick="go(47)">
+      <a class="idx-bonus-link" href="javascript:void(0)" onclick="goToSection('leadership')">
         <div>
           <div class="idx-bonus-lbl">Leadership</div>
           <div class="idx-bonus-ttl">How I manage my team</div>
         </div>
         <span class="idx-bonus-arr">→</span>
       </a>
-      <a class="idx-bonus-link" href="javascript:void(0)" onclick="go(55)">
+      <a class="idx-bonus-link" href="javascript:void(0)" onclick="goToSection('teappo')">
         <div>
           <div class="idx-bonus-lbl">Side project · Teappo</div>
           <div class="idx-bonus-ttl">How I use Claude to run my business</div>
@@ -4641,11 +4697,11 @@ function incReset(){
   </div>
   <div class="dots" id="dotsEl"></div>
   <div class="nav-r">
-    <span class="pg" id="pgEl">1 / 21</span>
-    <button class="btn" id="homeBtn" title="Projects" onclick="go(6)" style="display:flex;align-items:center;justify-content:center;"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1.5" y="1.5" width="5.5" height="5.5" rx="1.25" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="1.5" width="5.5" height="5.5" rx="1.25" stroke="currentColor" stroke-width="1.4"/><rect x="1.5" y="9" width="5.5" height="5.5" rx="1.25" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="9" width="5.5" height="5.5" rx="1.25" stroke="currentColor" stroke-width="1.4"/></svg></button>
+    <span class="pg" id="pgEl">1 / 60</span>
+    <button class="btn" id="homeBtn" title="Projects" onclick="goToSection('catalog')" style="display:flex;align-items:center;justify-content:center;"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1.5" y="1.5" width="5.5" height="5.5" rx="1.25" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="1.5" width="5.5" height="5.5" rx="1.25" stroke="currentColor" stroke-width="1.4"/><rect x="1.5" y="9" width="5.5" height="5.5" rx="1.25" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="9" width="5.5" height="5.5" rx="1.25" stroke="currentColor" stroke-width="1.4"/></svg></button>
     <button class="btn" id="prevBtn" disabled>←</button>
     <button class="btn" id="nextBtn">→</button>
-    <button class="btn" id="endBtn" title="Jump to end" onclick="go(59)" style="display:flex;align-items:center;justify-content:center;padding:6px 10px;">
+    <button class="btn" id="endBtn" title="Jump to end" style="display:flex;align-items:center;justify-content:center;padding:6px 10px;">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line x1="1.5" y1="7" x2="9" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         <polyline points="6,4 9.5,7 6,10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
@@ -4657,73 +4713,114 @@ function incReset(){
 
 <script>
 (function(){
-const TOTAL = 60;
+// ── Mode state ──
+let mode = 'regular';
+let visibleSlides = [];
+let TOTAL = 0;
 let idx = 0;
 
-const track    = document.getElementById('track');
-const slides   = document.querySelectorAll('.slide');
-const nav      = document.getElementById('mainNav');
-const nameEl   = document.getElementById('nameEl');
-const pgEl     = document.getElementById('pgEl');
-const dotsEl   = document.getElementById('dotsEl');
-const prevBtn  = document.getElementById('prevBtn');
-const nextBtn  = document.getElementById('nextBtn');
-const endBtn   = document.getElementById('endBtn');
+const track   = document.getElementById('track');
+const nav     = document.getElementById('mainNav');
+const nameEl  = document.getElementById('nameEl');
+const pgEl    = document.getElementById('pgEl');
+const dotsEl  = document.getElementById('dotsEl');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const endBtn  = document.getElementById('endBtn');
 
-// Dark slides — nav inherits their colour scheme
-const DARK_SLIDES = new Set([0, 9, 10, 20, 27, 30, 32, 35, 42, 45, 53]);
+// Dark slides — same indices in both modes
+// ELS-1 (curated-only) + Personal (regular-only): net 0 shift for all idx≥6
+const DARK_REGULAR = new Set([0, 9, 10, 20, 27, 30, 32, 35, 42, 45, 53]);
+const DARK_CURATED = DARK_REGULAR;
 
 function sectionLabel(i){
-  if(i === 0) return 'Portfolio';
-  if(i < 6)  return 'Introduction';
-  if(i === 6) return 'Catalog';
-  if(i < 16) return 'Unified Data Observability';
-  if(i < 26) return 'Guided Onboarding';
-  if(i < 34) return 'Human-in-the-loop AI';
-  if(i < 45) return 'Unified Data Acquisition';
-  if(i < 53) return 'Leadership';
+  if(i===0) return 'Portfolio';
+  if(i<6)   return 'Introduction';
+  if(i===6) return 'Catalog';
+  if(i<17)  return 'Unified Data Observability';
+  if(i<27)  return 'Guided Onboarding';
+  if(i<35)  return 'Human-in-the-loop AI';
+  if(i<47)  return 'Unified Data Acquisition';
+  if(i<55)  return 'Leadership';
   return 'Building with AI · Teappo';
 }
 
-// Build dots once
-for(let i=0;i<TOTAL;i++){
-  const d=document.createElement('div');
-  d.className='dot';
-  d.addEventListener('click',()=>go(i));
-  dotsEl.appendChild(d);
+function rebuildDots(){
+  dotsEl.innerHTML='';
+  for(let i=0;i<TOTAL;i++){
+    const d=document.createElement('div');
+    d.className='dot';
+    d.addEventListener('click',()=>go(i));
+    dotsEl.appendChild(d);
+  }
 }
+
+function buildMode(m){
+  mode = m;
+  // Update toggle buttons
+  document.querySelectorAll('.mtog-btn').forEach(b=>
+    b.classList.toggle('on', b.dataset.mode===m)
+  );
+  // Build visible slide list
+  const all = [...document.querySelectorAll('.slide')];
+  visibleSlides = [];
+  all.forEach(s=>{
+    const sm = s.dataset.mode || 'both';
+    const show = sm==='both' || sm===m;
+    s.classList.toggle('mode-hidden', !show);
+    if(show) visibleSlides.push(s);
+  });
+  TOTAL = visibleSlides.length;
+  rebuildDots();
+  go(0);
+}
+window.buildMode = buildMode;
+
+// Named navigation — same indices in both modes
+function goToSection(name){
+  const map = {
+    catalog:    6,
+    udo:        7,
+    onboarding: 17,
+    hitl:       27,
+    uda:        35,
+    leadership: 47,
+    teappo:     55,
+  };
+  const t = map[name];
+  if(t !== undefined) go(t);
+}
+window.goToSection = goToSection;
 
 prevBtn.addEventListener('click',()=>go(idx-1));
 nextBtn.addEventListener('click',()=>go(idx+1));
+endBtn.addEventListener('click',()=>go(TOTAL-1));
 
 function render(){
   track.style.transform=`translateX(-${idx*100}vw)`;
 
   // Nav dark mode
-  nav.classList.toggle('dark', DARK_SLIDES.has(idx));
+  nav.classList.toggle('dark', (mode==='regular' ? DARK_REGULAR : DARK_CURATED).has(idx));
 
-  // Name + page
   nameEl.innerHTML=`Chung Han <span>· ${sectionLabel(idx)}</span>`;
   pgEl.textContent=`${idx+1} / ${TOTAL}`;
 
-  // Dots
   dotsEl.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===idx));
 
-  // Arrow buttons
   prevBtn.disabled=(idx===0);
   nextBtn.disabled=(idx===TOTAL-1);
   endBtn.disabled=(idx===TOTAL-1);
 
-  // Entrance animation
-  slides.forEach((s,i)=>{
+  visibleSlides.forEach((s,i)=>{
     const b=s.querySelector('.body');
     if(!b) return;
     b.classList.remove('in');
     if(i===idx){ void b.offsetWidth; b.classList.add('in'); }
   });
 
-  // Reset multi-step slides on entry
-  if(idx===45 && typeof incReset==='function') incReset();
+  const INC_IDX = 43;
+  const RST_IDX = 45;
+  if(idx===RST_IDX && typeof incReset==='function') incReset();
 }
 
 function go(i){
@@ -4738,19 +4835,16 @@ window.go=go;
   if(!showcase) return;
   const panels = showcase.querySelectorAll('.cs-panel');
   const tabs   = document.querySelectorAll('.ca');
-
   function selectCo(n){
-    panels.forEach((p,i) => p.classList.toggle('active', i===n));
-    tabs.forEach((t,i)   => t.classList.toggle('active', i===n));
+    panels.forEach((p,i)=>p.classList.toggle('active',i===n));
+    tabs.forEach((t,i)=>t.classList.toggle('active',i===n));
   }
-
-  tabs.forEach(t => t.addEventListener('click', () => {
-    selectCo(parseInt(t.dataset.idx, 10));
-  }));
+  tabs.forEach(t=>t.addEventListener('click',()=>selectCo(parseInt(t.dataset.idx,10))));
 })();
 
 document.addEventListener('keydown',e=>{
-  if(idx===43){
+  const INC_IDX = 43;
+  if(idx===INC_IDX){
     if((e.key==='ArrowRight'||e.key==='ArrowDown')&&incStep<2){incGo(incStep+1);return;}
     if((e.key==='ArrowLeft'||e.key==='ArrowUp')&&incStep>0){incGo(incStep-1);return;}
   }
@@ -4758,7 +4852,8 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft'||e.key==='ArrowUp')    go(idx-1);
 });
 
-render();
+// Init in curated mode
+buildMode('curated');
 })();
 </script>
 <script>
