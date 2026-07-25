@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Treasure AI Studio — Clickable prototype story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --p1: #494FFF; --s1: #8753FF; --s2: #C466D4;
+    --ink: #0E0E10; --muted: #63636B;
+    --green: #2d6a4f; --green-light: #52b788; --cream: #f8f5f0;
+    --d-dark: #2b2d42; --d-muted: #8d99ae; --d-border: #e8e3dc;
+    --dt: #E8E7F0; --dm: #8A89A0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; font-family: 'Inter', sans-serif; background: #050508; color: var(--dt); }
+
+  .hint-bar {
+    max-width: 1420px; margin: 16px auto 0; font-size: 0.78rem; color: #8A89A0; padding: 0 6px;
+  }
+  .hint-bar b { color: #cfcfe0; }
+
+  .app-frame {
+    width: 1420px; height: 860px; margin: 10px auto 30px;
+    background:
+      radial-gradient(55% 45% at 10% 5%, rgba(135,83,255,0.22), transparent 60%),
+      radial-gradient(50% 45% at 95% 95%, rgba(73,79,255,0.2), transparent 60%),
+      #0c0c14;
+    border-radius: 16px; overflow: hidden; border: 1px solid #1c1c2a;
+    display: flex; flex-direction: column; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  /* ================= LANDING ================= */
+  .landing { flex: 1; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 40px; }
+  .landing.show { display: flex; }
+  .landing-brand { display: flex; align-items: center; gap: 8px; position: absolute; top: 20px; left: 24px; }
+  .logo-mark { width: 20px; height: 20px; border-radius: 5px; background: linear-gradient(135deg, var(--s2), var(--s1), var(--p1)); }
+  .landing-brand b { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 0.9rem; color: #fff; }
+  .landing h1 { font-family: 'Inter', sans-serif; font-size: 2.1rem; text-align: center; color: #fff; font-weight: 500; margin-bottom: 30px; }
+  .landing h1 b { color: #C7E86B; font-weight: 800; }
+  .prompt-box {
+    width: 780px; background: #16161f; border: 1px solid #2a2a3a; border-radius: 14px;
+    padding: 16px 18px; display: flex; align-items: center; gap: 12px; margin-bottom: 26px;
+  }
+  .prompt-box input { flex: 1; background: none; border: none; outline: none; color: #cfcfe0; font-size: 0.92rem; font-family: 'Inter', sans-serif; }
+  .prompt-send {
+    width: 34px; height: 34px; border-radius: 50%; background: #fff; color: #0c0c14;
+    display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0;
+  }
+  .sample-label { font-size: 0.8rem; color: var(--dm); margin-bottom: 12px; align-self: flex-start; margin-left: calc(50% - 390px); }
+  .sample-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 780px; }
+  .sample-card { background: #14141f; border: 1px solid #24243a; border-radius: 12px; padding: 14px; }
+  .sample-tag { display: inline-block; font-size: 0.66rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; margin-bottom: 8px; }
+  .sample-tag.a { background: #2a2340; color: #C466D4; }
+  .sample-tag.b { background: #2e241d; color: #E9A56B; }
+  .sample-card h4 { font-size: 0.85rem; color: #fff; font-weight: 700; margin-bottom: 8px; }
+  .sample-skel { height: 5px; border-radius: 3px; background: #24243a; margin-bottom: 6px; }
+  .sample-skel.short { width: 60%; }
+
+  /* ================= WORKSPACE (3-pane) ================= */
+  .workspace-wrap { flex: 1; display: none; flex-direction: column; overflow: hidden; }
+  .workspace-wrap.show { display: flex; }
+
+  .topbar { height: 50px; flex: 0 0 50px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid #1c1c2a; }
+  .topbar-left { display: flex; align-items: center; gap: 9px; }
+  .topbar-left b { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 0.86rem; color: #fff; }
+  .brand-reset { display: flex; align-items: center; gap: 9px; cursor: pointer; }
+  .brand-reset:hover b, .brand-reset:hover .logo-mark { opacity: 0.8; }
+  .crumbs { font-size: 0.78rem; color: var(--dm); }
+  .crumbs b { color: #cfcfe0; font-weight: 600; }
+  .topbar-right { display: flex; align-items: center; gap: 8px; }
+  .tb-btn { font-size: 0.74rem; color: var(--dm); border: 1px solid #2a2a3a; border-radius: 8px; padding: 6px 11px; display: flex; align-items: center; gap: 6px; }
+  .sb-avatar { width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(135deg, var(--s2), var(--p1)); }
+
+  .workspace { flex: 1; display: flex; overflow: hidden; position: relative; }
+  .pane { display: flex; flex-direction: column; min-width: 0; }
+  .pane + .pane { border-left: 1px solid #1c1c2a; }
+  .pane-head { height: 36px; flex: 0 0 36px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; background: #101018; border-bottom: 1px solid #1c1c2a; }
+  .pane-head .label { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: #cfcfe0; }
+  .pane-body { flex: 1; overflow-y: auto; }
+
+  /* ---- chat column (main) ---- */
+  .chat-col { flex: 1; min-width: 320px; display: flex; flex-direction: column; }
+  .chat-col .pane-body { padding: 14px 18px; }
+  .msg-user { background: #1b1b28; border-radius: 11px; padding: 11px 13px; font-size: 0.8rem; line-height: 1.5; color: #EDEDF3; margin-bottom: 12px; }
+  .trace-row { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 7px; font-size: 0.74rem; color: var(--dm); margin-bottom: 2px; opacity: 0; transform: translateY(4px); animation: fadein 0.3s ease forwards; }
+  @keyframes fadein { to { opacity: 1; transform: translateY(0); } }
+  .trace-row .ic { width: 14px; text-align: center; flex-shrink: 0; }
+  .trace-row.think .ic { color: #E9C46A; }
+  .trace-row.skill .ic { color: #52b788; }
+  .trace-row .main { flex: 1; }
+  .trace-row .path { color: #55546a; font-size: 0.66rem; margin-top: 1px; font-family: 'Courier New', monospace; }
+  .ai-text { font-size: 0.8rem; color: #cfcfe0; line-height: 1.55; margin: 10px 0; opacity: 0; animation: fadein 0.3s ease forwards; }
+
+  .goal-card { opacity: 0; animation: fadein 0.3s ease forwards; margin: 12px 0; border: 1px solid #24243a; border-radius: 11px; padding: 13px 14px; background: #14141f; }
+  .goal-card .gc-text { font-size: 0.8rem; color: #EDEDF3; margin-bottom: 10px; }
+  .goal-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .goal-opt { border: 1px solid #2a2a3a; border-radius: 9px; padding: 9px 10px; font-size: 0.74rem; color: #cfcfe0; }
+  .goal-opt b { display: block; font-family: 'Manrope', sans-serif; font-size: 0.78rem; margin-bottom: 2px; color: #fff; }
+  .goal-opt span { color: var(--dm); font-size: 0.68rem; }
+  .goal-opt.selected { border-color: var(--p1); background: rgba(73,79,255,0.15); }
+  .confirm-line { font-size: 0.76rem; color: var(--s1); margin: 8px 0 2px; opacity: 0; animation: fadein 0.3s ease forwards; }
+
+  .skill-input-wrap { padding: 10px 14px 14px; border-top: 1px solid #1c1c2a; }
+  .skill-input { background: #16161f; border: 1px solid #2a2a3a; border-radius: 10px; padding: 8px 11px; font-size: 0.76rem; color: #55546a; }
+
+  /* ---- left sidebar: project folder + chat history (persistent, real product) ---- */
+  .sidebar { width: 230px; flex-shrink: 0; background: #0b0b12; border-right: 1px solid #1c1c2a; display: flex; flex-direction: column; padding: 14px 12px; overflow-y: auto; }
+  .sb-new-chat { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: #cfcfe0; padding: 8px 6px; margin-bottom: 12px; }
+  .sb-new-chat .ic { width: 15px; text-align: center; color: var(--dm); }
+  .sb-folder-btn { border: 1px solid #2a2a3a; border-radius: 9px; padding: 9px 10px; font-size: 0.74rem; color: #cfcfe0; text-align: center; margin-bottom: 18px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .sb-section-label { display: flex; align-items: center; gap: 6px; font-size: 0.72rem; color: var(--dm); margin-bottom: 8px; padding: 0 6px; }
+  .sb-count { background: #23233a; color: #cfcfe0; font-size: 0.62rem; padding: 1px 6px; border-radius: 999px; }
+  .sb-chat-item { font-size: 0.76rem; color: #b7b6c8; padding: 7px 8px; border-radius: 8px; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sb-chat-item.active { background: #1b1b28; color: #fff; }
+  .sb-promo { margin-top: auto; border: 1px solid #2a2a3a; border-radius: 12px; padding: 14px; background: #12121c; }
+  .sb-promo-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .sb-avatar-grad { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--s2), var(--p1)); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.7rem; color: #fff; }
+  .sb-promo-top b { font-size: 0.8rem; color: #fff; display: block; font-family: 'Manrope', sans-serif; }
+  .sb-promo-top span { font-size: 0.66rem; color: var(--dm); }
+  .sb-promo p { font-size: 0.72rem; color: #cfcfe0; line-height: 1.4; margin-bottom: 10px; }
+  .sb-promo-btn { border: 1px solid #3a3a4a; border-radius: 8px; padding: 8px; text-align: center; font-size: 0.72rem; color: #cfcfe0; }
+  .sb-footer { display: flex; align-items: center; gap: 8px; padding-top: 14px; margin-top: 14px; border-top: 1px solid #1c1c2a; font-size: 0.74rem; color: #cfcfe0; }
+  .sb-footer .sb-avatar-grad { width: 22px; height: 22px; font-size: 0.6rem; }
+
+  /* ---- right rail: persistent access to Progress / Data / Skill / Output ---- */
+  .right-rail { width: 280px; flex-shrink: 0; background: #0e0e16; overflow-y: auto; padding: 14px 12px; display: flex; flex-direction: column; gap: 10px; }
+  .rail-card { background: #14141f; border: 1px solid #22222f; border-radius: 12px; overflow: hidden; }
+  .rail-head { display: flex; align-items: center; justify-content: space-between; padding: 11px 13px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.76rem; color: #EDEDF3; }
+  .rail-head .chev { color: var(--dm); font-size: 0.7rem; }
+  .rail-body { padding: 0 13px 13px; }
+
+  .prog-row { display: flex; align-items: flex-start; gap: 9px; padding: 6px 0; font-size: 0.75rem; color: #cfcfe0; line-height: 1.4; }
+  .prog-num { width: 18px; height: 18px; border-radius: 50%; background: #23233a; color: var(--dm); font-size: 0.64rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; transition: all 0.2s; }
+  .prog-num.done { background: var(--p1); color: #fff; }
+  .prog-row.pending { opacity: 0.45; }
+
+  .rail-group-label { font-size: 0.64rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--dm); margin: 12px 0 7px; }
+  .rail-group-label:first-child { margin-top: 2px; }
+  .file-chip { display: flex; align-items: center; gap: 9px; border: 1px solid #2a2a3a; border-radius: 9px; padding: 9px 10px; font-size: 0.75rem; color: #cfcfe0; margin-bottom: 8px; }
+  .file-chip .fi { width: 20px; height: 20px; border-radius: 5px; background: #23233a; color: var(--s1); display: flex; align-items: center; justify-content: center; font-size: 0.64rem; font-weight: 700; flex-shrink: 0; }
+  .add-data { font-size: 0.72rem; color: var(--dm); border: 1px dashed #2a2a3a; border-radius: 9px; padding: 9px 10px; text-align: center; }
+  .skill-chip { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: #cfcfe0; padding: 4px 0; }
+  .skill-chip .fi { width: 18px; height: 18px; border-radius: 5px; background: #23233a; color: #E9C46A; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; flex-shrink: 0; }
+
+  .output-chip { border: 1px solid #2a2a3a; border-radius: 10px; padding: 10px 11px; cursor: default; position: relative; }
+  .output-chip .oc-top { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .output-chip .fi { width: 20px; height: 20px; border-radius: 5px; background: #23233a; color: #52b788; display: flex; align-items: center; justify-content: center; font-size: 0.64rem; flex-shrink: 0; }
+  .output-chip .oc-name { font-size: 0.76rem; font-weight: 600; color: #EDEDF3; flex: 1; }
+  .output-chip .oc-open { font-size: 0.66rem; font-weight: 700; color: var(--p1); }
+  .output-chip .oc-sub { font-size: 0.66rem; color: var(--dm); }
+  .output-chip.pulse { border-color: var(--p1); box-shadow: 0 0 0 3px rgba(73,79,255,0.14); }
+  .output-chip.empty { opacity: 0.5; }
+
+  /* ---- artifact panel: opens over the workspace from the right rail ---- */
+  .artifact-panel {
+    position: absolute; top: 0; right: 0; bottom: 0; width: 480px; max-width: 86%;
+    background: #101018; border-left: 1px solid #22222f; box-shadow: -20px 0 50px rgba(0,0,0,0.45);
+    display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.28s ease; z-index: 50;
+  }
+  .artifact-panel.show { transform: translateX(0); }
+  .artifact-icons { display: flex; align-items: center; gap: 2px; }
+  .a-icon { width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; color: var(--dm); font-size: 0.76rem; position: relative; }
+  .a-icon.modify { color: var(--p1); }
+  .a-icon.modify.active { background: var(--p1); color: #fff; }
+  .a-icon.pulse::after { content: ''; position: absolute; inset: -3px; border-radius: 9px; border: 1.5px solid var(--p1); animation: pulse 1.4s ease-out infinite; }
+  @keyframes pulse { 0% { opacity: 0.9; transform: scale(0.9); } 100% { opacity: 0; transform: scale(1.35); } }
+  .artifact-panel .pane-body { padding: 14px; position: relative; flex: 1; overflow-y: auto; }
+
+  .dash { background: var(--cream); border-radius: 12px; overflow: hidden; border: 1px solid var(--d-border); }
+  .dash-header { background: var(--green); color: #fff; padding: 13px 15px; }
+  .dash-header h1 { font-size: 0.92rem; font-weight: 700; font-family: 'Inter', sans-serif; }
+  .dash-header p { font-size: 0.66rem; opacity: 0.75; margin-top: 3px; }
+  .dash-body { padding: 13px; }
+  .dcard { background: #fff; border-radius: 10px; border: 1px solid var(--d-border); padding: 12px 13px; position: relative; margin-bottom: 11px; }
+  .dcard h2 { font-size: 0.66rem; font-weight: 700; color: var(--d-dark); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .prod-table { width: 100%; border-collapse: collapse; }
+  .prod-table td { padding: 5px 3px; font-size: 0.68rem; border-bottom: 1px solid var(--d-border); }
+  .prod-table tr:last-child td { border-bottom: none; }
+  .prod-table td:first-child { color: var(--d-dark); font-weight: 500; }
+  .prod-table td:last-child { text-align: right; font-weight: 700; color: var(--green); white-space: nowrap; }
+  .bar-bg { background: #f0ede8; border-radius: 4px; height: 5px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; background: var(--green-light); }
+  .new-col { background: #F4F3FF; color: var(--p1); font-weight: 700; }
+  .conf { display: inline-block; background: #E9F7EF; color: #1E7A46; font-size: 0.6rem; font-weight: 700; padding: 1px 6px; border-radius: 6px; margin-left: 4px; white-space: nowrap; }
+  .prod-table thead td { color: var(--d-dark); font-weight: 700; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.03em; border-bottom: 1px solid var(--d-border); padding-bottom: 6px; }
+  .prod-table .actual-col { text-align: right; color: var(--d-dark); font-weight: 600; white-space: nowrap; }
+  .prod-table .proj-col { text-align: right; }
+  .prod-table td.new-col.proj-col { color: var(--p1); }
+
+  .empty-output { display: flex; align-items: center; justify-content: center; height: 100%; color: var(--dm); font-size: 0.78rem; text-align: center; padding: 30px; }
+  .gen-spinner { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #2a2a3a; border-top-color: var(--p1); animation: spin 0.8s linear infinite; display: inline-block; margin-right: 8px; vertical-align: -3px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  #content { position: relative; }
+  #content.annotate-mode { cursor: crosshair; }
+  .instruction-pill {
+    position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+    background: var(--p1); color: #fff; font-weight: 600; font-size: 0.7rem;
+    padding: 7px 12px; border-radius: 999px; box-shadow: 0 8px 20px rgba(73,79,255,0.4);
+    display: none; z-index: 25; white-space: nowrap;
+  }
+  .instruction-pill.show { display: block; }
+  .marker {
+    position: absolute; width: 20px; height: 20px; border-radius: 50% 50% 50% 4px;
+    background: var(--p1); color: #fff; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.6rem;
+    display: none; align-items: center; justify-content: center; z-index: 21;
+    box-shadow: 0 2px 8px rgba(73,79,255,0.5); transform: translate(-4px, -18px) rotate(-45deg);
+  }
+  .marker span { transform: rotate(45deg); }
+  .marker.show { display: flex; }
+  .comment-popup {
+    position: absolute; width: 210px; background: #fff; border-radius: 11px;
+    border: 1px solid #e2e0ee; box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+    padding: 10px; z-index: 22; display: none;
+  }
+  .comment-popup.show { display: block; }
+  .comment-popup .title { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.7rem; color: var(--ink); margin-bottom: 6px; display: flex; justify-content: space-between; }
+  .comment-popup .title .x { color: var(--muted); font-size: 0.85rem; }
+  .comment-popup textarea {
+    width: 100%; border: 1.5px solid var(--p1); border-radius: 8px; padding: 6px 8px;
+    font-family: 'Inter', sans-serif; font-size: 0.72rem; color: var(--ink); resize: none; height: 46px; outline: none;
+  }
+  .comment-popup .actions { display: flex; justify-content: flex-end; gap: 6px; margin-top: 8px; }
+  .btn { font-family: 'Inter', sans-serif; font-size: 0.68rem; font-weight: 600; padding: 5px 10px; border-radius: 7px; border: 1px solid #e2e0ee; background: #fff; color: var(--muted); }
+  .btn.primary { background: var(--p1); color: #fff; border-color: var(--p1); }
+
+  /* version history overlay inside output pane */
+  .history-overlay {
+    position: absolute; inset: 14px; background: #fff; border-radius: 11px; padding: 14px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.35); display: none; z-index: 30; overflow-y: auto;
+  }
+  .history-overlay.show { display: block; }
+  .history-overlay .h-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .history-overlay .h-title b { font-family: 'Manrope', sans-serif; font-size: 0.82rem; color: var(--ink); }
+  .history-overlay .h-title .x { color: var(--muted); cursor: default; }
+  .vh-row { display: flex; align-items: center; gap: 10px; padding: 10px 11px; border-radius: 9px; border: 1px solid #eceafb; margin-bottom: 7px; }
+  .vh-row.current { border-color: var(--p1); background: #F4F3FF; }
+  .vh-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; flex-shrink: 0; }
+  .vh-row.current .vh-dot { background: var(--p1); }
+  .vh-title { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.74rem; color: var(--ink); }
+  .vh-time { font-size: 0.66rem; color: var(--muted); margin-top: 1px; }
+  .vh-actions { margin-left: auto; display: flex; gap: 6px; flex-shrink: 0; }
+  .vh-restore, .vh-keep, .vh-delete { font-size: 0.64rem; font-weight: 600; border-radius: 6px; padding: 4px 8px; white-space: nowrap; }
+  .vh-restore { color: var(--p1); border: 1px solid var(--p1); }
+  .vh-keep { color: #1E7A46; border: 1px solid #1E7A46; }
+  .vh-keep.kept { background: #E9F7EF; color: #1E7A46; border-color: #E9F7EF; }
+  .vh-delete { color: #b3413a; border: 1px solid #e7d3d1; }
+  .vh-hint { font-size: 0.68rem; color: var(--muted); margin-bottom: 10px; line-height: 1.4; }
+
+  /* history entry point: labeled pill instead of a bare icon, so it isn't buried */
+  .history-pill {
+    display: flex; align-items: center; gap: 5px; border: 1px solid #2a2a3a; border-radius: 999px;
+    padding: 5px 10px 5px 8px; font-size: 0.7rem; color: var(--dm); position: relative;
+  }
+  .history-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: #52b788; }
+  .history-pill.pulse::after { content: ''; position: absolute; inset: -3px; border-radius: 999px; border: 1.5px solid var(--p1); animation: pulse 1.4s ease-out infinite; }
+
+  /* toast */
+  .toast {
+    position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: #1b1b28; color: #EDEDF3; font-size: 0.76rem; padding: 9px 16px; border-radius: 10px;
+    border: 1px solid #2a2a3a; opacity: 0; transition: all 0.25s; z-index: 40; pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ================= RESUME CONTEXT (full-frame swap) ================= */
+  .resume-screen { flex: 1; display: none; align-items: center; justify-content: center; }
+  .resume-screen.show { display: flex; }
+  .resume-card { width: 460px; background: #14141f; border: 1px solid #26263a; border-radius: 14px; padding: 24px 26px; }
+  .resume-card .tag { display: inline-flex; align-items: center; gap: 6px; background: #23233a; color: var(--s1); font-size: 0.68rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; margin-bottom: 12px; }
+  .resume-card h3 { font-family: 'Manrope', sans-serif; font-size: 1.02rem; color: #fff; margin-bottom: 8px; }
+  .resume-card p { font-size: 0.82rem; color: var(--dm); line-height: 1.5; margin-bottom: 16px; }
+  .resume-actions { display: flex; gap: 10px; }
+  .rbtn { font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600; padding: 9px 14px; border-radius: 9px; border: 1px solid #2a2a3a; background: #1b1b28; color: #cfcfe0; flex: 1; text-align: center; }
+  .rbtn.primary { background: var(--p1); color: #fff; border-color: var(--p1); }
+  .resume-card .pending-tag { display: block; font-size: 0.72rem; color: var(--dm); background: #1b1b28; border: 1px solid #26263a; border-radius: 9px; padding: 8px 10px; margin-bottom: 16px; }
+  .resume-card .pending-tag b { color: #cfcfe0; }
+
+  /* ---- follow-up prompt: a real, functional prompt window for the unfinished task ---- */
+  .pending-card { opacity: 0; animation: fadein 0.3s ease forwards; margin: 12px 0; border: 1px solid var(--p1); border-radius: 11px; padding: 13px 14px; background: #14141f; }
+  .pending-card .pc-text { font-size: 0.8rem; color: #EDEDF3; margin-bottom: 10px; line-height: 1.45; }
+  .pending-input-row { display: flex; align-items: center; gap: 8px; background: #1b1b28; border: 1px solid #2a2a3a; border-radius: 10px; padding: 8px 10px; margin-bottom: 10px; }
+  .pending-input-row input { flex: 1; background: none; border: none; outline: none; color: #EDEDF3; font-size: 0.78rem; font-family: 'Inter', sans-serif; }
+  .pending-send { width: 26px; height: 26px; border-radius: 50%; background: var(--p1); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.78rem; flex-shrink: 0; }
+  .pending-chip-row { display: flex; flex-wrap: wrap; gap: 7px; }
+  .pending-chip { font-size: 0.7rem; color: #cfcfe0; border: 1px solid #2a2a3a; border-radius: 999px; padding: 5px 11px; }
+</style>
+</head>
+<body>
+
+<div class="app-frame">
+
+  <!-- ============ LANDING ============ -->
+  <div class="landing show" id="landing">
+    <div class="landing-brand"><div class="logo-mark"></div><b>Treasure AI Studio</b></div>
+    <h1>Let's use AI marketing to drive <b>Performance</b></h1>
+    <div class="prompt-box">
+      <input id="promptInput" placeholder="This is my data. Any insight you found out?" readonly />
+      <div class="prompt-send" onclick="beginDemo('This is my data. Any insight you found out? I want to see a dashboard with insight and some suggestions to help drive sales.')">&#10148;</div>
+    </div>
+    <div class="sample-label">Start with a sample prompt</div>
+    <div class="sample-grid">
+      <div class="sample-card" onclick="beginDemo('Lapsed Top Spender Analysis — show me who stopped buying and why.')">
+        <span class="sample-tag a">Identify audience</span>
+        <h4>Lapsed Top Spender Analysis</h4>
+        <div class="sample-skel"></div><div class="sample-skel short"></div>
+      </div>
+      <div class="sample-card" onclick="beginDemo('Draft a Cart Recovery Email Sequence from my order data.')">
+        <span class="sample-tag b">Plan campaign</span>
+        <h4>Cart Recovery Email Sequence</h4>
+        <div class="sample-skel"></div><div class="sample-skel short"></div>
+      </div>
+      <div class="sample-card" onclick="beginDemo('Map a Loyalty Tier Upgrade Journey from repeat buyers.')">
+        <span class="sample-tag a">Map journey</span>
+        <h4>Loyalty Tier Upgrade Journey</h4>
+        <div class="sample-skel"></div><div class="sample-skel short"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ WORKSPACE (3-pane) ============ -->
+  <div class="workspace-wrap" id="workspaceWrap">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="brand-reset" onclick="location.reload()" title="Back to start">
+          <div class="logo-mark"></div>
+          <b>Treasure AI Studio</b>
+        </div>
+        <div class="crumbs">&nbsp;/&nbsp; <b>Sales Data Analysis &amp; Insights</b></div>
+      </div>
+      <div class="topbar-right">
+        <div class="tb-btn" onclick="showResume()">&#8599; Share</div>
+        <div class="sb-avatar"></div>
+      </div>
+    </div>
+
+    <div class="workspace">
+      <div class="sidebar">
+        <div class="sb-new-chat"><span class="ic">&#9998;</span> New Chat</div>
+        <div class="sb-folder-btn">+ New Project Folder</div>
+
+        <div class="sb-section-label">Chats <span class="sb-count">3</span></div>
+        <div class="sb-chat-item active">Sales Data Analysis &amp; Insights</div>
+        <div class="sb-chat-item">Exploring Data Options</div>
+        <div class="sb-chat-item">Top Spenders Inactive…</div>
+
+        <div class="sb-promo">
+          <div class="sb-promo-top">
+            <div class="sb-avatar-grad">JD</div>
+            <div><b>Book a demo</b><span>With a Treasure AI expert</span></div>
+          </div>
+          <p>See journeys, personalization, and predictive AI built on your own data.</p>
+          <div class="sb-promo-btn">Talk to an expert &#8599;</div>
+        </div>
+
+        <div class="sb-footer"><div class="sb-avatar-grad">C</div> hello@shopteappo.com</div>
+      </div>
+
+      <div class="pane chat-col">
+        <div class="pane-head"><div class="label">Skill</div></div>
+        <div class="pane-body" id="skillBody"></div>
+        <div class="skill-input-wrap"><div class="skill-input">e.g. recommend the next best offer for lapsed customers…</div></div>
+      </div>
+
+      <!-- persistent right rail: Progress / Data / Skills / Output — always reachable, -->
+      <!-- regardless of what's happening in the chat above (the actual product improvement) -->
+      <div class="right-rail">
+        <div class="rail-card">
+          <div class="rail-head">Progress <span class="chev">&#8964;</span></div>
+          <div class="rail-body">
+            <div class="prog-row pending" id="progRow1"><div class="prog-num" id="progNum1">1</div><div>Understand the data</div></div>
+            <div class="prog-row pending" id="progRow2"><div class="prog-num" id="progNum2">2</div><div>Confirm analysis goal</div></div>
+            <div class="prog-row pending" id="progRow3"><div class="prog-num" id="progNum3">3</div><div>Build dashboard</div></div>
+            <div class="prog-row pending" id="progRow4" style="display:none;"><div class="prog-num" id="progNum4">4</div><div>Resolve pending question</div></div>
+          </div>
+        </div>
+
+        <div class="rail-card">
+          <div class="rail-head">Context <span class="chev">&#8964;</span></div>
+          <div class="rail-body">
+            <div class="rail-group-label">Data</div>
+            <div class="file-chip"><div class="fi">CSV</div> orders_export_1.csv</div>
+            <div class="add-data">+ Connect or upload data</div>
+
+            <div class="rail-group-label">Output</div>
+            <div class="output-chip empty" id="outputChip" onclick="openArtifact()">
+              <div class="oc-top"><div class="fi">&#128202;</div><div class="oc-name">Sales Dashboard</div><div class="oc-open">Open &rsaquo;</div></div>
+              <div class="oc-sub" id="outputChipSub">Not built yet</div>
+            </div>
+
+            <div class="rail-group-label">Skills</div>
+            <div class="skill-chip"><div class="fi">&#9889;</div> Data Profiling</div>
+            <div class="skill-chip" id="forecastSkillChip" style="display:none;"><div class="fi">&#9889;</div> Demand Forecasting</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- artifact panel: slides in from the right rail's Output chip, matching the -->
+      <!-- real product's popout-artifact pattern, but now reachable persistently -->
+      <div class="artifact-panel" id="artifactPanel">
+        <div class="pane-head">
+          <div class="label">Output</div>
+          <div class="artifact-icons">
+            <div class="a-icon modify" id="modifyBtn" onclick="toggleAnnotate()" title="Modify">&#128172;</div>
+            <div class="history-pill" id="historyBtn" onclick="toggleHistory()"><span class="dot"></span><span id="historyCount">History (1)</span></div>
+            <div class="a-icon" title="Download">&#8595;</div>
+            <div class="a-icon" onclick="closeArtifact()" title="Close">&times;</div>
+          </div>
+        </div>
+        <div class="pane-body">
+          <div id="content">
+            <div id="outputEmpty" class="empty-output">Output will appear here once processing finishes.</div>
+
+            <div class="dash" id="dashBlock" style="display:none;">
+              <div class="dash-header">
+                <h1>Teappo — Sales Dashboard</h1>
+                <p>Jan 1 – Jul 22, 2026 · orders_export_1.csv</p>
+              </div>
+              <div class="dash-body">
+                <div class="dcard">
+                  <h2 id="prodCardTitle">Top Products by Revenue</h2>
+                  <table class="prod-table" id="prodTable">
+                    <tr><td>1 KG Tea Powder — Earl Grey</td><td style="padding:0 8px;width:60px"><div class="bar-bg"><div class="bar-fill" style="width:100%;background:#e9c46a"></div></div></td><td>$5,130</td></tr>
+                    <tr><td>Organic Hojicha Powder 40g</td><td style="padding:0 8px"><div class="bar-bg"><div class="bar-fill" style="width:99%"></div></div></td><td>$5,098</td></tr>
+                    <tr><td>Osmanthus Oolong 72g</td><td style="padding:0 8px"><div class="bar-bg"><div class="bar-fill" style="width:91%"></div></div></td><td>$4,644</td></tr>
+                  </table>
+                </div>
+                <div class="dcard">
+                  <h2>Customer Retention</h2>
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <svg viewBox="0 0 100 100" width="54" height="54" style="flex-shrink:0">
+                      <circle cx="50" cy="50" r="38" fill="none" stroke="#f0ede8" stroke-width="16"/>
+                      <circle cx="50" cy="50" r="38" fill="none" stroke="#e76f51" stroke-width="16" stroke-dasharray="27.6 211.1"/>
+                      <circle cx="50" cy="50" r="38" fill="none" stroke="#52b788" stroke-width="16" stroke-dasharray="211.1 27.6" stroke-dashoffset="-27.6"/>
+                      <circle cx="50" cy="50" r="30" fill="white"/>
+                      <text x="50" y="47" text-anchor="middle" font-size="9" font-weight="700" fill="#2b2d42">88.4%</text>
+                      <text x="50" y="59" text-anchor="middle" font-size="6" fill="#8d99ae">one-time</text>
+                    </svg>
+                    <div style="flex:1;font-size:0.68rem;color:#2b2d42">
+                      <div style="margin-bottom:4px"><b>373</b> one-time buyers</div>
+                      <div><b>49</b> repeat buyers</div>
+                    </div>
+                  </div>
+                </div>
+                <div id="dashExtra"></div>
+              </div>
+            </div>
+
+            <div class="instruction-pill" id="pill">Click anywhere to modify</div>
+            <div class="marker" id="marker"><span>C</span></div>
+            <div class="comment-popup" id="popup">
+              <div class="title"><span>Modify this</span><span class="x" onclick="closePopup()">&times;</span></div>
+              <textarea id="popupText" placeholder="Describe what you'd like changed...">Project sales from now through December, based on what I've sold Jan–Jul</textarea>
+              <div class="actions">
+                <button class="btn" onclick="closePopup()">Cancel</button>
+                <button class="btn primary" onclick="sendToStudio()">Send to Studio</button>
+              </div>
+            </div>
+
+            <div class="history-overlay" id="historyOverlay">
+              <div class="h-title"><b>Version history</b><span class="x" onclick="toggleHistory()">&times;</span></div>
+              <div class="vh-hint">Every version is kept automatically. Restore an old one, mark a version to keep, or delete ones you don't need.</div>
+              <div class="vh-row current" id="vhCurrent" style="display:none;">
+                <div class="vh-dot"></div>
+                <div><div class="vh-title">v2 — Added inventory demand forecast</div><div class="vh-time">Just now · current</div></div>
+                <div class="vh-actions">
+                  <button class="vh-keep" id="vhKeepBtn" onclick="keepVersion(this)">Keep</button>
+                </div>
+              </div>
+              <div class="vh-row" id="vhOld">
+                <div class="vh-dot"></div>
+                <div><div class="vh-title">v1 — Initial dashboard generated</div><div class="vh-time">2 min ago</div></div>
+                <div class="vh-actions">
+                  <button class="vh-restore" onclick="revertVersion()">Restore</button>
+                  <button class="vh-delete" onclick="deleteVersion(this)">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <!-- ============ RESUME CONTEXT ============ -->
+  <div class="resume-screen" id="resumeScreen">
+    <div class="resume-card">
+      <div class="tag">&#128100; Shared by Chung Han</div>
+      <h3>Welcome back to Sales Data Analysis &amp; Insights</h3>
+      <p>The dashboard's built, but one thing was never wrapped up before the session ended:</p>
+      <div class="pending-tag">&#9888;&#65039; <b>Open question:</b> which wholesale account should get a reorder reminder first?</div>
+      <div class="resume-actions">
+        <button class="rbtn" onclick="location.reload()">Start new analysis</button>
+        <button class="rbtn primary" onclick="continueSession()">Continue where I left off</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const landing = document.getElementById('landing');
+  const workspaceWrap = document.getElementById('workspaceWrap');
+  const skillBody = document.getElementById('skillBody');
+  const outputEmpty = document.getElementById('outputEmpty');
+  const dashBlock = document.getElementById('dashBlock');
+  const content = document.getElementById('content');
+  const pill = document.getElementById('pill');
+  const marker = document.getElementById('marker');
+  const popup = document.getElementById('popup');
+  const modifyBtn = document.getElementById('modifyBtn');
+  const historyBtn = document.getElementById('historyBtn');
+  const historyOverlay = document.getElementById('historyOverlay');
+  const historyCount = document.getElementById('historyCount');
+  const vhCurrent = document.getElementById('vhCurrent');
+  const vhOld = document.getElementById('vhOld');
+  const dashExtra = document.getElementById('dashExtra');
+  const prodTable = document.getElementById('prodTable');
+  const toast = document.getElementById('toast');
+  const resumeScreen = document.getElementById('resumeScreen');
+  const artifactPanel = document.getElementById('artifactPanel');
+  const outputChip = document.getElementById('outputChip');
+  const outputChipSub = document.getElementById('outputChipSub');
+  const forecastSkillChip = document.getElementById('forecastSkillChip');
+  let annotateMode = false;
+  let hasUpdated = false;
+  let outputReady = false;
+
+  function markProgress(n) {
+    const num = document.getElementById('progNum' + n);
+    const row = document.getElementById('progRow' + n);
+    num.classList.add('done');
+    num.innerHTML = '&#10003;';
+    row.classList.remove('pending');
+  }
+
+  function openArtifact() {
+    if (!outputReady) return;
+    artifactPanel.classList.add('show');
+  }
+  function closeArtifact() {
+    artifactPanel.classList.remove('show');
+    if (annotateMode) toggleAnnotate();
+  }
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 1800);
+  }
+
+  const promptInput = document.getElementById('promptInput');
+
+  function beginDemo(text) {
+    promptInput.value = '';
+    let i = 0;
+    const type = setInterval(() => {
+      promptInput.value += text[i];
+      i++;
+      if (i >= text.length) {
+        clearInterval(type);
+        setTimeout(() => startFlow(text), 500);
+      }
+    }, 22);
+  }
+
+  function startFlow(promptText) {
+    landing.classList.remove('show');
+    workspaceWrap.classList.add('show');
+
+    const msg = document.createElement('div');
+    msg.className = 'msg-user';
+    msg.textContent = promptText;
+    skillBody.appendChild(msg);
+
+    // curated, non-technical steps — no raw file paths or code, just what a
+    // marketing-analyst user needs to see happening
+    const rows = [
+      { cls: 'think', ic: '&#128161;', main: 'Reading your data…' },
+      { cls: 'skill', ic: '&#10003;', main: 'Applied: Data Profiling skill' },
+      { cls: 'think', ic: '&#128161;', main: 'Key thinking: 1,568 orders · $83,487 revenue · Jan–Jul 2026 · 3 sales channels' },
+    ];
+
+    rows.forEach((r, i) => {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.className = 'trace-row ' + r.cls;
+        el.innerHTML = `<span class="ic">${r.ic}</span><div class="main">${r.main}</div>`;
+        skillBody.appendChild(el);
+        skillBody.scrollTop = skillBody.scrollHeight;
+      }, 400 + i * 550);
+    });
+
+    setTimeout(() => markProgress(1), 400 + rows.length * 550 - 200);
+
+    // gate the output behind a goal-clarifying question — focus before volume
+    setTimeout(() => {
+      const gc = document.createElement('div');
+      gc.className = 'goal-card';
+      gc.innerHTML = `
+        <div class="gc-text">This looks like retail order data across POS, web, and wholesale. <b>What's your goal here?</b></div>
+        <div class="goal-options">
+          <div class="goal-opt" onclick="selectGoal(this, 'Revenue &amp; channels')"><b>Revenue &amp; channels</b><span>Trend, AOV, channel mix</span></div>
+          <div class="goal-opt" onclick="selectGoal(this, 'Product &amp; category')"><b>Product &amp; category</b><span>Top sellers, slow movers</span></div>
+          <div class="goal-opt" onclick="selectGoal(this, 'Customer retention')"><b>Customer retention</b><span>Repeat vs. one-time</span></div>
+          <div class="goal-opt" onclick="selectGoal(this, 'Geography')"><b>Geography</b><span>Where revenue concentrates</span></div>
+        </div>`;
+      skillBody.appendChild(gc);
+      skillBody.scrollTop = skillBody.scrollHeight;
+    }, 400 + rows.length * 550 + 300);
+  }
+
+  function selectGoal(el, label) {
+    if (el.parentElement.querySelector('.selected')) return;
+    document.querySelectorAll('.goal-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    markProgress(2);
+
+    const confirm = document.createElement('div');
+    confirm.className = 'confirm-line';
+    confirm.textContent = 'Goal set: ' + label.replace(/&amp;/g, '&');
+    skillBody.appendChild(confirm);
+
+    const curating = document.createElement('div');
+    curating.className = 'trace-row skill';
+    curating.innerHTML = '<span class="ic">&#10003;</span><div class="main">Curating dashboard for: ' + label.replace(/&amp;/g, '&') + '</div>';
+    skillBody.appendChild(curating);
+    skillBody.scrollTop = skillBody.scrollHeight;
+
+    setTimeout(() => {
+      const ai = document.createElement('div');
+      ai.className = 'ai-text';
+      ai.innerHTML = 'Built the dashboard from 1,568 paid orders, Jan–Jul 2026 — see it in <b>Output</b> on the right. Select <b>Modify</b> there to request a change on any part of it.';
+      skillBody.appendChild(ai);
+      skillBody.scrollTop = skillBody.scrollHeight;
+
+      outputEmpty.style.display = 'none';
+      dashBlock.style.display = 'block';
+      markProgress(3);
+
+      outputReady = true;
+      outputChip.classList.remove('empty');
+      outputChip.classList.add('pulse');
+      outputChipSub.textContent = 'Ready · click to open';
+      setTimeout(() => { outputChip.classList.remove('pulse'); openArtifact(); }, 500);
+    }, 900);
+  }
+
+  function toggleAnnotate() {
+    annotateMode = !annotateMode;
+    modifyBtn.classList.toggle('active', annotateMode);
+    content.classList.toggle('annotate-mode', annotateMode);
+    pill.classList.toggle('show', annotateMode);
+    if (!annotateMode) closePopup();
+  }
+
+  function closePopup() {
+    popup.classList.remove('show');
+    marker.classList.remove('show');
+  }
+
+  content.addEventListener('click', function (e) {
+    if (!annotateMode) return;
+    if (e.target.closest('.comment-popup')) return;
+    if (dashBlock.style.display === 'none') return;
+
+    const rect = content.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    marker.style.left = x + 'px';
+    marker.style.top = y + 'px';
+    marker.classList.add('show');
+
+    const popupW = 210;
+    let px = x + 12;
+    if (px + popupW > rect.width - 8) px = x - popupW - 12;
+    let py = y + 6;
+
+    popup.style.left = px + 'px';
+    popup.style.top = py + 'px';
+    popup.classList.add('show');
+  });
+
+  function sendToStudio() {
+    closePopup();
+    toggleAnnotate();
+    showToast('Reprocessing with your request…');
+
+    const row = document.createElement('div');
+    row.className = 'trace-row skill';
+    row.innerHTML = '<span class="ic">&#10003;</span><div class="main">Projecting Aug–Dec sales from the Jan–Jul run rate</div>';
+    skillBody.appendChild(row);
+    skillBody.scrollTop = skillBody.scrollHeight;
+
+    dashBlock.style.opacity = '0.4';
+    setTimeout(() => {
+      dashBlock.style.opacity = '1';
+      document.getElementById('prodCardTitle').textContent = 'Top Products — Jan–Jul Actual vs. Aug–Dec Projected';
+      prodTable.innerHTML = `
+        <thead><tr class="thead-row"><td></td><td class="actual-col">Jan–Jul (actual)</td><td class="proj-col">Aug–Dec (projected)</td></tr></thead>
+        <tbody>
+        <tr><td>1 KG Tea Powder — Earl Grey</td><td class="actual-col">$5,130</td><td class="proj-col new-col">$3,660<span class="conf">72%</span></td></tr>
+        <tr><td>Organic Hojicha Powder 40g</td><td class="actual-col">$5,098</td><td class="proj-col new-col">$3,640<span class="conf">81%</span></td></tr>
+        <tr><td>Osmanthus Oolong 72g</td><td class="actual-col">$4,644</td><td class="proj-col new-col">$3,320<span class="conf">77%</span></td></tr>
+        </tbody>
+      `;
+      showToast('Updated · saved as v2');
+      hasUpdated = true;
+      vhCurrent.style.display = 'flex';
+      historyCount.textContent = 'History (2)';
+      historyBtn.classList.add('pulse');
+      forecastSkillChip.style.display = 'flex';
+    }, 1500);
+  }
+
+  function toggleHistory() {
+    historyBtn.classList.remove('pulse');
+    historyOverlay.classList.toggle('show');
+  }
+
+  function revertVersion() {
+    document.getElementById('prodCardTitle').textContent = 'Top Products by Revenue';
+    prodTable.innerHTML = `
+      <tr><td>1 KG Tea Powder — Earl Grey</td><td style="padding:0 8px;width:60px"><div class="bar-bg"><div class="bar-fill" style="width:100%;background:#e9c46a"></div></div></td><td>$5,130</td></tr>
+      <tr><td>Organic Hojicha Powder 40g</td><td style="padding:0 8px"><div class="bar-bg"><div class="bar-fill" style="width:99%"></div></div></td><td>$5,098</td></tr>
+      <tr><td>Osmanthus Oolong 72g</td><td style="padding:0 8px"><div class="bar-bg"><div class="bar-fill" style="width:91%"></div></div></td><td>$4,644</td></tr>
+    `;
+    vhCurrent.style.display = 'none';
+    historyCount.textContent = 'History (1)';
+    toggleHistory();
+    showToast('Restored v1');
+  }
+
+  function keepVersion(btn) {
+    if (btn.classList.contains('kept')) return;
+    btn.classList.add('kept');
+    btn.textContent = 'Kept ✓';
+    showToast('Version kept — it won\'t be auto-cleaned up');
+  }
+
+  function deleteVersion(btn) {
+    // guard: don't let someone delete the only version that exists
+    if (vhCurrent.style.display === 'none') {
+      showToast("Can't delete the only version");
+      return;
+    }
+    const row = btn.closest('.vh-row');
+    row.remove();
+    historyCount.textContent = 'History (1)';
+    showToast('Version deleted');
+  }
+
+  function showResume() {
+    workspaceWrap.classList.remove('show');
+    if (annotateMode) toggleAnnotate();
+    artifactPanel.classList.remove('show');
+    resumeScreen.classList.add('show');
+    showToast('Link copied — opening as a teammate…');
+  }
+
+  function continueSession() {
+    resumeScreen.classList.remove('show');
+    workspaceWrap.classList.add('show');
+
+    // if this is a fresh page load, fast-forward through the prior session
+    // silently so the "pending question" has something real to attach to
+    if (!outputReady) {
+      const msg = document.createElement('div');
+      msg.className = 'msg-user';
+      msg.textContent = 'This is my data. Any insight you found out? I want to see a dashboard with insight and some suggestions to help drive sales.';
+      skillBody.appendChild(msg);
+
+      const done = document.createElement('div');
+      done.className = 'ai-text';
+      done.innerHTML = 'Built the dashboard from 1,568 paid orders, Jan–Jul 2026 — see it in <b>Output</b> on the right.';
+      skillBody.appendChild(done);
+
+      markProgress(1); markProgress(2); markProgress(3);
+      outputEmpty.style.display = 'none';
+      dashBlock.style.display = 'block';
+      outputReady = true;
+      outputChip.classList.remove('empty');
+      outputChipSub.textContent = 'Ready · click to open';
+    }
+
+    setTimeout(showPendingPrompt, 400);
+  }
+
+  function showPendingPrompt() {
+    document.getElementById('progRow4').style.display = 'flex';
+
+    const pc = document.createElement('div');
+    pc.className = 'pending-card';
+    pc.innerHTML = `
+      <div class="pc-text">Picking back up — before the last session ended, you asked which wholesale account should get a reorder reminder first. Type an answer, or pick one below.</div>
+      <div class="pending-input-row">
+        <input id="pendingInput" placeholder="e.g. J Avenue" />
+        <div class="pending-send" onclick="resolvePending()">&#10148;</div>
+      </div>
+      <div class="pending-chip-row">
+        <div class="pending-chip" onclick="resolvePending('J Avenue')">J Avenue</div>
+        <div class="pending-chip" onclick="resolvePending('Anyoung Super')">Anyoung Super</div>
+        <div class="pending-chip" onclick="resolvePending('Portland Japanese Garden Gift Shop')">Portland Japanese Garden Gift Shop</div>
+      </div>`;
+    skillBody.appendChild(pc);
+    skillBody.scrollTop = skillBody.scrollHeight;
+
+    document.getElementById('pendingInput').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') resolvePending();
+    });
+  }
+
+  function resolvePending(account) {
+    const inputEl = document.getElementById('pendingInput');
+    const value = account || (inputEl && inputEl.value.trim()) || 'J Avenue';
+    document.querySelectorAll('.pending-card').forEach(el => el.remove());
+
+    const msg = document.createElement('div');
+    msg.className = 'msg-user';
+    msg.textContent = value;
+    skillBody.appendChild(msg);
+
+    const row = document.createElement('div');
+    row.className = 'trace-row skill';
+    row.innerHTML = '<span class="ic">&#10003;</span><div class="main">Checking order history + shipping cadence for ' + value + '</div>';
+    skillBody.appendChild(row);
+    skillBody.scrollTop = skillBody.scrollHeight;
+
+    setTimeout(() => {
+      const ai = document.createElement('div');
+      ai.className = 'ai-text';
+      ai.innerHTML = 'Added a reorder priority card for <b>' + value + '</b> to the dashboard.';
+      skillBody.appendChild(ai);
+      skillBody.scrollTop = skillBody.scrollHeight;
+
+      markProgress(4);
+
+      dashExtra.innerHTML = `
+        <div class="dcard">
+          <h2>Wholesale Reorder Priority</h2>
+          <div style="font-size:0.72rem;color:#2b2d42;line-height:1.5">
+            <b>${value}</b> — next reorder window opens in <b>~3 weeks</b>, based on past order cadence.
+          </div>
+        </div>`;
+
+      outputChip.classList.add('pulse');
+      outputChipSub.textContent = 'Updated · click to open';
+      setTimeout(() => { outputChip.classList.remove('pulse'); openArtifact(); }, 500);
+      showToast('Dashboard updated');
+    }, 1100);
+  }
+</script>
+
+</body>
+</html>

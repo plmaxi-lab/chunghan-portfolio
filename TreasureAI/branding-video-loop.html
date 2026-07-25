@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Treasure AI Studio — Branding Loop (silent, ~26s)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --p1: #494FFF; --s1: #8753FF; --s2: #C466D4;
+    --green: #2d6a4f; --green-light: #52b788; --cream: #f8f5f0;
+    --d-dark: #2b2d42; --d-border: #e8e3dc;
+    --dt: #E8E7F0; --dm: #8A89A0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #000; height: 100%; overflow: hidden; }
+  body { display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; }
+
+  /* scales the fixed 1920x1080 canvas to fit whatever window/screen it's opened in — */
+  /* so nothing gets cropped, whether you record this in a small browser window or full screen */
+  .stage-scaler { transform-origin: center center; }
+
+  /* 1920x1080 fixed canvas — record the full browser window (this auto-fits it) */
+  .stage {
+    width: 1920px; height: 1080px; position: relative; overflow: hidden;
+    background:
+      radial-gradient(55% 50% at 12% 8%, rgba(135,83,255,0.30), transparent 60%),
+      radial-gradient(55% 55% at 92% 95%, rgba(73,79,255,0.28), transparent 60%),
+      radial-gradient(40% 40% at 80% 15%, rgba(196,102,212,0.18), transparent 60%),
+      #07070d;
+  }
+
+  .brand-mark { position: absolute; top: 44px; left: 56px; display: flex; align-items: center; gap: 12px; z-index: 50; }
+  .logo-mark { width: 30px; height: 30px; border-radius: 8px; background: linear-gradient(135deg, var(--s2), var(--s1), var(--p1)); }
+  .brand-mark b { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 1.15rem; color: #fff; letter-spacing: -0.01em; }
+
+  .scene { position: absolute; inset: 0; display: flex; align-items: center; padding: 0 120px; opacity: 0; transition: opacity 0.7s ease; }
+  .scene.active { opacity: 1; }
+
+  .copy { width: 620px; flex-shrink: 0; }
+  .copy .eyebrow { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--s2); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 18px; opacity: 0; }
+  .copy h1 { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 3.1rem; line-height: 1.18; color: #fff; opacity: 0; }
+  .copy h1 .hl { background: linear-gradient(135deg, var(--s2), var(--s1)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .scene.active .copy .eyebrow { animation: riseIn 0.6s ease 0.15s forwards; }
+  .scene.active .copy h1 { animation: riseIn 0.6s ease 0.35s forwards; }
+  @keyframes riseIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  .device { width: 980px; height: 640px; margin-left: 90px; flex-shrink: 0; background: #0c0c14; border: 1px solid #23233a; border-radius: 20px; box-shadow: 0 40px 100px rgba(0,0,0,0.55); overflow: hidden; position: relative; opacity: 0; transform: scale(0.97); }
+  .scene.active .device { animation: deviceIn 0.7s ease 0.1s forwards; }
+  @keyframes deviceIn { to { opacity: 1; transform: scale(1); } }
+
+  /* ---------- shared mini UI components (condensed from the interactive prototype) ---------- */
+  .mini-topbar { height: 46px; display: flex; align-items: center; gap: 10px; padding: 0 20px; border-bottom: 1px solid #1c1c2a; }
+  .mini-topbar b { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 0.85rem; color: #fff; }
+
+  .prompt-box { width: 720px; margin: 0 auto; background: #16161f; border: 1px solid #2a2a3a; border-radius: 14px; padding: 16px 18px; display: flex; align-items: center; gap: 12px; }
+  .prompt-box span { color: #cfcfe0; font-size: 0.92rem; }
+  .prompt-box span.caret { border-right: 2px solid var(--s1); animation: blink 0.8s step-end infinite; }
+  @keyframes blink { 50% { border-color: transparent; } }
+  .prompt-send { width: 34px; height: 34px; border-radius: 50%; background: #fff; color: #0c0c14; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; margin-left: auto; }
+  .landing-wrap { padding: 80px 60px; }
+
+  .mini-body { display: flex; height: calc(100% - 46px); }
+  .mini-sidebar { width: 150px; flex-shrink: 0; border-right: 1px solid #1c1c2a; padding: 16px 12px; }
+  .mini-sidebar .sd-item { font-size: 0.66rem; color: #8A89A0; padding: 7px 8px; border-radius: 7px; margin-bottom: 3px; }
+  .mini-sidebar .sd-item.active { background: #1b1b28; color: #fff; }
+
+  .mini-chat { flex: 1; min-width: 0; padding: 16px 20px; overflow: hidden; }
+  .m-user { background: #1b1b28; border-radius: 10px; padding: 9px 12px; font-size: 0.72rem; color: #EDEDF3; margin-bottom: 10px; max-width: 90%; opacity: 0; }
+  .m-trace { display: flex; align-items: center; gap: 7px; padding: 4px 0; font-size: 0.68rem; color: #8A89A0; opacity: 0; }
+  .m-trace .ic { width: 12px; text-align: center; flex-shrink: 0; }
+  .m-trace.skill .ic { color: #52b788; }
+  .m-trace.think .ic { color: #E9C46A; }
+
+  .m-goal { border: 1px solid #24243a; border-radius: 10px; padding: 11px 12px; background: #14141f; margin-top: 8px; opacity: 0; }
+  .m-goal .gt { font-size: 0.7rem; color: #EDEDF3; margin-bottom: 8px; }
+  .m-goal-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .m-goal-opt { border: 1px solid #2a2a3a; border-radius: 8px; padding: 7px 8px; font-size: 0.62rem; color: #cfcfe0; font-family: 'Manrope', sans-serif; font-weight: 700; }
+  .m-goal-opt.picked { border-color: var(--p1); background: rgba(73,79,255,0.16); }
+
+  .mini-rail { width: 210px; flex-shrink: 0; border-left: 1px solid #1c1c2a; padding: 14px 12px; }
+  .rc { background: #14141f; border: 1px solid #22222f; border-radius: 10px; padding: 10px 11px; margin-bottom: 9px; }
+  .rc .rl { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.6rem; letter-spacing: 0.05em; text-transform: uppercase; color: #cfcfe0; margin-bottom: 7px; }
+  .rc .rr { display: flex; align-items: center; gap: 7px; font-size: 0.63rem; color: #8A89A0; padding: 3px 0; }
+  .rc .rr .num { width: 13px; height: 13px; border-radius: 50%; background: #23233a; color: #8A89A0; font-size: 0.5rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .rc .rr.done .num { background: var(--p1); color: #fff; }
+  .oc { border: 1px solid #2a2a3a; border-radius: 8px; padding: 8px 9px; font-size: 0.62rem; color: #EDEDF3; display: flex; align-items: center; gap: 7px; }
+  .oc .dotp { width: 6px; height: 6px; border-radius: 50%; background: #52b788; flex-shrink: 0; }
+
+  /* dashboard artifact */
+  .art { position: absolute; top: 0; right: 0; bottom: 0; width: 460px; background: #101018; border-left: 1px solid #22222f; box-shadow: -20px 0 60px rgba(0,0,0,0.5); opacity: 0; transform: translateX(30px); }
+  .art .ah { height: 40px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid #1c1c2a; }
+  .art .ah .lb { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.66rem; letter-spacing: 0.05em; text-transform: uppercase; color: #cfcfe0; }
+  .hist-pill { display: flex; align-items: center; gap: 5px; border: 1px solid #2a2a3a; border-radius: 999px; padding: 4px 9px; font-size: 0.6rem; color: #8A89A0; }
+  .hist-pill .dt { width: 5px; height: 5px; border-radius: 50%; background: #52b788; }
+
+  .dash { margin: 16px; background: var(--cream); border-radius: 12px; overflow: hidden; border: 1px solid var(--d-border); }
+  .dash-h { background: var(--green); color: #fff; padding: 12px 14px; }
+  .dash-h h1 { font-size: 0.82rem; font-weight: 700; font-family: 'Inter', sans-serif; }
+  .dash-b { padding: 12px; }
+  .dcard { background: #fff; border-radius: 9px; border: 1px solid var(--d-border); padding: 11px 12px; margin-bottom: 10px; position: relative; }
+  .dcard h2 { font-size: 0.6rem; font-weight: 700; color: var(--d-dark); margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .pt { width: 100%; border-collapse: collapse; }
+  .pt td { padding: 4px 3px; font-size: 0.6rem; border-bottom: 1px solid var(--d-border); }
+  .pt tr:last-child td { border-bottom: none; }
+  .pt td:first-child { color: var(--d-dark); font-weight: 500; }
+  .pt .ac { text-align: right; color: var(--d-dark); font-weight: 600; white-space: nowrap; }
+  .pt .pc { text-align: right; font-weight: 700; color: var(--p1); white-space: nowrap; }
+  .pt .conf { display: inline-block; background: #E9F7EF; color: #1E7A46; font-size: 0.52rem; font-weight: 700; padding: 1px 5px; border-radius: 5px; margin-left: 3px; }
+
+  .marker { position: absolute; width: 18px; height: 18px; border-radius: 50% 50% 50% 4px; background: var(--p1); z-index: 5; opacity: 0; box-shadow: 0 2px 8px rgba(73,79,255,0.5); }
+  .m-popup { position: absolute; width: 190px; background: #fff; border-radius: 10px; border: 1px solid #e2e0ee; box-shadow: 0 16px 40px rgba(0,0,0,0.35); padding: 9px; z-index: 6; opacity: 0; }
+  .m-popup .mt { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.62rem; color: #0E0E10; margin-bottom: 5px; }
+  .m-popup .mb { border: 1.5px solid var(--p1); border-radius: 7px; padding: 5px 7px; font-size: 0.6rem; color: #0E0E10; }
+
+  /* resume / share card */
+  .resume-card { width: 440px; background: #14141f; border: 1px solid #26263a; border-radius: 14px; padding: 22px 24px; margin: auto; }
+  .resume-card .tag { display: inline-flex; align-items: center; gap: 6px; background: #23233a; color: var(--s1); font-size: 0.62rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; margin-bottom: 12px; }
+  .resume-card h3 { font-family: 'Manrope', sans-serif; font-size: 0.94rem; color: #fff; margin-bottom: 8px; }
+  .resume-card .pend { font-size: 0.68rem; color: #cfcfe0; background: #1b1b28; border: 1px solid #26263a; border-radius: 9px; padding: 8px 10px; margin-bottom: 12px; }
+  .resume-chips { display: flex; gap: 7px; flex-wrap: wrap; }
+  .resume-chip { font-size: 0.62rem; color: #cfcfe0; border: 1px solid #2a2a3a; border-radius: 999px; padding: 5px 10px; }
+  .resume-chip.picked { border-color: var(--p1); background: rgba(73,79,255,0.16); color: #fff; }
+
+  /* closing scene */
+  .close-wrap { width: 100%; text-align: center; }
+  .close-wrap .logo-big { width: 68px; height: 68px; border-radius: 18px; background: linear-gradient(135deg, var(--s2), var(--s1), var(--p1)); margin: 0 auto 26px; opacity: 0; }
+  .close-wrap h1 { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 3.4rem; color: #fff; opacity: 0; }
+  .close-wrap p { font-family: 'Inter', sans-serif; font-size: 1.15rem; color: var(--dm); margin-top: 16px; opacity: 0; }
+  .scene.active .close-wrap .logo-big { animation: riseIn 0.6s ease 0.1s forwards; }
+  .scene.active .close-wrap h1 { animation: riseIn 0.6s ease 0.35s forwards; }
+  .scene.active .close-wrap p { animation: riseIn 0.6s ease 0.55s forwards; }
+</style>
+</head>
+<body>
+
+<div class="stage-scaler" id="stageScaler">
+<div class="stage" id="stage">
+  <div class="brand-mark"><div class="logo-mark"></div><b>Treasure AI Studio</b></div>
+
+  <!-- SCENE 0 — hook: establish the retailer + their question -->
+  <div class="scene" id="s0" style="justify-content:center;">
+    <div class="close-wrap">
+      <div class="logo-big"></div>
+      <h1>You're a <span class="hl" style="background:linear-gradient(135deg,#C466D4,#8753FF);-webkit-background-clip:text;background-clip:text;color:transparent;">retailer.</span></h1>
+      <p>You want to know what's driving sales — and what to do next.</p>
+    </div>
+  </div>
+
+  <!-- SCENE 1 — start with your data -->
+  <div class="scene" id="s1" style="justify-content:center;">
+    <div class="landing-wrap">
+      <div class="copy" style="width:100%;text-align:center;margin-bottom:36px;">
+        <div class="eyebrow" style="text-align:center;">Your data, your question</div>
+        <h1 style="text-align:center;">So you <span class="hl">ask</span>, in your own words.</h1>
+      </div>
+      <div class="prompt-box">
+        <span id="typeTarget"></span><span class="caret">&nbsp;</span>
+        <div class="prompt-send">&#10148;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 2 — always find your goal / no overload -->
+  <div class="scene" id="s2">
+    <div class="copy">
+      <div class="eyebrow">Focused, not overwhelming</div>
+      <h1>It reads your data, then makes sure it's chasing the <span class="hl">right question.</span></h1>
+    </div>
+    <div class="device">
+      <div class="mini-topbar"><div class="logo-mark" style="width:16px;height:16px;"></div><b>Treasure AI Studio</b></div>
+      <div class="mini-body">
+        <div class="mini-sidebar">
+          <div class="sd-item active">Sales Data Analysis</div>
+          <div class="sd-item">Exploring Options</div>
+          <div class="sd-item">Top Spenders</div>
+        </div>
+        <div class="mini-chat">
+          <div class="m-user" id="s2msg">This is my data. Any insight you found out?</div>
+          <div class="m-trace think" id="s2t1"><span class="ic">&#128161;</span>Reading your data…</div>
+          <div class="m-trace skill" id="s2t2"><span class="ic">&#10003;</span>Applied: Data Profiling skill</div>
+          <div class="m-goal" id="s2goal">
+            <div class="gt">What's your goal here?</div>
+            <div class="m-goal-opts">
+              <div class="m-goal-opt" id="opt1">Revenue &amp; channels</div>
+              <div class="m-goal-opt" id="opt2">Product &amp; category</div>
+              <div class="m-goal-opt" id="opt3">Customer retention</div>
+              <div class="m-goal-opt" id="opt4">Geography</div>
+            </div>
+          </div>
+        </div>
+        <div class="mini-rail">
+          <div class="rc">
+            <div class="rl">Progress</div>
+            <div class="rr" id="pr1"><div class="num">1</div>Understand data</div>
+            <div class="rr" id="pr2"><div class="num">2</div>Confirm goal</div>
+            <div class="rr" id="pr3"><div class="num">3</div>Build dashboard</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 3 — quick access / 3-pane -->
+  <div class="scene" id="s3">
+    <div class="copy">
+      <div class="eyebrow">Answer in seconds</div>
+      <h1>And there it is — <span class="hl">what's driving sales,</span> laid out and ready.</h1>
+    </div>
+    <div class="device">
+      <div class="mini-topbar"><div class="logo-mark" style="width:16px;height:16px;"></div><b>Treasure AI Studio</b></div>
+      <div class="mini-body">
+        <div class="mini-sidebar">
+          <div class="sd-item active">Sales Data Analysis</div>
+          <div class="sd-item">Exploring Options</div>
+          <div class="sd-item">Top Spenders</div>
+        </div>
+        <div class="mini-chat">
+          <div class="m-user" style="opacity:1;">This is my data. Any insight you found out?</div>
+          <div class="m-trace skill" style="opacity:1;"><span class="ic">&#10003;</span>Curating dashboard for: Product &amp; category</div>
+        </div>
+        <div class="mini-rail">
+          <div class="rc">
+            <div class="rl">Progress</div>
+            <div class="rr done"><div class="num">&#10003;</div>Understand data</div>
+            <div class="rr done"><div class="num">&#10003;</div>Confirm goal</div>
+            <div class="rr done" id="pr3b"><div class="num">&#10003;</div>Build dashboard</div>
+          </div>
+          <div class="rc">
+            <div class="rl">Context</div>
+            <div class="oc"><div class="dotp"></div>orders_export_1.csv</div>
+          </div>
+        </div>
+      </div>
+      <div class="art" id="artPanel">
+        <div class="ah"><div class="lb">Output</div><div class="hist-pill"><div class="dt"></div>History (1)</div></div>
+        <div class="dash">
+          <div class="dash-h"><h1>Teappo — Sales Dashboard</h1></div>
+          <div class="dash-b">
+            <div class="dcard">
+              <h2>Top Products by Revenue</h2>
+              <table class="pt" id="ptScene3">
+                <tr><td>Earl Grey Powder</td><td class="ac">$5,130</td></tr>
+                <tr><td>Hojicha Powder 40g</td><td class="ac">$5,098</td></tr>
+                <tr><td>Osmanthus Oolong</td><td class="ac">$4,644</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 4 — modify one thing -->
+  <div class="scene" id="s4">
+    <div class="copy">
+      <div class="eyebrow">Something catches your eye</div>
+      <h1>You dig deeper on <span class="hl">one thing</span> — no starting over.</h1>
+    </div>
+    <div class="device" style="width:520px;">
+      <div class="ah"><div class="lb">Output</div><div class="hist-pill"><div class="dt"></div>History (<span id="histN">1</span>)</div></div>
+      <div class="dash" style="margin:16px;position:relative;">
+        <div class="dash-h"><h1 id="dashTitle4">Top Products by Revenue</h1></div>
+        <div class="dash-b" style="position:relative;">
+          <div class="dcard" style="position:relative;">
+            <h2>Top Products</h2>
+            <table class="pt" id="ptScene4">
+              <tr><td>Earl Grey Powder</td><td class="ac">$5,130</td></tr>
+              <tr><td>Hojicha Powder 40g</td><td class="ac">$5,098</td></tr>
+              <tr><td>Osmanthus Oolong</td><td class="ac">$4,644</td></tr>
+            </table>
+            <div class="marker" id="s4marker" style="left:150px;top:24px;"></div>
+            <div class="m-popup" id="s4popup" style="left:60px;top:40px;">
+              <div class="mt">Modify this</div>
+              <div class="mb">Project sales through December</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 5 — share + resume -->
+  <div class="scene" id="s5" style="justify-content:center;">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:52px;width:100%;">
+      <div class="copy" style="width:100%;text-align:center;margin-bottom:0;">
+        <div class="eyebrow" style="text-align:center;">Better together</div>
+        <h1 style="text-align:center;">Loop in your team. <span class="hl">They pick up exactly</span> where you left off.</h1>
+      </div>
+      <div class="resume-card">
+        <div class="tag">&#128100; Shared by Chung Han</div>
+        <h3>Welcome back to Sales Data Analysis &amp; Insights</h3>
+        <div class="pend">&#9888;&#65039; Open question: which wholesale account should get a reorder reminder first?</div>
+        <div class="resume-chips">
+          <div class="resume-chip" id="chip1">J Avenue</div>
+          <div class="resume-chip" id="chip2">Anyoung Super</div>
+          <div class="resume-chip" id="chip3">Portland Japanese Garden</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 6 — close: the payoff, tying back to the opening question -->
+  <div class="scene" id="s6" style="justify-content:center;">
+    <div class="close-wrap">
+      <div class="logo-big"></div>
+      <h1>From a question<br>to a decision.</h1>
+      <p>Treasure AI Studio</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+  // scale the fixed 1920x1080 canvas to fit the actual browser window, so the
+  // whole loop stays visible (not cropped) whatever size window it's recorded in
+  const stageScaler = document.getElementById('stageScaler');
+  function fitStage() {
+    const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    stageScaler.style.transform = 'scale(' + scale + ')';
+  }
+  window.addEventListener('resize', fitStage);
+  fitStage();
+
+  const stage = document.getElementById('stage');
+  const scenes = ['s0','s1','s2','s3','s4','s5','s6'].map(id => document.getElementById(id));
+  // duration each scene stays active, in ms — total ≈ 26s
+  const durations = [2600, 3600, 4600, 4600, 4600, 4400, 2600];
+
+  // reset the .copy/.close-wrap fade-up elements inside a scene so their CSS
+  // keyframe animation (bound to .scene.active) restarts cleanly on replay
+  function resetFades(scene) {
+    scene.querySelectorAll('.eyebrow, .copy h1, .device, .logo-big, .close-wrap h1, .close-wrap p').forEach(el => {
+      el.style.animation = 'none';
+    });
+  }
+
+  function runScene1() {
+    const target = document.getElementById('typeTarget');
+    const text = 'This is my data. Any insight you found out?';
+    target.textContent = '';
+    let i = 0;
+    const iv = setInterval(() => {
+      target.textContent += text[i];
+      i++;
+      if (i >= text.length) clearInterval(iv);
+    }, 55);
+  }
+
+  function resetScene2() {
+    ['s2msg', 's2t1', 's2t2', 's2goal'].forEach(id => {
+      const el = document.getElementById(id);
+      el.style.animation = 'none';
+      el.style.opacity = 0;
+    });
+    document.querySelectorAll('#s2 .m-goal-opt').forEach(o => o.classList.remove('picked'));
+    const pr1 = document.getElementById('pr1'), pr2 = document.getElementById('pr2');
+    pr1.classList.remove('done'); pr1.querySelector('.num').textContent = '1';
+    pr2.classList.remove('done'); pr2.querySelector('.num').textContent = '2';
+  }
+  function runScene2() {
+    resetScene2();
+    void document.getElementById('s2').offsetWidth; // force reflow so animations restart
+    document.getElementById('s2msg').style.animation = 'riseIn 0.4s ease 0.1s forwards';
+    document.getElementById('s2t1').style.animation = 'riseIn 0.4s ease 0.6s forwards';
+    document.getElementById('s2t2').style.animation = 'riseIn 0.4s ease 1.0s forwards';
+    document.getElementById('s2goal').style.animation = 'riseIn 0.4s ease 1.5s forwards';
+    setTimeout(() => document.getElementById('opt2').classList.add('picked'), 2600);
+    setTimeout(() => {
+      document.getElementById('pr1').classList.add('done');
+      document.getElementById('pr1').querySelector('.num').innerHTML = '&#10003;';
+    }, 700);
+    setTimeout(() => {
+      document.getElementById('pr2').classList.add('done');
+      document.getElementById('pr2').querySelector('.num').innerHTML = '&#10003;';
+    }, 2700);
+  }
+
+  function resetScene3() {
+    const art = document.getElementById('artPanel');
+    art.style.transition = 'none';
+    art.style.opacity = 0;
+    art.style.transform = 'translateX(30px)';
+  }
+  function runScene3() {
+    resetScene3();
+    const art = document.getElementById('artPanel');
+    void art.offsetWidth;
+    art.style.transition = 'all 0.6s ease';
+    setTimeout(() => { art.style.opacity = 1; art.style.transform = 'translateX(0)'; }, 900);
+  }
+
+  function resetScene4() {
+    const marker = document.getElementById('s4marker');
+    const popup = document.getElementById('s4popup');
+    marker.style.transition = 'none'; marker.style.opacity = 0;
+    popup.style.transition = 'none'; popup.style.opacity = 0;
+    document.getElementById('dashTitle4').textContent = 'Top Products by Revenue';
+    document.getElementById('ptScene4').innerHTML = `
+      <tr><td>Earl Grey Powder</td><td class="ac">$5,130</td></tr>
+      <tr><td>Hojicha Powder 40g</td><td class="ac">$5,098</td></tr>
+      <tr><td>Osmanthus Oolong</td><td class="ac">$4,644</td></tr>`;
+    document.getElementById('histN').textContent = '1';
+  }
+  function runScene4() {
+    resetScene4();
+    const marker = document.getElementById('s4marker');
+    const popup = document.getElementById('s4popup');
+    void marker.offsetWidth;
+    marker.style.transition = 'opacity 0.3s ease';
+    popup.style.transition = 'opacity 0.3s ease';
+    setTimeout(() => { marker.style.opacity = 1; popup.style.opacity = 1; }, 500);
+    setTimeout(() => {
+      marker.style.opacity = 0;
+      popup.style.opacity = 0;
+      document.getElementById('dashTitle4').textContent = 'Jan–Jul Actual vs. Aug–Dec Projected';
+      document.getElementById('ptScene4').innerHTML = `
+        <tr><td>Earl Grey Powder</td><td class="ac">$5,130</td><td class="pc">$3,660<span class="conf">72%</span></td></tr>
+        <tr><td>Hojicha Powder 40g</td><td class="ac">$5,098</td><td class="pc">$3,640<span class="conf">81%</span></td></tr>
+        <tr><td>Osmanthus Oolong</td><td class="ac">$4,644</td><td class="pc">$3,320<span class="conf">77%</span></td></tr>`;
+      document.getElementById('histN').textContent = '2';
+    }, 2200);
+  }
+
+  function resetScene5() {
+    document.getElementById('chip1').classList.remove('picked');
+  }
+  function runScene5() {
+    resetScene5();
+    setTimeout(() => document.getElementById('chip1').classList.add('picked'), 2600);
+  }
+
+  const FADE_SEL = '.eyebrow, .copy h1, .device, .logo-big, .close-wrap h1, .close-wrap p';
+
+  function playScene(idx) {
+    // deactivate every scene and pin their fade-elements at animation:none,
+    // force a reflow so the browser commits that state, activate the target
+    // scene, force another reflow, THEN release the inline override so the
+    // CSS keyframe animation restarts cleanly from 0% every loop
+    scenes.forEach(s => { s.classList.remove('active'); resetFades(s); });
+    void stage.offsetWidth;
+
+    scenes[idx].classList.add('active');
+    void scenes[idx].offsetWidth;
+    scenes[idx].querySelectorAll(FADE_SEL).forEach(el => { el.style.animation = ''; });
+
+    if (idx === 1) runScene1();
+    if (idx === 2) runScene2();
+    if (idx === 3) runScene3();
+    if (idx === 4) runScene4();
+    if (idx === 5) runScene5();
+  }
+
+  let idx = 0;
+  function tick() {
+    playScene(idx);
+    setTimeout(() => { idx = (idx + 1) % scenes.length; tick(); }, durations[idx]);
+  }
+  tick();
+</script>
+
+</body>
+</html>

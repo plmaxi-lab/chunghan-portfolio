@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Treasure AI Studio — Walkthrough</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --p1: #494FFF;
+    --s1: #8753FF;
+    --s2: #C466D4;
+    --ink: #0E0E10;
+    --muted: #63636B;
+    --card: #F4F3FF;
+    --border: #E7E5F3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    height: 100%; overflow: hidden;
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--ink); background: #fff;
+  }
+
+  .deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+  .track { display: flex; height: 100%; transition: transform 0.45s cubic-bezier(.65,0,.35,1); }
+  .slide {
+    flex: 0 0 100vw; height: 100%;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6vh 8vw; position: relative;
+  }
+  .slide.light { background: #fff; }
+  .slide.dark {
+    color: #fff;
+    background:
+      radial-gradient(46% 40% at 15% 20%, rgba(196,102,212,0.55), transparent 70%),
+      radial-gradient(55% 50% at 85% 15%, rgba(135,83,255,0.5), transparent 70%),
+      radial-gradient(60% 55% at 75% 85%, rgba(73,79,255,0.55), transparent 70%),
+      #060614;
+  }
+
+  .eyebrow { color: var(--s1); font-family: 'Manrope', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+  .slide.dark .eyebrow { color: #E7C8F0; }
+  h1 { font-family: 'Manrope', sans-serif; font-size: 2.5rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 12px; }
+  .slide.light h1 { color: var(--ink); }
+  .sub { font-size: 1rem; color: var(--muted); max-width: 640px; }
+  .slide.dark .sub { color: #D9D6EE; }
+
+  .grad-text {
+    background: linear-gradient(90deg, var(--s2), var(--s1), var(--p1));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4vh; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 4vh; }
+  .grid4 { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px; margin-top: 3.5vh; height: 56vh; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px;
+    display: flex; flex-direction: column;
+  }
+  .card .n { color: var(--s1); font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .card h3 { font-family: 'Manrope', sans-serif; font-size: 0.98rem; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .card p { font-size: 0.82rem; color: var(--muted); line-height: 1.45; }
+  .card.on-dark { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.14); backdrop-filter: blur(2px); }
+  .card.on-dark h3 { color: #fff; }
+  .card.on-dark p { color: #DAD7EE; }
+
+  .placeholder {
+    margin-top: auto; padding-top: 10px;
+    border-top: 1px dashed #CFC9EA;
+    color: #9490B0; font-size: 0.7rem;
+  }
+  .placeholder span { font-weight: 700; color: #7A76A0; }
+
+  /* ---- Approach slide: tools / assets / process, divider-separated, not tiles ---- */
+  .approach-wrap { margin-top: 4vh; }
+  .approach-section { padding: 18px 0; border-bottom: 1px solid var(--border); display: flex; gap: 40px; align-items: baseline; }
+  .approach-section:first-child { border-top: 1px solid var(--border); }
+  .approach-section.no-border { border-bottom: none; align-items: flex-start; }
+  .mini-label { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.68rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--s1); width: 100px; flex-shrink: 0; }
+
+  .items { display: flex; gap: 36px; flex-wrap: wrap; }
+  .approach-item { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--ink); }
+  .approach-item .sub { display: block; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 0.68rem; color: var(--muted); margin-top: 3px; }
+
+  /* two clean columns, top-to-bottom (1-5, then 6-9) — no arrows, no crowding */
+  .process-flow { display: flex; gap: 64px; margin-top: 6px; }
+  .process-col { display: flex; flex-direction: column; gap: 15px; }
+  .step-item { display: flex; align-items: center; gap: 11px; }
+  .step-item .num {
+    width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--s2), var(--s1));
+    color: #fff; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 0.64rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step-item .txt { font-family: 'Manrope', sans-serif; font-size: 0.84rem; font-weight: 700; color: var(--ink); }
+  .step-item.final .num { background: var(--ink); }
+
+  .callout { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; }
+  .callout-label { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.68rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--s1); margin-bottom: 6px; }
+  .callout p { font-size: 0.84rem; color: var(--ink); line-height: 1.5; }
+
+  .split-2 { display: flex; gap: 56px; margin-top: 3.5vh; }
+  .split-2 > div { flex: 1; min-width: 0; }
+  .split-2 .mini-label { margin-bottom: 12px; }
+
+  .enh-list { display: flex; flex-direction: column; gap: 16px; }
+  .enh-item { display: flex; gap: 12px; align-items: flex-start; }
+  .enh-item .num {
+    width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--s2), var(--s1)); color: #fff;
+    font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 0.68rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .enh-item b { display: block; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.86rem; color: var(--ink); }
+  .enh-item span { font-size: 0.74rem; color: var(--muted); }
+
+  /* ---- Aspect evaluation: aspect / finding rows, dot = sentiment ---- */
+  .eval-table { margin-top: 3.5vh; display: flex; flex-direction: column; }
+  .eval-row { display: flex; align-items: center; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--border); }
+  .eval-row:first-child { border-top: 1px solid var(--border); }
+  .eval-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .eval-dot.good { background: #3FAE6A; }
+  .eval-dot.mid { background: #E3A63A; }
+  .eval-dot.bad { background: #E0524A; }
+  .eval-aspect { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.86rem; color: var(--ink); width: 260px; flex-shrink: 0; }
+  .eval-finding { font-size: 0.85rem; color: var(--muted); }
+
+  .agenda-list { margin-top: 4vh; display: flex; flex-direction: column; gap: 20px; }
+  .agenda-item { display: flex; align-items: baseline; gap: 20px; }
+  .agenda-item .num { font-family: 'Manrope', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--s1); width: 40px; }
+  .agenda-item .label { font-family: 'Manrope', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--ink); }
+  .agenda-item .desc { font-size: 0.85rem; color: var(--muted); }
+
+  .cue { font-family: 'Inter', sans-serif; font-style: italic; font-size: 1rem; color: var(--muted); max-width: 680px; margin-top: 2px; }
+  .slide.dark .cue { color: #D9D6EE; }
+  .qtag { display: inline-block; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.06em; color: var(--s1); background: var(--card); border: 1px solid var(--border); padding: 3px 10px; border-radius: 999px; margin-bottom: 10px; }
+  .talk-note {
+    margin-top: auto; padding-top: 12px; border-top: 1px dashed #CFC9EA;
+    color: #7A76A0; font-size: 0.75rem;
+  }
+  .talk-note span { font-weight: 700; color: #5A5590; }
+
+  .contact-list { margin-top: 5vh; display: flex; flex-direction: column; gap: 15px; }
+  .contact-item { display: flex; align-items: center; gap: 14px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 1.05rem; color: #fff; }
+  .contact-item .ci-icon {
+    width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18);
+    display: flex; align-items: center; justify-content: center; font-size: 0.95rem; color: #fff;
+  }
+  .contact-footer { margin-top: 5vh; font-size: 0.8rem; color: rgba(255,255,255,0.45); }
+
+  .slide.video-slide { padding: 3.5vh 3.5vw; }
+  .video-embed { flex: 1; width: 100%; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.14); background: #000; margin-top: 2vh; }
+  .video-embed iframe { width: 100%; height: 100%; border: none; display: block; }
+
+  /* full-bleed variant: the embed IS the page, edge to edge */
+  .slide.video-slide.full-bleed { padding: 0; }
+  .slide.video-slide.full-bleed .video-embed { margin: 0; border-radius: 0; border: none; }
+
+  .video-frame {
+    margin-top: 4vh; width: 100%; max-width: 620px; aspect-ratio: 16/9;
+    border: 1.5px dashed rgba(255,255,255,0.35); border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 8px; color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.04);
+  }
+  .video-frame .icon { font-size: 2rem; }
+  .video-frame span { font-size: 0.8rem; font-family: 'Inter', sans-serif; }
+
+  .navbtn {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    width: 46px; height: 46px; border-radius: 50%;
+    background: rgba(73,79,255,0.08); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: var(--p1); z-index: 20;
+  }
+  .navbtn.dark-ctx { background: rgba(255,255,255,0.14); color: #fff; }
+  .navbtn:hover { background: rgba(73,79,255,0.16); }
+  .navbtn.dark-ctx:hover { background: rgba(255,255,255,0.24); }
+  #prevBtn { left: 22px; }
+  #nextBtn { right: 22px; }
+
+  .dots {
+    position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 9px; z-index: 20;
+  }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: #D6D3EE; cursor: pointer; }
+  .dot.active { background: var(--s1); width: 20px; border-radius: 4px; }
+
+  .counter {
+    position: fixed; top: 24px; right: 32px; font-size: 0.75rem;
+    color: var(--muted); z-index: 20; letter-spacing: 0.03em; font-family: 'Inter', sans-serif;
+  }
+
+  @media (max-width: 720px) {
+    h1 { font-size: 1.7rem; }
+    .grid2, .grid3, .grid4 { grid-template-columns: 1fr; height: auto; }
+    .navbtn { width: 38px; height: 38px; }
+  }
+</style>
+</head>
+<body>
+
+<button class="navbtn" id="prevBtn" aria-label="Previous">&#8592;</button>
+<button class="navbtn" id="nextBtn" aria-label="Next">&#8594;</button>
+<div class="counter"><span id="counterText">1 / 9</span></div>
+<div class="dots" id="dots"></div>
+
+<div class="deck">
+  <div class="track" id="track">
+
+    <section class="slide dark">
+      <div class="eyebrow">Recorded walkthrough</div>
+      <h1>Treasure AI <span class="grad-text">Studio</span></h1>
+      <p class="sub">Evaluation, a working prototype, and the booth video.</p>
+    </section>
+
+    <section class="slide light">
+      <div class="eyebrow">Agenda</div>
+      <h1>What's ahead</h1>
+      <div class="agenda-list">
+        <div class="agenda-item"><span class="num">01</span><span class="label">Approach</span><span class="desc">— four passes</span></div>
+        <div class="agenda-item"><span class="num">02</span><span class="label">Walkthrough</span><span class="desc">— template &amp; own data</span></div>
+        <div class="agenda-item"><span class="num">03</span><span class="label">Aspect evaluation</span><span class="desc">— works well, brand, suggestions</span></div>
+        <div class="agenda-item"><span class="num">04</span><span class="label">Recommendations</span><span class="desc">— assumption &amp; enhancements</span></div>
+        <div class="agenda-item"><span class="num">05</span><span class="label">Prototype</span><span class="desc">— check it out</span></div>
+        <div class="agenda-item"><span class="num">06</span><span class="label">Branding video</span><span class="desc">— booth loop</span></div>
+      </div>
+    </section>
+
+    <section class="slide light">
+      <div class="eyebrow">01 — Approach</div>
+      <h1>How I got here</h1>
+      <div class="approach-wrap">
+        <div class="approach-section">
+          <div class="mini-label">Tools</div>
+          <div class="items">
+            <div class="approach-item">Stitch / Claude Design<span class="sub">inspiration</span></div>
+            <div class="approach-item">Claude Cowork<span class="sub">deliverables</span></div>
+            <div class="approach-item">YouTube<span class="sub">video reference</span></div>
+          </div>
+        </div>
+        <div class="approach-section">
+          <div class="mini-label">Assets</div>
+          <div class="items">
+            <div class="approach-item">TD styleguide</div>
+            <div class="approach-item">Product screenshots<span class="sub">+ comparatives</span></div>
+          </div>
+        </div>
+        <div class="approach-section no-border">
+          <div class="mini-label">Process</div>
+          <div class="process-flow">
+            <div class="process-col">
+              <div class="step-item"><span class="num">1</span><span class="txt">Try tool w/ template</span></div>
+              <div class="step-item"><span class="num">2</span><span class="txt">Try own data</span></div>
+              <div class="step-item"><span class="num">3</span><span class="txt">Cross-check w/ Cowork</span></div>
+              <div class="step-item"><span class="num">4</span><span class="txt">Recommendations in mind</span></div>
+              <div class="step-item"><span class="num">5</span><span class="txt">Structure presentation</span></div>
+            </div>
+            <div class="process-col">
+              <div class="step-item"><span class="num">6</span><span class="txt">Enhance w/ prototype</span></div>
+              <div class="step-item"><span class="num">7</span><span class="txt">Build storyline, feed Cowork</span></div>
+              <div class="step-item"><span class="num">8</span><span class="txt">Finalize presentation</span></div>
+              <div class="step-item final"><span class="num">9</span><span class="txt">Record &amp; deliver</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide light">
+      <div class="eyebrow">02 — Walkthrough</div>
+      <h1>Walkthrough</h1>
+      <div class="grid3">
+        <div class="card"><div class="n">01</div><h3>Try tool w/ template</h3><p>Default sample data, no context.</p><div class="placeholder"><span>Screenshot</span> — landing / template output</div></div>
+        <div class="card"><div class="n">02</div><h3>Try own data</h3><p>Same prompt, Teappo's real orders.</p><div class="placeholder"><span>Screenshot</span> — own-data output</div></div>
+        <div class="card"><div class="n">03</div><h3>Compare vs. Claude Cowork</h3><p>Same data, TD dashboard vs. Cowork output.</p><div class="placeholder"><span>Screenshot</span> — side-by-side</div></div>
+      </div>
+    </section>
+
+    <section class="slide light">
+      <div class="eyebrow">03 — Aspect evaluation</div>
+      <h1>Where it stands</h1>
+      <div class="eval-table">
+        <div class="eval-row"><span class="eval-dot good"></span><span class="eval-aspect">Template support</span><span class="eval-finding">Lots of coverage</span></div>
+        <div class="eval-row"><span class="eval-dot good"></span><span class="eval-aspect">Own-data result</span><span class="eval-finding">Fantastic end-to-end solution</span></div>
+        <div class="eval-row"><span class="eval-dot bad"></span><span class="eval-aspect">Demo understanding (first-time)</span><span class="eval-finding">Not clear</span></div>
+        <div class="eval-row"><span class="eval-dot bad"></span><span class="eval-aspect">Input structure</span><span class="eval-finding">Low visibility</span></div>
+        <div class="eval-row"><span class="eval-dot mid"></span><span class="eval-aspect">Reasoning</span><span class="eval-finding">Detailed — but risks information overload</span></div>
+        <div class="eval-row"><span class="eval-dot mid"></span><span class="eval-aspect">Interaction</span><span class="eval-finding">Mainly a middle chatbot</span></div>
+        <div class="eval-row"><span class="eval-dot bad"></span><span class="eval-aspect">Action to proceed next</span><span class="eval-finding">Vague</span></div>
+        <div class="eval-row"><span class="eval-dot mid"></span><span class="eval-aspect">Brand feeling</span><span class="eval-finding">Fun, magic-like — but a frosted-glass, avatar feel reads dated, not modern</span></div>
+      </div>
+    </section>
+
+    <section class="slide light">
+      <div class="eyebrow">04 — Recommendations</div>
+      <h1>Elevate the offering for the right target group</h1>
+
+      <div class="callout">
+        <div class="callout-label">Before jumping in</div>
+        <p>Does TD shift positioning — is AI Studio now a <b>standalone solution</b>? It feels disconnected from the past Data Workbench and Audience Studio.</p>
+      </div>
+
+      <div class="split-2">
+        <div>
+          <div class="mini-label">Assumption</div>
+          <div class="items" style="flex-direction: column; gap: 12px;">
+            <div class="approach-item">B2B, team-sized — not solo<span class="sub">A marketing team, not one person.</span></div>
+            <div class="approach-item">One dataset, many goals<span class="sub">Several distinct outputs from the same data.</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="mini-label">Enhancements</div>
+          <div class="enh-list">
+            <div class="enh-item"><span class="num">1</span><div><b>Curated result/action</b><span>Learns patterns across customers — where TD can out-pace Claude alone</span></div></div>
+            <div class="enh-item"><span class="num">2</span><div><b>Persistent rail</b><span>Data / skill / output, always reachable</span></div></div>
+            <div class="enh-item"><span class="num">3</span><div><b>Modify in place</b><span>Edit one thing, not the whole prompt</span></div></div>
+            <div class="enh-item"><span class="num">4</span><div><b>Share &amp; resume</b><span>Teammate picks up the open thread</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide dark video-slide full-bleed">
+      <div class="video-embed">
+        <iframe src="interactive-prototype.html" title="Interactive prototype"></iframe>
+      </div>
+    </section>
+
+    <section class="slide dark video-slide full-bleed">
+      <div class="video-embed">
+        <iframe src="branding-video-loop.html" title="Branding video loop"></iframe>
+      </div>
+    </section>
+
+    <section class="slide dark">
+      <div class="eyebrow">Portfolio &middot; 2025&ndash;2026</div>
+      <h1>Thank <span class="grad-text">you.</span></h1>
+      <p class="sub">Happy to dig into any of this — the process, the decisions, what I'd do differently.</p>
+
+      <div class="contact-list">
+        <div class="contact-item"><span class="ci-icon">&#9993;</span>plmaxi@gmail.com</div>
+        <div class="contact-item"><span class="ci-icon">&#127760;</span>chunghan.work</div>
+        <div class="contact-item"><span class="ci-icon">in</span>linkedin.com/in/chunghantsai</div>
+      </div>
+
+      <div class="contact-footer">Chung-Han Tsai &middot; Product Design Leader</div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const track = document.getElementById('track');
+  const dotsWrap = document.getElementById('dots');
+  const counterText = document.getElementById('counterText');
+  let i = 0;
+
+  slides.forEach((_, idx) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (idx === 0 ? ' active' : '');
+    d.addEventListener('click', () => go(idx));
+    dotsWrap.appendChild(d);
+  });
+  const dots = document.querySelectorAll('.dot');
+
+  function updateNavCtx() {
+    const isDark = slides[i].classList.contains('dark');
+    document.getElementById('prevBtn').classList.toggle('dark-ctx', isDark);
+    document.getElementById('nextBtn').classList.toggle('dark-ctx', isDark);
+  }
+
+  function go(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    track.style.transform = `translateX(-${i * 100}vw)`;
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+    counterText.textContent = `${i + 1} / ${slides.length}`;
+    updateNavCtx();
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => go(i - 1));
+  document.getElementById('nextBtn').addEventListener('click', () => go(i + 1));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') go(i + 1);
+    if (e.key === 'ArrowLeft') go(i - 1);
+  });
+
+  let touchX = null;
+  document.addEventListener('touchstart', (e) => touchX = e.touches[0].clientX);
+  document.addEventListener('touchend', (e) => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (dx > 50) go(i - 1);
+    if (dx < -50) go(i + 1);
+    touchX = null;
+  });
+
+  updateNavCtx();
+</script>
+
+</body>
+</html>
