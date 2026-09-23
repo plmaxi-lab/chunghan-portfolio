@@ -18,7 +18,7 @@ html,body{height:100%;overflow:hidden;font-family:'Plus Jakarta Sans',system-ui,
 .deck{position:fixed;inset:0;display:flex;flex-direction:column;}
 .stage{flex:1;overflow:hidden;}
 .track{display:flex;height:100%;transition:transform .5s cubic-bezier(.65,0,.2,1);}
-.slide{min-width:100vw;height:100%;display:flex;flex-direction:column;}
+.slide{min-width:100%;height:100%;display:flex;flex-direction:column;}
 .slide.dark{background:var(--dk);}
 .body{flex:1;display:flex;flex-direction:column;overflow:hidden;}
 
@@ -30,6 +30,8 @@ html,body{height:100%;overflow:hidden;font-family:'Plus Jakarta Sans',system-ui,
 /* ── Type ── */
 .kicker{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);}
 .kicker.g{color:var(--g);}
+.gif-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(20,20,20,.72);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .15s ease,background .15s ease;z-index:3;}
+.gif-play-btn:hover{background:rgba(20,20,20,.88);transform:translate(-50%,-50%) scale(1.06);}
 h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spacing:-.04em;}
 .dark h1{color:#fff;}
 .dark .kicker{color:rgba(255,255,255,.28);}
@@ -40,7 +42,7 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
 .dark .sub-h{color:rgba(255,255,255,.4);}
 
 /* ── Nav ── */
-.nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:50px;flex-shrink:0;border-top:1px solid var(--line);}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:34px;flex-shrink:0;background:var(--bg);border-top:1px solid var(--line);}
 .nav-l{display:flex;align-items:center;gap:12px;}
 .mono{width:26px;height:26px;border-radius:8px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .nav-name{font-size:12.5px;font-weight:700;}
@@ -53,6 +55,7 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
 .btn{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:6px 14px;font-family:inherit;font-size:12px;font-weight:700;color:var(--ink);cursor:pointer;transition:.15s;}
 .btn:hover{background:var(--muted);}
 .btn:disabled{opacity:.3;cursor:default;}
+/* ── Mode toggle ── */
 .mode-hidden{width:0!important;min-width:0!important;overflow:hidden!important;flex-shrink:0;}
 .nav.dark{background:var(--dk);border-color:rgba(255,255,255,.08);}
 .nav.dark .mono{background:rgba(255,255,255,.1);color:#fff;}
@@ -288,149 +291,23 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
 .body.in .farrow.a3{animation:rise .22s .54s forwards;}
 
 /* ── PROJECT COVER (.pc) ── */
-.pc{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:52px 72px;gap:16px;}
-.pc-co{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);}
+.pc{flex:1;display:flex;flex-direction:column;justify-content:center;padding:52px 72px;gap:16px;}
 .pc-pills{display:flex;gap:7px;flex-wrap:wrap;}
 .pc-pill{font-size:12px;font-weight:700;background:var(--muted);color:var(--sub);border-radius:20px;padding:4px 13px;letter-spacing:.04em;}
 .pc-title{font-size:clamp(2.4rem,4.8vw,3.6rem);font-weight:900;line-height:1.04;letter-spacing:-.03em;color:var(--ink);}
-.pc-sub{font-size:1rem;color:var(--sub);max-width:620px;line-height:1.5;}
-.pc-meta{display:flex;align-items:center;gap:20px;padding-top:20px;border-top:1px solid var(--line);flex-wrap:wrap;}
-.pc-m{font-size:13px;font-weight:700;color:var(--sub);letter-spacing:.01em;}
-
-/* ── PASSWORD GATE ─────────────────────────── */
-#gate {
-  position: fixed; inset: 0; z-index: 9999;
-  background: #FAF8F3;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 28px 24px;
-  overflow: hidden;
-  transition: opacity .5s ease;
-}
-#gate.gate-fading { opacity: 0; pointer-events: none; }
-
-.gate-nav {
-  position: absolute; top: 0; left: 0; right: 0;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 28px 32px;
-}
-.gate-nav .brand{display:flex;align-items:center;gap:8px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;}
-.gate-nav .mark{width:10px;height:10px;border-radius:50%;background:#1A6B3C;}
-
-.gate-center {
-  display: flex; flex-direction: column;
-  align-items: center; gap: 12px;
-  max-width: 480px; width: 100%; text-align: center;
-}
-
-.gate-illus-wrap {
-  width: 440px; max-width: 92vw;
-}
-.gate-illus-wrap img {
-  width: 100%; height: auto; display: block;
-  animation: walk-bob .85s ease-in-out infinite;
-}
-.gate-illus-wrap.walking-off { animation: walk-off .75s ease-in forwards; }
-.gate-illus-wrap.walking-off img { animation: none; }
-
-.gate-hello { font-size: 14px; color: #8A929A; margin: 0; }
-
-.gate-headline {
-  font-size: clamp(1.5rem, 2.6vw, 2rem);
-  font-weight: 700; color: #2A3B47;
-  letter-spacing: -.035em; line-height: 1.2;
-  margin: 0; max-width: 640px;
-}
-
-.gate-sub { font-size: 15px; color: #6E7A82; margin: 0; }
-
-.gate-form {
-  width: 100%; display: flex; flex-direction: column; gap: 10px;
-  margin-top: 4px;
-}
-
-#gate-input {
-  width: 100%; padding: 13px 16px;
-  border: 1.5px solid #CDD1D3; border-radius: 12px;
-  background: #fff; font-family: inherit;
-  font-size: 15px; color: #2A3B47;
-  outline: none; transition: border-color .2s;
-  box-sizing: border-box;
-  letter-spacing: .1em;
-}
-#gate-input:focus { border-color: #2A3B47; }
-#gate-input.input-shake { animation: shake .4s ease; }
-
-#gate-btn {
-  width: 100%; padding: 13px;
-  background: #2A3B47; color: #FAF8F3;
-  border: none; border-radius: 12px;
-  font-family: inherit; font-size: 15px; font-weight: 700;
-  cursor: pointer; transition: opacity .15s;
-}
-#gate-btn:hover { opacity: .88; }
-
-.gate-error {
-  font-size: 13px; color: #E05252;
-  min-height: 18px;
-  transition: opacity .3s;
-  opacity: 0;
-}
-.gate-error.visible { opacity: 1; }
-
-.gate-cta {
-  font-size: 13px; font-weight: 700;
-  color: #1E9145; text-decoration: none;
-  margin-top: 4px;
-}
-.gate-cta:hover { text-decoration: underline; }
-
-@keyframes walk-bob {
-  0%,50%,100% { transform: translateY(0) rotate(0deg); }
-  25%         { transform: translateY(-8px) rotate(.6deg); }
-  75%         { transform: translateY(-5px) rotate(-.4deg); }
-}
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20%       { transform: translateX(-8px); }
-  40%       { transform: translateX(8px); }
-  60%       { transform: translateX(-6px); }
-  80%       { transform: translateX(6px); }
-}
-@keyframes walk-off {
-  0%   { transform: translateX(0); opacity: 1; }
-  100% { transform: translateX(110vw); opacity: .6; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .gate-illus-wrap img { animation: none; }
-  .gate-illus-wrap.walking-off { animation: none; opacity: 0; }
-}
+.pc-sub{font-size:1.15rem;font-weight:600;color:var(--ink);max-width:640px;line-height:1.5;}
+.pc-meta3{display:flex;margin-top:6px;padding-top:22px;border-top:1px solid var(--line);}
+.pc-col{flex:0 0 26%;padding:0 32px;border-left:1px solid var(--line);}
+.pc-col:first-child{flex-basis:46%;padding-left:0;border-left:none;}
+.pc-col:last-child{flex:1;}
+.pc-collabel{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:9px;}
+.pc-colbody{font-size:.92rem;color:var(--sub);line-height:1.55;max-width:360px;}
+.pc-colnote{font-size:1rem;color:var(--g);font-weight:700;white-space:nowrap;}
+.pc-colbold{font-size:1.15rem;font-weight:800;color:var(--ink);white-space:nowrap;}
+.pc-note{font-size:1rem;font-weight:700;color:var(--g);margin-top:2px;}
 </style>
 </head>
 <body>
-<script>if(sessionStorage.getItem('auth_presentation')==='1'){document.documentElement.style.setProperty('--gate-display','none');}</script>
-<div id="gate" style="display:var(--gate-display,flex)">
-  <nav class="gate-nav">
-    <div class="brand">
-      <div class="mark"></div>
-      <b>Chung-Han Tsai</b>
-    </div>
-  </nav>
-  <div class="gate-center">
-    <div class="gate-illus-wrap" id="gate-illus">
-      <img src="assets/walking.svg" alt="Chung-Han walking Brynn">
-    </div>
-    <p class="gate-hello">Hi, I'm Chung-Han</p>
-    <h1 class="gate-headline">Thanks for taking the time to look deeper.</h1>
-    <p class="gate-sub">Enter the password to view this presentation.</p>
-    <div class="gate-form">
-      <input type="password" id="gate-input" autocomplete="current-password" placeholder="Password">
-      <div class="gate-error" id="gate-error"></div>
-      <button id="gate-btn">Let me in →</button>
-    </div>
-    <a class="gate-cta" href="mailto:plmaxi@gmail.com?subject=Requesting%20Presentation%20Password&body=Hi%20Chung-Han%2C%0A%0AI%27d%20love%20to%20see%20your%20presentation.%20Could%20you%20share%20the%20password%3F">No password? Say hello →</a>
-  </div>
-</div>
 <div class="deck">
 <div class="stage"><div class="track" id="track">
 
@@ -504,95 +381,6 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
       <div class="wi-hl">
         I could educate. <span class="wi-green">I wanted to deliver.</span>
       </div>
-    </div>
-
-  </div>
-</div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════
-     ELS-1 · ELSEVIER ORIGIN STORY — curated mode only
-     Flyer left · English annotations + event photos right
-════════════════════════════════════════════════════════════════ -->
-<section class="slide" data-mode="curated">
-<div class="body" style="flex-direction:column;padding:0;gap:0;">
-
-  <!-- Header — full width -->
-  <div style="padding:24px 36px 16px 36px;flex-shrink:0;">
-    <div class="kicker g" style="margin-bottom:7px;">2009–2012 · Elsevier Taiwan</div>
-    <h1 style="font-size:clamp(1.2rem,1.8vw,1.6rem);line-height:1.08;letter-spacing:-.03em;white-space:nowrap;">Fun fact: my work has always connected to sales.</h1>
-  </div>
-
-  <!-- Content: 80% activities + 20% outcome -->
-  <div style="flex:1;display:flex;gap:0;min-height:0;">
-
-    <!-- Activities wrapper — 80% -->
-    <div style="flex:0 0 80%;display:flex;min-height:0;">
-
-      <!-- Activity 01: Training — 35% of activities -->
-      <div style="flex:0 0 35%;display:flex;flex-direction:column;gap:10px;padding:0 16px 24px 36px;">
-        <div style="padding-top:16px;">
-          <div style="font-size:.55rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--dim);margin-bottom:4px;">Activity 01</div>
-          <div style="font-size:.82rem;font-weight:700;color:var(--ink);">Campus training</div>
-        </div>
-        <div style="flex:1;display:flex;flex-direction:column;gap:5px;min-height:0;">
-          <div style="flex:65;border-radius:8px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.18);min-height:0;">
-            <img src="assets/intro/Presenting.png"
-                 style="width:100%;height:100%;object-fit:cover;object-position:75% center;display:block;">
-          </div>
-          <div style="flex:35;border-radius:8px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.18);min-height:0;">
-            <img src="assets/intro/Audience.png"
-                 style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;">
-          </div>
-        </div>
-        <div style="font-size:.63rem;color:var(--sub);line-height:1.45;">Hands-on workshops for faculty and students at partner universities.</div>
-      </div>
-
-      <!-- Activity 02: Campaign — 65% of activities -->
-      <div style="flex:1;display:flex;flex-direction:column;gap:10px;padding:16px 20px 24px 20px;">
-        <div>
-          <div style="font-size:.55rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--dim);margin-bottom:4px;">Activity 02</div>
-          <div style="font-size:.82rem;font-weight:700;color:var(--ink);">Usage campaign</div>
-        </div>
-        <!-- Newsletter + annotation rail -->
-        <div style="flex:1;display:flex;gap:0;min-height:0;">
-          <div style="flex:0 0 48%;border-radius:8px;overflow:hidden;background:#8a0033;box-shadow:0 3px 14px rgba(0,0,0,.15);">
-            <img src="assets/intro/WhiteValentineQuiz2-SD-DM.jpg"
-                 style="width:100%;height:100%;object-fit:contain;object-position:top center;display:block;">
-          </div>
-          <div style="flex:1;display:flex;flex-direction:column;gap:14px;padding:10px 0 10px 18px;justify-content:center;">
-            <div style="display:flex;gap:9px;align-items:flex-start;">
-              <div style="flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--g);margin-top:5px;"></div>
-              <div>
-                <div style="font-size:.67rem;font-weight:700;color:var(--ink);">Prize quiz</div>
-                <div style="font-size:.6rem;color:var(--sub);">"Which brain region does chocolate stimulate mood?" · 77 prizes</div>
-              </div>
-            </div>
-            <div style="display:flex;gap:9px;align-items:flex-start;">
-              <div style="flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--g);margin-top:5px;"></div>
-              <div>
-                <div style="font-size:.67rem;font-weight:700;color:var(--ink);">Search ScienceDirect</div>
-                <div style="font-size:.6rem;color:var(--sub);">Find the answer → download the paper</div>
-              </div>
-            </div>
-            <div style="display:flex;gap:9px;align-items:flex-start;">
-              <div style="flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--g);margin-top:5px;"></div>
-              <div>
-                <div style="font-size:.67rem;font-weight:700;color:var(--ink);">Submit answer → enter draw</div>
-                <div style="font-size:.6rem;color:var(--sub);">Closed the loop: engage → use database → win</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div style="font-size:.63rem;color:var(--sub);line-height:1.45;">"White Valentine's Day" quiz — answer hidden in a ScienceDirect article.</div>
-      </div>
-
-    </div><!-- end activities wrapper -->
-
-    <!-- Sales outcome — 20%, green -->
-    <div style="flex:0 0 20%;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:20px 36px 20px 20px;background:var(--g2);">
-      <div style="font-size:.55rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--g);">Sales outcome</div>
-      <div style="font-size:clamp(.95rem,1.5vw,1.3rem);font-weight:800;color:var(--ink);line-height:1.2;">More usage gave sales real leverage in renewal talks.</div>
     </div>
 
   </div>
@@ -727,6 +515,155 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════
+     I-3a · SCOPE I HANDLE — bridges career overview to detail
+════════════════════════════════════════════════════════════════ -->
+<section class="slide">
+<div class="body">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:48px 90px;gap:32px;">
+
+    <div>
+      <div class="kicker g">Most Recent · Splunk/Cisco</div>
+      <h1 style="font-size:clamp(2rem,3.4vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-top:10px;">Scope I handle</h1>
+    </div>
+
+    <!-- Animated scope pipeline (Data Management Journey) -->
+    <div style="flex:0 0 auto;align-self:center;width:min(1560px, 100%, calc((100vh - 280px) * 2.893));aspect-ratio:2060/712;margin:8px 0 16px;">
+<style>
+#sc-r .b circle{fill:#f7f5ef;stroke:#cfcbc0;stroke-width:3;transition:all .35s}
+#sc-r .b .ck{opacity:0;transition:opacity .35s}
+#sc-r .b .dt{transition:opacity .35s}
+#sc-r .b.on circle{fill:#e2f3e6;stroke:#1A6B3C}
+#sc-r .b.on .ck{opacity:1}
+#sc-r .b.on .dt{opacity:0}
+#sc-r .dl{stroke:#cfcbc0;stroke-width:3;stroke-dasharray:6 8;transition:stroke .35s}
+#sc-r .dl.on{stroke:#1A6B3C}
+#sc-rail{stroke:#e2dfd6;transition:stroke .5s}
+#sc-r.all #sc-rail{stroke:#9fd1ab}
+#sc-run{stroke:#1A6B3C;stroke-dasharray:160 1400;animation:sc-ecg 3.2s linear infinite}
+@keyframes sc-ecg{from{stroke-dashoffset:1560}to{stroke-dashoffset:0}}
+#sc-r #sc-bd{stroke-dasharray:6 22;animation:sc-belt .6s linear infinite}
+@keyframes sc-belt{from{stroke-dashoffset:0}to{stroke-dashoffset:-28}}
+#sc-r .cd rect.f{fill:#fbfaf6;stroke:#cfcbc0;stroke-width:3;transition:all .3s}
+#sc-r .cd.hit rect.f{stroke:#1A6B3C;fill:#eef7f0}
+#sc-r .cd.me rect.f{stroke:#1A6B3C;stroke-width:4;fill:#eef7f0}
+#sc-r #sc-halo{animation:sc-br 2.4s ease-in-out infinite}
+@keyframes sc-br{0%,100%{opacity:.25}50%{opacity:.7}}
+#sc-r .cn{fill:none;stroke:#d6d2c7;stroke-width:4;transition:stroke .3s}
+#sc-r .cn.on{stroke:#1A6B3C}
+</style>
+<svg id="sc-r" style="width:100%;height:100%;display:block" viewBox="0 0 2060 712" preserveAspectRatio="xMidYMid meet">
+<defs>
+<filter id="sc-g" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="sc-gb" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
+</defs>
+<g id="sc-top"></g>
+<!-- station 1: hopper -->
+<path d="M98 196H202L172 262H128Z" fill="#e9efe6" stroke="#8fa894" stroke-width="3" stroke-linejoin="round"/>
+<rect x="136" y="262" width="28" height="26" fill="#e9efe6" stroke="#8fa894" stroke-width="3"/>
+<!-- station 2: press -->
+<rect x="450" y="182" width="14" height="238" fill="#dcd8cc" stroke="#9c988c" stroke-width="2"/>
+<rect x="576" y="182" width="14" height="238" fill="#dcd8cc" stroke="#9c988c" stroke-width="2"/>
+<g id="sc-pis"><rect x="512" y="200" width="16" height="66" fill="#c9c5b9" stroke="#9c988c" stroke-width="2"/><rect x="470" y="264" width="100" height="22" rx="4" fill="#bdb9ae" stroke="#8a867b" stroke-width="2"/></g>
+<rect x="442" y="176" width="156" height="28" rx="6" fill="#dcd8cc" stroke="#9c988c" stroke-width="2"/>
+<!-- station 3: scanner -->
+<path d="M824 420V232Q824 204 852 204H928Q956 204 956 232V420" fill="none" stroke="#cfcbc0" stroke-width="8" stroke-linecap="round"/>
+<rect id="sc-beam" x="830" y="210" width="120" height="8" rx="4" fill="#1A6B3C" opacity="0" filter="url(#sc-g)"/>
+<!-- station 4: gate -->
+<path d="M1194 420V232Q1194 204 1222 204H1298Q1326 204 1326 232V420" fill="none" stroke="#cfcbc0" stroke-width="8" stroke-linecap="round"/>
+<g id="sc-bc" transform="translate(1260 262) scale(0)"><circle r="30" fill="#1A6B3C" filter="url(#sc-g)"/><path d="M-13 1l9 9 17-19" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>
+<!-- belt -->
+<rect x="20" y="420" width="1460" height="36" rx="18" fill="#fbfaf6" stroke="#bdb9ae" stroke-width="3"/>
+<line id="sc-bd" x1="40" y1="438" x2="1460" y2="438" stroke="#e0dcd1" stroke-width="22"/>
+<circle cx="38" cy="438" r="11" fill="#F8F6F1" stroke="#9c988c" stroke-width="3"/>
+<circle cx="1462" cy="438" r="11" fill="#F8F6F1" stroke="#9c988c" stroke-width="3"/>
+<!-- item -->
+<g id="sc-it" transform="translate(150 420)">
+<g class="v"><path d="M-36 0L-40-20-26-34-8-26-6 0Z" fill="#7c7a73"/><path d="M-4 0L-2-30 14-40 32-28 34 0Z" fill="#8f8c84"/><path d="M-22-28L-10-52 8-46 10-30Z" fill="#6a6862"/><g fill="none" stroke="#55534e" stroke-width="2" stroke-linejoin="round"><path d="M-36 0L-40-20-26-34-8-26-6 0Z"/><path d="M-4 0L-2-30 14-40 32-28 34 0Z"/><path d="M-22-28L-10-52 8-46 10-30Z"/></g></g>
+<g class="v" fill="#8a877f" stroke="#55534e" stroke-width="2"><rect x="-30" y="-58" width="27" height="27" rx="3"/><rect x="1" y="-58" width="27" height="27" rx="3"/><rect x="-30" y="-28" width="27" height="27" rx="3"/><rect x="1" y="-28" width="27" height="27" rx="3"/></g>
+<g class="v" stroke="#6f6d66" stroke-width="2" stroke-linejoin="round"><path d="M-36-60H22V0H-36Z" fill="#b9b6ad"/><path d="M-36-60L-22-74H36L22-60Z" fill="#d3d0c8"/><path d="M22-60L36-74V-14L22 0Z" fill="#a09d94"/></g>
+<g class="v" stroke="#1A6B3C" stroke-width="3" stroke-linejoin="round" filter="url(#sc-g)"><path d="M-36-60H22V0H-36Z" fill="#e6f5e9"/><path d="M-36-60L-22-74H36L22-60Z" fill="#f4fbf5"/><path d="M22-60L36-74V-14L22 0Z" fill="#cfead5"/><path d="M-26-30h14v-18M-4-10v-16h16M-26-12h8" fill="none" stroke-width="2.5"/></g>
+</g>
+<g id="sc-rt"></g>
+<g id="sc-lbl" font-family="Plus Jakarta Sans, system-ui, sans-serif" fill="#2b2b28">
+<text x="705" y="30" text-anchor="middle" font-size="24" font-weight="600" letter-spacing="4" fill="#8a877e">ALWAYS-ON HEALTH CHECK</text>
+<g text-anchor="middle"><text x="150" y="505" font-size="24" font-weight="700" fill="#1A6B3C">01</text><text x="150" y="552" font-size="36" font-weight="800">Acquire</text>
+<text x="520" y="505" font-size="24" font-weight="700" fill="#1A6B3C">02</text><text x="520" y="552" font-size="36" font-weight="800">Process</text>
+<text x="890" y="505" font-size="24" font-weight="700" fill="#1A6B3C">03</text><text x="890" y="552" font-size="36" font-weight="800">Model</text>
+<text x="1260" y="505" font-size="24" font-weight="700" fill="#1A6B3C">04</text><text x="1260" y="552" font-size="36" font-weight="800">Deliver</text></g>
+<path d="M61 586V594Q61 608 75 608H1335Q1349 608 1349 594V586" fill="none" stroke="#1A6B3C" stroke-width="3"/>
+<text x="705" y="650" text-anchor="middle" font-size="28" font-weight="800" letter-spacing="3" fill="#124D2B">DATA MANAGEMENT JOURNEY</text>
+<text x="1742" y="222" font-size="34" font-weight="800">Security</text>
+<text x="1742" y="392" font-size="34" font-weight="800">Observability</text>
+<text x="1742" y="562" font-size="34" font-weight="800">IoT</text>
+<rect x="1640" y="634" width="200" height="46" rx="23" fill="#124D2B"/><text x="1740" y="665" text-anchor="middle" font-size="24" font-weight="700" fill="#F8F6F1">Led by me</text>
+</g>
+</svg>
+<script>
+(function(){var N='http://www.w3.org/2000/svg',S=[150,520,890,1260],R=document.getElementById('sc-r');
+function el(t,a,p){var e=document.createElementNS(N,t);for(var k in a)e.setAttribute(k,a[k]);(p||R).appendChild(e);return e}
+var tp=document.getElementById('sc-top');
+// ECG rail
+var d='M20 90',bl=[60,335,705,1075,1445];bl.forEach(function(x){d+='H'+(x-26)+'l8-20 10 44 10-44 8 20'});d+='H1480';
+el('path',{id:'sc-rail',d:d,fill:'none','stroke-width':4,'stroke-linejoin':'round'},tp);
+el('path',{id:'sc-run',d:d,fill:'none','stroke-width':5,'stroke-linejoin':'round','stroke-linecap':'round',filter:'url(#sc-g)'},tp);
+var B=[],DL=[];
+S.forEach(function(x){
+DL.push(el('line',{class:'dl',x1:x,y1:120,x2:x,y2:176},tp));
+var g=el('g',{class:'b',transform:'translate('+x+' 90)'},tp);B.push(g);
+el('circle',{r:28},g);
+el('circle',{class:'dt',r:8,fill:'#bdb9ae',stroke:'none'},g);
+el('path',{class:'ck',d:'M-11 1l7 8 15-17',fill:'none',stroke:'#1A6B3C','stroke-width':5,'stroke-linecap':'round','stroke-linejoin':'round'},g);
+});
+// right cards
+var rt=document.getElementById('sc-rt'),C=[210,380,550],CD=[],CN=[],P=[];
+C.forEach(function(c,i){
+var p=el('path',{class:'cn',d:'M1480 438C1560 438 1540 '+c+' 1640 '+c},rt);CN.push(p);
+var g=el('g',{class:'cd'+(i==2?' me':'')},rt);CD.push(g);
+if(i==2)el('rect',{id:'sc-halo',x:1640,y:c-60,width:400,height:120,rx:18,fill:'#5fd07a',filter:'url(#sc-gb)'},g);
+el('rect',{class:'f',x:1640,y:c-60,width:400,height:120,rx:18},g);
+el('circle',{cx:1696,cy:c,r:32,fill:'#eef6ef',stroke:'#9cc7a6','stroke-width':2},g);
+var q={fill:'none',stroke:'#124D2B','stroke-width':3,'stroke-linejoin':'round','stroke-linecap':'round'};
+if(i==0){q.d='M1696 '+(c-20)+'l16 7v10q0 15-16 23q-16-8-16-23v-10z';el('path',q,g);el('circle',{cx:1696,cy:c-1,r:4,fill:'#124D2B'},g);el('path',{d:'M1696 '+(c+2)+'v8',stroke:'#124D2B','stroke-width':3},g)}
+if(i==1){el('circle',{cx:1696,cy:c,r:18,fill:'none',stroke:'#124D2B','stroke-width':2.5},g);el('circle',{cx:1696,cy:c,r:9,fill:'none',stroke:'#124D2B','stroke-width':2},g);
+var sw=el('line',{x1:1696,y1:c,x2:1696,y2:c-18,stroke:'#1A6B3C','stroke-width':3,'stroke-linecap':'round'},g);
+el('animateTransform',{attributeName:'transform',type:'rotate',from:'0 1696 '+c,to:'360 1696 '+c,dur:'2.4s',repeatCount:'indefinite'},sw)}
+if(i==2){[[-16,-13],[16,-13],[-16,13],[16,13]].forEach(function(o){el('line',{x1:1696,y1:c,x2:1696+o[0],y2:c+o[1],stroke:'#124D2B','stroke-width':2},g);el('circle',{cx:1696+o[0],cy:c+o[1],r:4.5,fill:'#1A6B3C'},g)});el('circle',{cx:1696,cy:c,r:7,fill:'#124D2B'},g)}
+P.push(el('circle',{r:9,fill:'#1A6B3C',filter:'url(#sc-g)',opacity:0},rt));
+});
+var it=document.getElementById('sc-it'),V=it.querySelectorAll('.v'),pis=document.getElementById('sc-pis'),beam=document.getElementById('sc-beam'),bc=document.getElementById('sc-bc');
+function E(u){return u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2}
+function L(a,b,u){return a+(b-a)*u}
+var T=9600,t0=performance.now();if('IntersectionObserver'in window){new IntersectionObserver(function(e){if(e[0].isIntersecting)t0=performance.now()},{threshold:.5}).observe(R)}
+function f(now){
+var t=(now-t0)%T,x=150,y=0,op=1,v=0,pz=0,bo=0,by=210,sc=0,n=0,pu=-1,u;
+if(t<600){u=t/600;y=L(-150,0,E(u));op=Math.min(1,u*3)}
+else if(t<1100){n=t>900?1:0}
+else if(t<2000){n=1;x=L(150,520,E((t-1100)/900))}
+else if(t<2900){n=1;x=520;u=(t-2000)/900;pz=Math.sin(Math.PI*u)*74;v=u>.5?1:0;if(u>.85)n=2}
+else if(t<3800){n=2;v=1;x=L(520,890,E((t-2900)/900))}
+else if(t<4800){n=2;v=1;x=890;u=(t-3800)/1000;bo=Math.sin(Math.PI*u)*.9;by=L(212,400,u);if(u>.55)v=2;if(u>.85)n=3}
+else if(t<5700){n=3;v=2;x=L(890,1260,E((t-4800)/900))}
+else if(t<6600){n=3;x=1260;u=(t-5700)/900;v=u>.25?3:2;sc=u>.25?Math.min(1,(u-.25)*5):0;sc=sc>.8?1+(1-sc)*.8:sc*1.2;if(u>.6)n=4}
+else if(t<7400){n=4;v=3;u=(t-6600)/800;sc=Math.max(0,1-u*2);x=L(1260,1480,E(u));op=1-Math.max(0,(u-.6)/.4)}
+else{n=4;op=0;pu=(t-7400)/900}
+it.setAttribute('transform','translate('+x+' '+(420+y)+')');it.setAttribute('opacity',op);
+for(var i=0;i<4;i++){V[i].style.display=i==v?'':'none';B[i].classList.toggle('on',i<n);DL[i].classList.toggle('on',i<n)}
+R.classList.toggle('all',n==4);
+pis.setAttribute('transform','translate(0 '+pz+')');
+beam.setAttribute('y',by);beam.setAttribute('opacity',bo);
+bc.setAttribute('transform','translate(1260 262) scale('+sc+')');
+for(i=0;i<3;i++){var p=CN[i],k=P[i];
+if(pu>=0&&pu<=1){var q=p.getPointAtLength(p.getTotalLength()*E(pu));k.setAttribute('cx',q.x);k.setAttribute('cy',q.y);k.setAttribute('opacity',pu<.9?1:(1-pu)*10);p.classList.add('on')}else{k.setAttribute('opacity',0);p.classList.toggle('on',t>7400)}
+CD[i].classList.toggle('hit',t>8100&&t<9400)}
+requestAnimationFrame(f)}
+requestAnimationFrame(f);})();
+</script>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
      I-3b · RECENT SCOPE — management context
 ════════════════════════════════════════════════════════════════ -->
 <section class="slide">
@@ -768,54 +705,8 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
       </div>
     </div>
 
-    <!-- RIGHT: scope + platform feature + focus cards + metrics row -->
+    <!-- RIGHT: focus cards + metrics row -->
     <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:40px 56px 36px 48px;gap:24px;">
-
-      <!-- Scope label -->
-      <div style="margin-bottom:-8px;">
-        <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);">Scope I handle</div>
-      </div>
-
-      <!-- Two scope boxes side by side -->
-      <div style="display:flex;gap:14px;flex-shrink:0;">
-
-        <!-- Data Management Platform -->
-        <div style="flex:3;position:relative;border:1.5px dashed var(--line);border-radius:14px;padding:24px 26px 18px;">
-          <div style="position:absolute;top:-9px;left:16px;background:var(--bg);padding:0 8px;">
-            <span style="font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--g);">Data Management Platform</span>
-          </div>
-          <div style="display:flex;align-items:center;margin-bottom:12px;">
-            <div style="flex:1;border:1px solid var(--line);border-radius:8px;padding:10px 16px;font-size:.84rem;font-weight:600;color:var(--ink);background:var(--bg);text-align:center;">Data Acquisition</div>
-            <span style="color:var(--dim);padding:0 12px;font-size:.8rem;flex-shrink:0;">→</span>
-            <div style="flex:1;border:1px solid var(--line);border-radius:8px;padding:10px 16px;font-size:.84rem;font-weight:600;color:var(--ink);background:var(--bg);text-align:center;">Data Processing</div>
-            <span style="color:var(--dim);padding:0 12px;font-size:.8rem;flex-shrink:0;">→</span>
-            <div style="flex:1;border:1px solid var(--line);border-radius:8px;padding:10px 16px;font-size:.84rem;font-weight:600;color:var(--ink);background:var(--bg);text-align:center;">Data Content</div>
-          </div>
-          <div style="background:var(--g2);border:1px solid #A7D4BC;border-radius:8px;padding:10px 20px;text-align:center;font-size:.86rem;font-weight:700;color:var(--g);margin-bottom:11px;">Monitoring &amp; Troubleshooting</div>
-          <div style="text-align:center;font-size:.74rem;color:var(--sub);">also on the platform — <span style="font-weight:700;color:var(--ink);">Design System</span></div>
-        </div>
-
-        <!-- OTI -->
-        <div style="flex:2;position:relative;border:1.5px dashed var(--line);border-radius:14px;padding:24px 22px 18px;display:flex;flex-direction:column;gap:14px;">
-          <div style="position:absolute;top:-9px;left:16px;background:var(--bg);padding:0 8px;">
-            <span style="font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--g);">Operational Technology Intelligence</span>
-          </div>
-          <div style="display:flex;gap:12px;">
-            <!-- Hardware -->
-            <div style="flex:1;border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:var(--bg);">
-              <div style="font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:6px;">Hardware</div>
-              <div style="font-size:.68rem;color:var(--sub);line-height:1.6;">Splunk Edge Hub<br>Cisco Meraki<br>Cisco networking devices</div>
-            </div>
-            <div style="font-size:.8rem;color:var(--dim);align-self:center;flex-shrink:0;">×</div>
-            <!-- Software -->
-            <div style="flex:1;border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:var(--bg);">
-              <div style="font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:6px;">Software</div>
-              <div style="font-size:.68rem;color:var(--sub);line-height:1.6;">Smart factory<br>Data warehouse<br>Retail</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
 
       <!-- What I focus on -->
       <div style="display:flex;flex-direction:column;gap:14px;margin-top:24px;">
@@ -908,6 +799,40 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════
+     I-4 · FUN FACT — 3-photo editorial layout (regular only)
+════════════════════════════════════════════════════════════════ -->
+<section class="slide" data-mode="regular">
+<div class="body">
+  <div class="ff-wrap">
+
+    <!-- Left: Teappo market photo -->
+    <div class="ff-main">
+      <img src="assets/intro/market.png" alt="Teappo at the farmers market" onerror="this.parentNode.style.background='var(--muted)'">
+    </div>
+
+    <!-- Right: 2 photos + text -->
+    <div class="ff-side">
+      <div class="ff-grid">
+        <img src="assets/intro/family.png" alt="Family at the beach" onerror="this.parentNode.style.background='var(--muted)'">
+        <img src="assets/intro/dog.png" alt="Cha Cha" onerror="this.parentNode.style.background='var(--muted)'">
+      </div>
+      <div class="ff-txt">
+        <div class="kicker g">Outside the office</div>
+        <div class="ff-h">Tea. Family.<br>Dog.</div>
+        <div class="ff-facts">
+          <div class="ff-fact"><strong>Teappo</strong> — co-founded a premium tea brand sourced from Taiwan &amp; Japan.</div>
+          <div class="ff-fact">Dad to a <strong>3-year-old</strong> + co-parent to <strong>Cha Cha</strong> the cockapoo — <strong>72K Instagram followers</strong>.</div>
+          <div class="ff-fact"><strong>Running a real business</strong> made me more empathetic to the users I design for.</div>
+        </div>
+        <div class="ff-tools">Shopify · QuickBooks · Claude · Gemini · Faire</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
      I-5 · PROJECT INDEX — 4 projects + 2 bonus links
 ════════════════════════════════════════════════════════════════ -->
 <section class="slide">
@@ -995,6 +920,13 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
         </div>
         <span class="idx-bonus-arr">→</span>
       </a>
+      <a class="idx-bonus-link" href="javascript:void(0)" onclick="goToSection('pmux')">
+        <div>
+          <div class="idx-bonus-lbl">IC project · Splunk Business Flow</div>
+          <div class="idx-bonus-ttl">How I designed insight on first load</div>
+        </div>
+        <span class="idx-bonus-arr">→</span>
+      </a>
     </div>
 
   </div>
@@ -1007,7 +939,6 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
 <section class="slide">
 <div class="body">
   <div class="pc">
-    <div class="pc-co">Splunk · Cisco</div>
     <div class="pc-pills">
       <span class="pc-pill">0 to 1</span>
       <span class="pc-pill">Strategy</span>
@@ -1015,12 +946,19 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
     </div>
     <div class="pc-title">Unified Data<br>Observability</div>
     <div class="pc-sub">Pivoting from an unexecutable vision to something that shipped.</div>
-    <div class="pc-meta">
-      <span class="pc-m">Design Manager</span>
-      <span class="pc-m" style="color:var(--dim)">·</span>
-      <span class="pc-m">Led 2 designers + 1 director-level IC</span>
-      <span class="pc-m" style="color:var(--dim)">·</span>
-      <span class="pc-m">2024</span>
+    <div class="pc-meta3">
+      <div class="pc-col">
+        <div class="pc-collabel">Overview</div>
+        <div class="pc-colnote">Led 2 designers + 1 director-level IC</div>
+      </div>
+      <div class="pc-col">
+        <div class="pc-collabel">My Role</div>
+        <div class="pc-colbold">Design Manager</div>
+      </div>
+      <div class="pc-col">
+        <div class="pc-collabel">Timeline</div>
+        <div class="pc-colbold">2024</div>
+      </div>
     </div>
   </div>
 </div>
@@ -1350,7 +1288,8 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
     </div>
     <!-- GIF -->
     <div style="flex:1;min-height:0;position:relative;background:var(--bg);">
-      <img src="assets/uda/demo_v7c_hd.gif" alt="Product demo" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:calc(100% - 80px);max-height:calc(100% - 40px);object-fit:contain;border-radius:10px;box-shadow:0 4px 32px rgba(0,0,0,.1);" onerror="this.style.display='none'">
+      <img class="gif-media" data-gif="assets/uda/demo_v7c_hd.gif" data-poster="assets/uda/demo_v7c_hd-poster.png" src="assets/uda/demo_v7c_hd-poster.png" alt="Product demo" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:calc(100% - 80px);max-height:calc(100% - 40px);object-fit:contain;border-radius:10px;box-shadow:0 4px 32px rgba(0,0,0,.1);" onerror="this.style.display='none'">
+      <button class="gif-play-btn" onclick="gifPlay(this)" aria-label="Play demo"><svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="margin-left:3px;"><path d="M8 5v14l11-7z"/></svg></button>
     </div>
   </div>
 </div>
@@ -1504,7 +1443,6 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
 <section class="slide">
 <div class="body">
   <div class="pc">
-    <div class="pc-co">Splunk · Cisco</div>
     <div class="pc-pills">
       <span class="pc-pill">Adoption</span>
       <span class="pc-pill">AI</span>
@@ -1512,12 +1450,19 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
     </div>
     <div class="pc-title">Guided Onboarding</div>
     <div class="pc-sub">Cutting time-to-value from months to minutes with AI-guided setup.</div>
-    <div class="pc-meta">
-      <span class="pc-m">Lead Product Designer</span>
-      <span class="pc-m" style="color:var(--dim)">·</span>
-      <span class="pc-m">Built &amp; demoed at Splunk .conf 2025</span>
-      <span class="pc-m" style="color:var(--dim)">·</span>
-      <span class="pc-m">Mid–End 2025</span>
+    <div class="pc-meta3">
+      <div class="pc-col">
+        <div class="pc-collabel">Overview</div>
+        <div class="pc-colnote">Delivered end-to-end · Launched mid-2026 · Now driving TTV metrics</div>
+      </div>
+      <div class="pc-col">
+        <div class="pc-collabel">My Role</div>
+        <div class="pc-colbold">Design Manager → Lead Product Designer</div>
+      </div>
+      <div class="pc-col">
+        <div class="pc-collabel">Timeline</div>
+        <div class="pc-colbold">Mid–End 2025</div>
+      </div>
     </div>
   </div>
 </div>
@@ -1765,7 +1710,9 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
   </div>
 </div>
 <script>
+var p21current = 1;
 window.p21tab = function(n){
+  p21current = n;
   ['p21p1','p21p2','p21p3'].forEach(function(id,i){
     var el = document.getElementById(id);
     if(i+1 === n){
@@ -1779,6 +1726,12 @@ window.p21tab = function(n){
     document.getElementById(id).style.color = active ? '#fff' : 'rgba(255,255,255,.35)';
     document.getElementById(id).style.borderBottomColor = active ? '#fff' : 'transparent';
   });
+};
+window.isP21Slide = function(slideEl){ return !!slideEl && slideEl.contains(document.getElementById('p21t1')); };
+window.p21Step = function(dir){
+  if(dir>0 && p21current<3){ window.p21tab(p21current+1); return true; }
+  if(dir<0 && p21current>1){ window.p21tab(p21current-1); return true; }
+  return false;
 };
 </script>
 </section>
@@ -2008,7 +1961,8 @@ window.p21tab = function(n){
       </div>
       <!-- Gif viewer -->
       <div style="flex:1;position:relative;background:var(--muted);border-radius:12px;overflow:hidden;min-height:0;">
-        <img id="vgif" src="assets/gox/demo_hd.gif" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:calc(100% - 16px);max-height:calc(100% - 16px);object-fit:contain;">
+        <img id="vgif" class="gif-media" data-gif="assets/gox/demo_hd.gif" data-poster="assets/gox/demo_hd-poster.png" src="assets/gox/demo_hd-poster.png" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:calc(100% - 16px);max-height:calc(100% - 16px);object-fit:contain;">
+        <button class="gif-play-btn" onclick="gifPlay(this)" aria-label="Play demo"><svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="margin-left:3px;"><path d="M8 5v14l11-7z"/></svg></button>
         <div id="vgiflabel" style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,.65);color:#fff;font-size:.90rem;font-weight:800;padding:4px 10px;border-radius:6px;">V1</div>
       </div>
     </div>
@@ -2098,8 +2052,11 @@ window.p21tab = function(n){
   window.vpick = function(v) {
     var isV1 = v === 'v1';
     var img = document.getElementById('vgif');
-    img.src = '';
-    img.src = isV1 ? 'assets/gox/demo_hd.gif' : 'assets/gox/demo_v2c_hd.gif';
+    img.dataset.gif = isV1 ? 'assets/gox/demo_hd.gif' : 'assets/gox/demo_v2c_hd.gif';
+    img.dataset.poster = isV1 ? 'assets/gox/demo_hd-poster.png' : 'assets/gox/demo_v2c_hd-poster.png';
+    img.src = img.dataset.poster;
+    var playBtn = img.nextElementSibling;
+    if(playBtn && playBtn.classList.contains('gif-play-btn')) playBtn.style.display = 'flex';
     document.getElementById('vgiflabel').textContent = isV1 ? 'V1' : 'V2';
     var c1 = document.getElementById('gc-v1');
     c1.style.background = isV1 ? 'var(--ink)' : 'var(--muted)';
@@ -2246,7 +2203,6 @@ window.p21tab = function(n){
 <section class="slide">
 <div class="body">
   <div class="pc">
-    <div class="pc-co">Splunk · Cisco</div>
     <div class="pc-pills">
       <span class="pc-pill">AI</span>
       <span class="pc-pill">Adoption</span>
@@ -2254,12 +2210,19 @@ window.p21tab = function(n){
     </div>
     <div class="pc-title">Human-in-the-loop<br>AI</div>
     <div class="pc-sub">Building the trust framework behind Splunk's AI.</div>
-    <div class="pc-meta">
-      <span class="pc-m">Design Manager</span>
-      <span class="pc-m" style="color:var(--dim)">·</span>
-      <span class="pc-m">Shipped Auto Field Extraction Q1 2026</span>
-      <span class="pc-m" style="color:var(--dim)">·</span>
-      <span class="pc-m">Mid–End 2025</span>
+    <div class="pc-meta3">
+      <div class="pc-col">
+        <div class="pc-collabel">Overview</div>
+        <div class="pc-colnote">Shipped Auto Field Extraction Q1 2026</div>
+      </div>
+      <div class="pc-col">
+        <div class="pc-collabel">My Role</div>
+        <div class="pc-colbold">Design Manager</div>
+      </div>
+      <div class="pc-col">
+        <div class="pc-collabel">Timeline</div>
+        <div class="pc-colbold">Mid–End 2025</div>
+      </div>
     </div>
   </div>
 </div>
@@ -2382,13 +2345,15 @@ window.p21tab = function(n){
           <img src="assets/ai/Regex.png" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:calc(100% - 120px);max-height:calc(100% - 120px);object-fit:contain;">
         </div>
         <div id="p29p2" style="flex:1;display:none;position:relative;overflow:hidden;">
-          <img src="assets/ai/demo_v5b_hd.gif" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:calc(100% - 24px);max-height:calc(100% - 24px);object-fit:contain;">
+          <img class="gif-media" data-gif="assets/ai/demo_v5b_hd.gif" data-poster="assets/ai/demo_v5b_hd-poster.png" src="assets/ai/demo_v5b_hd-poster.png" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:calc(100% - 24px);max-height:calc(100% - 24px);object-fit:contain;">
+          <button class="gif-play-btn" onclick="gifPlay(this)" aria-label="Play demo"><svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="margin-left:3px;"><path d="M8 5v14l11-7z"/></svg></button>
         </div>
       </div>
 
       <!-- Stage 2: compliance GIF -->
       <div id="iright2" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease;">
-        <img src="assets/ai/demo_v6e_hd.gif" style="max-width:calc(100% - 24px);max-height:calc(100% - 24px);object-fit:contain;">
+        <img class="gif-media" data-gif="assets/ai/demo_v6e_hd.gif" data-poster="assets/ai/demo_v6e_hd-poster.png" src="assets/ai/demo_v6e_hd-poster.png" style="max-width:calc(100% - 24px);max-height:calc(100% - 24px);object-fit:contain;">
+        <button class="gif-play-btn" onclick="gifPlay(this)" aria-label="Play demo"><svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="margin-left:3px;"><path d="M8 5v14l11-7z"/></svg></button>
       </div>
 
       <!-- Stage 3: concept exploration — Focused vs Glanced View -->
@@ -2808,6 +2773,15 @@ window.p21tab = function(n){
     goToStage(stage-1);
   };
 
+  // Arrow-key stepping: consumed here while mid-sequence, falls through to
+  // normal slide navigation at the first/last stage.
+  window.isIterSlide = slideEl => !!slideEl && slideEl.id === 'iter-slide';
+  window.iterStep = dir => {
+    if(dir>0 && stage<3){ goToStage(stage+1); return true; }
+    if(dir<0 && stage>1){ goToStage(stage-1); return true; }
+    return false;
+  };
+
   // Concept tab switcher for Stage 3
   window.c3tab = function(which){
     var pgA = document.getElementById('c3pgA');
@@ -3073,7 +3047,8 @@ window.p21tab = function(n){
     </div>
     <!-- Right: demo gif -->
     <div style="flex:1;position:relative;overflow:hidden;background:#0a0a0a;border-left:1px solid rgba(255,255,255,.08);">
-      <img src="assets/ai/demo_v3d_hd.gif" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:calc(100% - 24px);max-height:calc(100% - 24px);object-fit:contain;">
+      <img class="gif-media" data-gif="assets/ai/demo_v3d_hd.gif" data-poster="assets/ai/demo_v3d_hd-poster.png" src="assets/ai/demo_v3d_hd-poster.png" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:calc(100% - 24px);max-height:calc(100% - 24px);object-fit:contain;">
+      <button class="gif-play-btn" onclick="gifPlay(this)" aria-label="Play demo"><svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="margin-left:3px;"><path d="M8 5v14l11-7z"/></svg></button>
     </div>
   </div>
 </div>
@@ -3130,7 +3105,6 @@ window.p21tab = function(n){
 <section class="slide">
 <div class="body">
   <div class="pc">
-    <div class="pc-co">Splunk · Cisco</div>
     <div class="pc-pills">
       <span class="pc-pill">0 to 1</span>
       <span class="pc-pill">Framework</span>
@@ -3138,12 +3112,19 @@ window.p21tab = function(n){
     </div>
     <div class="pc-title">Unified Data<br>Acquisition</div>
     <div class="pc-sub">Unifying cloud data ingestion into one consistent, scalable portal.</div>
-    <div class="pc-meta">
-      <span class="pc-m">Design Manager</span>
-      <span class="pc-m" style="color:var(--dim)">·</span>
-      <span class="pc-m">Led 3 designers · 400+ weekly users</span>
-      <span class="pc-m" style="color:var(--dim)">·</span>
-      <span class="pc-m">2022–2023</span>
+    <div class="pc-meta3">
+      <div class="pc-col">
+        <div class="pc-collabel">Overview</div>
+        <div class="pc-colnote">Led 3 designers · 400+ weekly users</div>
+      </div>
+      <div class="pc-col">
+        <div class="pc-collabel">My Role</div>
+        <div class="pc-colbold">Design Manager</div>
+      </div>
+      <div class="pc-col">
+        <div class="pc-collabel">Timeline</div>
+        <div class="pc-colbold">2022–2023</div>
+      </div>
     </div>
   </div>
 </div>
@@ -3572,7 +3553,8 @@ function udaTab(i){
     </div>
     <!-- GIF -->
     <div style="flex:1;min-height:0;position:relative;background:var(--bg);">
-      <img src="assets/uda/splunk_dm_v14_hd.gif" alt="Product demo" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:calc(100% - 80px);max-height:calc(100% - 40px);object-fit:contain;border-radius:10px;box-shadow:0 4px 32px rgba(0,0,0,.1);" onerror="this.style.display='none'">
+      <img class="gif-media" data-gif="assets/uda/splunk_dm_v14_hd.gif" data-poster="assets/uda/splunk_dm_v14_hd-poster.png" src="assets/uda/splunk_dm_v14_hd-poster.png" alt="Product demo" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:calc(100% - 80px);max-height:calc(100% - 40px);object-fit:contain;border-radius:10px;box-shadow:0 4px 32px rgba(0,0,0,.1);" onerror="this.style.display='none'">
+      <button class="gif-play-btn" onclick="gifPlay(this)" aria-label="Play demo"><svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="margin-left:3px;"><path d="M8 5v14l11-7z"/></svg></button>
     </div>
   </div>
 </div>
@@ -4520,6 +4502,317 @@ function incReset(){
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════
+     PMUX 00 · Title — project cover
+════════════════════════════════════════════════════════════════ -->
+<section class="slide">
+<div class="body">
+  <div class="pc">
+    <div class="pc-pills">
+      <span class="pc-pill">0 to 1</span>
+      <span class="pc-pill">Research-driven</span>
+      <span class="pc-pill">IC Project</span>
+    </div>
+    <div class="pc-title">Insight on<br>First Load</div>
+    <div class="pc-sub">Turning a bypassed page into a report that showed value on first load.</div>
+    <div class="pc-meta3">
+      <div class="pc-col">
+        <div class="pc-collabel">Overview</div>
+        <div class="pc-colnote">Splunk's first business intelligence product</div>
+      </div>
+      <div class="pc-col">
+        <div class="pc-collabel">My Role</div>
+        <div class="pc-colbold">Product Designer</div>
+      </div>
+      <div class="pc-col">
+        <div class="pc-collabel">Timeline</div>
+        <div class="pc-colbold">Early – Mid 2020</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PMUX 00b · Industries + Screens (light, tabbed)
+════════════════════════════════════════════════════════════════ -->
+<section class="slide">
+<div class="body">
+  <div style="flex:1;display:flex;">
+    <!-- Left: heading + industries -->
+    <div style="flex:0 0 34%;display:flex;flex-direction:column;justify-content:center;padding:52px 40px 52px 72px;gap:22px;">
+      <div>
+        <div class="kicker g">Where It's Used</div>
+        <h1 style="font-size:2.2rem;line-height:1.15;margin-top:10px;">From warehouse floors to online checkout.</h1>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;flex-direction:column;gap:8px;padding:20px 22px;background:var(--muted);border-radius:14px;">
+          <div style="font-size:1.0rem;font-weight:800;color:var(--ink);">Manufacturing / Warehouse</div>
+          <div style="font-size:.86rem;color:var(--sub);line-height:1.5;">• Know duration between steps<br>• Monitor high-risk process: Failed → Rework</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;padding:20px 22px;background:var(--muted);border-radius:14px;">
+          <div style="font-size:1.0rem;font-weight:800;color:var(--ink);">E-commerce</div>
+          <div style="font-size:.86rem;color:var(--sub);line-height:1.5;">• Monitor ordering process: fulfillment<br>• Monitor customer journey: support</div>
+        </div>
+      </div>
+    </div>
+    <!-- Divider -->
+    <div style="width:1px;background:var(--line);flex-shrink:0;margin:40px 0;"></div>
+    <!-- Right: tabbed screens -->
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:44px 72px 44px 40px;gap:12px;">
+      <!-- Tabs -->
+      <div style="display:flex;gap:8px;flex-shrink:0;">
+        <button id="pmux-tab-map" onclick="pmuxShowScreen('map')" style="padding:9px 18px;border-radius:8px;border:1px solid var(--ink);background:var(--ink);color:#fff;font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;transition:.15s;">Summarized Journey Map</button>
+        <button id="pmux-tab-individual" onclick="pmuxShowScreen('individual')" style="padding:9px 18px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--sub);font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;transition:.15s;">Individual Journey</button>
+      </div>
+      <!-- Screens (stacked, one visible) -->
+      <div style="position:relative;">
+        <img id="pmux-screen-map" src="assets/pmux/screen-flowchart.png" style="width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 8px 32px -8px rgba(0,0,0,.14);display:block;">
+        <img id="pmux-screen-individual" src="assets/pmux/screen-journey-detail.png" style="width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 8px 32px -8px rgba(0,0,0,.14);display:none;">
+      </div>
+      <div id="pmux-screen-caption" style="font-size:.85rem;color:var(--dim);">Summarized journey map — patterns across all 132 journeys at a glance</div>
+    </div>
+  </div>
+</div>
+</section>
+<script>
+function pmuxShowScreen(which){
+  var map = document.getElementById('pmux-screen-map');
+  var ind = document.getElementById('pmux-screen-individual');
+  var tabMap = document.getElementById('pmux-tab-map');
+  var tabInd = document.getElementById('pmux-tab-individual');
+  var cap = document.getElementById('pmux-screen-caption');
+  if(which==='map'){
+    map.style.display='block'; ind.style.display='none';
+    tabMap.style.background='var(--ink)'; tabMap.style.borderColor='var(--ink)'; tabMap.style.color='#fff';
+    tabInd.style.background='transparent'; tabInd.style.borderColor='var(--line)'; tabInd.style.color='var(--sub)';
+    cap.textContent='Summarized journey map — patterns across all 132 journeys at a glance';
+  } else {
+    map.style.display='none'; ind.style.display='block';
+    tabInd.style.background='var(--ink)'; tabInd.style.borderColor='var(--ink)'; tabInd.style.color='#fff';
+    tabMap.style.background='transparent'; tabMap.style.borderColor='var(--line)'; tabMap.style.color='var(--sub)';
+    cap.textContent="Individual journey — drilling into one passenger's specific path and timing";
+  }
+}
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PMUX 00c · Personas (light)
+════════════════════════════════════════════════════════════════ -->
+<section class="slide">
+<div class="body">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:44px 72px;gap:24px;">
+    <!-- Top: heading -->
+    <div style="flex-shrink:0;">
+      <div class="kicker g" style="margin-bottom:10px;">Personas</div>
+      <h1 style="font-size:2.8rem;line-height:1.1;margin:0;">Three people, one platform.</h1>
+    </div>
+    <!-- Bottom: 3 cards in a row, equal height, top-aligned -->
+    <div style="display:flex;gap:14px;align-items:stretch;">
+
+      <div style="flex:1;display:flex;flex-direction:column;align-items:flex-start;background:var(--muted);border:1.5px solid var(--line);border-radius:14px;padding:24px 22px;gap:12px;">
+        <div style="width:44px;height:44px;border-radius:11px;background:var(--g2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;">🛠️</div>
+        <div style="font-size:.86rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--g);">Admin</div>
+        <div style="font-size:.95rem;color:var(--ink);line-height:1.6;">• Sets up the Splunk environment across tenants<br>• Manages user permissions and access</div>
+      </div>
+
+      <div style="flex:1;display:flex;flex-direction:column;align-items:flex-start;background:var(--muted);border:1.5px solid var(--line);border-radius:14px;padding:24px 22px;gap:12px;">
+        <div style="width:44px;height:44px;border-radius:11px;background:var(--g2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;">🔎</div>
+        <div style="font-size:.86rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--g);">Analyst</div>
+        <div style="font-size:.95rem;color:var(--ink);line-height:1.6;">• Analyzes business processes to find bottlenecks<br>• Primary user of the Overview and reports</div>
+      </div>
+
+      <div style="flex:1;display:flex;flex-direction:column;align-items:flex-start;background:var(--muted);border:1.5px solid var(--line);border-radius:14px;padding:24px 22px;gap:12px;">
+        <div style="width:44px;height:44px;border-radius:11px;background:var(--g2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;">🧩</div>
+        <div style="font-size:.86rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--g);">Modeler</div>
+        <div style="font-size:.95rem;color:var(--ink);line-height:1.6;">• Creates individual flow models<br>• Ensures data quality for downstream analysis</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PMUX 01 · Problem (light)
+════════════════════════════════════════════════════════════════ -->
+<section class="slide">
+<div class="body">
+  <div style="flex:1;display:flex;">
+    <!-- Left: text -->
+    <div style="flex:0 0 42%;display:flex;flex-direction:column;justify-content:center;padding:52px 44px 52px 72px;gap:22px;">
+      <div>
+        <div class="kicker g" style="margin-bottom:10px;">Step 01 · Issue</div>
+        <h1 style="font-size:2.8rem;line-height:1.1;margin:0;">The Overview page had no traffic.</h1>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-top:18px;border-top:1px solid var(--line);">
+        <div style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);">Research told us</div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="flex-shrink:0;width:24px;height:24px;border-radius:7px;background:var(--g2);color:var(--g);font-size:.8rem;font-weight:800;display:flex;align-items:center;justify-content:center;">1</div>
+          <div style="font-size:.98rem;color:var(--ink);line-height:1.5;padding-top:2px;">Metrics were too generic to offer real insight</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="flex-shrink:0;width:24px;height:24px;border-radius:7px;background:var(--g2);color:var(--g);font-size:.8rem;font-weight:800;display:flex;align-items:center;justify-content:center;">2</div>
+          <div style="font-size:.98rem;color:var(--ink);line-height:1.5;padding-top:2px;">No benchmark for the numbers</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="flex-shrink:0;width:24px;height:24px;border-radius:7px;background:var(--g2);color:var(--g);font-size:.8rem;font-weight:800;display:flex;align-items:center;justify-content:center;">3</div>
+          <div style="font-size:.98rem;color:var(--ink);line-height:1.5;padding-top:2px;">No path from the dashboard to a meaningful action</div>
+        </div>
+      </div>
+    </div>
+    <!-- Divider -->
+    <div style="width:1px;background:var(--line);flex-shrink:0;margin:40px 0;"></div>
+    <!-- Right: screenshot -->
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:44px 72px 44px 44px;gap:12px;">
+      <img src="assets/pmux/overview-dashboard.png" style="width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 8px 32px -8px rgba(0,0,0,.14);">
+      <div style="font-size:.85rem;color:var(--dim);align-self:flex-start;">The original Overview dashboard: numbers with no context</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PMUX 01b · First Attempt (light)
+════════════════════════════════════════════════════════════════ -->
+<section class="slide">
+<div class="body">
+  <div style="flex:1;display:flex;">
+    <!-- Left: text -->
+    <div style="flex:0 0 42%;display:flex;flex-direction:column;justify-content:center;padding:52px 44px 52px 72px;gap:20px;">
+      <div class="kicker g">Step 02 · The Start</div>
+      <h1 style="font-size:2.8rem;line-height:1.1;margin:0;">We started building a flexible, customizable dashboard.</h1>
+      <div style="display:flex;flex-direction:column;gap:10px;padding-top:16px;border-top:1px solid var(--line);">
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="font-size:.88rem;font-weight:800;color:var(--g);flex-shrink:0;padding-top:2px;">↗</span>
+          <div style="font-size:1.0rem;color:var(--sub);line-height:1.5;">Inspired by Tableau, Chartio, and Splunk's own Dashboard Studio</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="font-size:.88rem;font-weight:800;color:var(--g);flex-shrink:0;padding-top:2px;">↗</span>
+          <div style="font-size:1.0rem;color:var(--sub);line-height:1.5;">Users add their own metric panels</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="font-size:.88rem;font-weight:800;color:var(--g);flex-shrink:0;padding-top:2px;">↗</span>
+          <div style="font-size:1.0rem;color:var(--sub);line-height:1.5;">Configure thresholds, save custom layouts</div>
+        </div>
+      </div>
+    </div>
+    <!-- Divider -->
+    <div style="width:1px;background:var(--line);flex-shrink:0;margin:40px 0;"></div>
+    <!-- Right: screenshot -->
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:44px 72px 44px 44px;gap:12px;">
+      <div style="position:relative;width:100%;">
+        <img class="gif-media" data-gif="assets/pmux/flexible-dashboard-demo.gif" data-poster="assets/pmux/flexible-dashboard-demo-poster.png" src="assets/pmux/flexible-dashboard-demo-poster.png" style="width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 8px 32px -8px rgba(0,0,0,.14);display:block;">
+        <button class="gif-play-btn" onclick="gifPlay(this)" aria-label="Play demo"><svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="margin-left:3px;"><path d="M8 5v14l11-7z"/></svg></button>
+      </div>
+      <div style="font-size:.85rem;color:var(--dim);align-self:flex-start;">First iteration: step-by-step configuration panel for custom dashboard setup</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PMUX 02 · The Pivot (light)
+════════════════════════════════════════════════════════════════ -->
+<section class="slide">
+<div class="body">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:44px 72px;gap:28px;">
+    <!-- Top: heading -->
+    <div style="flex-shrink:0;">
+      <div class="kicker g" style="margin-bottom:10px;">Step 03 · The Turn</div>
+      <h1 style="font-size:2.6rem;line-height:1.1;margin:0;">An offsite changed everything.</h1>
+      <div style="font-size:1rem;color:var(--sub);margin-top:10px;">Our EMEA sales lead explained why the product was hard to sell, and it changed the direction entirely.</div>
+    </div>
+    <!-- Bottom: before -> arrow -> after -->
+    <div style="display:flex;align-items:center;gap:20px;">
+      <div style="flex:1;display:flex;flex-direction:column;gap:14px;">
+        <img src="assets/pmux/confused-analyst.png" style="width:100%;border-radius:14px;border:1px solid var(--line);">
+        <div style="font-size:.92rem;color:var(--sub);line-height:1.5;"><strong style="color:var(--ink);">First attempt:</strong> business analysts weren't familiar with configuring their own dashboards.</div>
+      </div>
+      <div style="flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:1.8rem;color:var(--g);line-height:1;">→</span>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:14px;">
+        <img src="assets/pmux/happy-analyst.png" style="width:100%;border-radius:14px;border:1px solid var(--line);">
+        <div style="font-size:.92rem;color:var(--ink);line-height:1.5;"><strong style="color:var(--g);">The pivot:</strong> give them a pre-canned template with easy apply.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PMUX 03 · Big Demo (light)
+════════════════════════════════════════════════════════════════ -->
+<section class="slide">
+<div class="body">
+  <div style="flex:1;display:flex;flex-direction:column;">
+    <!-- Text strip -->
+    <div style="padding:20px 52px 16px;flex-shrink:0;border-bottom:1px solid var(--line);display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+      <div class="kicker g">Step 04 · The Solution</div>
+      <h2 style="font-size:clamp(1rem,1.6vw,1.2rem);font-weight:800;color:var(--ink);margin:0;">One bottleneck report. No setup required.</h2>
+    </div>
+    <!-- GIF -->
+    <div style="flex:1;min-height:0;position:relative;background:var(--bg);">
+      <img class="gif-media" data-gif="assets/pmux/bottleneck-demo.gif" data-poster="assets/pmux/bottleneck-demo-poster.png" src="assets/pmux/bottleneck-demo-poster.png" alt="Bottleneck report demo" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:calc(100% - 80px);max-height:calc(100% - 40px);object-fit:contain;border-radius:10px;box-shadow:0 4px 32px rgba(0,0,0,.1);" onerror="this.style.display='none'">
+      <button class="gif-play-btn" onclick="gifPlay(this)" aria-label="Play demo"><svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="margin-left:3px;"><path d="M8 5v14l11-7z"/></svg></button>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PMUX 04 · Outcome + Reflection (light)
+════════════════════════════════════════════════════════════════ -->
+<section class="slide">
+<div class="body">
+  <div style="flex:1;display:flex;">
+
+    <!-- Left: metrics -->
+    <div style="flex:0 0 55%;display:flex;flex-direction:column;justify-content:center;padding:48px 40px 48px 72px;gap:16px;border-right:1px solid var(--line);">
+      <div class="kicker g">Step 05 · The Outcome</div>
+      <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:16px;">
+        <span style="font-size:1.3rem;flex-shrink:0;">🤝</span>
+        <div>
+          <div style="font-size:1.0rem;font-weight:800;color:var(--ink);line-height:1.3;">Chewy signed, Nvidia in the pipeline</div>
+          <div style="font-size:.85rem;color:var(--sub);margin-top:3px;">First enterprise deal won</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
+          <div style="font-size:2rem;font-weight:900;color:var(--g);line-height:1;">#4</div>
+          <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">2020 .conf annual survey ranking</div>
+        </div>
+        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
+          <div style="font-size:2rem;font-weight:900;color:var(--ink);line-height:1;">Top 3</div>
+          <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">NPS in 2021</div>
+        </div>
+      </div>
+      <div style="font-size:.84rem;color:var(--dim);line-height:1.5;">Product sunset later that year, a Splunk strategy shift after COVID, not a design failure.</div>
+    </div>
+
+    <!-- Right: reflection + customer voice -->
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:48px 72px 48px 52px;gap:18px;">
+      <div>
+        <div class="kicker">Key Learning</div>
+        <h1 style="font-size:1.7rem;line-height:1.3;margin-top:8px;">A flexible solution is ideal for advanced users. A pre-made approach can be more beneficial, especially in a product's early stages.</h1>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;padding-top:16px;border-top:1px solid var(--line);">
+        <div style="display:flex;flex-direction:column;gap:6px;padding:2px 0 2px 18px;border-left:3px solid var(--g);">
+          <div style="font-size:.95rem;color:var(--ink);line-height:1.5;font-style:italic;">"This is good for our fulfillment center use case. We can track what might cause us less productivity."</div>
+          <div style="font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);">Chewy</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;padding:2px 0 2px 18px;border-left:3px solid var(--g);">
+          <div style="font-size:.95rem;color:var(--ink);line-height:1.5;font-style:italic;">"This saves me some time to troubleshoot which station might have the problem."</div>
+          <div style="font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);">TGW Logistics Group</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
      THANK YOU — Final slide
 ════════════════════════════════════════════════════════════════ -->
 <section class="slide" style="background:#FAF8F3;">
@@ -4728,20 +5021,17 @@ const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const endBtn  = document.getElementById('endBtn');
 
-// Dark slides — same indices in both modes
-// ELS-1 (curated-only) + Personal (regular-only): net 0 shift for all idx≥6
-const DARK_REGULAR = new Set([0, 9, 10, 20, 27, 30, 32, 35, 42, 45, 53]);
-const DARK_CURATED = DARK_REGULAR;
-
 function sectionLabel(i){
   if(i===0) return 'Portfolio';
-  if(i<6)   return 'Introduction';
-  if(i===6) return 'Catalog';
-  if(i<17)  return 'Unified Data Observability';
-  if(i<27)  return 'Guided Onboarding';
-  if(i<35)  return 'Human-in-the-loop AI';
-  if(i<47)  return 'Unified Data Acquisition';
-  if(i<55)  return 'Leadership';
+  if(i<7)   return 'Introduction';
+  if(i===7) return 'Catalog';
+  if(i<18)  return 'Unified Data Observability';
+  if(i<28)  return 'Guided Onboarding';
+  if(i<36)  return 'Human-in-the-loop AI';
+  if(i<48)  return 'Unified Data Acquisition';
+  if(i<56)  return 'Leadership';
+  if(i<60)  return 'Building with AI · Teappo';
+  if(i<68)  return 'Insight on First Load';
   return 'Building with AI · Teappo';
 }
 
@@ -4757,10 +5047,6 @@ function rebuildDots(){
 
 function buildMode(m){
   mode = m;
-  // Update toggle buttons
-  document.querySelectorAll('.mtog-btn').forEach(b=>
-    b.classList.toggle('on', b.dataset.mode===m)
-  );
   // Build visible slide list
   const all = [...document.querySelectorAll('.slide')];
   visibleSlides = [];
@@ -4779,13 +5065,14 @@ window.buildMode = buildMode;
 // Named navigation — same indices in both modes
 function goToSection(name){
   const map = {
-    catalog:    6,
-    udo:        7,
-    onboarding: 17,
-    hitl:       27,
-    uda:        35,
-    leadership: 47,
-    teappo:     55,
+    catalog:    7,
+    udo:        8,
+    onboarding: 18,
+    hitl:       28,
+    uda:        36,
+    leadership: 48,
+    teappo:     56,
+    pmux:       60,
   };
   const t = map[name];
   if(t !== undefined) go(t);
@@ -4796,11 +5083,32 @@ prevBtn.addEventListener('click',()=>go(idx-1));
 nextBtn.addEventListener('click',()=>go(idx+1));
 endBtn.addEventListener('click',()=>go(TOTAL-1));
 
-function render(){
-  track.style.transform=`translateX(-${idx*100}vw)`;
+// ── Click-to-play gifs: never autoplay, always reset when navigating away ──
+function gifPlay(btn){
+  const img = btn.previousElementSibling;
+  if(!img || !img.classList.contains('gif-media')) return;
+  img.src = img.dataset.gif;
+  btn.style.display = 'none';
+}
+window.gifPlay = gifPlay;
 
-  // Nav dark mode
-  nav.classList.toggle('dark', (mode==='regular' ? DARK_REGULAR : DARK_CURATED).has(idx));
+function gifResetAll(){
+  document.querySelectorAll('.gif-media').forEach(img=>{
+    const poster = img.dataset.poster;
+    if(poster && img.getAttribute('src') !== poster){
+      img.src = poster;
+      const btn = img.nextElementSibling;
+      if(btn && btn.classList.contains('gif-play-btn')) btn.style.display = 'flex';
+    }
+  });
+}
+
+function render(){
+  gifResetAll();
+  track.style.transform=`translateX(-${idx*100}%)`;
+
+  // Nav dark mode — mirrors the current slide's own background
+  nav.classList.toggle('dark', visibleSlides[idx].classList.contains('dark'));
 
   nameEl.innerHTML=`Chung Han <span>· ${sectionLabel(idx)}</span>`;
   pgEl.textContent=`${idx+1} / ${TOTAL}`;
@@ -4818,9 +5126,7 @@ function render(){
     if(i===idx){ void b.offsetWidth; b.classList.add('in'); }
   });
 
-  const INC_IDX = 43;
-  const RST_IDX = 45;
-  if(idx===RST_IDX && typeof incReset==='function') incReset();
+  if(visibleSlides[idx].id==='inc-slide' && typeof incReset==='function') incReset();
 }
 
 function go(i){
@@ -4835,86 +5141,47 @@ window.go=go;
   if(!showcase) return;
   const panels = showcase.querySelectorAll('.cs-panel');
   const tabs   = document.querySelectorAll('.ca');
+  let co = 0;
   function selectCo(n){
-    panels.forEach((p,i)=>p.classList.toggle('active',i===n));
-    tabs.forEach((t,i)=>t.classList.toggle('active',i===n));
+    co = Math.max(0, Math.min(panels.length-1, n));
+    panels.forEach((p,i)=>p.classList.toggle('active',i===co));
+    tabs.forEach((t,i)=>t.classList.toggle('active',i===co));
   }
   tabs.forEach(t=>t.addEventListener('click',()=>selectCo(parseInt(t.dataset.idx,10))));
+
+  // Arrow-key stepping: consumed here while mid-sequence, falls through to
+  // normal slide navigation at the first/last company.
+  window.isCareerSlide = slideEl => !!slideEl && slideEl.contains(showcase);
+  window.careerStep = dir => {
+    if(dir>0 && co<panels.length-1){ selectCo(co+1); return true; }
+    if(dir<0 && co>0){ selectCo(co-1); return true; }
+    return false;
+  };
 })();
 
 document.addEventListener('keydown',e=>{
-  const INC_IDX = 43;
-  if(idx===INC_IDX){
+  if(visibleSlides[idx].id==='inc-slide'){
     if((e.key==='ArrowRight'||e.key==='ArrowDown')&&incStep<2){incGo(incStep+1);return;}
     if((e.key==='ArrowLeft'||e.key==='ArrowUp')&&incStep>0){incGo(incStep-1);return;}
+  }
+  if(window.isCareerSlide && window.isCareerSlide(visibleSlides[idx])){
+    if((e.key==='ArrowRight'||e.key==='ArrowDown') && window.careerStep(1))  return;
+    if((e.key==='ArrowLeft'||e.key==='ArrowUp')    && window.careerStep(-1)) return;
+  }
+  if(window.isP21Slide && window.isP21Slide(visibleSlides[idx])){
+    if((e.key==='ArrowRight'||e.key==='ArrowDown') && window.p21Step(1))  return;
+    if((e.key==='ArrowLeft'||e.key==='ArrowUp')    && window.p21Step(-1)) return;
+  }
+  if(window.isIterSlide && window.isIterSlide(visibleSlides[idx])){
+    if((e.key==='ArrowRight'||e.key==='ArrowDown') && window.iterStep(1))  return;
+    if((e.key==='ArrowLeft'||e.key==='ArrowUp')    && window.iterStep(-1)) return;
   }
   if(e.key==='ArrowRight'||e.key==='ArrowDown') go(idx+1);
   if(e.key==='ArrowLeft'||e.key==='ArrowUp')    go(idx-1);
 });
 
-// Init in curated mode
-buildMode('curated');
-})();
-</script>
-<script>
-(function () {
-  var PASSWORD = 'chung-han-deck';
-
-  var gate  = document.getElementById('gate');
-  var input = document.getElementById('gate-input');
-  var btn   = document.getElementById('gate-btn');
-  var errEl = document.getElementById('gate-error');
-  var illus = document.getElementById('gate-illus');
-
-  if (!gate) return; // already bypassed via sessionStorage
-  if (sessionStorage.getItem('auth_presentation') !== '1') {
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
-  }
-
-  function showError() {
-    input.classList.remove('input-shake');
-    void input.offsetWidth;
-    input.classList.add('input-shake');
-    errEl.textContent = 'Not quite. Try again.';
-    errEl.classList.add('visible');
-    setTimeout(function () {
-      errEl.classList.remove('visible');
-    }, 1500);
-  }
-
-  function unlock() {
-    illus.classList.add('walking-off');
-    setTimeout(function () { gate.classList.add('gate-fading'); }, 700);
-    setTimeout(function () {
-      gate.parentNode.removeChild(gate);
-      sessionStorage.setItem('auth_presentation', '1');
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
-      window.scrollTo(0, 0);
-    }, 1250);
-  }
-
-  function handleSubmit() {
-    if (input.value.trim().toLowerCase() === PASSWORD.toLowerCase()) {
-      btn.disabled = true;
-      input.disabled = true;
-      unlock();
-    } else {
-      showError();
-      input.value = '';
-      input.focus();
-    }
-  }
-
-  btn.addEventListener('click', handleSubmit);
-  input.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') handleSubmit();
-  });
-
-  input.focus();
+// Init in regular mode
+buildMode('regular');
 })();
 </script>
 </body>
