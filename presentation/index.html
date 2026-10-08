@@ -333,7 +333,7 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
       <h1>Chung-Han Tsai</h1>
     </div>
     <div class="bt-meta">
-      <span class="m">Product Design Leadership · Splunk</span>
+      <span class="m">Product Design Leadership · ex-Splunk</span>
       <a href="https://chunghan.work" class="ml" target="_blank">chunghan.work ↗</a>
     </div>
   </div>
@@ -464,7 +464,7 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
     <!-- Panel 3: Splunk -->
     <div class="cs-panel">
       <div class="cs-left">
-        <div class="kicker">2019 – now · Splunk</div>
+        <div class="kicker">2019 – 2026 · Splunk</div>
         <div class="cs-title">Process Mining<br>&amp; Data Mgmt</div>
         <div class="cs-co">Player-Coach</div>
         <div class="cs-plist">
@@ -517,7 +517,7 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
       <div class="ca" data-idx="3">
         <div class="ca-dot"></div>
         <div class="ca-name">Splunk</div>
-        <div class="ca-sub">2019–now · Player-Coach</div>
+        <div class="ca-sub">2019–2026 · Player-Coach</div>
       </div>
     </div>
   </div>
@@ -789,8 +789,8 @@ requestAnimationFrame(f);})();
 <section class="slide">
 <div class="body">
   <div class="bt center">
-    <div class="kicker g">Design philosophy</div>
-    <h1>Three lenses.</h1>
+    <div class="kicker g">How I lead &amp; design</div>
+    <h1 style="margin-bottom:36px;">Transparency is how I support.</h1>
     <div class="prs">
       <div class="pr">
         <div class="pr-n">01</div>
@@ -1107,10 +1107,26 @@ requestAnimationFrame(f);})();
       <div class="kicker" style="color:rgba(255,255,255,.35);">Step 03 · The Turn</div>
       <div style="font-size:1rem;font-weight:600;color:rgba(255,255,255,.5);line-height:1.5;">Escalating the dependency didn't just unblock the map — it raised a bigger question.</div>
       <h1 style="color:#fff;">Are we delivering<br>the right value?</h1>
-      <div style="font-size:1rem;font-weight:600;color:rgba(255,255,255,.75);line-height:1.5;">So I asked the team to check: are we solving the right problem — or is there something faster we can ship for the most urgent need?</div>
-      <div style="border-left:3px solid var(--g);padding:20px 24px;background:rgba(255,255,255,.04);border-radius:0 10px 10px 0;">
-        <div style="font-size:clamp(1rem,1.8vw,1.35rem);font-weight:700;color:#fff;line-height:1.45;margin-bottom:10px;">"This looks great… wait. Let me think. Will I stare at this every day?"</div>
-        <div style="font-size:.94rem;color:rgba(255,255,255,.35);">Lead Splunk admin, FamilySearch — then answered himself: <span style="color:rgba(255,255,255,.6);font-weight:700;">No.</span></div>
+      <div style="display:flex;align-items:baseline;gap:14px;">
+        <span style="font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#6EE7B0;">Research</span>
+        <span style="font-size:1rem;font-weight:600;color:rgba(255,255,255,.75);line-height:1.5;">We took the map back to users to hear how they felt.</span>
+      </div>
+      <!-- Two-step reveal: (1) positive feedback → (2) "but…" quote. Each button shares a grid cell with what it reveals, so nothing shifts -->
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <div style="display:grid;">
+          <div class="udo-s1" style="grid-area:1/1;display:flex;align-items:baseline;gap:14px;opacity:0;visibility:hidden;transition:opacity .4s ease;">
+            <span style="font-size:clamp(2.2rem,4vw,3.2rem);font-weight:800;color:#6EE7B0;letter-spacing:-.02em;line-height:1;">100%</span>
+            <span style="font-size:1.1rem;font-weight:700;color:#fff;">positive feedback · 6+ customers</span>
+          </div>
+          <button onclick="document.querySelectorAll('.udo-s1').forEach(function(el){el.style.opacity='1';el.style.visibility='visible';});this.style.opacity='0';this.style.visibility='hidden';" style="grid-area:1/1;align-self:start;display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:8px;border:1.5px solid #6EE7B0;background:transparent;color:#6EE7B0;font-size:.78rem;font-weight:700;cursor:pointer;width:fit-content;transition:opacity .3s ease;">What we found out →</button>
+        </div>
+        <div style="display:grid;">
+          <div class="udo-s2" style="grid-area:1/1;border-left:3px solid var(--g);padding:20px 24px;background:rgba(255,255,255,.04);border-radius:0 10px 10px 0;opacity:0;visibility:hidden;transition:opacity .4s ease;">
+            <div style="font-size:clamp(1rem,1.8vw,1.35rem);font-weight:700;color:#fff;line-height:1.45;margin-bottom:10px;">"This looks great… wait. Let me think. Will I stare at this every day?"</div>
+            <div style="font-size:.94rem;color:rgba(255,255,255,.35);">Lead Splunk admin, FamilySearch — then answered himself: <span style="color:rgba(255,255,255,.6);font-weight:700;">No.</span></div>
+          </div>
+          <button class="udo-s1" onclick="document.querySelectorAll('.udo-s2').forEach(function(el){el.style.opacity='1';el.style.visibility='visible';});this.style.opacity='0';this.style.visibility='hidden';" style="grid-area:1/1;align-self:start;display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:8px;border:1.5px solid #6EE7B0;background:transparent;color:#6EE7B0;font-size:.78rem;font-weight:700;cursor:pointer;width:fit-content;transition:opacity .3s ease;opacity:0;visibility:hidden;transition:opacity .4s ease;">But… →</button>
+        </div>
       </div>
     </div>
     <!-- Right: user research icon -->
@@ -1294,8 +1310,9 @@ requestAnimationFrame(f);})();
 <div class="body">
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:48px 72px;gap:28px;">
     <div>
-      <div class="kicker g" style="margin-bottom:10px;">Step 05 · How the Framework Reshaped the Roadmap</div>
-      <h1 style="font-size:3rem;line-height:1.1;">A foundation for AI</h1>
+      <div class="kicker g" style="margin-bottom:10px;">Step 05 · The Lead Review</div>
+      <h1 style="font-size:3rem;line-height:1.1;">Build tier by tier. Start with metrics.</h1>
+      <div style="font-size:1rem;color:var(--dim);line-height:1.5;margin-top:10px;">Design + EM brought the framework and blockers to the PM leads — this is the roadmap we agreed on.</div>
     </div>
 
     <!-- Roadmap -->
@@ -1475,11 +1492,11 @@ requestAnimationFrame(f);})();
     <div class="pc-meta3">
       <div class="pc-col">
         <div class="pc-collabel">Overview</div>
-        <div class="pc-colnote">Delivered end-to-end · Launched mid-2026 · Now driving TTV metrics</div>
+        <div class="pc-colnote">Delivered end-to-end · Shipped mid-2026</div>
       </div>
       <div class="pc-col">
         <div class="pc-collabel">My Role</div>
-        <div class="pc-colbold">Design Manager → Lead Product Designer</div>
+        <div class="pc-colbold">Design Manager · Stepped in as lead designer</div>
       </div>
       <div class="pc-col">
         <div class="pc-collabel">Timeline</div>
@@ -2469,13 +2486,17 @@ window.p21Step = function(dir){
     <h1 style="font-size:3rem;line-height:1.1;">Human-in-the-loop</h1>
     <div style="display:flex;gap:20px;width:100%;max-width:680px;">
       <div style="flex:1;padding:28px 24px;background:var(--muted);border:1px solid var(--line);border-radius:16px;text-align:center;">
-        <div style="font-size:1rem;font-weight:800;color:var(--dim);margin-bottom:8px;text-decoration:line-through;">Agentic AI</div>
+        <div style="font-size:1rem;font-weight:800;color:var(--dim);margin-bottom:8px;">Agentic AI</div>
         <div style="font-size:.9rem;color:var(--dim);">AI acts on your behalf</div>
       </div>
       <div style="flex:1;padding:28px 24px;background:var(--g2);border:1.5px solid #A7D4BC;border-radius:16px;text-align:center;">
         <div style="font-size:1rem;font-weight:800;color:var(--g);margin-bottom:8px;">Assertive AI</div>
         <div style="font-size:.9rem;color:var(--ink);line-height:1.45;">AI surfaces, explains, recommends<br>— you decide</div>
       </div>
+    </div>
+    <!-- Why we chose assertive for Data Management -->
+    <div style="max-width:680px;">
+      <div style="font-size:1.35rem;font-weight:800;color:var(--ink);line-height:1.3;">Options, not a single answer.</div>
     </div>
   </div>
 </div>
@@ -5462,12 +5483,12 @@ function goToSection(name){
   const map = {
     catalog:    7,
     udo:        8,
-    onboarding: 18,
-    hitl:       29,
-    uda:        37,
-    leadership: 49,
-    teappo:     57,
-    pmux:       61,
+    onboarding: 17,
+    hitl:       28,
+    uda:        36,
+    leadership: 48,
+    teappo:     56,
+    pmux:       60,
   };
   const t = map[name];
   if(t !== undefined) go(t);
