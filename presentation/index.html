@@ -316,6 +316,17 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
 .pc-colnote{font-size:1rem;color:var(--g);font-weight:700;white-space:nowrap;}
 .pc-colbold{font-size:1.15rem;font-weight:800;color:var(--ink);white-space:nowrap;}
 .pc-note{font-size:1rem;font-weight:700;color:var(--g);margin-top:2px;}
+/* "What I drove": the focal block on project covers; meta row shrinks beneath it */
+.pc-drove{margin-top:6px;padding-top:22px;border-top:1px solid var(--line);}
+.pc-drove-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+.pc-drove-list li{position:relative;padding-left:20px;font-size:1.1rem;font-weight:700;color:var(--ink);line-height:1.4;}
+.pc-drove-list li::before{content:'';position:absolute;left:0;top:.55em;width:7px;height:7px;border-radius:50%;background:var(--g);}
+.pc-meta3.sm{margin-top:0;padding-top:16px;}
+.pc-meta3.sm .pc-collabel{margin-bottom:5px;}
+.pc-meta3.sm .pc-colnote,.pc-meta3.sm .pc-colbold{font-size:.88rem;font-weight:700;color:var(--sub);}
+/* "I drove this": marks the slide where a cover bullet happens */
+.drove-tag{display:inline-flex;align-self:flex-start;width:fit-content;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--g);border:1px solid var(--g);border-radius:20px;padding:3px 10px;line-height:1.3;}
+.drove-tag.on-dark{color:#6EE7B0;border-color:#6EE7B0;}
 </style>
 </head>
 <body>
@@ -955,9 +966,17 @@ requestAnimationFrame(f);})();
       <span class="pc-pill">Strategy</span>
       <span class="pc-pill">Research-driven</span>
     </div>
-    <div class="pc-title">Unified Data<br>Observability</div>
+    <div class="pc-title">Unified Data Observability</div>
     <div class="pc-sub">Pivoting from an unexecutable vision to something that shipped.</div>
-    <div class="pc-meta3">
+    <div class="pc-drove">
+      <div class="pc-collabel">What I drove</div>
+      <ul class="pc-drove-list">
+        <li>Escalated engineering and backend dependencies</li>
+        <li>Led research, evaluated solutions, redefined needs</li>
+        <li>Partnered with EM to reshape the PM roadmap</li>
+      </ul>
+    </div>
+    <div class="pc-meta3 sm">
       <div class="pc-col">
         <div class="pc-collabel">Overview</div>
         <div class="pc-colnote">Led 2 designers + 1 director-level IC</div>
@@ -1085,7 +1104,7 @@ requestAnimationFrame(f);})();
         <div class="udo-reveal" style="font-size:.9rem;color:#6EE7B0;line-height:1.5;font-weight:700;opacity:0;visibility:hidden;transition:opacity .4s ease;">→ Ours to own — design led the fix: collapsed mode by default.</div>
       </div>
       <div style="flex:1;border-top:2px solid rgba(255,255,255,.1);padding-top:20px;display:flex;flex-direction:column;gap:12px;">
-        <span style="font-size:.86rem;font-weight:800;letter-spacing:.1em;color:rgba(255,255,255,.2);">DEPENDENCY</span>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;"><span style="font-size:.86rem;font-weight:800;letter-spacing:.1em;color:rgba(255,255,255,.2);">DEPENDENCY</span><span class="drove-tag on-dark">I drove this</span></div>
         <div style="font-size:1.1rem;font-weight:700;color:#fff;line-height:1.3;">We don't own the infrastructure.</div>
         <div style="font-size:.96rem;color:rgba(255,255,255,.5);line-height:1.6;">Our team couldn't fetch the full status data — it lived across systems we didn't control.</div>
         <div class="udo-reveal" style="font-size:.9rem;color:#6EE7B0;line-height:1.5;font-weight:700;opacity:0;visibility:hidden;transition:opacity .4s ease;">→ Escalated to leadership + a Distinguished Engineer to find the right owner.</div>
@@ -1312,7 +1331,7 @@ requestAnimationFrame(f);})();
     <div>
       <div class="kicker g" style="margin-bottom:10px;">Step 05 · The Lead Review</div>
       <h1 style="font-size:3rem;line-height:1.1;">Build tier by tier. Start with metrics.</h1>
-      <div style="font-size:1rem;color:var(--dim);line-height:1.5;margin-top:10px;">Design + EM brought the framework and blockers to the PM leads — this is the roadmap we agreed on.</div>
+      <div style="font-size:1rem;color:var(--dim);line-height:1.5;margin-top:10px;">Design + EM brought the framework and blockers to the PM leads. This is the roadmap we agreed on.</div>
     </div>
 
     <!-- Roadmap -->
@@ -1461,6 +1480,7 @@ requestAnimationFrame(f);})();
           <div style="display:flex;align-items:baseline;gap:7px;">
             <span style="font-size:1.8rem;font-weight:900;color:var(--sub);">6+</span>
             <span style="font-size:1rem;font-weight:700;color:var(--sub);">months</span>
+            <span style="font-size:.84rem;font-weight:700;color:var(--dim);">(estimate)</span>
           </div>
         </div>
       </div>
@@ -1488,8 +1508,16 @@ requestAnimationFrame(f);})();
       <span class="pc-pill">0 to 1</span>
     </div>
     <div class="pc-title">Guided Onboarding</div>
-    <div class="pc-sub">Cutting time-to-value from months to minutes with AI-guided setup.</div>
-    <div class="pc-meta3">
+    <div class="pc-sub">Cutting time-to-value from months to days with AI-guided setup.</div>
+    <div class="pc-drove">
+      <div class="pc-collabel">What I drove</div>
+      <ul class="pc-drove-list">
+        <li>Stepped in as lead designer</li>
+        <li>Defined the AI design framework</li>
+        <li>Prototype-tested 2 directions with 15 customers</li>
+      </ul>
+    </div>
+    <div class="pc-meta3 sm">
       <div class="pc-col">
         <div class="pc-collabel">Overview</div>
         <div class="pc-colnote">Delivered end-to-end · Shipped mid-2026</div>
@@ -1840,6 +1868,7 @@ requestAnimationFrame(f);})();
     <!-- Left: headline -->
     <div style="flex:0 0 30%;display:flex;flex-direction:column;justify-content:center;padding:52px 32px 52px 72px;gap:20px;border-right:1px solid rgba(255,255,255,.08);">
       <div class="kicker" style="color:rgba(255,255,255,.35);">Step 03 · The Reset</div>
+      <span class="drove-tag on-dark">I drove this</span>
       <h1 style="color:#fff;font-size:3rem;line-height:1.1;">I stepped in. We needed to design for the AI, not around it.</h1>
     </div>
     <!-- Right: tabs + image -->
@@ -2400,7 +2429,7 @@ window.p21Step = function(dir){
           <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">Customers in prototype testing</div>
         </div>
         <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-          <div style="font-size:1.3rem;font-weight:900;color:var(--ink);line-height:1;">M2</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;"><div style="font-size:1.3rem;font-weight:900;color:var(--g);line-height:1;">M2</div><div style="font-size:.82rem;font-weight:700;background:var(--g);color:#fff;border-radius:20px;padding:2px 8px;">Launched ✓</div></div>
           <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">Intent-guided setup · sample data upload · Q3 2026</div>
         </div>
         <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
@@ -2428,9 +2457,17 @@ window.p21Step = function(dir){
       <span class="pc-pill">Adoption</span>
       <span class="pc-pill">Framework</span>
     </div>
-    <div class="pc-title">Human-in-the-loop<br>AI</div>
+    <div class="pc-title">Human-in-the-loop AI</div>
     <div class="pc-sub">Building the trust framework behind Splunk's AI.</div>
-    <div class="pc-meta3">
+    <div class="pc-drove">
+      <div class="pc-collabel">What I drove</div>
+      <ul class="pc-drove-list">
+        <li>Defined where AI fits, through JTBD and workshops</li>
+        <li>Led evaluation research and iterated with the team</li>
+        <li>Drafted the vision for exec approval, then handed off to ICs</li>
+      </ul>
+    </div>
+    <div class="pc-meta3 sm">
       <div class="pc-col">
         <div class="pc-collabel">Overview</div>
         <div class="pc-colnote">Shipped Auto Field Extraction Q1 2026</div>
@@ -3484,7 +3521,7 @@ window.p21Step = function(dir){
           <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">Technical field coverage · Q1 2026</div>
         </div>
         <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-          <div style="font-size:1.6rem;font-weight:900;color:var(--ink);line-height:1;">Q2</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;"><div style="font-size:1.6rem;font-weight:900;color:var(--g);line-height:1;">Q2</div><div style="font-size:.82rem;font-weight:700;background:var(--g);color:#fff;border-radius:20px;padding:2px 8px;">Launched ✓</div></div>
           <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">GA · Use case coverage model</div>
         </div>
         <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
@@ -3521,9 +3558,17 @@ window.p21Step = function(dir){
       <span class="pc-pill">Framework</span>
       <span class="pc-pill">Design system</span>
     </div>
-    <div class="pc-title">Unified Data<br>Acquisition</div>
+    <div class="pc-title">Unified Data Acquisition</div>
     <div class="pc-sub">Unifying cloud data ingestion into one consistent, scalable portal.</div>
-    <div class="pc-meta3">
+    <div class="pc-drove">
+      <div class="pc-collabel">What I drove</div>
+      <ul class="pc-drove-list">
+        <li>Built a team model to ship fast and stay consistent</li>
+        <li>Caught cross-connector inconsistency early</li>
+        <li>Drove the standard to code with EM</li>
+      </ul>
+    </div>
+    <div class="pc-meta3 sm">
       <div class="pc-col">
         <div class="pc-collabel">Overview</div>
         <div class="pc-colnote">Led 3 designers · 400+ weekly users</div>
@@ -4014,6 +4059,7 @@ function udaTab(i){
       <!-- Step 0 -->
       <div id="inc-t0" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:52px 32px 52px 72px;gap:14px;transition:opacity .4s ease;">
         <div class="kicker g">Step 03 · The Problem</div>
+        <span class="drove-tag">I drove this</span>
         <h1 style="font-size:2.2rem;line-height:1.1;">Two designers.<br>One source.</h1>
         <button onclick="incGo(1)" style="margin-top:8px;display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:8px;border:1.5px solid var(--g);background:transparent;color:var(--g);font-size:.78rem;font-weight:700;cursor:pointer;width:fit-content;">Find the pattern →</button>
         <div style="display:flex;gap:5px;margin-top:6px;"><div style="width:6px;height:6px;border-radius:50%;background:var(--g);"></div><div style="width:6px;height:6px;border-radius:50%;background:var(--line);"></div><div style="width:6px;height:6px;border-radius:50%;background:var(--line);"></div></div>
@@ -4033,6 +4079,7 @@ function udaTab(i){
       <!-- Step 2 -->
       <div id="inc-t2" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:52px 32px 52px 72px;gap:14px;transition:opacity .4s ease;opacity:0;pointer-events:none;">
         <div class="kicker g">Step 03 · The Solution</div>
+        <span class="drove-tag">I drove this</span>
         <h1 style="font-size:2.2rem;line-height:1.1;color:var(--g);">One Standard Pattern.</h1>
         <button onclick="incGo(1)" style="margin-top:8px;display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--sub);font-size:.75rem;font-weight:600;cursor:pointer;width:fit-content;">← Back</button>
         <div style="display:flex;gap:5px;margin-top:6px;"><div style="width:6px;height:6px;border-radius:50%;background:var(--line);"></div><div style="width:6px;height:6px;border-radius:50%;background:var(--line);"></div><div style="width:6px;height:6px;border-radius:50%;background:var(--g);"></div></div>
@@ -4390,6 +4437,7 @@ function incReset(){
         <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 18px;">
           <div style="font-size:2rem;font-weight:900;color:var(--ink);line-height:1;">13 min</div>
           <div style="font-size:.82rem;color:var(--sub);margin-top:5px;">Avg. time to successful data input creation</div>
+          <div style="font-size:.76rem;font-weight:700;color:var(--dim);margin-top:4px;">vs. &gt;1 day to weeks before</div>
         </div>
         <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 18px;">
           <div style="font-size:2rem;font-weight:900;color:var(--ink);line-height:1;">61%</div>
@@ -4403,6 +4451,7 @@ function incReset(){
           <div style="display:flex;align-items:baseline;gap:6px;">
             <span style="font-size:2rem;font-weight:900;color:var(--g);">1.5</span>
             <span style="font-size:1rem;font-weight:700;color:var(--g);">months</span>
+            <span style="font-size:.88rem;font-weight:700;color:var(--dim);margin-left:4px;">vs. ~6 months before</span>
           </div>
         </div>
         <div style="width:1px;align-self:stretch;background:var(--line);flex-shrink:0;"></div>
@@ -4923,7 +4972,7 @@ function incReset(){
       <span class="pc-pill">Research-driven</span>
       <span class="pc-pill">IC Project</span>
     </div>
-    <div class="pc-title">Insight on<br>First Load</div>
+    <div class="pc-title">Insight on First Load</div>
     <div class="pc-sub">Turning a bypassed page into a report that showed value on first load.</div>
     <div class="pc-meta3">
       <div class="pc-col">
@@ -5441,14 +5490,14 @@ function sectionLabel(i){
   if(i===0) return 'Portfolio';
   if(i<7)   return 'Introduction';
   if(i===7) return 'Catalog';
-  if(i<18)  return 'Unified Data Observability';
-  if(i<29)  return 'Guided Onboarding';
-  if(i<37)  return 'Human-in-the-loop AI';
-  if(i<49)  return 'Unified Data Acquisition';
-  if(i<57)  return 'Leadership';
-  if(i<61)  return 'Building with AI · Teappo';
-  if(i<69)  return 'Insight on First Load';
-  return 'Building with AI · Teappo';
+  if(i<17)  return 'Unified Data Observability';
+  if(i<28)  return 'Guided Onboarding';
+  if(i<36)  return 'Human-in-the-loop AI';
+  if(i<48)  return 'Unified Data Acquisition';
+  if(i<56)  return 'Leadership';
+  if(i<60)  return 'Building with AI · Teappo';
+  if(i<68)  return 'Insight on First Load';
+  return 'Portfolio';
 }
 
 function rebuildDots(){
