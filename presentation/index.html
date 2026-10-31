@@ -163,7 +163,7 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
 .ca.active .ca-sub{opacity:1;color:var(--sub);}
 /* mini mockup card */
 .mock{background:#fff;border-radius:14px;border:1px solid var(--line);overflow:hidden;box-shadow:0 8px 32px -8px rgba(0,0,0,.14);width:100%;max-width:480px;}
-.mock-bar{height:32px;background:#F3F0EA;display:flex;align-items:center;padding:0 12px;gap:5px;border-bottom:1px solid var(--line);}
+.mock-bar{height:32px;background:#F8F6F1;display:flex;align-items:center;padding:0 12px;gap:5px;border-bottom:1px solid var(--line);}
 .mock-bar-ttl{flex:1;text-align:center;font-size:10.5px;font-weight:700;color:var(--sub);margin-left:-24px;}
 .mock-body{padding:14px 16px;display:flex;flex-direction:column;gap:0;}
 /* toggle */
@@ -329,6 +329,556 @@ h1{font-size:clamp(3rem,5.5vw,5.8rem);font-weight:800;line-height:.92;letter-spa
 /* "I drove this": marks the slide where a cover bullet happens */
 .drove-tag{display:inline-flex;align-self:flex-start;width:fit-content;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--g);border:1px solid var(--g);border-radius:20px;padding:3px 10px;line-height:1.3;}
 .drove-tag.on-dark{color:#6EE7B0;border-color:#6EE7B0;}
+
+/* ── Outcome component (shared by every project's last slide) ──
+   Left: success illustration + what changed for the persona.
+   Right: results tiles with honest status chips + key learning. */
+.oc{flex:1;display:grid;grid-template-columns:1fr 1fr;min-height:0;position:relative;}
+.oc::before{content:'';position:absolute;left:50%;top:50%;height:58%;width:1px;transform:translateY(-50%);background:var(--line);}
+.oc-story{display:flex;flex-direction:column;justify-content:center;gap:18px;padding:44px 44px 44px 72px;min-width:0;}
+.oc-art{position:relative;width:100%;aspect-ratio:1310/746;border-radius:16px;overflow:hidden;background:var(--muted);border:1px solid var(--line);}
+.oc-art img{display:block;width:100%;height:100%;object-fit:cover;}
+.oc-art.todo{border:1.5px dashed var(--dim);background:repeating-linear-gradient(135deg,var(--bg) 0 14px,var(--muted) 14px 28px);display:flex;align-items:center;justify-content:center;padding:24px;}
+.oc-art.todo span{font-size:.86rem;font-weight:700;color:var(--sub);text-align:center;line-height:1.5;max-width:340px;background:var(--bg);padding:10px 14px;border-radius:10px;}
+.oc-title{font-size:clamp(2rem,3.4vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;}
+.oc-cap{font-size:1rem;color:var(--ink);line-height:1.5;}
+.oc-results{display:flex;flex-direction:column;justify-content:center;gap:30px;padding:44px 72px 44px 48px;min-width:0;}
+.oc-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.oc-tile{background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;min-width:0;}
+.oc-type{display:flex;align-items:center;gap:6px;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--sub);}
+.oc-type svg{width:15px;height:15px;flex-shrink:0;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.oc-val{font-size:1.9rem;font-weight:900;line-height:1;color:var(--ink);letter-spacing:-.02em;white-space:nowrap;}
+.oc-lbl{font-size:.82rem;color:var(--sub);line-height:1.4;}
+.oc-more{display:flex;flex-direction:column;gap:8px;}
+.oc-more-label{font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);}
+.oc-block{display:flex;flex-direction:column;gap:10px;}
+.oc-deliver{font-size:1.08rem;font-weight:600;line-height:1.45;color:var(--ink);}
+.oc-note{font-size:.84rem;color:var(--sub);line-height:1.5;}
+.oc-quote{font-size:.9rem;font-style:italic;color:var(--ink);line-height:1.5;padding-left:14px;border-left:3px solid var(--g);}
+.oc-quote b{display:block;font-style:normal;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);margin-top:4px;}
+.oc-tile{--c:var(--ink);--cb:var(--muted);background:var(--cb);border-top:3px solid var(--c);}
+.oc-tile.adoption{--c:#475569;--cb:#F1F3F6;}
+.oc-tile.satisfaction{--c:#BE185D;--cb:#FBEFF4;}
+.oc-tile.efficiency{--c:#1D4ED8;--cb:#EEF2FB;}
+.oc-tile.business{--c:#1A6B3C;--cb:#EBF5F0;}
+.oc-tile.velocity{--c:#B45309;--cb:#FBF4E6;}
+.oc-tile.launched{--c:#0E7490;--cb:#E8F4F7;}
+.oc-tile.vision{--c:#6D28D9;--cb:#F3EFFB;}
+.oc-tile .oc-type{color:var(--c);}
+.oc-tile .oc-type svg{stroke:var(--c);}
+.oc-learn{padding-top:20px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:10px;}
+.oc-learn h1{font-size:2.1rem;line-height:1.15;}
+
+.oc-art.anim{background:transparent;border:none;aspect-ratio:1310/560;}
+.oc-art svg{display:block;width:100%;height:100%;}
+.udo *{transform-box:fill-box;transform-origin:center;}
+.udo .ln{fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.udo .A{animation:uA 9s infinite;}
+.udo .bellg{animation:uBell 9s infinite;}
+.udo .ring{animation:uRing 9s infinite;}
+.udo .warm{animation:uWarm 9s infinite;}
+.udo .cool{animation:uCool 9s infinite;}
+.udo .c1{stroke-dasharray:60;animation:uC1 9s infinite;}
+.udo .d1{animation:uD1 9s infinite;}
+.udo .M{animation:uM 9s infinite;}
+.udo .grey{animation:uGrey 9s infinite;}
+.udo .spike{stroke-dasharray:1000;animation:uSpike 9s infinite;}
+.udo .p1 rect{animation:uPill 9s infinite;} .udo .p1 text{animation:uPillT 9s infinite;}
+.udo .p2 rect{animation:uPill 9s infinite .3s;} .udo .p2 text{animation:uPillT 9s infinite .3s;}
+.udo .node{animation:uNode 9s infinite;}
+.udo .c2{stroke-dasharray:240;animation:uC2 9s infinite;}
+.udo .d2{animation:uD2 9s infinite;}
+.udo .R{animation:uR 9s infinite;}
+.udo .R rect.f{animation:uRf 9s infinite;}
+.udo .R .halo{animation:uHalo 9s infinite;}
+.udo .c3{animation:uC3 9s infinite;}
+.udo .F{animation:uF 9s infinite;}
+@keyframes uA{0%,3%{opacity:0;transform:translateY(10px)}8%,94%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes uBell{0%,8%{transform:rotate(0)}10%{transform:rotate(14deg)}12%{transform:rotate(-12deg)}14%{transform:rotate(8deg)}16%{transform:rotate(-5deg)}18%,100%{transform:rotate(0)}}
+@keyframes uRing{0%,8%{opacity:0;transform:scale(.7)}11%{opacity:.6;transform:scale(1)}20%,100%{opacity:0;transform:scale(1.6)}}
+@keyframes uWarm{0%,70%{opacity:1}74%,100%{opacity:0}}
+@keyframes uCool{0%,70%{opacity:0}74%,94%{opacity:1}100%{opacity:0}}
+@keyframes uC1{0%,15%{stroke-dashoffset:60;opacity:0}20%,94%{stroke-dashoffset:0;opacity:0}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes uD1{0%,15%{offset-distance:0%;opacity:0}16%{opacity:1}20%{offset-distance:100%;opacity:1}22%,100%{offset-distance:100%;opacity:0}}
+@keyframes uM{0%,18%{opacity:0;transform:translateX(-14px)}24%,94%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes uGrey{0%,44%{opacity:1}52%,100%{opacity:.16}}
+@keyframes uSpike{0%,26%{stroke-dashoffset:1000;opacity:0}38%,94%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes uPill{0%,42%{fill:#FBFAF6;stroke:#CFCBC0}46%,94%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes uPillT{0%,42%{fill:#8A877E}46%,94%{fill:#124D2B}100%{fill:#8A877E}}
+@keyframes uNode{0%,52%{opacity:0;transform:scale(.4)}56%{opacity:1;transform:scale(1.12)}59%,94%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@keyframes uC2{0%,59%{stroke-dashoffset:240;stroke:#D6D2C7;opacity:0}65%,94%{stroke-dashoffset:0;stroke:#1A6B3C;opacity:1}100%{stroke-dashoffset:0;stroke:#1A6B3C;opacity:0}}
+@keyframes uD2{0%,59%{offset-distance:0%;opacity:0}60%{opacity:1}65%{offset-distance:100%;opacity:1}67%,100%{offset-distance:100%;opacity:0}}
+@keyframes uR{0%,58%{opacity:0;transform:translateX(-14px)}64%,94%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes uRf{0%,65%{fill:#FBFAF6;stroke:#CFCBC0}69%,94%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes uHalo{0%,65%{opacity:0}70%,94%{opacity:.4}100%{opacity:0}}
+@keyframes uC3{0%,72%{opacity:0}77%,94%{opacity:1}100%{opacity:0}}
+@keyframes uF{0%,75%{opacity:0;transform:translateY(-10px)}81%,94%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@media (prefers-reduced-motion:reduce){.udo *{animation:none!important}.udo .A,.udo .M,.udo .R,.udo .F,.udo .node,.udo .c3,.udo .cool{opacity:1}.udo .warm,.udo .ring,.udo .d1,.udo .d2{opacity:0}.udo .grey{opacity:.16}.udo .c2{stroke:#1A6B3C}.udo .R rect.f{fill:#EEF7F0;stroke:#1A6B3C}}
+
+.go *{transform-box:fill-box;transform-origin:center;}
+.go .ln{fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.go .I{animation:gI 10s infinite;}
+.go .ipulse{animation:gPulse 10s infinite;}
+.go .av{animation:gAv 10s infinite;}
+.go .pck{animation:gPck 10s infinite;}
+.go .c1{stroke-dasharray:60;animation:gC1 10s infinite;}
+.go .d1{animation:gD1 10s infinite;}
+.go .M{animation:gM 10s infinite;}
+.go .tp rect{animation:gPill 10s infinite;} .go .tp text{animation:gPillT 10s infinite;}
+.go .sn{animation:gSnap 10s infinite;}
+.go .tg{animation:gTangle 10s infinite;}
+.go .hd{animation:gHd 10s infinite;}
+.go .ge{stroke-dasharray:600;animation:gGe 10s infinite;}
+.go .hl{stroke-dasharray:600;animation:gHl 10s infinite;}
+.go .lp rect{animation:gLp 10s infinite;} .go .lp text{animation:gLpT 10s infinite;}
+.go .c2{stroke-dasharray:130;animation:gC2 10s infinite;}
+.go .d2{animation:gD2 10s infinite;}
+.go .G{animation:gG 10s infinite;}
+.go .G .halo{animation:gHalo 10s infinite;}
+.go .G rect.f{animation:gGf 10s infinite;}
+.go .r1 .on{animation:gR1 10s infinite;} .go .r2 .on{animation:gR2 10s infinite;} .go .r3 .on{animation:gR3 10s infinite;} .go .r4 .on{animation:gR4 10s infinite;}
+.go .bd{animation:gBd 10s infinite;}
+.go .t1{animation:gT1 10s infinite;}.go .t2{animation:gT2 10s infinite;}.go .t3{animation:gT3 10s infinite;}.go .t4{animation:gT4 10s infinite;}
+.go .b1{animation:gB1 10s infinite;} .go .b2{animation:gB2 10s infinite;} .go .b3{animation:gB3 10s infinite;} .go .b4{animation:gB4 10s infinite;}
+.go .nr1{animation:gN1 10s infinite;} .go .nr2{animation:gN2 10s infinite;} .go .nr3{animation:gN3 10s infinite;} .go .nr4{animation:gN4 10s infinite;}
+.go .raw rect{animation:gRunA 1.4s linear infinite;}
+.go .raw rect:nth-child(2){animation-delay:.47s;} .go .raw rect:nth-child(3){animation-delay:.94s;}
+.go .proc circle{animation:gRunB .9s linear infinite;}
+.go .proc circle:nth-child(2){animation-delay:.45s;}
+.go .flow{animation:gFlow 10s infinite;}
+.go .mc{animation:gMc 10s infinite;}
+.go .MO{animation:gMo 10s infinite;}
+@keyframes gI{0%,2%{opacity:0;transform:translateY(10px)}7%,95%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes gPulse{0%,5%{opacity:0;transform:scale(.7)}8%{opacity:.55;transform:scale(1)}16%,100%{opacity:0;transform:scale(1.6)}}
+@keyframes gAv{0%,84%{fill:#EEF6EF;stroke:#9CC7A6}86%,95%{fill:#E2F3E6;stroke:#1A6B3C}100%{fill:#EEF6EF;stroke:#9CC7A6}}
+@keyframes gPck{0%,85%{opacity:0;transform:scale(.4)}88%{opacity:1;transform:scale(1.15)}89%,95%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@keyframes gC1{0%,11%{stroke-dashoffset:60;opacity:0}15%,95%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes gD1{0%,11%{offset-distance:0%;opacity:0}12%{opacity:1}15%{offset-distance:100%;opacity:1}17%,100%{offset-distance:100%;opacity:0}}
+@keyframes gM{0%,14%{opacity:0;transform:translateX(-14px)}19%,95%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes gPill{0%,30%{fill:#FBFAF6;stroke:#CFCBC0}33%,95%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes gPillT{0%,30%{fill:#8A877E}33%,95%{fill:#124D2B}100%{fill:#8A877E}}
+@keyframes gSnap{0%,33%{transform:translate(var(--dx),var(--dy)) rotate(var(--r))}43%,95%{transform:none}100%{transform:none}}
+@keyframes gTangle{0%,33%{opacity:1}39%,100%{opacity:0}}
+@keyframes gHd{0%,42%{opacity:0}47%,95%{opacity:1}100%{opacity:0}}
+@keyframes gGe{0%,42%{stroke-dashoffset:600;opacity:0}50%,95%{stroke-dashoffset:0;opacity:0}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes gHl{0%,52%{stroke-dashoffset:600;opacity:0}59%,95%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes gLp{0%,51%{fill:#FBFAF6;stroke:#CFCBC0}54%,95%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes gLpT{0%,51%{fill:#6C6A62}54%,95%{fill:#124D2B}100%{fill:#6C6A62}}
+@keyframes gC2{0%,59%{stroke-dashoffset:130;opacity:0}63%,95%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes gD2{0%,59%{offset-distance:0%;opacity:0}60%{opacity:1}63%{offset-distance:100%;opacity:1}65%,100%{offset-distance:100%;opacity:0}}
+@keyframes gG{0%,61%{opacity:0;transform:translateX(-14px)}66%,95%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes gGf{0%,81%{fill:#FBFAF6;stroke:#CFCBC0}85%,95%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes gHalo{0%,81%{opacity:0}86%,95%{opacity:.4}100%{opacity:0}}
+@keyframes gR1{0%,66%{opacity:0;transform:scale(.4)}69%,95%{opacity:1;transform:scale(1)}100%{opacity:0}}
+@keyframes gB1{0%,66%{fill:#FBFAF6;stroke:#1A6B3C}69%,95%{fill:#1A6B3C;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#1A6B3C}}
+@keyframes gN1{0%,66%{fill:#FBFAF6;stroke:#CFCBC0}69%,95%{fill:#E2F3E6;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes gR2{0%,70%{opacity:0;transform:scale(.4)}73%,95%{opacity:1;transform:scale(1)}100%{opacity:0}}
+@keyframes gB2{0%,70%{fill:#FBFAF6;stroke:#1A6B3C}73%,95%{fill:#1A6B3C;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#1A6B3C}}
+@keyframes gN2{0%,70%{fill:#FBFAF6;stroke:#CFCBC0}73%,95%{fill:#E2F3E6;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes gR3{0%,74%{opacity:0;transform:scale(.4)}77%,95%{opacity:1;transform:scale(1)}100%{opacity:0}}
+@keyframes gB3{0%,74%{fill:#FBFAF6;stroke:#1A6B3C}77%,95%{fill:#1A6B3C;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#1A6B3C}}
+@keyframes gN3{0%,74%{fill:#FBFAF6;stroke:#CFCBC0}77%,95%{fill:#E2F3E6;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes gR4{0%,78%{opacity:0;transform:scale(.4)}81%,95%{opacity:1;transform:scale(1)}100%{opacity:0}}
+@keyframes gB4{0%,78%{fill:#FBFAF6;stroke:#1A6B3C}81%,95%{fill:#1A6B3C;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#1A6B3C}}
+@keyframes gN4{0%,78%{fill:#FBFAF6;stroke:#CFCBC0}81%,95%{fill:#E2F3E6;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes gT1{0%,66%{fill:#124D2B}69%,95%{fill:#FFFFFF}100%{fill:#124D2B}}
+@keyframes gT2{0%,70%{fill:#124D2B}73%,95%{fill:#FFFFFF}100%{fill:#124D2B}}
+@keyframes gT3{0%,74%{fill:#124D2B}77%,95%{fill:#FFFFFF}100%{fill:#124D2B}}
+@keyframes gT4{0%,78%{fill:#124D2B}81%,95%{fill:#FFFFFF}100%{fill:#124D2B}}
+@keyframes gMc{0%,85%{opacity:0}88%,95%{opacity:1}100%{opacity:0}}
+@keyframes gMo{0%,87%{opacity:0;transform:translateY(-10px)}91%,95%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes gFlow{0%,81%{opacity:0}84%,95%{opacity:1}100%{opacity:0}}
+@keyframes gRunA{from{offset-distance:0%;transform:rotate(0)}to{offset-distance:100%;transform:rotate(180deg)}}
+@keyframes gRunB{from{offset-distance:0%}to{offset-distance:100%}}
+@keyframes gBd{0%,54%{opacity:0;transform:scale(.4)}58%,95%{opacity:1;transform:scale(1)}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.go *{animation:none!important}.go .I,.go .M,.go .G,.go .mc,.go .MO,.go .hd,.go .on,.go .ck3,.go .pck{opacity:1}.go .ipulse,.go .d1,.go .d2,.go .flow,.go .tg{opacity:0}.go .sn{transform:none}.go .tp rect,.go .lp rect,.go .G rect.f{fill:#EEF7F0;stroke:#1A6B3C}.go .bd{opacity:1}.go .b1,.go .b2,.go .b3,.go .b4{fill:#1A6B3C}.go .bd text{fill:#FFFFFF}.go .nr1,.go .nr2,.go .nr3,.go .nr4{fill:#E2F3E6;stroke:#1A6B3C}}
+
+.hitl *{transform-box:fill-box;transform-origin:center;}
+.hitl .ln{fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.hitl .bell{transform-origin:50% 10%;}
+.hitl .P{animation:h_P 16s infinite;}
+.hitl .av{animation:h_av 16s infinite;}
+.hitl .pck{animation:h_pck 16s infinite;}
+.hitl .bt{stroke-dasharray:150;animation:h_bt 16s infinite;}
+.hitl .bb{animation:h_bb 16s infinite;}
+.hitl .lt{animation:h_lt 16s infinite;}
+.hitl .lb{animation:h_lb 16s infinite;}
+.hitl .t1{animation:h_t1 16s infinite;}
+.hitl .beam{animation:h_beam 16s infinite;}
+.hitl .row{animation:h_row 16s infinite;}
+.hitl .tk0{animation:h_tk0 16s infinite;}
+.hitl .tk1{animation:h_tk1 16s infinite;}
+.hitl .tk2{animation:h_tk2 16s infinite;}
+.hitl .tk3{animation:h_tk3 16s infinite;}
+.hitl .tk4{animation:h_tk4 16s infinite;}
+.hitl .tk5{animation:h_tk5 16s infinite;}
+.hitl .mc{animation:h_mc 16s infinite;}
+.hitl .ch0{animation:h_ch0 16s infinite;}
+.hitl .cht0{animation:h_cht0 16s infinite;}
+.hitl .ch1{animation:h_ch1 16s infinite;}
+.hitl .cht1{animation:h_cht1 16s infinite;}
+.hitl .ct1{stroke-dasharray:40;animation:h_ct1 16s infinite;}
+.hitl .dt1{animation:h_dt1 16s infinite;}
+.hitl .t2{animation:h_t2 16s infinite;}
+.hitl .t2f{animation:h_t2f 16s infinite;}
+.hitl .t2h{animation:h_t2h 16s infinite;}
+.hitl .f0{animation:h_f0 16s infinite;}
+.hitl .fb0{animation:h_fb0 16s infinite;}
+.hitl .ok0{animation:h_ok0 16s infinite;}
+.hitl .f1{animation:h_f1 16s infinite;}
+.hitl .fb1{animation:h_fb1 16s infinite;}
+.hitl .ok1{animation:h_ok1 16s infinite;}
+.hitl .f2{animation:h_f2 16s infinite;}
+.hitl .fb2{animation:h_fb2 16s infinite;}
+.hitl .ok2{animation:h_ok2 16s infinite;}
+.hitl .a1{animation:h_a1 16s infinite;}
+.hitl .bell{animation:h_bell 16s infinite;}
+.hitl .ring{animation:h_ring 16s infinite;}
+.hitl .warm{animation:h_warm 16s infinite;}
+.hitl .cool{animation:h_cool 16s infinite;}
+.hitl .cb1{stroke-dasharray:40;animation:h_cb1 16s infinite;}
+.hitl .db1{animation:h_db1 16s infinite;}
+.hitl .b2{animation:h_b2 16s infinite;}
+.hitl .glow{animation:h_glow 16s infinite;}
+.hitl .sd0{animation:h_sd0 16s infinite;}
+.hitl .sb0{animation:h_sb0 16s infinite;}
+.hitl .sd1{animation:h_sd1 16s infinite;}
+.hitl .sb1{animation:h_sb1 16s infinite;}
+.hitl .sd2{animation:h_sd2 16s infinite;}
+.hitl .sb2{animation:h_sb2 16s infinite;}
+.hitl .cb2{stroke-dasharray:40;animation:h_cb2 16s infinite;}
+.hitl .db2{animation:h_db2 16s infinite;}
+.hitl .b3{animation:h_b3 16s infinite;}
+.hitl .o0{animation:h_o0 16s infinite;}
+.hitl .or0{animation:h_or0 16s infinite;}
+.hitl .on0{animation:h_on0 16s infinite;}
+.hitl .nt0{animation:h_nt0 16s infinite;}
+.hitl .o1{animation:h_o1 16s infinite;}
+.hitl .dt{animation:h_dt 16s infinite;}
+.hitl .btn{animation:h_btn 16s infinite;}
+.hitl .sv{animation:h_sv 16s infinite;}
+.hitl .svt{animation:h_svt 16s infinite;}
+@keyframes h_P{0%,1%{opacity:0;transform:translate(0px,8px)}4%,96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes h_av{0%,91%{fill:#EEF6EF;stroke:#9CC7A6}93%,96%{fill:#E2F3E6;stroke:#1A6B3C}100%{fill:#EEF6EF;stroke:#9CC7A6}}
+@keyframes h_pck{0%,92%{opacity:0;transform:scale(.4)}93.5%{opacity:1;transform:scale(1.15)}94.5%,96%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@keyframes h_bt{0%,4%{stroke-dashoffset:150;opacity:0}4.3%{opacity:1}7%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes h_bb{0%,46%{opacity:0;transform:translate(0px,0px)}49%,96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes h_lt{0%,3%{opacity:0;transform:translate(0px,0px)}6%,96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes h_lb{0%,46%{opacity:0;transform:translate(0px,0px)}49%,96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes h_t1{0%,5%{opacity:0;transform:translate(-12px,0px)}8%,96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes h_beam{0%,9%{opacity:0;transform:translateY(0)}10%{opacity:1;transform:translateY(0)}17%{opacity:1;transform:translateY(112px)}18%,100%{opacity:0;transform:translateY(112px)}}
+@keyframes h_row{0%,19%{transform:translate(var(--dx),var(--dy))}25%,100%{transform:none}}
+@keyframes h_tk0{0%,10.5%{fill:#E5E2D9;stroke:#E5E2D9}12.5%,96%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#E5E2D9;stroke:#E5E2D9}}
+@keyframes h_tk1{0%,11.5%{fill:#E5E2D9;stroke:#E5E2D9}13.5%,96%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#E5E2D9;stroke:#E5E2D9}}
+@keyframes h_tk2{0%,12.5%{fill:#E5E2D9;stroke:#E5E2D9}14.5%,96%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#E5E2D9;stroke:#E5E2D9}}
+@keyframes h_tk3{0%,13.5%{fill:#E5E2D9;stroke:#E5E2D9}15.5%,96%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#E5E2D9;stroke:#E5E2D9}}
+@keyframes h_tk4{0%,14.5%{fill:#E5E2D9;stroke:#E5E2D9}16.5%,96%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#E5E2D9;stroke:#E5E2D9}}
+@keyframes h_tk5{0%,15.5%{fill:#E5E2D9;stroke:#E5E2D9}17.5%,96%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#E5E2D9;stroke:#E5E2D9}}
+@keyframes h_mc{0%,24%{opacity:0;transform:translate(-8px,0px)}27%,96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes h_ch0{0%,26%{fill:#FBFAF6;stroke:#CFCBC0}28%,96%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes h_cht0{0%,26%{fill:#6C6A62}28%,96%{fill:#124D2B}100%{fill:#6C6A62}}
+@keyframes h_ch1{0%,27.5%{fill:#FBFAF6;stroke:#CFCBC0}29.5%,96%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes h_cht1{0%,27.5%{fill:#6C6A62}29.5%,96%{fill:#124D2B}100%{fill:#6C6A62}}
+@keyframes h_ct1{0%,27%{stroke-dashoffset:40;opacity:0}27.3%{opacity:1}29%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes h_dt1{0%,27%{offset-distance:0%;opacity:0}27.5%{opacity:1}29%{offset-distance:100%;opacity:1}30%,100%{offset-distance:100%;opacity:0}}
+@keyframes h_t2{0%,29%{opacity:0;transform:translate(-12px,0px)}32%,96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes h_t2f{0%,42%{fill:#FBFAF6;stroke:#CFCBC0}44%,96%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes h_t2h{0%,42%{opacity:0}44%,96%{opacity:.35}100%{opacity:0}}
+@keyframes h_f0{0%,31%{opacity:0;transform:translate(-8px,0px)}34%,96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes h_fb0{0%,36%{fill:#FBFAF6;stroke:#B0ADA4;stroke-dasharray:5 5}38%,96%{fill:#EEF7F0;stroke:#1A6B3C;stroke-dasharray:0}100%{fill:#FBFAF6;stroke:#B0ADA4;stroke-dasharray:5 5}}
+@keyframes h_ok0{0%,36%{opacity:0;transform:scale(.4)}37.5%{opacity:1;transform:scale(1.15)}38.5%,96%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@keyframes h_f1{0%,32.5%{opacity:0;transform:translate(-8px,0px)}35.5%,96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes h_fb1{0%,38%{fill:#FBFAF6;stroke:#B0ADA4;stroke-dasharray:5 5}40%,96%{fill:#EEF7F0;stroke:#1A6B3C;stroke-dasharray:0}100%{fill:#FBFAF6;stroke:#B0ADA4;stroke-dasharray:5 5}}
+@keyframes h_ok1{0%,38%{opacity:0;transform:scale(.4)}39.5%{opacity:1;transform:scale(1.15)}40.5%,96%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@keyframes h_f2{0%,34%{opacity:0;transform:translate(-8px,0px)}37%,96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes h_fb2{0%,40%{fill:#FBFAF6;stroke:#B0ADA4;stroke-dasharray:5 5}42%,96%{fill:#EEF7F0;stroke:#1A6B3C;stroke-dasharray:0}100%{fill:#FBFAF6;stroke:#B0ADA4;stroke-dasharray:5 5}}
+@keyframes h_ok2{0%,40%{opacity:0;transform:scale(.4)}41.5%{opacity:1;transform:scale(1.15)}42.5%,96%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@keyframes h_a1{0%,47%{opacity:0;transform:translate(-12px,0px)}50%,96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes h_bell{0%,49%{transform:rotate(0)}50%{transform:rotate(14deg)}51%{transform:rotate(-12deg)}52%{transform:rotate(8deg)}53%,100%{transform:rotate(0)}}
+@keyframes h_ring{0%,49%{opacity:0;transform:scale(.7)}51%{opacity:.6;transform:scale(1)}56%,100%{opacity:0;transform:scale(1.6)}}
+@keyframes h_warm{0%,89%{opacity:1}91%,96%{opacity:0}100%{opacity:1}}
+@keyframes h_cool{0%,89%{opacity:0}91%,96%{opacity:1}100%{opacity:0}}
+@keyframes h_cb1{0%,54%{stroke-dashoffset:40;opacity:0}54.3%{opacity:1}56%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes h_db1{0%,54%{offset-distance:0%;opacity:0}54.5%{opacity:1}56%{offset-distance:100%;opacity:1}57%,100%{offset-distance:100%;opacity:0}}
+@keyframes h_b2{0%,56%{opacity:0;transform:translate(-12px,0px)}59%,96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes h_glow{0%,58%{opacity:0}60%{opacity:.5}64%,100%{opacity:0}}
+@keyframes h_sd0{0%,62%{fill:#FBFAF6;stroke:#CFCBC0}64%,96%{fill:#1A6B3C;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes h_sb0{0%,62%{fill:#E5E2D9}64%,96%{fill:#CFE6D5}100%{fill:#E5E2D9}}
+@keyframes h_sd1{0%,65%{fill:#FBFAF6;stroke:#CFCBC0}67%,96%{fill:#1A6B3C;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes h_sb1{0%,65%{fill:#E5E2D9}67%,96%{fill:#CFE6D5}100%{fill:#E5E2D9}}
+@keyframes h_sd2{0%,68%{fill:#FBFAF6;stroke:#CFCBC0}70%,96%{fill:#1A6B3C;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes h_sb2{0%,68%{fill:#E5E2D9}70%,96%{fill:#CFE6D5}100%{fill:#E5E2D9}}
+@keyframes h_cb2{0%,70%{stroke-dashoffset:40;opacity:0}70.3%{opacity:1}72%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes h_db2{0%,70%{offset-distance:0%;opacity:0}70.5%{opacity:1}72%{offset-distance:100%;opacity:1}73%,100%{offset-distance:100%;opacity:0}}
+@keyframes h_b3{0%,72%{opacity:0;transform:translate(-12px,0px)}75%,96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes h_o0{0%,74%{opacity:0;transform:translate(-6px,0px)}77%,96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes h_or0{0%,79%{fill:#FBFAF6;stroke:#CFCBC0}81%,96%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes h_on0{0%,79%{fill:#FBFAF6}81%,96%{fill:#1A6B3C}100%{fill:#FBFAF6}}
+@keyframes h_nt0{0%,79%{fill:#124D2B}81%,96%{fill:#FFFFFF}100%{fill:#124D2B}}
+@keyframes h_o1{0%,76%{opacity:0;transform:translateX(-6px)}79%,80%{opacity:1;transform:none}82%,100%{opacity:0;transform:none}}
+@keyframes h_dt{0%,82%{opacity:0;transform:translate(0px,-6px)}85%,96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes h_btn{0%,85%{opacity:0;transform:translate(0px,6px)}88%,96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes h_sv{0%,89%{fill:#FBFAF6;stroke:#CFCBC0}91%,96%{fill:#1A6B3C;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes h_svt{0%,89%{fill:#2B2B28}91%,96%{fill:#FFFFFF}100%{fill:#2B2B28}}
+@media (prefers-reduced-motion:reduce){.hitl *{animation:none!important}.hitl .beam,.hitl .ring,.hitl .glow,.hitl .warm{opacity:0}.hitl .cool{opacity:1}.hitl .row{transform:none}}
+
+.uda *{transform-box:fill-box;transform-origin:center;}
+.uda .ln{fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.uda .Pt{animation:u_Pt 16s infinite;}
+.uda .Ptv{animation:u_Ptv 16s infinite;}
+.uda .Ptk{animation:u_Ptk 16s infinite;}
+.uda .cb1{stroke-dasharray:40;animation:u_cb1 16s infinite;}
+.uda .db1{animation:u_db1 16s infinite;}
+.uda .B1{animation:u_B1 16s infinite;}
+.uda .fm0{animation:u_fm0 16s infinite;}
+.uda .fm1{animation:u_fm1 16s infinite;}
+.uda .fm2{animation:u_fm2 16s infinite;}
+.uda .fm3{animation:u_fm3 16s infinite;}
+.uda .fm4{animation:u_fm4 16s infinite;}
+.uda .fm5{animation:u_fm5 16s infinite;}
+.uda .badge{animation:u_badge 16s infinite;}
+.uda .ttl1{animation:u_ttl1 16s infinite;}
+.uda .ttl2{animation:u_ttl2 16s infinite;}
+.uda .fld{animation:u_fld 16s infinite;}
+.uda .tg0{animation:u_tg0 16s infinite;}
+.uda .tg1{animation:u_tg1 16s infinite;}
+.uda .cb2{stroke-dasharray:40;animation:u_cb2 16s infinite;}
+.uda .db2{animation:u_db2 16s infinite;}
+.uda .B2{animation:u_B2 16s infinite;}
+.uda .fe{animation:u_fe 16s infinite;}
+.uda .be{animation:u_be 16s infinite;}
+.uda .lk{animation:u_lk 16s infinite;}
+.uda .dl{animation:u_dl 16s infinite;}
+.uda .Pa{animation:u_Pa 16s infinite;}
+.uda .Pav{animation:u_Pav 16s infinite;}
+.uda .Pak{animation:u_Pak 16s infinite;}
+.uda .ct1{stroke-dasharray:40;animation:u_ct1 16s infinite;}
+.uda .dt1{animation:u_dt1 16s infinite;}
+.uda .T1{animation:u_T1 16s infinite;}
+.uda .pv0{animation:u_pv0 16s infinite;}
+.uda .pl0{stroke-dasharray:90;animation:u_pl0 16s infinite;}
+.uda .pv1{animation:u_pv1 16s infinite;}
+.uda .pl1{stroke-dasharray:90;animation:u_pl1 16s infinite;}
+.uda .pv2{animation:u_pv2 16s infinite;}
+.uda .pl2{stroke-dasharray:90;animation:u_pl2 16s infinite;}
+.uda .pv3{animation:u_pv3 16s infinite;}
+.uda .pl3{stroke-dasharray:90;animation:u_pl3 16s infinite;}
+.uda .sc0{animation:u_sc0 16s infinite;}
+.uda .sc1{animation:u_sc1 16s infinite;}
+.uda .sc2{animation:u_sc2 16s infinite;}
+.uda .sc3{animation:u_sc3 16s infinite;}
+.uda .sj{animation:u_sj 16s infinite;}
+.uda .ct2{stroke-dasharray:40;animation:u_ct2 16s infinite;}
+.uda .dt2{animation:u_dt2 16s infinite;}
+.uda .T2{animation:u_T2 16s infinite;}
+.uda .Rf{animation:u_Rf 16s infinite;}
+.uda .Rh{animation:u_Rh 16s infinite;}
+.uda .di0{animation:u_di0 16s infinite;}
+.uda .sp0{stroke-dasharray:320;animation:u_sp0 16s infinite;}
+.uda .dk0{animation:u_dk0 16s infinite;}
+.uda .di1{animation:u_di1 16s infinite;}
+.uda .sp1{stroke-dasharray:320;animation:u_sp1 16s infinite;}
+.uda .dk1{animation:u_dk1 16s infinite;}
+.uda .di2{animation:u_di2 16s infinite;}
+.uda .sp2{stroke-dasharray:320;animation:u_sp2 16s infinite;}
+.uda .dk2{animation:u_dk2 16s infinite;}
+.uda .di3{animation:u_di3 16s infinite;}
+.uda .sp3{stroke-dasharray:320;animation:u_sp3 16s infinite;}
+.uda .dk3{animation:u_dk3 16s infinite;}
+@keyframes u_Pt{0%{opacity:0;transform:translate(0px,8px)}1%{opacity:0;transform:translate(0px,8px)}4%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_Ptv{0%{fill:#EEF6EF;stroke:#9CC7A6}86%{fill:#EEF6EF;stroke:#9CC7A6}88%{fill:#E2F3E6;stroke:#1A6B3C}96%{fill:#E2F3E6;stroke:#1A6B3C}100%{fill:#EEF6EF;stroke:#9CC7A6}}
+@keyframes u_Ptk{0%{opacity:0;transform:scale(.4)}87%{opacity:0;transform:scale(.4)}88.5%{opacity:1;transform:scale(1.15)}89.5%{opacity:1;transform:scale(1)}96%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@keyframes u_cb1{0%,5%{stroke-dashoffset:40;opacity:0}5.3%{opacity:1}7%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes u_db1{0%,5%{offset-distance:0%;opacity:0}5.5%{opacity:1}7%{offset-distance:100%;opacity:1}8%,100%{offset-distance:100%;opacity:0}}
+@keyframes u_B1{0%{opacity:0;transform:translate(-14px,0px)}6%{opacity:0;transform:translate(-14px,0px)}9%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_fm0{0%{opacity:0;transform:scale(.8)}8.0%{opacity:0;transform:scale(.8)}10.0%{opacity:1;transform:none}17%{opacity:1;transform:none}21%{opacity:0;transform:translate(144px,45px) scale(.2)}100%{opacity:0;transform:translate(144px,45px) scale(.2)}}
+@keyframes u_fm1{0%{opacity:0;transform:scale(.8)}8.8%{opacity:0;transform:scale(.8)}10.8%{opacity:1;transform:none}17%{opacity:1;transform:none}21%{opacity:0;transform:translate(18px,58px) scale(.2)}100%{opacity:0;transform:translate(18px,58px) scale(.2)}}
+@keyframes u_fm2{0%{opacity:0;transform:scale(.8)}9.6%{opacity:0;transform:scale(.8)}11.6%{opacity:1;transform:none}17%{opacity:1;transform:none}21%{opacity:0;transform:translate(-123px,53px) scale(.2)}100%{opacity:0;transform:translate(-123px,53px) scale(.2)}}
+@keyframes u_fm3{0%{opacity:0;transform:scale(.8)}10.4%{opacity:0;transform:scale(.8)}12.4%{opacity:1;transform:none}17%{opacity:1;transform:none}21%{opacity:0;transform:translate(159px,-44px) scale(.2)}100%{opacity:0;transform:translate(159px,-44px) scale(.2)}}
+@keyframes u_fm4{0%{opacity:0;transform:scale(.8)}11.2%{opacity:0;transform:scale(.8)}13.2%{opacity:1;transform:none}17%{opacity:1;transform:none}21%{opacity:0;transform:translate(28px,-20px) scale(.2)}100%{opacity:0;transform:translate(28px,-20px) scale(.2)}}
+@keyframes u_fm5{0%{opacity:0;transform:scale(.8)}12.0%{opacity:0;transform:scale(.8)}14.0%{opacity:1;transform:none}17%{opacity:1;transform:none}21%{opacity:0;transform:translate(-130px,-31px) scale(.2)}100%{opacity:0;transform:translate(-130px,-31px) scale(.2)}}
+@keyframes u_badge{0%{opacity:0}12%{opacity:0}14%{opacity:1}17%{opacity:1}20%{opacity:0}100%{opacity:0}}
+@keyframes u_ttl1{0%{opacity:1}20%{opacity:1}22%{opacity:0}100%{opacity:0}}
+@keyframes u_ttl2{0%{opacity:0}21%{opacity:0}23%{opacity:1}96%{opacity:1}100%{opacity:0}}
+@keyframes u_fld{0%{opacity:0;transform:translate(0px,10px)}23%{opacity:0;transform:translate(0px,10px)}26%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_tg0{0%{opacity:0;transform:translate(0px,6px)}25.5%{opacity:0;transform:translate(0px,6px)}28.5%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_tg1{0%{opacity:0;transform:translate(0px,6px)}27%{opacity:0;transform:translate(0px,6px)}30%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_cb2{0%,28%{stroke-dashoffset:40;opacity:0}28.3%{opacity:1}30%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes u_db2{0%,28%{offset-distance:0%;opacity:0}28.5%{opacity:1}30%{offset-distance:100%;opacity:1}31%,100%{offset-distance:100%;opacity:0}}
+@keyframes u_B2{0%{opacity:0;transform:translate(-14px,0px)}29%{opacity:0;transform:translate(-14px,0px)}32%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_fe{0%{opacity:0;transform:translate(0px,10px)}32%{opacity:0;transform:translate(0px,10px)}35%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_be{0%{opacity:0;transform:translate(0px,10px)}34%{opacity:0;transform:translate(0px,10px)}37%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_lk{0%{opacity:0;transform:translate(0px,0px)}40%{opacity:0;transform:translate(0px,0px)}43%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_dl{0%,40%{offset-distance:0%;opacity:0}40.5%{opacity:1}42.5%{offset-distance:100%;opacity:1}43.5%,100%{offset-distance:100%;opacity:0}}
+@keyframes u_Pa{0%{opacity:0;transform:translate(0px,8px)}41%{opacity:0;transform:translate(0px,8px)}44%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_Pav{0%{fill:#EEF6EF;stroke:#9CC7A6}84%{fill:#EEF6EF;stroke:#9CC7A6}86%{fill:#E2F3E6;stroke:#1A6B3C}96%{fill:#E2F3E6;stroke:#1A6B3C}100%{fill:#EEF6EF;stroke:#9CC7A6}}
+@keyframes u_Pak{0%{opacity:0;transform:scale(.4)}85%{opacity:0;transform:scale(.4)}86.5%{opacity:1;transform:scale(1.15)}87.5%{opacity:1;transform:scale(1)}96%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@keyframes u_ct1{0%,44%{stroke-dashoffset:40;opacity:0}44.3%{opacity:1}46%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes u_dt1{0%,44%{offset-distance:0%;opacity:0}44.5%{opacity:1}46%{offset-distance:100%;opacity:1}47%,100%{offset-distance:100%;opacity:0}}
+@keyframes u_T1{0%{opacity:0;transform:translate(-14px,0px)}45%{opacity:0;transform:translate(-14px,0px)}48%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_pv0{0%{opacity:0;transform:translate(-8px,0px)}47.0%{opacity:0;transform:translate(-8px,0px)}50.0%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_pl0{0%,48.0%{stroke-dashoffset:90;opacity:0}48.3%{opacity:1}50.0%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes u_pv1{0%{opacity:0;transform:translate(-8px,0px)}48.2%{opacity:0;transform:translate(-8px,0px)}51.2%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_pl1{0%,49.2%{stroke-dashoffset:90;opacity:0}49.5%{opacity:1}51.2%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes u_pv2{0%{opacity:0;transform:translate(-8px,0px)}49.4%{opacity:0;transform:translate(-8px,0px)}52.4%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_pl2{0%,50.4%{stroke-dashoffset:90;opacity:0}50.699999999999996%{opacity:1}52.4%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes u_pv3{0%{opacity:0;transform:translate(-8px,0px)}50.6%{opacity:0;transform:translate(-8px,0px)}53.6%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_pl3{0%,51.6%{stroke-dashoffset:90;opacity:0}51.9%{opacity:1}53.6%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes u_sc0{0%{opacity:0;transform:translate(0px,0px)}54%{opacity:0;transform:translate(0px,0px)}57%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_sc1{0%{opacity:0;transform:translate(0px,0px)}56%{opacity:0;transform:translate(0px,0px)}59%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_sc2{0%{opacity:0;transform:translate(0px,0px)}58%{opacity:0;transform:translate(0px,0px)}61%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_sc3{0%{opacity:0;transform:translate(0px,0px)}60%{opacity:0;transform:translate(0px,0px)}63%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_sj{0%{opacity:0;transform:translate(0px,0px)}62%{opacity:0;transform:translate(0px,0px)}65%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_ct2{0%,63%{stroke-dashoffset:40;opacity:0}63.3%{opacity:1}65%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes u_dt2{0%,63%{offset-distance:0%;opacity:0}63.5%{opacity:1}65%{offset-distance:100%;opacity:1}66%,100%{offset-distance:100%;opacity:0}}
+@keyframes u_T2{0%{opacity:0;transform:translate(-14px,0px)}64%{opacity:0;transform:translate(-14px,0px)}67%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_Rf{0%{fill:#FBFAF6;stroke:#CFCBC0}81%{fill:#FBFAF6;stroke:#CFCBC0}83%{fill:#EEF7F0;stroke:#1A6B3C}96%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes u_Rh{0%{opacity:0}81%{opacity:0}84%{opacity:.4}96%{opacity:.4}100%{opacity:0}}
+@keyframes u_di0{0%{opacity:0;transform:translate(-8px,0px)}66.0%{opacity:0;transform:translate(-8px,0px)}69.0%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_sp0{0%,67.0%{stroke-dashoffset:320;opacity:0}67.3%{opacity:1}70.0%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes u_dk0{0%{opacity:0;transform:scale(.4)}69.5%{opacity:0;transform:scale(.4)}71.0%{opacity:1;transform:scale(1.15)}72.0%{opacity:1;transform:scale(1)}96%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@keyframes u_di1{0%{opacity:0;transform:translate(-8px,0px)}69.5%{opacity:0;transform:translate(-8px,0px)}72.5%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_sp1{0%,70.5%{stroke-dashoffset:320;opacity:0}70.8%{opacity:1}73.5%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes u_dk1{0%{opacity:0;transform:scale(.4)}73.0%{opacity:0;transform:scale(.4)}74.5%{opacity:1;transform:scale(1.15)}75.5%{opacity:1;transform:scale(1)}96%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@keyframes u_di2{0%{opacity:0;transform:translate(-8px,0px)}73.0%{opacity:0;transform:translate(-8px,0px)}76.0%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_sp2{0%,74.0%{stroke-dashoffset:320;opacity:0}74.3%{opacity:1}77.0%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes u_dk2{0%{opacity:0;transform:scale(.4)}76.5%{opacity:0;transform:scale(.4)}78.0%{opacity:1;transform:scale(1.15)}79.0%{opacity:1;transform:scale(1)}96%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@keyframes u_di3{0%{opacity:0;transform:translate(-8px,0px)}76.5%{opacity:0;transform:translate(-8px,0px)}79.5%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes u_sp3{0%,77.5%{stroke-dashoffset:320;opacity:0}77.8%{opacity:1}80.5%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes u_dk3{0%{opacity:0;transform:scale(.4)}80.0%{opacity:0;transform:scale(.4)}81.5%{opacity:1;transform:scale(1.15)}82.5%{opacity:1;transform:scale(1)}96%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.uda *{animation:none!important}.uda [class^="fm"],.uda .badge,.uda .ttl1,.uda [class^="d"]{opacity:0}}
+
+.bf *{transform-box:fill-box;transform-origin:center;}
+.bf .ln{fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.bf .Pa{animation:b_Pa 12s infinite;}
+.bf .av{animation:b_av 12s infinite;}
+.bf .pck{animation:b_pck 12s infinite;}
+.bf .c1{stroke-dasharray:40;animation:b_c1 12s infinite;}
+.bf .d1{animation:b_d1 12s infinite;}
+.bf .M{animation:b_M 12s infinite;}
+.bf .t1{animation:b_t1 12s infinite;}
+.bf .t2{animation:b_t2 12s infinite;}
+.bf .pn0{animation:b_pn0 12s infinite;}
+.bf .pn1{animation:b_pn1 12s infinite;}
+.bf .pn2{animation:b_pn2 12s infinite;}
+.bf .tpr{animation:b_tpr 12s infinite;}
+.bf .tpt{animation:b_tpt 12s infinite;}
+.bf .tp{animation:b_tp 12s infinite;}
+.bf .rep{animation:b_rep 12s infinite;}
+.bf .nd0{animation:b_nd0 12s infinite;}
+.bf .nd1{animation:b_nd1 12s infinite;}
+.bf .rk4{animation:b_rk4 12s infinite;}
+.bf .ab4{animation:b_ab4 12s infinite;}
+.bf .nd2{animation:b_nd2 12s infinite;}
+.bf .rk1{animation:b_rk1 12s infinite;}
+.bf .ab1{animation:b_ab1 12s infinite;}
+.bf .nd3{animation:b_nd3 12s infinite;}
+.bf .nd4{animation:b_nd4 12s infinite;}
+.bf .rk5{animation:b_rk5 12s infinite;}
+.bf .ab5{animation:b_ab5 12s infinite;}
+.bf .nd5{animation:b_nd5 12s infinite;}
+.bf .rk2{animation:b_rk2 12s infinite;}
+.bf .ab2{animation:b_ab2 12s infinite;}
+.bf .nd6{animation:b_nd6 12s infinite;}
+.bf .rk3{animation:b_rk3 12s infinite;}
+.bf .ab3{animation:b_ab3 12s infinite;}
+.bf .nd7{animation:b_nd7 12s infinite;}
+.bf .top5{animation:b_top5 12s infinite;}
+.bf .pkh{animation:b_pkh 12s infinite;}
+.bf .sel{animation:b_sel 12s infinite;}
+.bf .c2{stroke-dasharray:330;animation:b_c2 12s infinite;}
+.bf .d2{animation:b_d2 12s infinite;}
+.bf .R{animation:b_R 12s infinite;}
+.bf .Rf{animation:b_Rf 12s infinite;}
+.bf .Rh{animation:b_Rh 12s infinite;}
+.bf .hb0{animation:b_hb0 12s infinite;transform-origin:center bottom;}
+.bf .hb1{animation:b_hb1 12s infinite;transform-origin:center bottom;}
+.bf .hb2{animation:b_hb2 12s infinite;transform-origin:center bottom;}
+.bf .hb3{animation:b_hb3 12s infinite;transform-origin:center bottom;}
+.bf .hb4{animation:b_hb4 12s infinite;transform-origin:center bottom;}
+.bf .hb5{animation:b_hb5 12s infinite;transform-origin:center bottom;}
+.bf .hb6{animation:b_hb6 12s infinite;transform-origin:center bottom;}
+.bf .hb7{animation:b_hb7 12s infinite;transform-origin:center bottom;}
+.bf .hb8{animation:b_hb8 12s infinite;transform-origin:center bottom;}
+.bf .hb9{animation:b_hb9 12s infinite;transform-origin:center bottom;}
+.bf .hb10{animation:b_hb10 12s infinite;transform-origin:center bottom;}
+.bf .hb11{animation:b_hb11 12s infinite;transform-origin:center bottom;}
+.bf .hb12{animation:b_hb12 12s infinite;transform-origin:center bottom;}
+.bf .hb13{animation:b_hb13 12s infinite;transform-origin:center bottom;}
+.bf .why{animation:b_why 12s infinite;}
+.bf .cs0{animation:b_cs0 12s infinite;transform-origin:left center;}
+.bf .lp0{animation:b_lp0 12s infinite;}
+.bf .cs1{animation:b_cs1 12s infinite;transform-origin:left center;}
+.bf .cs2{animation:b_cs2 12s infinite;transform-origin:left center;}
+.bf .lp2{animation:b_lp2 12s infinite;}
+.bf .cs3{animation:b_cs3 12s infinite;transform-origin:left center;}
+.bf .mc{animation:b_mc 12s infinite;}
+.bf .NX{animation:b_NX 12s infinite;}
+@keyframes b_Pa{0%{opacity:0;transform:translate(0px,8px)}1%{opacity:0;transform:translate(0px,8px)}4%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes b_av{0%{fill:#EEF6EF;stroke:#9CC7A6}75%{fill:#EEF6EF;stroke:#9CC7A6}77%{fill:#E2F3E6;stroke:#1A6B3C}96%{fill:#E2F3E6;stroke:#1A6B3C}100%{fill:#EEF6EF;stroke:#9CC7A6}}
+@keyframes b_pck{0%{opacity:0;transform:scale(.4)}76%{opacity:0;transform:scale(.4)}77.5%{opacity:1;transform:scale(1.15)}78.5%{opacity:1;transform:scale(1)}96%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@keyframes b_c1{0%,8%{stroke-dashoffset:40;opacity:0}8.3%{opacity:1}10%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes b_d1{0%,8%{offset-distance:0%;opacity:0}8.5%{opacity:1}10%{offset-distance:100%;opacity:1}11%,100%{offset-distance:100%;opacity:0}}
+@keyframes b_M{0%{opacity:0;transform:translate(-14px,0px)}10%{opacity:0;transform:translate(-14px,0px)}13%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes b_t1{0%{opacity:1}30%{opacity:1}32%{opacity:0}100%{opacity:0}}
+@keyframes b_t2{0%{opacity:0}31%{opacity:0}33%{opacity:1}96%{opacity:1}100%{opacity:0}}
+@keyframes b_pn0{0%{opacity:0;transform:translateY(8px)}13.0%{opacity:0;transform:translateY(8px)}15.0%{opacity:1;transform:none}29%{opacity:1;transform:none}32%{opacity:0;transform:translateY(-8px)}100%{opacity:0;transform:translateY(-8px)}}
+@keyframes b_pn1{0%{opacity:0;transform:translateY(8px)}14.2%{opacity:0;transform:translateY(8px)}16.2%{opacity:1;transform:none}29%{opacity:1;transform:none}32%{opacity:0;transform:translateY(-8px)}100%{opacity:0;transform:translateY(-8px)}}
+@keyframes b_pn2{0%{opacity:0;transform:translateY(8px)}15.4%{opacity:0;transform:translateY(8px)}17.4%{opacity:1;transform:none}29%{opacity:1;transform:none}32%{opacity:0;transform:translateY(-8px)}100%{opacity:0;transform:translateY(-8px)}}
+@keyframes b_tpr{0%{fill:#FBFAF6;stroke:#CFCBC0}26%{fill:#FBFAF6;stroke:#CFCBC0}28%{fill:#EEF7F0;stroke:#1A6B3C}96%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes b_tpt{0%{fill:#8A877E}26%{fill:#8A877E}28%{fill:#124D2B}96%{fill:#124D2B}100%{fill:#8A877E}}
+@keyframes b_tp{0%{opacity:0;transform:translate(0px,-6px)}22%{opacity:0;transform:translate(0px,-6px)}25%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes b_rep{0%{opacity:0;transform:translate(0px,10px)}33%{opacity:0;transform:translate(0px,10px)}36%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes b_nd0{0%{opacity:0;transform:translate(0px,0px)}33.0%{opacity:0;transform:translate(0px,0px)}36.0%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes b_nd1{0%{opacity:0;transform:translate(0px,0px)}33.6%{opacity:0;transform:translate(0px,0px)}36.6%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes b_rk4{0%{fill:#FBFAF6;stroke:#CFCBC0}45.6%{fill:#FBFAF6;stroke:#CFCBC0}47.1%{fill:#FBEEE7;stroke:#E7A889}96%{fill:#FBEEE7;stroke:#E7A889}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes b_ab4{0%{fill:#E5E2D9}45.6%{fill:#E5E2D9}47.1%{fill:#E7A889}96%{fill:#E7A889}100%{fill:#E5E2D9}}
+@keyframes b_nd2{0%{opacity:0;transform:translate(0px,0px)}34.2%{opacity:0;transform:translate(0px,0px)}37.2%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes b_rk1{0%{fill:#FBFAF6;stroke:#CFCBC0}42.0%{fill:#FBFAF6;stroke:#CFCBC0}43.5%{fill:#F6D3C2;stroke:#C2410C}96%{fill:#F6D3C2;stroke:#C2410C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes b_ab1{0%{fill:#E5E2D9}42.0%{fill:#E5E2D9}43.5%{fill:#C2410C}96%{fill:#C2410C}100%{fill:#E5E2D9}}
+@keyframes b_nd3{0%{opacity:0;transform:translate(0px,0px)}34.8%{opacity:0;transform:translate(0px,0px)}37.8%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes b_nd4{0%{opacity:0;transform:translate(0px,0px)}35.4%{opacity:0;transform:translate(0px,0px)}38.4%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes b_rk5{0%{fill:#FBFAF6;stroke:#CFCBC0}46.8%{fill:#FBFAF6;stroke:#CFCBC0}48.3%{fill:#FCF4EF;stroke:#EEC4AE}96%{fill:#FCF4EF;stroke:#EEC4AE}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes b_ab5{0%{fill:#E5E2D9}46.8%{fill:#E5E2D9}48.3%{fill:#EEC4AE}96%{fill:#EEC4AE}100%{fill:#E5E2D9}}
+@keyframes b_nd5{0%{opacity:0;transform:translate(0px,0px)}36.0%{opacity:0;transform:translate(0px,0px)}39.0%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes b_rk2{0%{fill:#FBFAF6;stroke:#CFCBC0}43.2%{fill:#FBFAF6;stroke:#CFCBC0}44.7%{fill:#F8DDD0;stroke:#D2643A}96%{fill:#F8DDD0;stroke:#D2643A}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes b_ab2{0%{fill:#E5E2D9}43.2%{fill:#E5E2D9}44.7%{fill:#D2643A}96%{fill:#D2643A}100%{fill:#E5E2D9}}
+@keyframes b_nd6{0%{opacity:0;transform:translate(0px,0px)}36.6%{opacity:0;transform:translate(0px,0px)}39.6%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes b_rk3{0%{fill:#FBFAF6;stroke:#CFCBC0}44.4%{fill:#FBFAF6;stroke:#CFCBC0}45.9%{fill:#FAE6DC;stroke:#DE8661}96%{fill:#FAE6DC;stroke:#DE8661}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes b_ab3{0%{fill:#E5E2D9}44.4%{fill:#E5E2D9}45.9%{fill:#DE8661}96%{fill:#DE8661}100%{fill:#E5E2D9}}
+@keyframes b_nd7{0%{opacity:0;transform:translate(0px,0px)}37.2%{opacity:0;transform:translate(0px,0px)}40.2%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes b_top5{0%{opacity:0;transform:translate(0px,-6px)}41%{opacity:0;transform:translate(0px,-6px)}44%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes b_pkh{0%{opacity:0}47%{opacity:0}50%{opacity:.55}96%{opacity:.55}100%{opacity:0}}
+@keyframes b_sel{0%{opacity:0;transform:scale(1.4)}51%{opacity:0;transform:scale(1.4)}53%{opacity:1;transform:scale(1)}96%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@keyframes b_c2{0%,55%{stroke-dashoffset:330;opacity:0}55.3%{opacity:1}57%,96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes b_d2{0%,55%{offset-distance:0%;opacity:0}55.5%{opacity:1}57%{offset-distance:100%;opacity:1}58%,100%{offset-distance:100%;opacity:0}}
+@keyframes b_R{0%{opacity:0;transform:translate(-14px,0px)}57%{opacity:0;transform:translate(-14px,0px)}60%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes b_Rf{0%{fill:#FBFAF6;stroke:#CFCBC0}73%{fill:#FBFAF6;stroke:#CFCBC0}75%{fill:#EEF7F0;stroke:#1A6B3C}96%{fill:#EEF7F0;stroke:#1A6B3C}100%{fill:#FBFAF6;stroke:#CFCBC0}}
+@keyframes b_Rh{0%{opacity:0}73%{opacity:0}76%{opacity:.4}96%{opacity:.4}100%{opacity:0}}
+@keyframes b_hb0{0%,59.0%{transform:scaleY(0);opacity:1}61.0%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes b_hb1{0%,59.4%{transform:scaleY(0);opacity:1}61.4%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes b_hb2{0%,59.8%{transform:scaleY(0);opacity:1}61.8%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes b_hb3{0%,60.2%{transform:scaleY(0);opacity:1}62.2%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes b_hb4{0%,60.6%{transform:scaleY(0);opacity:1}62.6%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes b_hb5{0%,61.0%{transform:scaleY(0);opacity:1}63.0%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes b_hb6{0%,61.4%{transform:scaleY(0);opacity:1}63.4%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes b_hb7{0%,61.8%{transform:scaleY(0);opacity:1}63.8%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes b_hb8{0%,62.2%{transform:scaleY(0);opacity:1}64.2%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes b_hb9{0%,62.6%{transform:scaleY(0);opacity:1}64.6%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes b_hb10{0%,63.0%{transform:scaleY(0);opacity:1}65.0%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes b_hb11{0%,63.4%{transform:scaleY(0);opacity:1}65.4%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes b_hb12{0%,63.8%{transform:scaleY(0);opacity:1}65.8%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes b_hb13{0%,64.2%{transform:scaleY(0);opacity:1}66.2%,96%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes b_why{0%{opacity:0;transform:translate(0px,-6px)}66%{opacity:0;transform:translate(0px,-6px)}69%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes b_cs0{0%,67.0%{transform:scaleX(0);opacity:1}69.5%,96%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+@keyframes b_lp0{0%,70.0%{opacity:0}72.0%,96%{opacity:1}100%{opacity:0}}
+@keyframes b_cs1{0%,68.3%{transform:scaleX(0);opacity:1}70.8%,96%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+@keyframes b_cs2{0%,69.6%{transform:scaleX(0);opacity:1}72.1%,96%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+@keyframes b_lp2{0%,72.6%{opacity:0}74.6%,96%{opacity:1}100%{opacity:0}}
+@keyframes b_cs3{0%,70.9%{transform:scaleX(0);opacity:1}73.4%,96%{transform:scaleX(1);opacity:1}100%{transform:scaleX(1);opacity:0}}
+@keyframes b_mc{0%{opacity:0;transform:translate(0px,0px)}79%{opacity:0;transform:translate(0px,0px)}82%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@keyframes b_NX{0%{opacity:0;transform:translate(0px,-10px)}81%{opacity:0;transform:translate(0px,-10px)}84%{opacity:1;transform:none}96%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+@media (prefers-reduced-motion:reduce){.bf *{animation:none!important}.bf [class^="pn"],.bf .t1,.bf .its,.bf [class^="d"]{opacity:0}}
 </style>
 </head>
 <body>
@@ -1443,57 +1993,103 @@ requestAnimationFrame(f);})();
 ════════════════════════════════════════════════════════════════ -->
 <section class="slide">
 <div class="body">
-  <div style="flex:1;display:flex;">
+  <div class="oc">
+    <div class="oc-story">
+      <h1 class="oc-title">Outcome</h1>
+      <div class="oc-art anim"><svg class="udo" viewBox="0 0 1310 560" role="img" aria-label="An alert leads to the metrics report, filters narrow down where the problem is, that links to root cause analysis, and a fix comes next." font-family="Plus Jakarta Sans, system-ui, sans-serif">
+  <defs>
+    <filter id="udo-g" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="udo-gb" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
 
-    <!-- Left: metrics -->
-    <div style="flex:0 0 55%;display:flex;flex-direction:column;justify-content:center;padding:48px 40px 48px 72px;gap:20px;border-right:1px solid var(--line);">
-      <div class="kicker g">One month after GA</div>
-      <!-- 4 stat tiles -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-          <div style="font-size:2rem;font-weight:900;color:var(--g);line-height:1;">120+</div>
-          <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">weekly active users</div>
-        </div>
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-          <div style="font-size:2rem;font-weight:900;color:var(--ink);line-height:1;">2</div>
-          <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">Metrics Reports Supported</div>
-        </div>
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-          <div style="font-size:2rem;font-weight:900;color:var(--ink);line-height:1;">4</div>
-          <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">Alert Templates In Progress</div>
-        </div>
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-          <div style="font-size:2rem;font-weight:900;color:var(--ink);line-height:1;">3</div>
-          <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">Milestones Defined</div>
+  <!-- 1 · alert -->
+  <g class="A">
+    <rect x="20" y="226" width="220" height="108" rx="18" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <g transform="translate(76 280)">
+      <circle class="ring" r="34" fill="none" stroke="#C2410C" stroke-width="3"/>
+      <circle class="warm" r="30" fill="#FBEFE9" stroke="#E7B9A3" stroke-width="2"/>
+      <circle class="cool" r="30" fill="#EEF6EF" stroke="#9CC7A6" stroke-width="2"/>
+      <g class="bellg">
+        <path class="ln" d="M-12 6 v-8 a12 12 0 0 1 24 0 v8 l4 5 h-32 z" stroke="#124D2B" stroke-width="3"/>
+        <path class="ln" d="M-4 14 a4 4 0 0 0 8 0" stroke="#124D2B" stroke-width="3"/>
+      </g>
+      <circle class="warm" cx="15" cy="-15" r="7" fill="#C2410C" filter="url(#udo-g)"/>
+    </g>
+    <text x="124" y="291" font-size="30" font-weight="800" fill="#2B2B28">Alert</text>
+  </g>
+
+  <!-- connector alert -> metrics -->
+  <path class="ln c1" d="M240 280 H296" stroke="#1A6B3C" stroke-width="4"/>
+  <circle class="d1" r="8" fill="#1A6B3C" filter="url(#udo-g)" style="offset-path:path('M240 280 H296')"/>
+
+  <!-- 2 · metrics report -->
+  <g class="M">
+    <rect x="296" y="60" width="560" height="440" rx="22" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <text x="332" y="114" font-size="21" font-weight="700" letter-spacing="3.5" fill="#8A877E">METRICS REPORT</text>
+    <g class="p1"><rect x="332" y="136" width="126" height="38" rx="19" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.5"/><text x="395" y="161" text-anchor="middle" font-size="18" font-weight="700" fill="#8A877E">source</text></g>
+    <g class="p2"><rect x="470" y="136" width="100" height="38" rx="19" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.5"/><text x="520" y="161" text-anchor="middle" font-size="18" font-weight="700" fill="#8A877E">host</text></g>
+    <path class="ln" d="M332 214 V460 H820" stroke="#E5E2D9" stroke-width="3"/>
+    <g class="grey">
+      <polyline class="ln" points="332,404 402,394 472,410 542,388 612,402 682,384 752,398 820,386" stroke="#CFCBC0" stroke-width="4"/>
+      <polyline class="ln" points="332,364 402,376 472,356 542,372 612,354 682,368 752,350 820,362" stroke="#CFCBC0" stroke-width="4"/>
+      <polyline class="ln" points="332,434 402,426 472,440 542,424 612,436 682,422 752,432 820,420" stroke="#CFCBC0" stroke-width="4"/>
+    </g>
+    <polyline class="ln spike" points="332,420 402,412 472,424 542,410 612,416 690,412 726,236 762,416 820,408" stroke="#1A6B3C" stroke-width="5"/>
+  </g>
+  <!-- where: node on the peak -->
+  <g transform="translate(726 236)">
+    <g class="node"><circle r="24" fill="#E2F3E6" stroke="#1A6B3C" stroke-width="3"/>
+    <circle r="7" fill="#1A6B3C"/></g>
+  </g>
+
+  <!-- connector peak -> root cause -->
+  <path class="ln c2" d="M750 236 C840 236 840 190 930 190" stroke="#D6D2C7" stroke-width="4"/>
+  <circle class="d2" r="8" fill="#1A6B3C" filter="url(#udo-g)" style="offset-path:path('M750 236 C840 236 840 190 930 190')"/>
+
+  <!-- 3 · root cause analysis -->
+  <g class="R">
+    <rect class="halo" x="930" y="134" width="360" height="112" rx="18" fill="#5FD07A" filter="url(#udo-gb)" opacity="0"/>
+    <rect class="f" x="930" y="134" width="360" height="112" rx="18" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <circle cx="986" cy="190" r="30" fill="#EEF6EF" stroke="#9CC7A6" stroke-width="2"/>
+    <circle cx="986" cy="190" r="14" fill="none" stroke="#124D2B" stroke-width="3"/>
+    <circle cx="986" cy="190" r="4.5" fill="#124D2B"/>
+    <path class="ln" d="M986 168v7M986 205v7M964 190h7M1001 190h7" stroke="#124D2B" stroke-width="3"/>
+    <text x="1032" y="184" font-size="28" font-weight="800" fill="#2B2B28">Root cause</text>
+    <text x="1032" y="216" font-size="20" font-weight="600" fill="#6C6A62">analysis</text>
+  </g>
+
+  <!-- dotted line -> fix -->
+  <path class="ln c3" d="M1110 246 V326" stroke="#B0ADA4" stroke-width="3.5" stroke-dasharray="2 12"/>
+
+  <!-- 4 · fix (next) -->
+  <g class="F">
+    <rect x="930" y="326" width="360" height="112" rx="18" fill="none" stroke="#B0ADA4" stroke-width="2.5" stroke-dasharray="8 8"/>
+    <circle cx="986" cy="382" r="30" fill="#F8F6F1" stroke="#CFCBC0" stroke-width="2"/>
+    <path class="ln" d="M995 368a10 10 0 0 0-12 13l-12 12a4 4 0 0 0 6 6l12-12a10 10 0 0 0 13-12l-6 6-5-1-1-5z" stroke="#6C6A62" stroke-width="2.6"/>
+    <text x="1032" y="376" font-size="28" font-weight="800" fill="#6C6A62">Fixing</text>
+    <text x="1032" y="408" font-size="20" font-weight="600" fill="#8A877E">next</text>
+  </g>
+</svg></div>
+      <div class="oc-cap">Admins track pipeline health with ready-made metrics reports, instead of a map they would never use daily.</div>
+    </div>
+    <div class="oc-results">
+      <div class="oc-block">
+        <div class="kicker">Shipped</div>
+        <div class="oc-deliver">2 metrics reports with 4 alert types monitored.</div>
+      </div>
+      <div class="oc-block">
+        <div class="kicker">Results</div>
+        <div class="oc-tiles">
+          <div class="oc-tile adoption"><div class="oc-type"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><path d="M16 4.8a3.2 3.2 0 0 1 0 6.4M18 13.8c1.8.6 3 2.4 3 5.2"/></svg>Adoption</div><div class="oc-val">120+</div><div class="oc-lbl">Weekly active users</div></div>
+          <div class="oc-tile velocity"><div class="oc-type"><svg viewBox="0 0 24 24"><path d="M4.5 17a8 8 0 1 1 15 0"/><path d="M12 13l4-4"/><circle cx="12" cy="13" r="1.2"/></svg>Velocity</div><div class="oc-val">3 mo</div><div class="oc-lbl">To ship, vs. 6+ est.</div></div>
+          <div class="oc-tile vision"><div class="oc-type"><svg viewBox="0 0 24 24"><path d="M21 3 3 10.5l7 2.5 2.5 7z"/><path d="M21 3 10 13"/></svg>Vision</div><div class="oc-val">2027</div><div class="oc-lbl">Toward troubleshooting</div></div>
         </div>
       </div>
-      <!-- Speed comparison -->
-      <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 24px;display:flex;align-items:center;">
-        <div style="flex:1;">
-          <div style="font-size:.84rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:5px;">Shipped in</div>
-          <div style="display:flex;align-items:baseline;gap:7px;">
-            <span style="font-size:1.8rem;font-weight:900;color:var(--g);">3</span>
-            <span style="font-size:1rem;font-weight:700;color:var(--g);">months</span>
-          </div>
-        </div>
-        <div style="font-size:1.0rem;font-weight:700;color:var(--dim);padding:0 20px;">vs.</div>
-        <div style="flex:1;">
-          <div style="font-size:.84rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:5px;">Topology would have taken</div>
-          <div style="display:flex;align-items:baseline;gap:7px;">
-            <span style="font-size:1.8rem;font-weight:900;color:var(--sub);">6+</span>
-            <span style="font-size:1rem;font-weight:700;color:var(--sub);">months</span>
-            <span style="font-size:.84rem;font-weight:700;color:var(--dim);">(estimate)</span>
-          </div>
-        </div>
+      <div class="oc-learn">
+        <div class="kicker">Key Learning</div>
+        <h1>Don't fall in love with a vision before validating whether users actually need it.</h1>
       </div>
     </div>
-
-    <!-- Right: reflection -->
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:48px 72px 48px 52px;gap:20px;">
-      <div class="kicker">Key Learning</div>
-      <h1 style="font-size:3rem;line-height:1.1;">Don't fall in love with a vision before validating whether users actually need it.</h1>
-    </div>
-
   </div>
 </div>
 </section>
@@ -1510,7 +2106,7 @@ requestAnimationFrame(f);})();
       <span class="pc-pill">0 to 1</span>
     </div>
     <div class="pc-title">Guided Onboarding</div>
-    <div class="pc-sub">Cutting time-to-value from months to days with AI-guided setup.</div>
+    <div class="pc-sub">Tackling a 45+ day time-to-value problem with AI-guided setup.</div>
     <div class="pc-drove">
       <div class="pc-collabel">What I drove</div>
       <ul class="pc-drove-list">
@@ -1522,7 +2118,7 @@ requestAnimationFrame(f);})();
     <div class="pc-meta3 sm">
       <div class="pc-col">
         <div class="pc-collabel">Overview</div>
-        <div class="pc-colnote">Delivered end-to-end · Shipped mid-2026</div>
+        <div class="pc-colnote">Delivered end-to-end · M2 shipped Q3 2026</div>
       </div>
       <div class="pc-col">
         <div class="pc-collabel">My Role</div>
@@ -2418,31 +3014,157 @@ window.p21Step = function(dir){
 ════════════════════════════════════════════════════════════════ -->
 <section class="slide">
 <div class="body">
-  <div style="flex:1;display:flex;">
-    <div style="flex:0 0 52%;display:flex;flex-direction:column;justify-content:center;padding:48px 40px 48px 72px;gap:20px;border-right:1px solid var(--line);">
-      <div class="kicker g">Step 06 · Outcome</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-          <div style="font-size:1.9rem;font-weight:900;color:var(--g);line-height:1;">.conf</div>
-          <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">Vision demoed, positive feedback</div>
-        </div>
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-          <div style="font-size:1.9rem;font-weight:900;color:var(--ink);line-height:1;">15</div>
-          <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">Customers in prototype testing</div>
-        </div>
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;"><div style="font-size:1.3rem;font-weight:900;color:var(--g);line-height:1;">M2</div><div style="font-size:.82rem;font-weight:700;background:var(--g);color:#fff;border-radius:20px;padding:2px 8px;">Launched ✓</div></div>
-          <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">Intent-guided setup · sample data upload · Q3 2026</div>
-        </div>
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-          <div style="font-size:1.3rem;font-weight:900;color:var(--ink);line-height:1;">M3</div>
-          <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">In-app configuration + status · 2027</div>
+  <div class="oc">
+    <div class="oc-story">
+      <h1 class="oc-title">Outcome</h1>
+      <div class="oc-art anim"><svg class="go" viewBox="0 0 1310 560" role="img" aria-label="Priya, a Splunk admin, wants security logs. A messy pile of setup options snaps into three structured lanes, her intent lights up the real-time lane, the setup guide checks off, and data starts flowing." font-family="Plus Jakarta Sans, system-ui, sans-serif">
+  <defs>
+    <filter id="go-g" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="go-gb" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+
+  <!-- 1 · Priya + her intent -->
+  <g class="I">
+    <rect x="20" y="196" width="220" height="168" rx="18" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <g transform="translate(70 250)">
+      <circle class="ipulse" r="34" fill="none" stroke="#1A6B3C" stroke-width="3"/>
+      <circle class="av" r="30" fill="#EEF6EF" stroke="#9CC7A6" stroke-width="2"/>
+      <circle cx="0" cy="-7" r="8" fill="none" stroke="#124D2B" stroke-width="3"/>
+      <path class="ln" d="M-14 15c2-9 8-13 14-13s12 4 14 13" stroke="#124D2B" stroke-width="3"/>
+      <g transform="translate(22 -22)"><g class="pck"><circle r="11" fill="#1A6B3C" stroke="#FBFAF6" stroke-width="3"/><path class="ln" d="M-5 0l3.5 3.5 6-7" stroke="#FFFFFF" stroke-width="2.6"/></g></g>
+    </g>
+    <text x="114" y="245" font-size="27" font-weight="800" fill="#2B2B28">Priya</text>
+    <text x="114" y="272" font-size="17" font-weight="600" fill="#6C6A62">Splunk admin</text>
+    <rect x="44" y="306" width="172" height="34" rx="17" fill="#EEF7F0" stroke="#1A6B3C" stroke-width="2"/>
+    <text x="130" y="329" text-anchor="middle" font-size="16" font-weight="700" fill="#124D2B">wants security logs</text>
+  </g>
+
+  <path class="ln c1" d="M240 280 H296" stroke="#1A6B3C" stroke-width="4"/>
+  <circle class="d1" r="8" fill="#1A6B3C" filter="url(#go-g)" style="offset-path:path('M240 280 H296')"/>
+
+  <!-- 2 · infrastructure map: messy, then structured -->
+  <g class="M">
+    <rect x="296" y="60" width="560" height="440" rx="22" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <text x="332" y="114" font-size="21" font-weight="700" letter-spacing="3.5" fill="#8A877E">INFRASTRUCTURE MAP</text>
+    <g class="tp"><rect x="332" y="136" width="140" height="38" rx="19" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.5"/><text x="402" y="161" text-anchor="middle" font-size="18" font-weight="700" fill="#8A877E">template</text></g>
+
+    <g class="hd" font-size="13" font-weight="700" letter-spacing="2" fill="#8A877E" text-anchor="middle">
+      <text x="470" y="226">USE CASE</text><text x="598" y="226">MOVE</text><text x="700" y="226">TRANSFORM</text>
+    </g>
+
+    <!-- tangle (messy state) -->
+    <g class="tg">
+      <path class="ln" d="M392 350 C470 200 520 420 610 300 S700 180 640 420 S520 260 760 330" stroke="#D6D2C7" stroke-width="2.5"/>
+      <path class="ln" d="M392 350 C430 470 560 160 660 260 S780 460 700 230" stroke="#D6D2C7" stroke-width="2.5"/>
+      <path class="ln" d="M776 350 C700 250 520 470 470 300 S600 140 560 380" stroke="#D6D2C7" stroke-width="2.5"/>
+    </g>
+
+    <!-- structured lanes -->
+    <path class="ln ge" d="M392 350 C404 350 402 270 414 270 M526 270 H576 M620 270 H678 M722 270 C750 270 748 350 776 350" stroke="#CFCBC0" stroke-width="3"/>
+    <path class="ln ge" d="M392 350 C404 350 402 350 414 350 M526 350 H576 M620 350 H678 M722 350 C750 350 748 350 776 350" stroke="#CFCBC0" stroke-width="3"/>
+    <path class="ln ge" d="M392 350 C404 350 402 430 414 430 M526 430 H576 M620 430 H678 M722 430 C750 430 748 350 776 350" stroke="#CFCBC0" stroke-width="3"/>
+    <path class="ln hl" d="M392 350 C404 350 402 270 414 270 M526 270 H576 M620 270 H678 M722 270 C750 270 748 350 776 350" stroke="#1A6B3C" stroke-width="4"/>
+    <g class="flow">
+      <g class="raw">
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="#B0ADA4" style="offset-path:path('M392 350 C404 350 402 270 414 270 L678 270')"/>
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="#B0ADA4" style="offset-path:path('M392 350 C404 350 402 270 414 270 L678 270')"/>
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="#B0ADA4" style="offset-path:path('M392 350 C404 350 402 270 414 270 L678 270')"/>
+      </g>
+      <g class="proc">
+        <circle r="6.5" fill="#1A6B3C" filter="url(#go-g)" style="offset-path:path('M722 270 C750 270 748 350 776 350')"/>
+        <circle r="6.5" fill="#1A6B3C" filter="url(#go-g)" style="offset-path:path('M722 270 C750 270 748 350 776 350')"/>
+      </g>
+    </g>
+    <g class="sn lp" style="--dx:180px;--dy:130px;--r:-14deg"><rect x="414" y="253" width="112" height="34" rx="17" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.5"/><text x="470" y="276" text-anchor="middle" font-size="16" font-weight="700" fill="#6C6A62">Real-time</text></g>
+    <g class="sn" style="--dx:-120px;--dy:150px;--r:18deg"><circle class="nr2" cx="598" cy="270" r="22" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.5"/><path class="ln" d="M588 270h18m-6-6 6 6-6 6" stroke="#124D2B" stroke-width="2.6"/></g>
+    <g class="sn" style="--dx:-60px;--dy:60px;--r:-10deg"><circle class="nr3" cx="700" cy="270" r="22" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.5"/><path class="ln" d="M690 265h20l-4-4M710 275h-20l4 4" stroke="#124D2B" stroke-width="2.6"/></g>
+    <g class="sn" style="--dx:60px;--dy:-110px;--r:12deg"><rect x="414" y="333" width="112" height="34" rx="17" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.5"/><text x="470" y="356" text-anchor="middle" font-size="16" font-weight="700" fill="#6C6A62">Historical</text></g>
+    <g class="sn" style="--dx:90px;--dy:80px;--r:-16deg"><circle cx="598" cy="350" r="22" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.5"/><path class="ln" d="M588 350h18m-6-6 6 6-6 6" stroke="#124D2B" stroke-width="2.6"/></g>
+    <g class="sn" style="--dx:-200px;--dy:-40px;--r:22deg"><circle cx="700" cy="350" r="22" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.5"/><path class="ln" d="M690 345h20l-4-4M710 355h-20l4 4" stroke="#124D2B" stroke-width="2.6"/></g>
+    <g class="sn" style="--dx:230px;--dy:-140px;--r:-20deg"><rect x="414" y="413" width="112" height="34" rx="17" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.5"/><text x="470" y="436" text-anchor="middle" font-size="16" font-weight="700" fill="#6C6A62">Compliance</text></g>
+    <g class="sn" style="--dx:-150px;--dy:-160px;--r:10deg"><circle cx="598" cy="430" r="22" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.5"/><path class="ln" d="M588 430h18m-6-6 6 6-6 6" stroke="#124D2B" stroke-width="2.6"/></g>
+    <g class="sn" style="--dx:40px;--dy:-200px;--r:14deg"><circle cx="700" cy="430" r="22" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.5"/><path class="ln" d="M690 425h20l-4-4M710 435h-20l4 4" stroke="#124D2B" stroke-width="2.6"/></g>
+
+    <!-- source and destination -->
+    <circle class="nr1" cx="362" cy="350" r="30" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <path class="ln" d="M347 360h28a9 9 0 0 0 1-18 13 13 0 0 0-25-3 8 8 0 0 0-4 21z" stroke="#124D2B" stroke-width="2.6"/>
+    <circle class="nr4" cx="806" cy="350" r="30" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <g><ellipse cx="806" cy="340" rx="13" ry="4.5" fill="none" stroke="#124D2B" stroke-width="2.6"/><path class="ln" d="M793 340v20c0 2.5 6 4.5 13 4.5s13-2 13-4.5v-20M793 350c0 2.5 6 4.5 13 4.5s13-2 13-4.5" stroke="#124D2B" stroke-width="2.6"/></g>
+    <text x="362" y="402" text-anchor="middle" font-size="16" font-weight="700" fill="#6C6A62">AWS</text>
+    <text x="806" y="402" text-anchor="middle" font-size="16" font-weight="700" fill="#6C6A62">Splunk</text>
+    <!-- step badges: tie each map node to its setup step -->
+    <g class="bd" font-size="13" font-weight="800" text-anchor="middle">
+      <g transform="translate(386 326)"><circle class="b1" r="12" fill="#FBFAF6" stroke="#1A6B3C" stroke-width="2"/><text class="t1" y="4.5" fill="#124D2B">1</text></g>
+      <g transform="translate(618 248)"><circle class="b2" r="12" fill="#FBFAF6" stroke="#1A6B3C" stroke-width="2"/><text class="t2" y="4.5" fill="#124D2B">2</text></g>
+      <g transform="translate(720 248)"><circle class="b3" r="12" fill="#FBFAF6" stroke="#1A6B3C" stroke-width="2"/><text class="t3" y="4.5" fill="#124D2B">3</text></g>
+      <g transform="translate(830 326)"><circle class="b4" r="12" fill="#FBFAF6" stroke="#1A6B3C" stroke-width="2"/><text class="t4" y="4.5" fill="#124D2B">4</text></g>
+    </g>
+
+  </g>
+
+  <path class="ln c2" d="M856 280 C893 280 893 218 930 218" stroke="#1A6B3C" stroke-width="4"/>
+  <circle class="d2" r="8" fill="#1A6B3C" filter="url(#go-g)" style="offset-path:path('M856 280 C893 280 893 218 930 218')"/>
+
+  <!-- 3 · setup guide for the chosen lane -->
+  <g class="G">
+    <rect class="halo" x="930" y="100" width="360" height="236" rx="18" fill="#5FD07A" filter="url(#go-gb)" opacity="0"/>
+    <rect class="f" x="930" y="100" width="360" height="236" rx="18" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <text x="958" y="144" font-size="19" font-weight="700" letter-spacing="3" fill="#8A877E">SETUP GUIDE</text>
+    <g class="r1">
+      <circle cx="970" cy="182" r="14" fill="#FBFAF6" stroke="#1A6B3C" stroke-width="2"/>
+      <text x="970" y="187" text-anchor="middle" font-size="14" font-weight="800" fill="#124D2B">1</text>
+      <g class="on"><circle cx="970" cy="182" r="14" fill="#1A6B3C"/><path class="ln" d="M963 183l5 5 9-10" stroke="#FFFFFF" stroke-width="3"/></g>
+      <rect x="998" y="176" width="200" height="12" rx="6" fill="#E5E2D9"/>
+    </g>
+    <g class="r2">
+      <circle cx="970" cy="222" r="14" fill="#FBFAF6" stroke="#1A6B3C" stroke-width="2"/>
+      <text x="970" y="227" text-anchor="middle" font-size="14" font-weight="800" fill="#124D2B">2</text>
+      <g class="on"><circle cx="970" cy="222" r="14" fill="#1A6B3C"/><path class="ln" d="M963 223l5 5 9-10" stroke="#FFFFFF" stroke-width="3"/></g>
+      <rect x="998" y="216" width="160" height="12" rx="6" fill="#E5E2D9"/>
+    </g>
+    <g class="r3">
+      <circle cx="970" cy="262" r="14" fill="#FBFAF6" stroke="#1A6B3C" stroke-width="2"/>
+      <text x="970" y="267" text-anchor="middle" font-size="14" font-weight="800" fill="#124D2B">3</text>
+      <g class="on"><circle cx="970" cy="262" r="14" fill="#1A6B3C"/><path class="ln" d="M963 263l5 5 9-10" stroke="#FFFFFF" stroke-width="3"/></g>
+      <rect x="998" y="256" width="220" height="12" rx="6" fill="#E5E2D9"/>
+    </g>
+    <g class="r4">
+      <circle cx="970" cy="302" r="14" fill="#FBFAF6" stroke="#1A6B3C" stroke-width="2"/>
+      <text x="970" y="307" text-anchor="middle" font-size="14" font-weight="800" fill="#124D2B">4</text>
+      <g class="on"><circle cx="970" cy="302" r="14" fill="#1A6B3C"/><path class="ln" d="M963 303l5 5 9-10" stroke="#FFFFFF" stroke-width="3"/></g>
+      <rect x="998" y="296" width="140" height="12" rx="6" fill="#E5E2D9"/>
+    </g>
+  </g>
+
+  <!-- dotted line -> monitor (next) -->
+  <path class="ln mc" d="M1110 336 V380" stroke="#B0ADA4" stroke-width="3.5" stroke-dasharray="2 12"/>
+  <g class="MO">
+    <rect x="930" y="380" width="360" height="112" rx="18" fill="none" stroke="#B0ADA4" stroke-width="2.5" stroke-dasharray="8 8"/>
+    <circle cx="986" cy="436" r="30" fill="#F8F6F1" stroke="#CFCBC0" stroke-width="2"/>
+    <path class="ln" d="M968 438h8l5-12 8 22 5-10h8" stroke="#6C6A62" stroke-width="2.6"/>
+    <text x="1032" y="430" font-size="28" font-weight="800" fill="#6C6A62">Monitor</text>
+    <text x="1032" y="462" font-size="20" font-weight="600" fill="#8A877E">data journey</text>
+  </g>
+</svg></div>
+      <div class="oc-cap">Priya gets guided setup in-app, instead of bouncing between docs and waiting on Solution Engineering.</div>
+    </div>
+    <div class="oc-results">
+      <div class="oc-block">
+        <div class="kicker">Shipped</div>
+        <div class="oc-deliver">An infrastructure map generator with a setup guide, built from the user&#39;s intent and a starting template.</div>
+      </div>
+      <div class="oc-block">
+        <div class="kicker">Results</div>
+        <div class="oc-tiles">
+          <div class="oc-tile satisfaction"><div class="oc-type"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.5A4 4 0 0 1 12 8a4 4 0 0 1 7 2.5C19 15.6 12 20 12 20z"/></svg>Satisfaction</div><div class="oc-val">15</div><div class="oc-lbl">Tested, V2 won</div></div>
+          <div class="oc-tile launched"><div class="oc-type"><svg viewBox="0 0 24 24"><path d="M5 15c-1.5 1.3-2 4-2 4s2.7-.5 4-2c.8-.9.7-2.2-.1-2.9-.8-.7-1.9-.6-1.9.9z"/><path d="M9 15l-3-3c1.2-3.3 3.4-6.2 6.5-8 2-1.1 4.3-1.3 6.5-1 .3 2.2.1 4.5-1 6.5-1.8 3.1-4.7 5.3-8 6.5z"/><path d="M9 12H5l2-4h4M12 15v4l4-2v-4"/></svg>Launched</div><div class="oc-val">Q3 '26</div><div class="oc-lbl">M2 guided setup</div></div>
+          <div class="oc-tile vision"><div class="oc-type"><svg viewBox="0 0 24 24"><path d="M21 3 3 10.5l7 2.5 2.5 7z"/><path d="M21 3 10 13"/></svg>Vision</div><div class="oc-val">2027</div><div class="oc-lbl">In-app config + status</div></div>
         </div>
       </div>
-    </div>
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:48px 72px 48px 52px;gap:20px;">
-      <div class="kicker">Key Learning</div>
-      <h1 style="font-size:3rem;line-height:1.1;">Designing an AI product means starting from the output you want — then working backward to the prompt.</h1>
+      <div class="oc-learn">
+        <div class="kicker">Key Learning</div>
+        <h1>Designing an AI product means starting from the output you want, then working backward to the prompt.</h1>
+      </div>
     </div>
   </div>
 </div>
@@ -3509,41 +4231,123 @@ window.p21Step = function(dir){
 ════════════════════════════════════════════════════════════════ -->
 <section class="slide">
 <div class="body">
-  <div style="flex:1;display:flex;">
-    <!-- Left: metrics + playbook -->
-    <div style="flex:0 0 52%;display:flex;flex-direction:column;justify-content:center;padding:48px 40px 48px 72px;gap:16px;border-right:1px solid var(--line);">
-      <div class="kicker g">Step 05 · Outcome</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-          <div style="font-size:1.6rem;font-weight:900;color:var(--g);line-height:1;">Positive</div>
-          <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">Feedback from .conf 2025</div>
-        </div>
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-          <div style="font-size:1rem;font-weight:900;color:var(--ink);line-height:1.2;">Auto Field Extraction Shipped</div>
-          <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">Technical field coverage · Q1 2026</div>
-        </div>
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;"><div style="font-size:1.6rem;font-weight:900;color:var(--g);line-height:1;">Q2</div><div style="font-size:.82rem;font-weight:700;background:var(--g);color:#fff;border-radius:20px;padding:2px 8px;">Launched ✓</div></div>
-          <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">GA · Use case coverage model</div>
-        </div>
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-          <div style="font-size:1rem;font-weight:900;color:var(--ink);line-height:1.2;">Roadmap</div>
-          <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">Monitoring &amp; troubleshooting revamped</div>
-        </div>
-      </div>
-      <!-- Playbook: future vision -->
-      <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-        <div style="font-size:.82rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:6px;">Future Vision</div>
-        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
-          <span style="font-size:1.4rem;font-weight:900;color:var(--ink);line-height:1;">Playbook</span>
-          <span style="font-size:.96rem;color:var(--sub);line-height:1.4;">standardized, automated response to reduce errors and speed up recovery</span>
-        </div>
-      </div>
+  <div class="oc">
+    <div class="oc-story">
+      <h1 class="oc-title">Outcome</h1>
+      <div class="oc-art anim"><svg class="hitl" viewBox="0 0 1310 560" role="img" aria-label="One admin, two workflows, the same human-in-the-loop pattern. Processing: AI scans raw sample data, groups it into data models, and suggests fields and extraction rules that the admin approves. Root cause analysis: an alert comes in, AI states the root cause with its audit history, then offers recommendations; the admin picks one, sees detailed steps, and marks it solved." font-family="Plus Jakarta Sans, system-ui, sans-serif">
+  <defs>
+    <filter id="hitl-g" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="hitl-gb" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+  <g class="P">
+    <rect x="20" y="206" width="220" height="168" rx="18" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <g transform="translate(70 260)">
+      <circle class="av" r="30" fill="#EEF6EF" stroke="#9CC7A6" stroke-width="2"/>
+      <circle cx="0" cy="-7" r="8" fill="none" stroke="#124D2B" stroke-width="3"/>
+      <path class="ln" d="M-14 15c2-9 8-13 14-13s12 4 14 13" stroke="#124D2B" stroke-width="3"/>
+      <g transform="translate(22 -22)"><g class="pck"><circle r="11" fill="#1A6B3C" stroke="#FBFAF6" stroke-width="3"/><path class="ln" d="M-5 0l3.5 3.5 6-7" stroke="#FFFFFF" stroke-width="2.6"/></g></g>
+    </g>
+    <text x="114" y="255" font-size="27" font-weight="800" fill="#2B2B28">Admin</text>
+    <text x="114" y="282" font-size="17" font-weight="600" fill="#6C6A62">Splunk admin</text>
+    <rect x="44" y="316" width="172" height="34" rx="17" fill="#EEF7F0" stroke="#1A6B3C" stroke-width="2"/>
+    <text x="130" y="339" text-anchor="middle" font-size="16" font-weight="700" fill="#124D2B">reviews AI output</text>
+  </g>
+  <path class="ln bt" d="M240 270 C270 270 270 136 300 136" stroke="#1A6B3C" stroke-width="4"/>
+  <path class="ln bb" d="M240 310 C270 310 270 400 300 400" stroke="#1A6B3C" stroke-width="4"/>
+  <text class="lt" x="300" y="34" font-size="15" font-weight="800" letter-spacing="3" fill="#1A6B3C">PROCESSING</text>
+  <text class="lb" x="300" y="270" font-size="15" font-weight="800" letter-spacing="3" fill="#1A6B3C">ROOT CAUSE ANALYSIS</text>
+  <g class="t1">
+      <rect class="t1f" x="300" y="50" width="440" height="172" rx="18" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+      <text x="324" y="84" font-size="15" font-weight="700" letter-spacing="2.5" fill="#8A877E">SAMPLE DATA</text>
+      <g class="row" style="--dx:-96px;--dy:54px"><rect x="430" y="99" width="60" height="10" rx="5" fill="#E5E2D9"/><rect class="tk0" x="500" y="99" width="90" height="10" rx="5" fill="#E5E2D9" stroke="#E5E2D9" stroke-width="2"/><rect x="600" y="99" width="46" height="10" rx="5" fill="#E5E2D9"/></g><g class="row" style="--dx:-60px;--dy:-16px"><rect class="tk1" x="430" y="115" width="84" height="10" rx="5" fill="#E5E2D9" stroke="#E5E2D9" stroke-width="2"/><rect x="524" y="115" width="40" height="10" rx="5" fill="#E5E2D9"/><rect x="574" y="115" width="100" height="10" rx="5" fill="#E5E2D9"/></g><g class="row" style="--dx:-110px;--dy:52px"><rect x="430" y="137" width="50" height="10" rx="5" fill="#E5E2D9"/><rect x="490" y="137" width="76" height="10" rx="5" fill="#E5E2D9"/><rect class="tk2" x="576" y="137" width="60" height="10" rx="5" fill="#E5E2D9" stroke="#E5E2D9" stroke-width="2"/></g><g class="row" style="--dx:-40px;--dy:-36px"><rect x="430" y="153" width="96" height="10" rx="5" fill="#E5E2D9"/><rect class="tk3" x="536" y="153" width="56" height="10" rx="5" fill="#E5E2D9" stroke="#E5E2D9" stroke-width="2"/><rect x="602" y="153" width="70" height="10" rx="5" fill="#E5E2D9"/></g><g class="row" style="--dx:-80px;--dy:-40px"><rect class="tk4" x="430" y="175" width="70" height="10" rx="5" fill="#E5E2D9" stroke="#E5E2D9" stroke-width="2"/><rect x="510" y="175" width="50" height="10" rx="5" fill="#E5E2D9"/><rect x="570" y="175" width="90" height="10" rx="5" fill="#E5E2D9"/></g><g class="row" style="--dx:-120px;--dy:-20px"><rect x="430" y="191" width="56" height="10" rx="5" fill="#E5E2D9"/><rect x="496" y="191" width="88" height="10" rx="5" fill="#E5E2D9"/><rect class="tk5" x="594" y="191" width="64" height="10" rx="5" fill="#E5E2D9" stroke="#E5E2D9" stroke-width="2"/></g>
+      <g class="mc"><rect class="ch0" x="322" y="100" width="94" height="24" rx="12" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2"/><text class="cht0" x="369" y="117" text-anchor="middle" font-size="14" font-weight="700" fill="#6C6A62">Network</text><rect class="ch1" x="322" y="138" width="94" height="24" rx="12" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2"/><text class="cht1" x="369" y="155" text-anchor="middle" font-size="14" font-weight="700" fill="#6C6A62">Auth</text><rect class="ch2" x="322" y="176" width="94" height="24" rx="12" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2"/><text class="cht2" x="369" y="193" text-anchor="middle" font-size="14" font-weight="700" fill="#6C6A62">Web</text></g>
+      <rect class="beam" x="318" y="92" width="404" height="5" rx="2.5" fill="#1A6B3C" filter="url(#hitl-g)" opacity="0"/>
+  </g>
+  <path class="ln ct1" d="M740 136 H780" stroke="#1A6B3C" stroke-width="4"/>
+  <circle class="dt1" r="7" fill="#1A6B3C" filter="url(#hitl-g)" style="offset-path:path('M740 136 H780')"/>
+  <g class="t2">
+      <rect class="t2h" x="780" y="50" width="510" height="172" rx="18" fill="#5FD07A" filter="url(#hitl-gb)" opacity="0"/><rect class="t2f" x="780" y="50" width="510" height="172" rx="18" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+      <text x="804" y="84" font-size="15" font-weight="700" letter-spacing="2.5" fill="#8A877E">FIELDS + RULES</text>
+      <g class="f0"><rect class="fb0" x="804" y="105" width="92" height="26" rx="13" fill="#FBFAF6" stroke="#B0ADA4" stroke-width="2" stroke-dasharray="5 5"/>
+        <text x="850" y="123" text-anchor="middle" font-size="14" font-weight="700" fill="#2B2B28">src_ip</text>
+        <text x="924" y="124" text-anchor="middle" font-size="16" font-weight="800" fill="#8A877E">{ }</text>
+        <rect x="950" y="113" width="220" height="10" rx="5" fill="#E5E2D9"/>
+        <circle cx="1262" cy="118" r="11" fill="none" stroke="#CFCBC0" stroke-width="2" stroke-dasharray="4 4"/><g transform="translate(1262 118)"><g class="ok0"><circle r="11" fill="#1A6B3C"/><path class="ln" d="M-5.5 .5l4 4 7.5-8.5" stroke="#FFFFFF" stroke-width="2.8"/></g></g></g><g class="f1"><rect class="fb1" x="804" y="139" width="92" height="26" rx="13" fill="#FBFAF6" stroke="#B0ADA4" stroke-width="2" stroke-dasharray="5 5"/>
+        <text x="850" y="157" text-anchor="middle" font-size="14" font-weight="700" fill="#2B2B28">user</text>
+        <text x="924" y="158" text-anchor="middle" font-size="16" font-weight="800" fill="#8A877E">{ }</text>
+        <rect x="950" y="147" width="170" height="10" rx="5" fill="#E5E2D9"/>
+        <circle cx="1262" cy="152" r="11" fill="none" stroke="#CFCBC0" stroke-width="2" stroke-dasharray="4 4"/><g transform="translate(1262 152)"><g class="ok1"><circle r="11" fill="#1A6B3C"/><path class="ln" d="M-5.5 .5l4 4 7.5-8.5" stroke="#FFFFFF" stroke-width="2.8"/></g></g></g><g class="f2"><rect class="fb2" x="804" y="173" width="92" height="26" rx="13" fill="#FBFAF6" stroke="#B0ADA4" stroke-width="2" stroke-dasharray="5 5"/>
+        <text x="850" y="191" text-anchor="middle" font-size="14" font-weight="700" fill="#2B2B28">action</text>
+        <text x="924" y="192" text-anchor="middle" font-size="16" font-weight="800" fill="#8A877E">{ }</text>
+        <rect x="950" y="181" width="250" height="10" rx="5" fill="#E5E2D9"/>
+        <circle cx="1262" cy="186" r="11" fill="none" stroke="#CFCBC0" stroke-width="2" stroke-dasharray="4 4"/><g transform="translate(1262 186)"><g class="ok2"><circle r="11" fill="#1A6B3C"/><path class="ln" d="M-5.5 .5l4 4 7.5-8.5" stroke="#FFFFFF" stroke-width="2.8"/></g></g></g>
+  </g>
+  <g class="a1">
+      <rect x="300" y="346" width="210" height="108" rx="18" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+      <g transform="translate(354 400)">
+        <circle class="ring" r="32" fill="none" stroke="#C2410C" stroke-width="3"/>
+        <circle class="warm" r="28" fill="#FBEFE9" stroke="#E7B9A3" stroke-width="2"/>
+        <circle class="cool" r="28" fill="#EEF6EF" stroke="#9CC7A6" stroke-width="2" opacity="0"/>
+        <g class="bell"><path class="ln" d="M-11 6v-8a11 11 0 0 1 22 0v8l4 5h-30z" stroke="#124D2B" stroke-width="2.8"/><path class="ln" d="M-4 13a4 4 0 0 0 8 0" stroke="#124D2B" stroke-width="2.8"/></g>
+        <circle class="warm" cx="14" cy="-14" r="6.5" fill="#C2410C" filter="url(#hitl-g)"/>
+      </g>
+      <text x="396" y="396" font-size="24" font-weight="800" fill="#2B2B28">Alert</text>
+      <rect x="396" y="410" width="88" height="10" rx="5" fill="#E5E2D9"/>
+  </g>
+  <path class="ln cb1" d="M510 400 H550" stroke="#1A6B3C" stroke-width="4"/>
+  <circle class="db1" r="7" fill="#1A6B3C" filter="url(#hitl-g)" style="offset-path:path('M510 400 H550')"/>
+  <g class="b2">
+      <rect class="glow" x="550" y="286" width="350" height="260" rx="18" fill="#5FD07A" filter="url(#hitl-gb)" opacity="0"/>
+      <rect class="b2f" x="550" y="286" width="350" height="260" rx="18" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+      <text x="574" y="320" font-size="15" font-weight="700" letter-spacing="2.5" fill="#8A877E">ROOT CAUSE</text>
+      <circle cx="604" cy="360" r="26" fill="#EEF6EF" stroke="#9CC7A6" stroke-width="2"/>
+      <circle cx="604" cy="360" r="12" fill="none" stroke="#124D2B" stroke-width="2.6"/><circle cx="604" cy="360" r="3.8" fill="#124D2B"/>
+      <path class="ln" d="M604 341v5M604 374v5M585 360h5M618 360h5" stroke="#124D2B" stroke-width="2.6"/>
+      <text x="644" y="356" font-size="22" font-weight="800" fill="#2B2B28">Conclusion</text>
+      <rect x="644" y="368" width="180" height="10" rx="5" fill="#E5E2D9"/>
+      <line x1="574" y1="402" x2="876" y2="402" stroke="#E5E2D9" stroke-width="2"/>
+      <text x="574" y="428" font-size="13" font-weight="700" letter-spacing="2.2" fill="#8A877E">AUDIT HISTORY</text>
+      <path class="ln" d="M590 448V508" stroke="#CFCBC0" stroke-width="2.5"/>
+      <circle class="sd0" cx="590" cy="448" r="7" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.5"/><rect class="sb0" x="610" y="443" width="200" height="10" rx="5" fill="#E5E2D9"/><circle class="sd1" cx="590" cy="478" r="7" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.5"/><rect class="sb1" x="610" y="473" width="150" height="10" rx="5" fill="#E5E2D9"/><circle class="sd2" cx="590" cy="508" r="7" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.5"/><rect class="sb2" x="610" y="503" width="230" height="10" rx="5" fill="#E5E2D9"/>
+  </g>
+  <path class="ln cb2" d="M900 400 H940" stroke="#1A6B3C" stroke-width="4"/>
+  <circle class="db2" r="7" fill="#1A6B3C" filter="url(#hitl-g)" style="offset-path:path('M900 400 H940')"/>
+  <g class="b3">
+      <rect class="b3f" x="940" y="286" width="350" height="260" rx="18" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+      <text x="964" y="320" font-size="15" font-weight="700" letter-spacing="2.5" fill="#8A877E">RECOMMENDATIONS</text>
+      <g class="o0"><rect class="or0" x="962" y="326" width="306" height="32" rx="16" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2"/>
+        <circle class="on0" cx="984" cy="342" r="11" fill="#FBFAF6" stroke="#1A6B3C" stroke-width="2"/><text class="nt0" x="984" y="346.5" text-anchor="middle" font-size="13" font-weight="800" fill="#124D2B">1</text>
+        <rect x="1006" y="337" width="200" height="10" rx="5" fill="#E5E2D9"/></g><g class="o1"><rect x="962" y="366" width="306" height="32" rx="16" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2"/>
+        <circle cx="984" cy="382" r="11" fill="#FBFAF6" stroke="#1A6B3C" stroke-width="2"/><text x="984" y="386.5" text-anchor="middle" font-size="13" font-weight="800" fill="#124D2B">2</text>
+        <rect x="1006" y="377" width="160" height="10" rx="5" fill="#E5E2D9"/></g>
+      <g class="dt"><path class="ln" d="M984 358V434" stroke="#9CC7A6" stroke-width="2"/><circle cx="992" cy="386" r="4" fill="#1A6B3C"/><rect x="1006" y="382" width="220" height="8" rx="4" fill="#CFE6D5"/><circle cx="992" cy="410" r="4" fill="#1A6B3C"/><rect x="1006" y="406" width="180" height="8" rx="4" fill="#CFE6D5"/><circle cx="992" cy="434" r="4" fill="#1A6B3C"/><rect x="1006" y="430" width="200" height="8" rx="4" fill="#CFE6D5"/></g>
+      <g class="btn">
+        <rect class="sv" x="962" y="470" width="140" height="34" rx="17" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2"/>
+        <text class="svt" x="1032" y="492" text-anchor="middle" font-size="15" font-weight="800" fill="#2B2B28">Solved</text>
+        <rect x="1114" y="470" width="140" height="34" rx="17" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2"/>
+        <text x="1184" y="492" text-anchor="middle" font-size="15" font-weight="700" fill="#6C6A62">Not yet</text>
+      </g>
+  </g>
+</svg></div>
+      <div class="oc-cap">Admins review AI-suggested field mappings and decide, instead of hand-writing regex.</div>
     </div>
-    <!-- Right: key learning -->
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:48px 72px 48px 52px;gap:20px;">
-      <div class="kicker">Key Learning</div>
-      <h1 style="font-size:3rem;line-height:1.1;">Start with the end-to-end story, not the individual feature.</h1>
+    <div class="oc-results">
+      <div class="oc-block">
+        <div class="kicker">Shipped</div>
+        <div class="oc-deliver">Multi data model selection, showing detected fields and auto-extraction rules for each.</div>
+      </div>
+      <div class="oc-block">
+        <div class="kicker">Results</div>
+        <div class="oc-tiles">
+          <div class="oc-tile launched"><div class="oc-type"><svg viewBox="0 0 24 24"><path d="M5 15c-1.5 1.3-2 4-2 4s2.7-.5 4-2c.8-.9.7-2.2-.1-2.9-.8-.7-1.9-.6-1.9.9z"/><path d="M9 15l-3-3c1.2-3.3 3.4-6.2 6.5-8 2-1.1 4.3-1.3 6.5-1 .3 2.2.1 4.5-1 6.5-1.8 3.1-4.7 5.3-8 6.5z"/><path d="M9 12H5l2-4h4M12 15v4l4-2v-4"/></svg>Launched</div><div class="oc-val">Q1 '26</div><div class="oc-lbl">Auto Field Extraction</div></div>
+          <div class="oc-tile launched"><div class="oc-type"><svg viewBox="0 0 24 24"><path d="M5 15c-1.5 1.3-2 4-2 4s2.7-.5 4-2c.8-.9.7-2.2-.1-2.9-.8-.7-1.9-.6-1.9.9z"/><path d="M9 15l-3-3c1.2-3.3 3.4-6.2 6.5-8 2-1.1 4.3-1.3 6.5-1 .3 2.2.1 4.5-1 6.5-1.8 3.1-4.7 5.3-8 6.5z"/><path d="M9 12H5l2-4h4M12 15v4l4-2v-4"/></svg>Launched</div><div class="oc-val">Q2 '26</div><div class="oc-lbl">Use case coverage GA</div></div>
+          <div class="oc-tile vision"><div class="oc-type"><svg viewBox="0 0 24 24"><path d="M21 3 3 10.5l7 2.5 2.5 7z"/><path d="M21 3 10 13"/></svg>Vision</div><div class="oc-val">2026</div><div class="oc-lbl">Ideation for troubleshooting</div></div>
+        </div>
+      </div>
+      <div class="oc-learn">
+        <div class="kicker">Key Learning</div>
+        <h1>Start with the end-to-end story, not the individual feature.</h1>
+      </div>
     </div>
   </div>
 </div>
@@ -4425,48 +5229,135 @@ function incReset(){
 ════════════════════════════════════════════════════════════════ -->
 <section class="slide">
 <div class="body">
-  <div style="flex:1;display:flex;">
-
-    <!-- Left: kicker + stat tiles + velocity tile -->
-    <div style="flex:0 0 55%;display:flex;flex-direction:column;justify-content:center;padding:48px 40px 48px 72px;gap:20px;border-right:1px solid var(--line);">
-      <div class="kicker g">Step 04 · Deliverable</div>
-      <!-- 3 stat tiles -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 18px;">
-          <div style="font-size:2rem;font-weight:900;color:var(--g);line-height:1;">400+</div>
-          <div style="font-size:.82rem;color:var(--sub);margin-top:5px;">Customers with 1+ active data input</div>
-        </div>
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 18px;">
-          <div style="font-size:2rem;font-weight:900;color:var(--ink);line-height:1;">13 min</div>
-          <div style="font-size:.82rem;color:var(--sub);margin-top:5px;">Avg. time to successful data input creation</div>
-          <div style="font-size:.76rem;font-weight:700;color:var(--dim);margin-top:4px;">vs. &gt;1 day to weeks before</div>
-        </div>
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 18px;">
-          <div style="font-size:2rem;font-weight:900;color:var(--ink);line-height:1;">61%</div>
-          <div style="font-size:.82rem;color:var(--sub);margin-top:5px;">Daily active data ingestion pipelines</div>
+  <div class="oc">
+    <div class="oc-story">
+      <h1 class="oc-title">Outcome</h1>
+      <div class="oc-art anim"><svg class="uda" viewBox="0 0 1310 560" role="img" aria-label="Two sides of consistency. The product team replaces 40+ connectors built in silos with one design-system field, so its content and style match in the front end and back end. That standard powers Data Manager, where AWS, Azure, GCP, and Palo Alto Networks all share one four-step journey, and data starts flowing for each." font-family="Plus Jakarta Sans, system-ui, sans-serif">
+  <defs>
+    <filter id="uda-g" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="uda-gb" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+  <g class="Pt">
+    <rect x="20" y="353" width="240" height="124" rx="18" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <g transform="translate(64 399)">
+      <circle class="Ptv" r="26" fill="#EEF6EF" stroke="#9CC7A6" stroke-width="2"/>
+      <circle cx="0" cy="-7" r="6" fill="none" stroke="#124D2B" stroke-width="2.4"/><path d="M-10 11c2-7 6-9 10-9s8 2 10 9" fill="none" stroke="#124D2B" stroke-width="2.4" stroke-linecap="round"/><circle cx="-12" cy="-2" r="4.5" fill="none" stroke="#124D2B" stroke-width="2"/><circle cx="12" cy="-2" r="4.5" fill="none" stroke="#124D2B" stroke-width="2"/>
+      <g transform="translate(19 -19)"><g class="Ptk"><circle r="10" fill="#1A6B3C" stroke="#FBFAF6" stroke-width="3"/><path d="M-4.5 0l3 3 5.5-6" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/></g></g>
+    </g>
+    <text x="102" y="405" font-size="22" font-weight="800" fill="#2B2B28">Product team</text>
+    <rect x="40" y="435" width="200" height="30" rx="15" fill="#EEF7F0" stroke="#1A6B3C" stroke-width="2"/>
+    <text x="140" y="455" text-anchor="middle" font-size="15" font-weight="700" fill="#124D2B">design + eng</text>
+  </g>
+  <path class="ln cb1" d="M260 415 H300" stroke="#1A6B3C" stroke-width="4"/>
+  <circle class="db1" r="7" fill="#1A6B3C" filter="url(#uda-g)" style="offset-path:path('M260 415 H300')"/>
+  <g class="B1">
+    <rect x="300" y="300" width="460" height="230" rx="20" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <text class="ttl1" x="326" y="336" font-size="17" font-weight="700" letter-spacing="3" fill="#8A877E">CONNECTORS</text>
+    <text class="ttl2" x="326" y="336" font-size="17" font-weight="700" letter-spacing="3" fill="#1A6B3C">DESIGN SYSTEM · ONE FIELD</text>
+    <g class="fm0"><rect x="326" y="350" width="120" height="70" rx="4" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2" stroke-dasharray="0"/><rect x="336" y="362" width="100" height="7" rx="3.5" fill="#E5E2D9"/><rect x="336" y="378" width="76" height="7" rx="3.5" fill="#E5E2D9"/><rect x="336" y="394" width="100" height="7" rx="3.5" fill="#E5E2D9"/></g><g class="fm1"><rect x="462" y="344" width="100" height="56" rx="10" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2" stroke-dasharray="6 4"/><rect x="470" y="352" width="33" height="10" rx="3" fill="#D6D2C7"/><circle cx="476" cy="374" r="4" fill="none" stroke="#CFCBC0" stroke-width="1.8"/><rect x="486" y="371" width="64" height="7" rx="3.5" fill="#E5E2D9"/><circle cx="476" cy="390" r="4" fill="none" stroke="#CFCBC0" stroke-width="1.8"/><rect x="486" y="387" width="64" height="7" rx="3.5" fill="#E5E2D9"/></g><g class="fm2"><rect x="578" y="352" width="150" height="50" rx="14" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2" stroke-dasharray="0"/><rect x="586" y="362" width="40" height="11" rx="3" fill="#E5E2D9"/><rect x="631" y="362" width="40" height="11" rx="3" fill="#E5E2D9"/><rect x="675" y="362" width="40" height="11" rx="3" fill="#E5E2D9"/><rect x="586" y="380" width="40" height="11" rx="3" fill="#E5E2D9"/><rect x="631" y="380" width="40" height="11" rx="3" fill="#E5E2D9"/><rect x="675" y="380" width="40" height="11" rx="3" fill="#E5E2D9"/></g><g class="fm3"><rect x="326" y="436" width="90" height="76" rx="4" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2" stroke-dasharray="0"/><rect x="334" y="444" width="30" height="10" rx="3" fill="#D6D2C7"/><circle cx="340" cy="466" r="4" fill="none" stroke="#CFCBC0" stroke-width="1.8"/><rect x="350" y="463" width="54" height="7" rx="3.5" fill="#E5E2D9"/><circle cx="340" cy="482" r="4" fill="none" stroke="#CFCBC0" stroke-width="1.8"/><rect x="350" y="479" width="54" height="7" rx="3.5" fill="#E5E2D9"/><circle cx="340" cy="498" r="4" fill="none" stroke="#CFCBC0" stroke-width="1.8"/><rect x="350" y="495" width="54" height="7" rx="3.5" fill="#E5E2D9"/></g><g class="fm4"><rect x="432" y="420" width="140" height="60" rx="10" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2" stroke-dasharray="6 4"/><rect x="440" y="430" width="36" height="11" rx="3" fill="#E5E2D9"/><rect x="481" y="430" width="36" height="11" rx="3" fill="#E5E2D9"/><rect x="523" y="430" width="36" height="11" rx="3" fill="#E5E2D9"/><rect x="440" y="448" width="36" height="11" rx="3" fill="#E5E2D9"/><rect x="481" y="448" width="36" height="11" rx="3" fill="#E5E2D9"/><rect x="523" y="448" width="36" height="11" rx="3" fill="#E5E2D9"/></g><g class="fm5"><rect x="590" y="416" width="140" height="90" rx="14" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2" stroke-dasharray="0"/><rect x="600" y="428" width="120" height="7" rx="3.5" fill="#E5E2D9"/><rect x="600" y="444" width="96" height="7" rx="3.5" fill="#E5E2D9"/><rect x="600" y="460" width="120" height="7" rx="3.5" fill="#E5E2D9"/><rect x="600" y="476" width="96" height="7" rx="3.5" fill="#E5E2D9"/></g>
+    <g class="badge"><rect x="616" y="316" width="124" height="28" rx="14" fill="#FBEFE9" stroke="#E7B9A3" stroke-width="2"/><text x="678" y="335" text-anchor="middle" font-size="14" font-weight="800" fill="#C2410C">40+ add-ons</text></g>
+    <g class="fld">
+      <rect x="326" y="360" width="408" height="112" rx="14" fill="#EEF7F0" stroke="#1A6B3C" stroke-width="2.5"/>
+      <text x="350" y="392" font-size="18" font-weight="800" fill="#2B2B28">Client ID</text>
+      <rect x="350" y="402" width="210" height="8" rx="4" fill="#9CC7A6"/>
+      <rect x="350" y="420" width="360" height="36" rx="8" fill="#FBFAF6" stroke="#9CC7A6" stroke-width="2"/>
+      <rect x="364" y="434" width="120" height="8" rx="4" fill="#CFE6D5"/>
+    </g>
+    <g class="tg0"><rect x="326" y="484" width="96" height="30" rx="15" fill="#FBFAF6" stroke="#1A6B3C" stroke-width="2"/><text x="374" y="504" text-anchor="middle" font-size="14" font-weight="800" fill="#124D2B">content</text></g>
+    <g class="tg1"><rect x="432" y="484" width="80" height="30" rx="15" fill="#FBFAF6" stroke="#1A6B3C" stroke-width="2"/><text x="472" y="504" text-anchor="middle" font-size="14" font-weight="800" fill="#124D2B">style</text></g>
+  </g>
+  <path class="ln cb2" d="M760 415 H800" stroke="#1A6B3C" stroke-width="4"/>
+  <circle class="db2" r="7" fill="#1A6B3C" filter="url(#uda-g)" style="offset-path:path('M760 415 H800')"/>
+  <g class="B2">
+    <rect x="800" y="300" width="490" height="230" rx="20" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <text x="826" y="336" font-size="17" font-weight="700" letter-spacing="3" fill="#8A877E">SAME FIELD EVERYWHERE</text>
+    <g class="fe">
+      <text x="826" y="374" font-size="13" font-weight="800" letter-spacing="2" fill="#8A877E">FRONT END</text>
+      <rect x="826" y="386" width="210" height="122" rx="12" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2"/>
+      <text x="844" y="414" font-size="15" font-weight="800" fill="#2B2B28">Client ID</text>
+      <rect x="844" y="422" width="120" height="7" rx="3.5" fill="#9CC7A6"/>
+      <rect x="844" y="438" width="174" height="28" rx="7" fill="#FBFAF6" stroke="#9CC7A6" stroke-width="2"/>
+      <rect x="844" y="478" width="110" height="7" rx="3.5" fill="#E5E2D9"/>
+    </g>
+    <g class="be">
+      <text x="1062" y="374" font-size="13" font-weight="800" letter-spacing="2" fill="#8A877E">BACK END</text>
+      <rect x="1062" y="386" width="208" height="122" rx="12" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2"/>
+      <text x="1078" y="416" font-size="15" font-weight="700" fill="#124D2B" font-family="ui-monospace, Menlo, monospace">client_id</text>
+      <text x="1078" y="440" font-size="14" font-weight="600" fill="#6C6A62" font-family="ui-monospace, Menlo, monospace">type: string</text>
+      <text x="1078" y="462" font-size="14" font-weight="600" fill="#6C6A62" font-family="ui-monospace, Menlo, monospace">required: true</text>
+      <rect x="1078" y="478" width="96" height="7" rx="3.5" fill="#E5E2D9"/>
+    </g>
+  </g>
+  <path class="ln lk" d="M530 300 V250" stroke="#1A6B3C" stroke-width="3.5" stroke-dasharray="2 10"/>
+  <circle class="dl" r="7" fill="#1A6B3C" filter="url(#uda-g)" style="offset-path:path('M530 300 V250')"/>
+  <g class="Pa">
+    <rect x="20" y="78" width="240" height="124" rx="18" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <g transform="translate(64 124)">
+      <circle class="Pav" r="26" fill="#EEF6EF" stroke="#9CC7A6" stroke-width="2"/>
+      <circle cx="0" cy="-6" r="7" fill="none" stroke="#124D2B" stroke-width="2.6"/><path d="M-12 13c2-8 7-11 12-11s10 3 12 11" fill="none" stroke="#124D2B" stroke-width="2.6" stroke-linecap="round"/>
+      <g transform="translate(19 -19)"><g class="Pak"><circle r="10" fill="#1A6B3C" stroke="#FBFAF6" stroke-width="3"/><path d="M-4.5 0l3 3 5.5-6" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/></g></g>
+    </g>
+    <text x="102" y="130" font-size="22" font-weight="800" fill="#2B2B28">Cloud admin</text>
+    <rect x="40" y="160" width="200" height="30" rx="15" fill="#EEF7F0" stroke="#1A6B3C" stroke-width="2"/>
+    <text x="140" y="180" text-anchor="middle" font-size="15" font-weight="700" fill="#124D2B">many clouds</text>
+  </g>
+  <path class="ln ct1" d="M260 140 H300" stroke="#1A6B3C" stroke-width="4"/>
+  <circle class="dt1" r="7" fill="#1A6B3C" filter="url(#uda-g)" style="offset-path:path('M260 140 H300')"/>
+  <g class="T1">
+    <rect x="300" y="30" width="460" height="220" rx="20" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <text x="326" y="58" font-size="17" font-weight="700" letter-spacing="3" fill="#8A877E">DATA MANAGER</text>
+    <g class="pv0"><rect x="320" y="68" width="84" height="28" rx="14" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2"/><text x="362" y="87" text-anchor="middle" font-size="14" font-weight="700" fill="#6C6A62">AWS</text></g>
+      <path class="ln pl0" d="M404 82 C432 82 432 150 458 150" stroke="#9CC7A6" stroke-width="2.5"/><g class="pv1"><rect x="320" y="108" width="84" height="28" rx="14" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2"/><text x="362" y="127" text-anchor="middle" font-size="14" font-weight="700" fill="#6C6A62">Azure</text></g>
+      <path class="ln pl1" d="M404 122 C432 122 432 150 458 150" stroke="#9CC7A6" stroke-width="2.5"/><g class="pv2"><rect x="320" y="148" width="84" height="28" rx="14" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2"/><text x="362" y="167" text-anchor="middle" font-size="14" font-weight="700" fill="#6C6A62">GCP</text></g>
+      <path class="ln pl2" d="M404 162 C432 162 432 150 458 150" stroke="#9CC7A6" stroke-width="2.5"/><g class="pv3"><rect x="320" y="188" width="84" height="28" rx="14" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2"/><text x="362" y="207" text-anchor="middle" font-size="14" font-weight="700" fill="#6C6A62">PANW</text></g>
+      <path class="ln pl3" d="M404 202 C432 202 432 150 458 150" stroke="#9CC7A6" stroke-width="2.5"/><path d="M474 150 H708" stroke="#CFCBC0" stroke-width="2.5"/><circle cx="474" cy="150" r="15" fill="#FBFAF6" stroke="#1A6B3C" stroke-width="2"/><text x="474" y="155" text-anchor="middle" font-size="13" font-weight="800" fill="#124D2B">1</text>
+      <g class="sc0"><circle cx="474" cy="150" r="15" fill="#1A6B3C"/><path d="M468 151l4.5 4.5 8-9" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></g>
+      <text x="474" y="190" text-anchor="middle" font-size="13" font-weight="700" fill="#2B2B28">Prereqs</text><circle cx="552" cy="150" r="15" fill="#FBFAF6" stroke="#1A6B3C" stroke-width="2"/><text x="552" y="155" text-anchor="middle" font-size="13" font-weight="800" fill="#124D2B">2</text>
+      <g class="sc1"><circle cx="552" cy="150" r="15" fill="#1A6B3C"/><path d="M546 151l4.5 4.5 8-9" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></g>
+      <text x="552" y="190" text-anchor="middle" font-size="13" font-weight="700" fill="#2B2B28">Credentials</text><circle cx="630" cy="150" r="15" fill="#FBFAF6" stroke="#1A6B3C" stroke-width="2"/><text x="630" y="155" text-anchor="middle" font-size="13" font-weight="800" fill="#124D2B">3</text>
+      <g class="sc2"><circle cx="630" cy="150" r="15" fill="#1A6B3C"/><path d="M624 151l4.5 4.5 8-9" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></g>
+      <text x="630" y="190" text-anchor="middle" font-size="13" font-weight="700" fill="#2B2B28">Source</text><circle cx="708" cy="150" r="15" fill="#FBFAF6" stroke="#1A6B3C" stroke-width="2"/><text x="708" y="155" text-anchor="middle" font-size="13" font-weight="800" fill="#124D2B">4</text>
+      <g class="sc3"><circle cx="708" cy="150" r="15" fill="#1A6B3C"/><path d="M702 151l4.5 4.5 8-9" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></g>
+      <text x="708" y="190" text-anchor="middle" font-size="13" font-weight="700" fill="#2B2B28">Destination</text>
+    <g class="sj"><rect x="470" y="210" width="270" height="28" rx="14" fill="#EEF7F0" stroke="#1A6B3C" stroke-width="2"/><text x="605" y="229" text-anchor="middle" font-size="14" font-weight="800" fill="#124D2B">one journey for every connector</text></g>
+  </g>
+  <path class="ln ct2" d="M760 140 H800" stroke="#1A6B3C" stroke-width="4"/>
+  <circle class="dt2" r="7" fill="#1A6B3C" filter="url(#uda-g)" style="offset-path:path('M760 140 H800')"/>
+  <g class="T2">
+    <rect class="Rh" x="800" y="30" width="490" height="220" rx="20" fill="#5FD07A" filter="url(#uda-gb)" opacity="0"/>
+    <rect class="Rf" x="800" y="30" width="490" height="220" rx="20" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <text x="826" y="58" font-size="17" font-weight="700" letter-spacing="3" fill="#8A877E">DATA INPUTS · VOLUME</text>
+    <g class="di0"><text x="826" y="98" font-size="17" font-weight="800" fill="#2B2B28">AWS</text>
+      <path d="M944 104 H1214" stroke="#E5E2D9" stroke-width="2"/>
+      <polyline class="ln sp0" points="944,96 974,91 1004,94 1034,86 1064,88 1094,81 1124,83 1154,78 1184,84 1214,75" stroke="#1A6B3C" stroke-width="2.6"/><g transform="translate(1258 92)"><g class="dk0"><circle r="11" fill="#1A6B3C"/><path d="M-5.5 .5l4 4 7.5-8.5" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></g></g></g><g class="di1"><text x="826" y="138" font-size="17" font-weight="800" fill="#2B2B28">Azure</text>
+      <path d="M944 144 H1214" stroke="#E5E2D9" stroke-width="2"/>
+      <polyline class="ln sp1" points="944,126 974,128 1004,123 1034,131 1064,128 1094,132 1124,130 1154,134 1184,131 1214,135" stroke="#1A6B3C" stroke-width="2.6"/><g transform="translate(1258 132)"><g class="dk1"><circle r="11" fill="#1A6B3C"/><path d="M-5.5 .5l4 4 7.5-8.5" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></g></g></g><g class="di2"><text x="826" y="178" font-size="17" font-weight="800" fill="#2B2B28">GCP</text>
+      <path d="M944 184 H1214" stroke="#E5E2D9" stroke-width="2"/>
+      <polyline class="ln sp2" points="944,179 974,176 1004,178 1034,172 1064,166 1094,168 1124,163 1154,167 1184,161 1214,158" stroke="#1A6B3C" stroke-width="2.6"/><g transform="translate(1258 172)"><g class="dk2"><circle r="11" fill="#1A6B3C"/><path d="M-5.5 .5l4 4 7.5-8.5" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></g></g></g><g class="di3"><text x="826" y="218" font-size="17" font-weight="800" fill="#2B2B28">PANW</text>
+      <path d="M944 224 H1214" stroke="#E5E2D9" stroke-width="2"/>
+      <polyline class="ln sp3" points="944,211 974,208 1004,212 1034,207 1064,210 1094,208 1124,211 1154,206 1184,208 1214,207" stroke="#1A6B3C" stroke-width="2.6"/><g transform="translate(1258 212)"><g class="dk3"><circle r="11" fill="#1A6B3C"/><path d="M-5.5 .5l4 4 7.5-8.5" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></g></g></g>
+  </g>
+</svg></div>
+      <div class="oc-cap">Cloud admins set up AWS, Azure, and GCP from one portal, instead of learning 40+ different add-ons.</div>
+    </div>
+    <div class="oc-results">
+      <div class="oc-block">
+        <div class="kicker">Shipped</div>
+        <div class="oc-deliver">One portal for AWS, Azure, and GCP data inputs, built on a shared onboarding pattern.</div>
+      </div>
+      <div class="oc-block">
+        <div class="kicker">Results</div>
+        <div class="oc-tiles">
+          <div class="oc-tile adoption"><div class="oc-type"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"/><path d="M16 4.8a3.2 3.2 0 0 1 0 6.4M18 13.8c1.8.6 3 2.4 3 5.2"/></svg>Adoption</div><div class="oc-val">400+</div><div class="oc-lbl">Active customers</div></div>
+          <div class="oc-tile efficiency"><div class="oc-type"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M12 9.5V13l2.5 1.6M10 3h4"/></svg>Efficiency</div><div class="oc-val">13 min</div><div class="oc-lbl">Per data input, was days</div></div>
+          <div class="oc-tile velocity"><div class="oc-type"><svg viewBox="0 0 24 24"><path d="M4.5 17a8 8 0 1 1 15 0"/><path d="M12 13l4-4"/><circle cx="12" cy="13" r="1.2"/></svg>Velocity</div><div class="oc-val">1.5 mo</div><div class="oc-lbl">Per source, was 6 mo</div></div>
         </div>
       </div>
-      <!-- Velocity achievement tile -->
-      <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 24px;display:flex;align-items:center;gap:24px;">
-        <div style="flex:0 0 auto;">
-          <div style="font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:5px;">Velocity Achievement</div>
-          <div style="display:flex;align-items:baseline;gap:6px;">
-            <span style="font-size:2rem;font-weight:900;color:var(--g);">1.5</span>
-            <span style="font-size:1rem;font-weight:700;color:var(--g);">months</span>
-            <span style="font-size:.88rem;font-weight:700;color:var(--dim);margin-left:4px;">vs. ~6 months before</span>
-          </div>
-        </div>
-        <div style="width:1px;align-self:stretch;background:var(--line);flex-shrink:0;"></div>
-        <div style="font-size:.88rem;color:var(--sub);line-height:1.5;">Integrating with CrowdStrike<br>at end of 2025</div>
+      <div class="oc-learn">
+        <div class="kicker">Key Learning</div>
+        <h1>Consistency at scale doesn't happen by syncing more. It happens by designing the framework first.</h1>
       </div>
     </div>
-
-    <!-- Right: key learning -->
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:48px 72px 48px 52px;gap:20px;">
-      <div class="kicker">Key Learning</div>
-      <h1 style="font-size:2.6rem;line-height:1.15;">Consistency at scale doesn't happen by syncing more. It happens by designing the framework first.</h1>
-    </div>
-
   </div>
 </div>
 </section>
@@ -5071,20 +5962,20 @@ function pmuxShowScreen(which){
     <!-- Bottom: 3 cards in a row, equal height, top-aligned -->
     <div style="display:flex;gap:14px;align-items:stretch;">
 
-      <div style="flex:1;display:flex;flex-direction:column;align-items:flex-start;background:var(--muted);border:1.5px solid var(--line);border-radius:14px;padding:24px 22px;gap:12px;">
-        <div style="width:44px;height:44px;border-radius:11px;background:var(--g2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;">🛠️</div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:flex-start;background:#FDFCFA;border-radius:14px;padding:24px 22px;gap:12px;">
+        <div style="height:26px;display:flex;align-items:center;justify-content:flex-start;"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#1A6B3C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></div>
         <div style="font-size:.86rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--g);">Admin</div>
         <div style="font-size:.95rem;color:var(--ink);line-height:1.6;">• Sets up the Splunk environment across tenants<br>• Manages user permissions and access</div>
       </div>
 
-      <div style="flex:1;display:flex;flex-direction:column;align-items:flex-start;background:var(--muted);border:1.5px solid var(--line);border-radius:14px;padding:24px 22px;gap:12px;">
-        <div style="width:44px;height:44px;border-radius:11px;background:var(--g2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;">🔎</div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:flex-start;background:#FDFCFA;border-radius:14px;padding:24px 22px;gap:12px;">
+        <div style="height:26px;display:flex;align-items:center;justify-content:flex-start;"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#1A6B3C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
         <div style="font-size:.86rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--g);">Analyst</div>
         <div style="font-size:.95rem;color:var(--ink);line-height:1.6;">• Analyzes business processes to find bottlenecks<br>• Primary user of the Overview and reports</div>
       </div>
 
-      <div style="flex:1;display:flex;flex-direction:column;align-items:flex-start;background:var(--muted);border:1.5px solid var(--line);border-radius:14px;padding:24px 22px;gap:12px;">
-        <div style="width:44px;height:44px;border-radius:11px;background:var(--g2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;">🧩</div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:flex-start;background:#FDFCFA;border-radius:14px;padding:24px 22px;gap:12px;">
+        <div style="height:26px;display:flex;align-items:center;justify-content:flex-start;"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#1A6B3C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19.44 7.85c-.05.32.06.65.29.88l1.57 1.57c.94.94.94 2.47 0 3.41l-1.61 1.61a.98.98 0 0 1-.84.28c-.47-.07-.8-.48-.97-.93a2.5 2.5 0 1 0-3.21 3.21c.45.17.86.5.93.97a.98.98 0 0 1-.28.84l-1.61 1.61c-.94.94-2.47.94-3.41 0l-1.57-1.57a1.03 1.03 0 0 0-.88-.29c-.49.07-.84.5-1.02.97a2.5 2.5 0 1 1-3.24-3.24c.46-.18.89-.53.97-1.02a1.03 1.03 0 0 0-.29-.88L2.7 13.7a2.41 2.41 0 0 1 0-3.41L4.23 8.77c.24-.24.58-.35.92-.3.51.08.88.53 1.07 1.01a2.5 2.5 0 1 0 3.26-3.26c-.48-.2-.93-.56-1.01-1.07-.05-.34.06-.68.3-.92L10.3 2.7c.94-.94 2.47-.94 3.41 0l1.57 1.57c.23.23.56.34.88.29.49-.07.84-.5 1.02-.97a2.5 2.5 0 1 1 3.24 3.24c-.46.18-.89.53-.97 1.02z"/></svg></div>
         <div style="font-size:.86rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--g);">Modeler</div>
         <div style="font-size:.95rem;color:var(--ink);line-height:1.6;">• Creates individual flow models<br>• Ensures data quality for downstream analysis</div>
       </div>
@@ -5227,49 +6118,124 @@ function pmuxShowScreen(which){
 ════════════════════════════════════════════════════════════════ -->
 <section class="slide">
 <div class="body">
-  <div style="flex:1;display:flex;">
-
-    <!-- Left: metrics -->
-    <div style="flex:0 0 55%;display:flex;flex-direction:column;justify-content:center;padding:48px 40px 48px 72px;gap:16px;border-right:1px solid var(--line);">
-      <div class="kicker g">Step 05 · The Outcome</div>
-      <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:16px;">
-        <span style="font-size:1.3rem;flex-shrink:0;">🤝</span>
-        <div>
-          <div style="font-size:1.0rem;font-weight:800;color:var(--ink);line-height:1.3;">Chewy signed, Nvidia in the pipeline</div>
-          <div style="font-size:.85rem;color:var(--sub);margin-top:3px;">First enterprise deal won</div>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-          <div style="font-size:2rem;font-weight:900;color:var(--g);line-height:1;">#4</div>
-          <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">2020 .conf annual survey ranking</div>
-        </div>
-        <div style="background:var(--muted);border:1px solid var(--line);border-radius:12px;padding:16px 20px;">
-          <div style="font-size:2rem;font-weight:900;color:var(--ink);line-height:1;">Top 3</div>
-          <div style="font-size:.92rem;color:var(--sub);margin-top:5px;">NPS in 2021</div>
-        </div>
-      </div>
-      <div style="font-size:.84rem;color:var(--dim);line-height:1.5;">Product sunset later that year, a Splunk strategy shift after COVID, not a design failure.</div>
+  <div class="oc">
+    <div class="oc-story">
+      <h1 class="oc-title">Outcome</h1>
+      <div class="oc-art anim"><svg class="bf" viewBox="0 0 1310 560" role="img" aria-label="A fulfillment analyst asks why the line is slow. The overview shows generic numbers for the last 7 days: average journey time is up, but not where. A bottleneck template shows every station as its own node and colors the top 5 outliers. The analyst selects the worst one, Station 3, and sees a timeline where duration spikes most recently, which may or may not be a known outage, and how many hours each journey spent at Station 3 out of its total time, including products that loop back to it. Upstream and downstream investigation comes next." font-family="Plus Jakarta Sans, system-ui, sans-serif">
+  <defs>
+    <filter id="bf-g" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="bf-gb" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+  <g class="Pa">
+    <rect x="20" y="206" width="240" height="148" rx="18" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <g transform="translate(64 254)">
+      <circle class="av" r="26" fill="#EEF6EF" stroke="#9CC7A6" stroke-width="2"/>
+      <circle cx="0" cy="-6" r="7" fill="none" stroke="#124D2B" stroke-width="2.6"/><path d="M-12 13c2-8 7-11 12-11s10 3 12 11" fill="none" stroke="#124D2B" stroke-width="2.6" stroke-linecap="round"/>
+      <g transform="translate(19 -19)"><g class="pck"><circle r="10" fill="#1A6B3C" stroke="#FBFAF6" stroke-width="3"/><path d="M-4.5 0l3 3 5.5-6" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/></g></g>
+    </g>
+    <text x="102" y="250" font-size="22" font-weight="800" fill="#2B2B28">Analyst</text>
+    <text x="102" y="274" font-size="15" font-weight="600" fill="#6C6A62">fulfillment ops</text>
+    <rect x="40" y="304" width="200" height="30" rx="15" fill="#EEF7F0" stroke="#1A6B3C" stroke-width="2"/>
+    <text x="140" y="324" text-anchor="middle" font-size="15" font-weight="700" fill="#124D2B">which station is off?</text>
+  </g>
+  <path class="ln c1" d="M260 280 H296" stroke="#1A6B3C" stroke-width="4"/>
+  <circle class="d1" r="7" fill="#1A6B3C" filter="url(#bf-g)" style="offset-path:path('M260 280 H296')"/>
+  <g class="M">
+    <rect x="296" y="60" width="560" height="440" rx="22" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <text class="t1" x="332" y="108" font-size="21" font-weight="700" letter-spacing="3.5" fill="#8A877E">OVERVIEW</text>
+    <text class="t2" x="332" y="108" font-size="21" font-weight="700" letter-spacing="3.5" fill="#1A6B3C">BOTTLENECK REPORT</text>
+    <g class="tp"><rect class="tpr" x="332" y="128" width="186" height="34" rx="17" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.5"/><text class="tpt" x="425" y="151" text-anchor="middle" font-size="15" font-weight="700" fill="#8A877E">bottleneck template</text></g>
+    <text x="824" y="108" text-anchor="end" font-size="14" font-weight="700" fill="#8A877E">Last 7 days</text>
+    <g class="top5"><rect x="536" y="128" width="176" height="34" rx="17" fill="#FBEFE9" stroke="#C2410C" stroke-width="2"/><text x="624" y="151" text-anchor="middle" font-size="15" font-weight="800" fill="#C2410C">top 5 bottlenecks</text>
+      <text x="668" y="484" font-size="11" font-weight="700" fill="#8A877E">more</text><circle cx="706" cy="480" r="6" fill="#F6D3C2" stroke="#C2410C" stroke-width="1.6"/><circle cx="724" cy="480" r="6" fill="#F8DDD0" stroke="#D2643A" stroke-width="1.6"/><circle cx="742" cy="480" r="6" fill="#FAE6DC" stroke="#DE8661" stroke-width="1.6"/><circle cx="760" cy="480" r="6" fill="#FBEEE7" stroke="#E7A889" stroke-width="1.6"/><circle cx="778" cy="480" r="6" fill="#FCF4EF" stroke="#EEC4AE" stroke-width="1.6"/><text x="796" y="484" font-size="11" font-weight="700" fill="#8A877E">less</text></g>
+    <g class="pn0"><rect x="332" y="210" width="156" height="140" rx="14" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2"/>
+      <text x="350" y="242" font-size="12" font-weight="800" letter-spacing="1.8" fill="#8A877E">AVG JOURNEY</text>
+      <text x="350" y="294" font-size="34" font-weight="800" letter-spacing="-1" fill="#2B2B28">9.4h</text><rect x="350" y="314" width="70" height="24" rx="12" fill="#FBEFE9" stroke="#E7B9A3" stroke-width="1.6"/><path d="M362 330l5-6 5 6" fill="none" stroke="#C2410C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><text x="378" y="331" font-size="13" font-weight="800" fill="#C2410C">+12%</text></g><g class="pn1"><rect x="500" y="210" width="156" height="140" rx="14" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2"/>
+      <text x="518" y="242" font-size="12" font-weight="800" letter-spacing="1.8" fill="#8A877E">JOURNEYS</text>
+      <text x="518" y="294" font-size="34" font-weight="800" letter-spacing="-1" fill="#2B2B28">1,280</text></g><g class="pn2"><rect x="668" y="210" width="156" height="140" rx="14" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2"/>
+      <text x="686" y="242" font-size="12" font-weight="800" letter-spacing="1.8" fill="#8A877E">TOTAL STEPS</text>
+      <text x="686" y="294" font-size="34" font-weight="800" letter-spacing="-1" fill="#2B2B28">15,360</text></g>
+    <g class="rep">
+      <circle class="pkh" cx="620" cy="250" r="40" fill="#F2A27A" filter="url(#bf-gb)" opacity="0"/>
+      <g class="nd0"><circle class="" cx="380" cy="250" r="32" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.8"/>
+      <g transform="translate(380 250)"><path d="M-10 -4l10-5.5 10 5.5v11l-10 5.5-10-5.5z M-10 -4l10 5.5 10-5.5 M0 1.5v11" fill="none" stroke="#124D2B" stroke-width="2.2" stroke-linejoin="round"/></g>
+      <text x="380" y="304" text-anchor="middle" font-size="14" font-weight="700" fill="#6C6A62">Station 1</text>
+      <rect x="345" y="314" width="70" height="6" rx="3" fill="#EEEAE2"/><rect class="" x="345" y="314" width="30" height="6" rx="3" fill="#E5E2D9"/></g><g class="nd1"><circle class="rk4" cx="500" cy="250" r="32" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.8"/>
+      <g transform="translate(500 250)"><path d="M-10 -4l10-5.5 10 5.5v11l-10 5.5-10-5.5z M-10 -4l10 5.5 10-5.5 M0 1.5v11" fill="none" stroke="#124D2B" stroke-width="2.2" stroke-linejoin="round"/></g>
+      <text x="500" y="304" text-anchor="middle" font-size="14" font-weight="700" fill="#6C6A62">Station 2</text>
+      <rect x="465" y="314" width="70" height="6" rx="3" fill="#EEEAE2"/><rect class="ab4" x="465" y="314" width="44" height="6" rx="3" fill="#E5E2D9"/></g><g class="nd2"><circle class="rk1" cx="620" cy="250" r="32" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3.5"/>
+      <g transform="translate(620 250)"><path d="M-10 -4l10-5.5 10 5.5v11l-10 5.5-10-5.5z M-10 -4l10 5.5 10-5.5 M0 1.5v11" fill="none" stroke="#124D2B" stroke-width="2.2" stroke-linejoin="round"/></g>
+      <text x="620" y="304" text-anchor="middle" font-size="14" font-weight="700" fill="#6C6A62">Station 3</text>
+      <rect x="585" y="314" width="70" height="6" rx="3" fill="#EEEAE2"/><rect class="ab1" x="585" y="314" width="70" height="6" rx="3" fill="#E5E2D9"/></g><g class="nd3"><circle class="" cx="740" cy="250" r="32" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.8"/>
+      <g transform="translate(740 250)"><path d="M-10 -4l10-5.5 10 5.5v11l-10 5.5-10-5.5z M-10 -4l10 5.5 10-5.5 M0 1.5v11" fill="none" stroke="#124D2B" stroke-width="2.2" stroke-linejoin="round"/></g>
+      <text x="740" y="304" text-anchor="middle" font-size="14" font-weight="700" fill="#6C6A62">Station 4</text>
+      <rect x="705" y="314" width="70" height="6" rx="3" fill="#EEEAE2"/><rect class="" x="705" y="314" width="28" height="6" rx="3" fill="#E5E2D9"/></g><g class="nd4"><circle class="rk5" cx="380" cy="390" r="32" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.8"/>
+      <g transform="translate(380 390)"><path d="M-10 -4l10-5.5 10 5.5v11l-10 5.5-10-5.5z M-10 -4l10 5.5 10-5.5 M0 1.5v11" fill="none" stroke="#124D2B" stroke-width="2.2" stroke-linejoin="round"/></g>
+      <text x="380" y="444" text-anchor="middle" font-size="14" font-weight="700" fill="#6C6A62">Station 5</text>
+      <rect x="345" y="454" width="70" height="6" rx="3" fill="#EEEAE2"/><rect class="ab5" x="345" y="454" width="40" height="6" rx="3" fill="#E5E2D9"/></g><g class="nd5"><circle class="rk2" cx="500" cy="390" r="32" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.8"/>
+      <g transform="translate(500 390)"><path d="M-10 -4l10-5.5 10 5.5v11l-10 5.5-10-5.5z M-10 -4l10 5.5 10-5.5 M0 1.5v11" fill="none" stroke="#124D2B" stroke-width="2.2" stroke-linejoin="round"/></g>
+      <text x="500" y="444" text-anchor="middle" font-size="14" font-weight="700" fill="#6C6A62">Station 6</text>
+      <rect x="465" y="454" width="70" height="6" rx="3" fill="#EEEAE2"/><rect class="ab2" x="465" y="454" width="58" height="6" rx="3" fill="#E5E2D9"/></g><g class="nd6"><circle class="rk3" cx="620" cy="390" r="32" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.8"/>
+      <g transform="translate(620 390)"><path d="M-10 -4l10-5.5 10 5.5v11l-10 5.5-10-5.5z M-10 -4l10 5.5 10-5.5 M0 1.5v11" fill="none" stroke="#124D2B" stroke-width="2.2" stroke-linejoin="round"/></g>
+      <text x="620" y="444" text-anchor="middle" font-size="14" font-weight="700" fill="#6C6A62">Station 7</text>
+      <rect x="585" y="454" width="70" height="6" rx="3" fill="#EEEAE2"/><rect class="ab3" x="585" y="454" width="50" height="6" rx="3" fill="#E5E2D9"/></g><g class="nd7"><circle class="" cx="740" cy="390" r="32" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="2.8"/>
+      <g transform="translate(740 390)"><path d="M-10 -4l10-5.5 10 5.5v11l-10 5.5-10-5.5z M-10 -4l10 5.5 10-5.5 M0 1.5v11" fill="none" stroke="#124D2B" stroke-width="2.2" stroke-linejoin="round"/></g>
+      <text x="740" y="444" text-anchor="middle" font-size="14" font-weight="700" fill="#6C6A62">Station 8</text>
+      <rect x="705" y="454" width="70" height="6" rx="3" fill="#EEEAE2"/><rect class="" x="705" y="454" width="26" height="6" rx="3" fill="#E5E2D9"/></g>
+      <circle class="sel" cx="620" cy="250" r="40" fill="none" stroke="#C2410C" stroke-width="2.5" stroke-dasharray="5 5"/>
+    </g>
+  </g>
+  <path class="ln c2" d="M660 250 C840 130 870 200 930 200" stroke="#C2410C" stroke-width="3" stroke-dasharray="0"/>
+  <circle class="d2" r="7" fill="#C2410C" filter="url(#bf-g)" style="offset-path:path('M660 250 C840 130 870 200 930 200')"/>
+  <g class="R">
+    <rect class="Rh" x="930" y="60" width="360" height="300" rx="18" fill="#5FD07A" filter="url(#bf-gb)" opacity="0"/>
+    <rect class="Rf" x="930" y="60" width="360" height="300" rx="18" fill="#FBFAF6" stroke="#CFCBC0" stroke-width="3"/>
+    <text x="958" y="96" font-size="17" font-weight="700" letter-spacing="3" fill="#8A877E">STATION 3</text>
+    <circle cx="1100" cy="90" r="7" fill="#F6D3C2" stroke="#C2410C" stroke-width="1.8"/>
+    <text x="958" y="126" font-size="12" font-weight="800" letter-spacing="2" fill="#8A877E">TIMELINE</text>
+    <path d="M956 198 H1272" stroke="#CFCBC0" stroke-width="2"/>
+    <rect class="hb0" x="960" y="186" width="16" height="10" rx="3" fill="#CFE6D5" stroke="none" stroke-width="1.4"/><rect class="hb1" x="982" y="184" width="16" height="12" rx="3" fill="#CFE6D5" stroke="none" stroke-width="1.4"/><rect class="hb2" x="1004" y="185" width="16" height="11" rx="3" fill="#CFE6D5" stroke="none" stroke-width="1.4"/><rect class="hb3" x="1026" y="183" width="16" height="13" rx="3" fill="#CFE6D5" stroke="none" stroke-width="1.4"/><rect class="hb4" x="1048" y="184" width="16" height="12" rx="3" fill="#CFE6D5" stroke="none" stroke-width="1.4"/><rect class="hb5" x="1070" y="185" width="16" height="11" rx="3" fill="#CFE6D5" stroke="none" stroke-width="1.4"/><rect class="hb6" x="1092" y="182" width="16" height="14" rx="3" fill="#CFE6D5" stroke="none" stroke-width="1.4"/><rect class="hb7" x="1114" y="184" width="16" height="12" rx="3" fill="#CFE6D5" stroke="none" stroke-width="1.4"/><rect class="hb8" x="1136" y="183" width="16" height="13" rx="3" fill="#CFE6D5" stroke="none" stroke-width="1.4"/><rect class="hb9" x="1158" y="184" width="16" height="12" rx="3" fill="#CFE6D5" stroke="none" stroke-width="1.4"/><rect class="hb10" x="1180" y="181" width="16" height="15" rx="3" fill="#CFE6D5" stroke="none" stroke-width="1.4"/><rect class="hb11" x="1202" y="162" width="16" height="34" rx="3" fill="#E7B9A3" stroke="#C2410C" stroke-width="1.4"/><rect class="hb12" x="1224" y="154" width="16" height="42" rx="3" fill="#E7B9A3" stroke="#C2410C" stroke-width="1.4"/><rect class="hb13" x="1246" y="150" width="16" height="46" rx="3" fill="#E7B9A3" stroke="#C2410C" stroke-width="1.4"/>
+    <g class="why"><path d="M1200 144 h66" stroke="#C2410C" stroke-width="2" stroke-dasharray="3 4"/><circle cx="1233" cy="132" r="11" fill="#FBEFE9" stroke="#C2410C" stroke-width="2"/><text x="1233" y="137" text-anchor="middle" font-size="14" font-weight="800" fill="#C2410C">?</text></g>
+    <line x1="958" y1="212" x2="1262" y2="212" stroke="#E5E2D9" stroke-width="2"/>
+    <text x="958" y="234" font-size="12" font-weight="800" letter-spacing="2" fill="#8A877E">TIME AT STATION 3</text>
+    <text x="1262" y="234" text-anchor="end" font-size="11" font-weight="700" fill="#8A877E">of total</text>
+    <text x="958" y="266" font-size="12" font-weight="800" fill="#2B2B28">J1</text><g class="cs0"><rect x="990.0" y="256" width="12.5" height="12" rx="3" fill="#E5E2D9" stroke="none" stroke-width="1.3"/><rect x="1004.5" y="256" width="19.8" height="12" rx="3" fill="#E5E2D9" stroke="none" stroke-width="1.3"/><rect x="1026.2" y="256" width="56.0" height="12" rx="3" fill="#E7B9A3" stroke="#C2410C" stroke-width="1.3"/><rect x="1084.2" y="256" width="12.5" height="12" rx="3" fill="#E5E2D9" stroke="none" stroke-width="1.3"/><rect x="1098.8" y="256" width="34.2" height="12" rx="3" fill="#E7B9A3" stroke="#C2410C" stroke-width="1.3"/><rect x="1135.0" y="256" width="27.0" height="12" rx="3" fill="#E5E2D9" stroke="none" stroke-width="1.3"/></g><path class="lp0" d="M1055 254 C1055 244 1117 244 1117 254" fill="none" stroke="#C2410C" stroke-width="1.8" stroke-dasharray="3 3"/><text x="1218" y="267" text-anchor="end" font-size="14" font-weight="800" fill="#C2410C">6.5h</text><text x="1224" y="266" font-size="11" font-weight="700" fill="#8A877E">/ 12h</text><text x="958" y="290" font-size="12" font-weight="800" fill="#2B2B28">J2</text><g class="cs1"><rect x="990.0" y="280" width="12.5" height="12" rx="3" fill="#E5E2D9" stroke="none" stroke-width="1.3"/><rect x="1004.5" y="280" width="70.5" height="12" rx="3" fill="#E7B9A3" stroke="#C2410C" stroke-width="1.3"/><rect x="1077.0" y="280" width="19.8" height="12" rx="3" fill="#E5E2D9" stroke="none" stroke-width="1.3"/><rect x="1098.8" y="280" width="27.0" height="12" rx="3" fill="#E5E2D9" stroke="none" stroke-width="1.3"/><rect x="1127.8" y="280" width="19.8" height="12" rx="3" fill="#E5E2D9" stroke="none" stroke-width="1.3"/></g><text x="1218" y="291" text-anchor="end" font-size="14" font-weight="800" fill="#C2410C">5h</text><text x="1224" y="290" font-size="11" font-weight="700" fill="#8A877E">/ 11h</text><text x="958" y="314" font-size="12" font-weight="800" fill="#2B2B28">J3</text><g class="cs2"><rect x="990.0" y="304" width="19.8" height="12" rx="3" fill="#E5E2D9" stroke="none" stroke-width="1.3"/><rect x="1011.8" y="304" width="27.0" height="12" rx="3" fill="#E7B9A3" stroke="#C2410C" stroke-width="1.3"/><rect x="1040.8" y="304" width="12.5" height="12" rx="3" fill="#E5E2D9" stroke="none" stroke-width="1.3"/><rect x="1055.2" y="304" width="41.5" height="12" rx="3" fill="#E7B9A3" stroke="#C2410C" stroke-width="1.3"/><rect x="1098.8" y="304" width="34.2" height="12" rx="3" fill="#E5E2D9" stroke="none" stroke-width="1.3"/></g><path class="lp2" d="M1026 302 C1026 292 1077 292 1077 302" fill="none" stroke="#C2410C" stroke-width="1.8" stroke-dasharray="3 3"/><text x="1218" y="315" text-anchor="end" font-size="14" font-weight="800" fill="#C2410C">5h</text><text x="1224" y="314" font-size="11" font-weight="700" fill="#8A877E">/ 10h</text><text x="958" y="338" font-size="12" font-weight="800" fill="#2B2B28">J4</text><g class="cs3"><rect x="990.0" y="328" width="12.5" height="12" rx="3" fill="#E5E2D9" stroke="none" stroke-width="1.3"/><rect x="1004.5" y="328" width="56.0" height="12" rx="3" fill="#E7B9A3" stroke="#C2410C" stroke-width="1.3"/><rect x="1062.5" y="328" width="34.2" height="12" rx="3" fill="#E5E2D9" stroke="none" stroke-width="1.3"/><rect x="1098.8" y="328" width="19.8" height="12" rx="3" fill="#E5E2D9" stroke="none" stroke-width="1.3"/></g><text x="1218" y="339" text-anchor="end" font-size="14" font-weight="800" fill="#C2410C">4h</text><text x="1224" y="338" font-size="11" font-weight="700" fill="#8A877E">/ 9h</text>
+  </g>
+  <path class="ln mc" d="M1110 360 V396" stroke="#B0ADA4" stroke-width="3.5" stroke-dasharray="2 12"/>
+  <g class="NX">
+    <rect x="930" y="396" width="360" height="104" rx="18" fill="none" stroke="#B0ADA4" stroke-width="2.5" stroke-dasharray="8 8"/>
+    <g fill="none" stroke="#B0ADA4" stroke-linecap="round">
+      <path d="M956 428 C990 428 990 448 1024 448" stroke-width="9"/>
+      <path d="M956 448 C990 448 990 448 1024 448" stroke-width="5"/>
+      <path d="M956 470 C990 470 990 448 1024 448" stroke-width="3"/>
+      <path d="M1024 448 C1050 448 1050 428 1072 428" stroke-width="10"/>
+      <path d="M1024 448 C1050 448 1050 470 1072 470" stroke-width="6"/>
+    </g>
+    <text x="1088" y="444" font-size="21" font-weight="800" fill="#6C6A62">Up &amp; downstream</text>
+    <text x="1088" y="472" font-size="17" font-weight="600" fill="#8A877E">investigate · next</text>
+  </g>
+</svg></div>
+      <div class="oc-cap">Analysts see which station is off on first load, then when and how long its journeys ran over, no dashboard to build first.</div>
+      <div class="oc-quote">"This saves me some time to troubleshoot which station might have the problem."<b>TGW Logistics Group</b></div>
     </div>
-
-    <!-- Right: reflection + customer voice -->
-    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:48px 72px 48px 52px;gap:18px;">
-      <div>
+    <div class="oc-results">
+      <div class="oc-block">
+        <div class="kicker">Shipped</div>
+        <div class="oc-deliver">A pre-built bottleneck report that shows insight on first load, no setup required.</div>
+      </div>
+      <div class="oc-block">
+        <div class="kicker">Results</div>
+        <div class="oc-tiles">
+          <div class="oc-tile business"><div class="oc-type"><svg viewBox="0 0 24 24"><path d="M12 3v18M16.5 7.5C16 6 14.3 5 12 5c-2.6 0-4.5 1.3-4.5 3.3 0 4.7 9 2.5 9 7.2 0 2-1.9 3.5-4.5 3.5-2.4 0-4.2-1.1-4.7-2.8"/></svg>Business</div><div class="oc-val">1st</div><div class="oc-lbl">Enterprise deal, Chewy</div></div>
+          <div class="oc-tile satisfaction"><div class="oc-type"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.5A4 4 0 0 1 12 8a4 4 0 0 1 7 2.5C19 15.6 12 20 12 20z"/></svg>Satisfaction</div><div class="oc-val">#4</div><div class="oc-lbl">.conf survey 2020</div></div>
+          <div class="oc-tile satisfaction"><div class="oc-type"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-9.5A4 4 0 0 1 12 8a4 4 0 0 1 7 2.5C19 15.6 12 20 12 20z"/></svg>Satisfaction</div><div class="oc-val">Top 3</div><div class="oc-lbl">NPS 2021</div></div>
+        </div>
+      </div>
+      <div class="oc-learn">
         <div class="kicker">Key Learning</div>
-        <h1 style="font-size:1.7rem;line-height:1.3;margin-top:8px;">A flexible solution is ideal for advanced users. A pre-made approach can be more beneficial, especially in a product's early stages.</h1>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:14px;padding-top:16px;border-top:1px solid var(--line);">
-        <div style="display:flex;flex-direction:column;gap:6px;padding:2px 0 2px 18px;border-left:3px solid var(--g);">
-          <div style="font-size:.95rem;color:var(--ink);line-height:1.5;font-style:italic;">"This is good for our fulfillment center use case. We can track what might cause us less productivity."</div>
-          <div style="font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);">Chewy</div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:6px;padding:2px 0 2px 18px;border-left:3px solid var(--g);">
-          <div style="font-size:.95rem;color:var(--ink);line-height:1.5;font-style:italic;">"This saves me some time to troubleshoot which station might have the problem."</div>
-          <div style="font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);">TGW Logistics Group</div>
-        </div>
+        <h1>A flexible solution is ideal for advanced users. A pre-made approach can be more beneficial, especially in a product's early stages.</h1>
       </div>
     </div>
-
   </div>
 </div>
 </section>
@@ -5652,6 +6618,21 @@ function render(){
   });
 
   if(visibleSlides[idx].id==='inc-slide' && typeof incReset==='function') incReset();
+  restartOutcomeArt();
+}
+
+// Outcome animations: start from the beginning when their slide comes into view,
+// stay paused on frame 0 everywhere else (after the slide finishes sliding in).
+var ocArtTimer=null;
+function restartOutcomeArt(){
+  clearTimeout(ocArtTimer);
+  const cur=visibleSlides[idx];
+  document.querySelectorAll('.oc-art.anim svg').forEach(svg=>{
+    svg.getAnimations({subtree:true}).forEach(a=>{ a.pause(); a.currentTime=0; });
+  });
+  const svg=cur && cur.querySelector('.oc-art.anim svg');
+  if(!svg) return;
+  ocArtTimer=setTimeout(()=>svg.getAnimations({subtree:true}).forEach(a=>{ a.currentTime=0; a.play(); }),500);
 }
 
 function go(i){
