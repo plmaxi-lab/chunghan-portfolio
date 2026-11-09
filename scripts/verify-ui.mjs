@@ -78,6 +78,11 @@ for (const [w, h, mobile, tag] of [[1440, 900, false, 'desk'], [390, 844, true, 
   await b.shot(`${OUT}${tag}-4-unlocked-chat.png`);
   await b.eval(`document.getElementById('chatClose').click()`); await b.sleep(300);
   check(`${tag}: FAB visible after unlock`, await visible('#chatFab'));
+  check(`${tag}: Ask Cha Cha in nav after unlock`, tag==='desk' ? await visible('.nav-chacha') : (await b.eval(`document.getElementById('hamBtn').click()`), await b.sleep(400), await visible('.mob-chat')));
+  await b.eval(tag==='desk' ? `document.querySelector('.nav-chacha').click()` : `document.querySelector('.mob-chat').click()`); await b.sleep(500);
+  check(`${tag}: nav Ask Cha Cha reopens chat with history, no password`, await has('chat-open') && !(await visible('#pwModal .pw-box')) && (await b.eval(`document.querySelectorAll('#chatLog .msg').length`)) > 3);
+  check(`${tag}: mobile menu closed after opening chat`, tag==='desk' || !(await b.eval(`document.getElementById('mobMenu').classList.contains('open')`)));
+  await b.eval(`document.getElementById('chatClose').click()`); await b.sleep(300);
   check(`${tag}: See Projects hidden after unlock`, !(await visible('.nav-links .navpw')));
   check(`${tag}: See the work link visible`, await visible('.homecta'));
   check(`${tag}: unlocked shows work section`, await visible('#work'));
