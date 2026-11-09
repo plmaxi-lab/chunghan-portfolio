@@ -1,0 +1,1624 @@
+[
+ {
+  "id": "intro",
+  "starter": true,
+  "q": "Who is Chung-Han in 30 seconds?",
+  "aliases": [
+   "tell me about yourself",
+   "tell me about him",
+   "introduce him",
+   "who is he",
+   "give me a quick intro",
+   "background",
+   "about chung han",
+   "who is this guy"
+  ],
+  "keywords": [
+   "intro",
+   "background"
+  ],
+  "a": "Chung-Han is a hands-on problem solver with 14 years shipping B2B data platforms and B2C smart home apps. At Splunk (Cisco) he led a team of seven designers and took three platform products from 0 to 1, reaching 400+ active cloud ingestion customers. Before that, he launched TP-Link's Kasa smart home app to 1M+ users. These days he builds AI tools with Claude Code every week, and co-runs a tea business on the side."
+ },
+ {
+  "id": "ai-shipped",
+  "starter": true,
+  "q": "What has he shipped with AI?",
+  "aliases": [
+   "ai experience",
+   "ai projects",
+   "ai features",
+   "has he worked on ai",
+   "ai products he built",
+   "ai work at splunk",
+   "what has he done with ai"
+  ],
+  "keywords": [
+   "ai"
+  ],
+  "case": "hitl",
+  "a": "Three AI initiatives that Splunk showcased at .conf 2025: AI Guided Onboarding, Auto-Schematization, and Root Cause Analysis. Auto Field Extraction shipped in Q1 2026. His rule: AI suggests and explains, the human decides. Outside work, he built his own tools with Claude Code, like a permit form filler for his tea business. And me. 🐾"
+ },
+ {
+  "id": "strategy-change",
+  "starter": true,
+  "q": "Tell me about a time he changed strategy.",
+  "aliases": [
+   "a time he pivoted",
+   "pivot story",
+   "changed direction",
+   "killed a project",
+   "reframed a problem",
+   "course correction"
+  ],
+  "keywords": [
+   "pivot",
+   "strategy"
+  ],
+  "case": "udo",
+  "a": "His team was building a live topology map of data pipelines, and it stalled at enterprise scale. Then a customer looked at the prototype and said: \"Will I stare at this every day? No.\" Chung-Han took the team back to research and reframed the problem around what people actually need: a warning when something breaks. They shipped a simpler monitoring dashboard in 3 months instead of 6+, and it reached 120+ weekly users."
+ },
+ {
+  "id": "ai-trust",
+  "starter": true,
+  "q": "How does he design for trust in AI?",
+  "aliases": [
+   "trustworthy ai",
+   "make ai trustworthy",
+   "how to get users to trust ai",
+   "ai transparency",
+   "explainable ai"
+  ],
+  "keywords": [
+   "trust"
+  ],
+  "case": "hitl",
+  "a": "On production systems, speed is not the hard part. Trust is. Chung-Han keeps the human in the loop: the user starts the analysis, the AI explains its reasoning in plain language, shows exactly what will change, and makes it easy to undo. He calls it \"assertive AI\": the AI recommends, the human decides, and autonomy grows only as trust is earned."
+ },
+ {
+  "id": "scale",
+  "starter": true,
+  "q": "How does he solve messy problems at scale?",
+  "aliases": [
+   "complex problems",
+   "complexity at scale",
+   "solve hard problems",
+   "problem solving approach",
+   "how does he tackle complexity"
+  ],
+  "keywords": [
+   "scale",
+   "messy",
+   "complex"
+  ],
+  "case": "uda",
+  "a": "He designs the framework first. At Splunk, cloud data setup had 1,000+ possible paths and every new source was built from scratch. Chung-Han's team built one shared framework instead. Average setup dropped to 13 minutes (from days or weeks), 400+ customers have an active data input, and a new connector now takes 1.5 months instead of about 6."
+ },
+ {
+  "id": "lead-style",
+  "starter": true,
+  "q": "What's his leadership style?",
+  "aliases": [
+   "management style",
+   "how does he manage a team",
+   "how does he lead",
+   "what kind of manager is he",
+   "player coach"
+  ],
+  "keywords": [
+   "lead",
+   "style",
+   "player"
+  ],
+  "a": "Player-coach. Chung-Han jumps into the hardest problem and prototypes the direction to set the bar, then the team owns execution. He places people where their strengths fit, some on vision and some on execution, instead of pushing everyone toward one standard. He led a team of seven across three time zones through the Cisco and Splunk merger."
+ },
+ {
+  "id": "looking-for",
+  "starter": true,
+  "q": "What kind of role is he looking for?",
+  "aliases": [
+   "what job does he want",
+   "is he open to work",
+   "next role",
+   "what is he looking for",
+   "job search",
+   "career goals",
+   "ideal role"
+  ],
+  "keywords": [
+   "role",
+   "next"
+  ],
+  "a": "Chung-Han is looking for hard problems to solve hands-on: complex products, real users, and AI people can trust. He cares more about the problem than the title. Data platforms, observability, security, developer tools, AI-native workflows, and IoT all excite him. For details, he's happy to chat: plmaxi@gmail.com."
+ },
+ {
+  "id": "chacha-day",
+  "starter": true,
+  "q": "What do you do all day, Cha Cha?",
+  "aliases": [
+   "what does cha cha do all day",
+   "what do you do",
+   "your day",
+   "do you sleep a lot"
+  ],
+  "keywords": [
+   "day"
+  ],
+  "a": "Mostly nap under Chung-Han's desk while he ships things. Sometimes I check if the tea is ready. It never is for dogs. Now I also answer questions about him, which is a big promotion. 🐾"
+ },
+ {
+  "id": "one-line",
+  "q": "Describe him in one sentence.",
+  "aliases": [
+   "one line summary",
+   "in one sentence",
+   "elevator pitch",
+   "tldr",
+   "short version"
+  ],
+  "keywords": [
+   "sentence",
+   "pitch"
+  ],
+  "a": "A hands-on problem solver who makes complex data, observability, and AI workflows simple enough that people trust them, most recently leading a design team for data management at Splunk and Cisco."
+ },
+ {
+  "id": "career",
+  "q": "Walk me through his career.",
+  "aliases": [
+   "career history",
+   "work history",
+   "resume summary",
+   "previous jobs",
+   "where has he worked",
+   "career path",
+   "experience"
+  ],
+  "keywords": [
+   "career",
+   "resume",
+   "history"
+  ],
+  "a": "Five steps. TP-Link: first UX hire, launched the Kasa smart home app to 1M+ users. App Annie: data reports for 500k+ users. Treasure Data: a permission framework that helped close a big enterprise deal. Splunk and Cisco: grew into leading seven designers across the data journey, a framework for 1,000+ sources, then three AI initiatives. Now he builds hands-on with AI every week. The thread: making complex systems clear enough that people can act."
+ },
+ {
+  "id": "through-line",
+  "q": "What ties his work together?",
+  "aliases": [
+   "common thread",
+   "through line",
+   "theme of his career",
+   "what connects his jobs"
+  ],
+  "keywords": [
+   "thread",
+   "theme"
+  ],
+  "a": "Complex technical systems made understandable enough that people trust them. Smart home setup, market data reports, customer data permissions, data pipelines, and now AI: each time, the job was turning something confusing into something people can act on."
+ },
+ {
+  "id": "strengths",
+  "q": "What are his strengths?",
+  "aliases": [
+   "what is he good at",
+   "superpower",
+   "best skills",
+   "core strengths",
+   "what makes him strong"
+  ],
+  "keywords": [
+   "strength",
+   "skill"
+  ],
+  "a": "He's a systems thinker first: workflow architecture, scalable frameworks, and the logic under the screens. His edge is structuring complex technical products so they feel obvious. What he enjoys most is jumping into a messy problem space and shipping the workflows that help people get specific work done."
+ },
+ {
+  "id": "why-hire",
+  "q": "Why should we hire him?",
+  "aliases": [
+   "what makes him different",
+   "why him",
+   "unique value",
+   "what sets him apart",
+   "stand out"
+  ],
+  "keywords": [
+   "hire",
+   "different",
+   "unique"
+  ],
+  "a": "Three things in one person: 14 years designing for technical practitioners, experience leading a team through a major company merger, and AI work that already shipped in high-stakes data products. He's also hands-on: he prototypes, builds his own tools with Claude Code, and runs a small business, so he thinks about cost, adoption, and outcomes, not just screens."
+ },
+ {
+  "id": "philosophy",
+  "q": "What's his design philosophy?",
+  "aliases": [
+   "principles",
+   "how does he think about design",
+   "design principles",
+   "approach to design"
+  ],
+  "keywords": [
+   "philosophy",
+   "principle"
+  ],
+  "a": "Make simple things simple, and make complex things possible. Three lenses: clarity (make the complex feel obvious), systems (design the structure, not just the screen, and the workflow before the screen), and evidence (decisions backed by research and data)."
+ },
+ {
+  "id": "origin",
+  "q": "How did he get into this field?",
+  "aliases": [
+   "why did he become a designer",
+   "career start",
+   "path into design",
+   "how did he start",
+   "why design"
+  ],
+  "keywords": [
+   "start",
+   "origin"
+  ],
+  "a": "His path went from library and information science, to customer experience, to HCI, to product work. It has always been about organizing complexity for people. His short version: solve, not explain."
+ },
+ {
+  "id": "proudest",
+  "q": "What is he proudest of?",
+  "aliases": [
+   "biggest achievement",
+   "greatest accomplishment",
+   "best project",
+   "favorite project",
+   "career highlight"
+  ],
+  "keywords": [
+   "proud",
+   "achievement",
+   "highlight"
+  ],
+  "case": "uda",
+  "a": "Probably Unified Data Acquisition at Splunk: 100+ ingestion flows built in silos became one framework. Setup dropped from days or weeks to 13 minutes on average, 400+ customers have an active data input, and new connectors take 1.5 months instead of about 6. It showed that designing the framework first beats adding more meetings."
+ },
+ {
+  "id": "b2b-b2c",
+  "q": "Does he have B2B and B2C experience?",
+  "aliases": [
+   "consumer experience",
+   "enterprise experience",
+   "b2c",
+   "b2b",
+   "consumer apps",
+   "enterprise software"
+  ],
+  "keywords": [
+   "b2b",
+   "b2c",
+   "consumer",
+   "enterprise"
+  ],
+  "a": "Both. B2C: he launched TP-Link's Kasa smart home app to 1M+ users, with a 4.5+ star rating. B2B: Splunk, Treasure Data, and App Annie, building data platforms for engineers, admins, and analysts. He says the consumer lesson carried over: onboarding is where most products win or lose trust."
+ },
+ {
+  "id": "numbers",
+  "q": "What are his key numbers?",
+  "aliases": [
+   "measurable impact",
+   "results",
+   "metrics he moved",
+   "impact numbers",
+   "what was the impact",
+   "outcomes"
+  ],
+  "keywords": [
+   "metric",
+   "impact"
+  ],
+  "a": "A few: 3 platform products from 0 to 1 at Splunk. 400+ cloud ingestion customers (300M events/day) and 100+ data processing customers (5 TB/day). Cloud onboarding from days to under 30 minutes. 1,000+ data sources on one framework. 120+ weekly users for a new monitoring portal. Kasa app at 1M+ users. Alert setup completion from 45% to 80%+ at App Annie."
+ },
+ {
+  "id": "splunk",
+  "q": "What did he do at Splunk?",
+  "aliases": [
+   "splunk role",
+   "work at splunk",
+   "job at cisco",
+   "splunk experience",
+   "cisco role",
+   "what did he do at cisco"
+  ],
+  "keywords": [
+   "splunk",
+   "cisco"
+  ],
+  "a": "From 2021 to early 2026 he was Senior Product Design Manager, leading seven designers across the full data journey: getting data in, processing it, monitoring it, and troubleshooting. His team launched Cloud Data Manager, Edge Processor, and Ingest Processor. Outcomes: 400+ cloud ingestion customers at 300M events a day, cloud onboarding from days to under 30 minutes, and 1,000+ data sources on one framework. Before that he was a Principal Product Designer at Splunk."
+ },
+ {
+  "id": "splunk-products",
+  "q": "What products did he take from 0 to 1?",
+  "aliases": [
+   "zero to one products",
+   "new products launched",
+   "cloud data manager",
+   "edge processor",
+   "ingest processor",
+   "products launched at splunk"
+  ],
+  "keywords": [
+   "zeroone",
+   "launch",
+   "product"
+  ],
+  "a": "Three Splunk platform products: Cloud Data Manager, Edge Processor, and Ingest Processor. All were featured in Splunk's earnings calls and showcased at Splunk's annual conference. Together they reached 400+ active cloud ingestion customers (300M events/day) and 100+ data processing customers (5 TB/day). Earlier, he also launched the Kasa smart home app from scratch."
+ },
+ {
+  "id": "team",
+  "q": "How big was his team?",
+  "aliases": [
+   "team size",
+   "how many designers",
+   "how many reports",
+   "direct reports",
+   "who did he manage",
+   "how many people did he manage"
+  ],
+  "keywords": [
+   "team",
+   "size",
+   "reports"
+  ],
+  "a": "Seven designers, including an intern, at Splunk. The team covered data acquisition, processing, content, monitoring, and troubleshooting, and spanned the US East Coast, West Coast, and Vancouver, with many partners in Krakow. Earlier, at TP-Link, he managed four junior designers."
+ },
+ {
+  "id": "merger",
+  "q": "Has he led a team through a merger?",
+  "aliases": [
+   "cisco acquisition",
+   "reorg experience",
+   "through a reorg",
+   "acquisition",
+   "organizational change"
+  ],
+  "keywords": [
+   "merger",
+   "acquisition"
+  ],
+  "a": "Yes. He led his team through the integration period after Cisco acquired Splunk. In a shifting org, a shippable path and clear priorities matter a lot, and he kept both in front of the team."
+ },
+ {
+  "id": "why-left",
+  "q": "Why did he leave Splunk?",
+  "aliases": [
+   "why is he looking",
+   "laid off",
+   "why did he leave",
+   "reason for leaving",
+   "left cisco",
+   "why is he on the job market"
+  ],
+  "keywords": [
+   "leave"
+  ],
+  "a": "He was impacted by a reorg after the Cisco acquisition, in early 2026. No drama: it happens in big mergers. It also gave him the push to see how other companies use AI to reshape what they build, and to go deeper building hands-on with AI himself."
+ },
+ {
+  "id": "tplink",
+  "q": "What did he do at TP-Link?",
+  "aliases": [
+   "kasa",
+   "tp link",
+   "smart home app",
+   "smarthome experience",
+   "iot consumer app",
+   "kasa app"
+  ],
+  "keywords": [
+   "kasa",
+   "tplink",
+   "smarthome"
+  ],
+  "a": "He joined TP-Link Research America as the first UX designer and led the 0-to-1 launch of the Kasa smart home app across mobile, web, and hardware, reaching 1M+ users. He designed onboarding, control, and automation for 5+ device types, and replaced static manuals with a one-action-at-a-time setup flow. The app held a 4.5+ star rating, and the smart plug reached #1 on Amazon. He also managed four junior designers."
+ },
+ {
+  "id": "onboarding-lesson",
+  "q": "Why does he care so much about onboarding?",
+  "aliases": [
+   "onboarding experience",
+   "first time user experience",
+   "setup flows",
+   "onboarding design"
+  ],
+  "keywords": [
+   "onboarding"
+  ],
+  "a": "Because onboarding is where most products win or lose trust. He learned it on Kasa, where a one-action-at-a-time setup flow earned reviews praising the easy setup. He used the same idea at Splunk to turn 1,000+ data setup paths into one guided journey, and again in AI Guided Onboarding."
+ },
+ {
+  "id": "appannie",
+  "q": "What did he do at App Annie?",
+  "aliases": [
+   "app annie",
+   "mobile app intelligence",
+   "market data reports",
+   "app analytics"
+  ],
+  "keywords": [
+   "annie"
+  ],
+  "a": "He owned design end to end for market-insight reports like Mobile Web Usage, SDK reports, and Paid vs. Organic Downloads, used by 500k+ people. He shipped a 0-to-1 Slack integration with 1,000+ active connections, and redesigned alert setup into a templated flow that took completion from 45% to 80%+."
+ },
+ {
+  "id": "growth-win",
+  "q": "Tell me about a growth win.",
+  "aliases": [
+   "conversion improvement",
+   "alert redesign",
+   "improved conversion",
+   "growth story",
+   "activation win"
+  ],
+  "keywords": [
+   "growth",
+   "conversion"
+  ],
+  "a": "At App Annie, setting up alerts was complex and people dropped off. Chung-Han replaced it with a templated flow and direct Slack delivery. Completion went from 45% to over 80%."
+ },
+ {
+  "id": "treasure",
+  "q": "What did he do at Treasure Data?",
+  "aliases": [
+   "treasure data",
+   "customer data platform",
+   "cdp experience",
+   "cdp"
+  ],
+  "keywords": [
+   "treasure",
+   "cdp"
+  ],
+  "a": "He was UX lead on a Customer Data Platform for data engineers, marketers, and admins. The highlight was a permission framework with SSO that shipped, unlocked Global 2000 sales, and helped close a major deal with a global consumer goods company. He also designed an Integration Hub, redesigned audience segmentation, and started the team's first design system."
+ },
+ {
+  "id": "revenue",
+  "q": "Tell me about a design decision that drove revenue.",
+  "aliases": [
+   "business impact",
+   "revenue impact",
+   "helped close a deal",
+   "sales impact",
+   "won a deal"
+  ],
+  "keywords": [
+   "revenue",
+   "deal",
+   "sales"
+  ],
+  "a": "At Treasure Data he designed a Policy Set permission framework so enterprise admins could manage permissions for global teams instead of one by one. It shipped and helped win a major deal with a global consumer goods company. His lesson: design can move revenue when you understand the buyer, not just the user."
+ },
+ {
+  "id": "process-mining",
+  "q": "Tell me about his process mining work.",
+  "aliases": [
+   "splunk business flow",
+   "bottleneck report",
+   "process mining",
+   "business flow"
+  ],
+  "keywords": [
+   "process",
+   "mining",
+   "bottleneck"
+  ],
+  "case": "pm",
+  "a": "At Splunk Business Flow he delivered a bottleneck report with ready-made templates comparing usual vs. actual processing time, so analysts could find delays fast. One workshop insight moved the direction from flexible dashboards to pre-built reports that showed value on first load. It proved ROI before contract close and led to a license purchase by a major e-commerce company."
+ },
+ {
+  "id": "stream",
+  "q": "Has he worked on stream processing?",
+  "aliases": [
+   "data pipelines",
+   "real time processing",
+   "pipeline editor",
+   "streaming data"
+  ],
+  "keywords": [
+   "stream",
+   "pipeline"
+  ],
+  "a": "Yes. As a Principal Product Designer at Splunk he improved real-time stream processing: a pipeline editor redesign, onboarding walkthroughs, in-product guidance and a sandbox, and better troubleshooting for large customers like PayPal and Cox Automotive. Later his team covered the whole data journey, including Edge Processor and Ingest Processor."
+ },
+ {
+  "id": "observability",
+  "q": "Does he have observability experience?",
+  "aliases": [
+   "monitoring experience",
+   "observability",
+   "dashboards and alerts",
+   "monitoring tools"
+  ],
+  "keywords": [
+   "observability",
+   "monitor"
+  ],
+  "case": "udo",
+  "a": "Yes, deeply. He led Unified Data Observability at Splunk, the first unified portal for monitoring data with dashboards and anomaly alerts (120+ weekly users), and the root cause analysis work for troubleshooting pipelines. He framed monitoring as a maturity path: active, reactive, proactive, then automated."
+ },
+ {
+  "id": "security",
+  "q": "Does he have security experience?",
+  "aliases": [
+   "cybersecurity",
+   "kubernetes security",
+   "isovalent",
+   "security products"
+  ],
+  "keywords": [
+   "security",
+   "isovalent",
+   "kubernetes"
+  ],
+  "a": "Yes. At Cisco he worked on Isovalent, Kubernetes security, including security metrics monitoring and tracing. His team also covered security use cases across Splunk's data management products, where one dataset often has to serve security, compliance, and operations at once."
+ },
+ {
+  "id": "ot",
+  "q": "What is Operational Technology Intelligence?",
+  "aliases": [
+   "meraki",
+   "sensor data",
+   "industrial iot",
+   "operational technology"
+  ],
+  "keywords": [
+   "meraki",
+   "sensor",
+   "operational"
+  ],
+  "a": "Operational Technology Intelligence used Splunk's analytics on sensor data from Cisco Meraki devices, so industrial teams get real-time visibility. Chung-Han defined the design for that experience. It's separate from Splunk's own monitoring products."
+ },
+ {
+  "id": "iot",
+  "q": "Does he have IoT experience?",
+  "aliases": [
+   "hardware experience",
+   "connected devices",
+   "physical products",
+   "internet of things"
+  ],
+  "keywords": [
+   "iot",
+   "hardware",
+   "device"
+  ],
+  "a": "Yes, on both ends. Consumer: the Kasa smart home app at TP-Link, covering 5+ device types across mobile, web, and hardware, with 1M+ users. Industrial: Operational Technology Intelligence at Cisco, turning Meraki sensor data into real-time visibility. Physical-world systems where a signal has to turn into action are one of his favorite areas."
+ },
+ {
+  "id": "data-platforms",
+  "q": "Does he know data platforms?",
+  "aliases": [
+   "data infrastructure",
+   "data management",
+   "data ingestion",
+   "big data"
+  ],
+  "keywords": [
+   "data",
+   "ingestion",
+   "platform"
+  ],
+  "a": "It's his home turf. At Splunk his team covered the whole data management journey: getting data in, processing it, monitoring it, and troubleshooting, across Security, Observability, and IoT. Before that he designed a Customer Data Platform at Treasure Data and market data reports at App Annie."
+ },
+ {
+  "id": "go-overview",
+  "q": "Tell me about AI Guided Onboarding.",
+  "aliases": [
+   "guided onboarding",
+   "ai onboarding",
+   "topology driven onboarding",
+   "onboarding project",
+   "45 day time to value"
+  ],
+  "keywords": [
+   "guided",
+   "onboarding"
+  ],
+  "case": "onboarding",
+  "a": "Splunk customers had a 45+ day time-to-value problem, mostly because they didn't know which solutions and setup fit their use case. Chung-Han led AI Guided Onboarding to make that visible and guide setup. The team tested conversational vs. canvas designs, and research with 15 customers showed chatbot-only flows erode trust, so they went canvas-native with smart defaults. It was demoed at .conf 2025."
+ },
+ {
+  "id": "go-stall",
+  "q": "Tell me about a time he unstuck a team.",
+  "aliases": [
+   "stalled project",
+   "team was stuck",
+   "stepped in",
+   "got the team moving",
+   "blocked team"
+  ],
+  "keywords": [
+   "stuck",
+   "stall",
+   "unblock"
+  ],
+  "case": "onboarding",
+  "a": "On AI Guided Onboarding, the team stalled for three weeks: design asked engineering for full specs the traditional way, and engineering said they needed to know the desired output first. Chung-Han stepped in and reset the approach: design for the AI, not around it. Start from the output you want, then work back to the prompt. He gave the team three concrete angles to work on, and it moved again."
+ },
+ {
+  "id": "go-canvas",
+  "q": "Why a canvas instead of a chatbot?",
+  "aliases": [
+   "canvas vs chatbot",
+   "chatbot or canvas",
+   "conversational ui",
+   "why not a chatbot"
+  ],
+  "keywords": [
+   "chatbot",
+   "canvas"
+  ],
+  "case": "onboarding",
+  "a": "Research with 15 customers and solutions engineers was clear. Chatbot-only interaction felt limited, and users lost trust while waiting. Many didn't know exactly what they wanted, so a smart default beat asking lots of questions. And a structured flow was still essential for accurate recommendations. So the team went canvas-native, with AI supporting in the background. (Yes, says the chatbot dog. 🐾)"
+ },
+ {
+  "id": "go-results",
+  "q": "Did Guided Onboarding ship?",
+  "aliases": [
+   "guided onboarding results",
+   "onboarding outcome",
+   "did it launch",
+   "post launch data"
+  ],
+  "keywords": [
+   "ship",
+   "launch"
+  ],
+  "case": "onboarding",
+  "a": "It was validated with 15 customers and demoed at .conf 2025, with an alpha planned for Q2 2026 and GA for 2026. Chung-Han left in a reorg before launch, so there is no post-launch data, and he is upfront about that rather than overclaiming."
+ },
+ {
+  "id": "failure",
+  "q": "Tell me about a failure.",
+  "aliases": [
+   "a mistake",
+   "what went wrong",
+   "biggest failure",
+   "lesson learned the hard way",
+   "something that did not work"
+  ],
+  "keywords": [
+   "failure"
+  ],
+  "case": "onboarding",
+  "a": "Guided Onboarding testing. The 15 customer sessions measured preference, not task completion, because customers couldn't bring their real environments. So the team couldn't prove faster time to value. Now he agrees on the success metric before design starts, and pushes for a sandbox with realistic data so tests measure real outcomes."
+ },
+ {
+  "id": "do-differently",
+  "q": "What would he do differently?",
+  "aliases": [
+   "in hindsight",
+   "looking back",
+   "retrospective",
+   "if he could redo it"
+  ],
+  "keywords": [
+   "differently",
+   "hindsight"
+  ],
+  "a": "On AI Guided Onboarding: agree on the success metric before design, build a sandbox with customer-like data so testing measures real task completion, and treat it like an eval, with a fixed set of scenarios run on every iteration."
+ },
+ {
+  "id": "autoschema",
+  "q": "Tell me about Auto-Schematization.",
+  "aliases": [
+   "auto field extraction",
+   "field extraction",
+   "data prep ai",
+   "auto schematization"
+  ],
+  "keywords": [
+   "schematization",
+   "extraction",
+   "regex"
+  ],
+  "case": "hitl",
+  "a": "The goal: free users from data prep so they can focus on insights. Field extraction relied on regex, which machines like and people don't. The first AI version extracted fields, but users said: \"It works, but I could just use Regex101.\" So the team pivoted from extracting fields to enabling outcomes: the AI recommends matching data models and flags missing fields for compliance. Auto Field Extraction shipped in Q1 2026."
+ },
+ {
+  "id": "regex",
+  "q": "What was the Regex101 moment?",
+  "aliases": [
+   "user feedback surprise",
+   "validation surprise",
+   "users said it was not enough"
+  ],
+  "keywords": [
+   "regex101",
+   "surprise"
+  ],
+  "case": "hitl",
+  "a": "Users tried the first AI field extraction and said: \"It works, but I could just use Regex101. What's the difference?\" That told the team field extraction alone wasn't enough. Technical thinking was \"extract fields\"; user thinking was \"format my data for a security or observability use case.\" So they redesigned around outcomes."
+ },
+ {
+  "id": "rca",
+  "q": "Tell me about root cause analysis.",
+  "aliases": [
+   "troubleshooting ai",
+   "self healing pipelines",
+   "rootcause",
+   "debugging pipelines"
+  ],
+  "keywords": [
+   "rootcause",
+   "troubleshoot"
+  ],
+  "case": "hitl",
+  "a": "The pain: \"I know something's broken. I just don't know what, or where to start.\" Chung-Han's principles: the user starts the analysis when ready; the result explains itself as a summary, then details, then a recommended fix in plain language; and a side-by-side view shows exactly what will change. It got positive feedback at .conf 2025, with GA planned for 2026."
+ },
+ {
+  "id": "assertive",
+  "q": "What is assertive AI?",
+  "aliases": [
+   "agentic ai",
+   "ai agents",
+   "autonomous ai",
+   "should ai act on its own",
+   "agentic vs assertive"
+  ],
+  "keywords": [
+   "agentic",
+   "assertive",
+   "agent",
+   "autonomy"
+  ],
+  "case": "hitl",
+  "a": "His term for AI that surfaces, explains, and recommends, while the human decides. In data and security pipelines, an AI that acts silently is a trust problem. He sees assertive AI as the scaffolding that makes agentic AI safe to adopt: autonomy widens step by step, only as users trust it."
+ },
+ {
+  "id": "ai-native",
+  "q": "What does AI-native mean to him?",
+  "aliases": [
+   "ai native",
+   "ai first product",
+   "rethinking products with ai"
+  ],
+  "keywords": [
+   "native"
+  ],
+  "a": "AI-native means the workflow is redesigned around what AI can do, and the design work is deciding where the human stays in control. It is not adding a chatbot to an old product. In practice: the AI suggests first, then validates, then acts and monitors, and you widen its control only once users trust it."
+ },
+ {
+  "id": "ai-workflow",
+  "q": "How does he use AI in his own work?",
+  "aliases": [
+   "ai tools he uses",
+   "does he use ai",
+   "claude code",
+   "his ai workflow",
+   "vibe coding",
+   "ai in his process"
+  ],
+  "keywords": [
+   "claudecode",
+   "tool",
+   "vibe"
+  ],
+  "a": "Every week. He builds with Claude Code: for his tea business he built a permit form filler, a social post generator, and a compliance calendar, and he built his portfolio presentation in code (and me). At Splunk he made workflow animations with Claude Code for leadership reviews, hosted a monthly AI learning club, and uses Figma Make for early co-creation with product and engineering."
+ },
+ {
+  "id": "tff",
+  "q": "Tell me about the TFF Filler app.",
+  "aliases": [
+   "permit filler",
+   "permit app",
+   "tff filler",
+   "side project"
+  ],
+  "keywords": [
+   "tff",
+   "permit"
+  ],
+  "a": "Teappo does many pop-up events, and each needs a temporary food facility permit form. His first attempt was too ambitious: a full web app with login and AI. It ran out of steam. He cut it to two forms with an upload, detect fields, fill flow, then fixed OCR and signature issues with targeted tests. Lesson: start small, and domain knowledge still matters even when AI does the heavy lifting."
+ },
+ {
+  "id": "ai-lessons",
+  "q": "What has he learned from building with AI?",
+  "aliases": [
+   "lessons from ai",
+   "building with ai",
+   "ai learnings"
+  ],
+  "keywords": [
+   "learn",
+   "lesson"
+  ],
+  "a": "Domain knowledge makes AI building fast: when you know the workflow well, the prompts are precise. Asking the AI to test its own output cuts iteration cycles a lot. And start small: the first permit-filler attempt was a whole web app and stalled; the version that worked did one job for two forms."
+ },
+ {
+  "id": "design-system-code",
+  "q": "Has he built a design system in code?",
+  "aliases": [
+   "code based design system",
+   "designsystem in code",
+   "react components"
+  ],
+  "keywords": [
+   "designsystem"
+  ],
+  "a": "Not one that shipped. He has experimented with one in code. What he has shipped: the Figma design system he architected for his Splunk team, and the first design system at Treasure Data."
+ },
+ {
+  "id": "code",
+  "q": "Can he code?",
+  "aliases": [
+   "does he code",
+   "technical skills",
+   "does he prototype in code",
+   "engineering skills",
+   "is he technical"
+  ],
+  "keywords": [
+   "code",
+   "prototype",
+   "technical"
+  ],
+  "a": "He builds real tools with Claude Code, like the permit form filler for his tea business and this chat with me, and he prototypes in code instead of only static mocks. He's not an engineer by title, but he's comfortable in technical domains: data pipelines, Kubernetes security, and APIs."
+ },
+ {
+  "id": "this-bot",
+  "q": "How was Cha Cha built?",
+  "aliases": [
+   "how were you made",
+   "how does this chat work",
+   "are you chatgpt",
+   "what powers you",
+   "who built you"
+  ],
+  "keywords": [
+   "built",
+   "made",
+   "powers"
+  ],
+  "a": "Chung-Han built me with Claude Code. I answer from a set of answers he wrote and reviewed about his work, and I match your question to the closest one. That's why I stick to facts about him, and say so when something's not in my notes. 🐾"
+ },
+ {
+  "id": "uda",
+  "q": "Tell me about Unified Data Acquisition.",
+  "aliases": [
+   "uda",
+   "data acquisition",
+   "cloud data onboarding",
+   "data ingestion portal",
+   "1000 data sources"
+  ],
+  "keywords": [
+   "acquisition",
+   "uda",
+   "ingestion"
+  ],
+  "case": "uda",
+  "a": "Splunk had 100+ ingestion flows built in silos, and every new source was a custom integration taking a day to weeks to set up. Chung-Han led three designers to build one shared framework, borrowing the step-by-step onboarding model from his smart home work. Result: 13-minute average setup, 400+ customers with an active data input, 61% of pipelines active daily, and new connectors in 1.5 months instead of about 6."
+ },
+ {
+  "id": "uda-consistency",
+  "q": "How does he keep quality consistent across teams?",
+  "aliases": [
+   "consistency at scale",
+   "quality across teams",
+   "teams that do not report to him",
+   "keep products coherent",
+   "multiple products consistent"
+  ],
+  "keywords": [
+   "consistent",
+   "consistency",
+   "coherent"
+  ],
+  "case": "uda",
+  "a": "By designing the framework first, not by adding more meetings. On Unified Data Acquisition, two designers built the same Azure input and got different forms. So he made consistent content the standard, not just consistent workflow, with one owner accountable for standards. His lesson: consistency at scale comes from the framework carrying the weight."
+ },
+ {
+  "id": "uda-team",
+  "q": "How did he structure his team?",
+  "aliases": [
+   "team structure",
+   "org design",
+   "how he organized the team",
+   "pillar model"
+  ],
+  "keywords": [
+   "structure",
+   "organize",
+   "pillar"
+  ],
+  "case": "uda",
+  "a": "One designer per cloud provider (AWS, Azure) plus a standards owner, with a weekly sync across partner teams. His principle: each designer owns an area end to end, close enough to ship fast, aligned enough to stay consistent. More broadly he uses pillars, each with one accountable owner."
+ },
+ {
+  "id": "udo",
+  "q": "Tell me about Unified Data Observability.",
+  "aliases": [
+   "udo",
+   "monitoring portal",
+   "topology map",
+   "observability project"
+  ],
+  "keywords": [
+   "udo",
+   "topology"
+  ],
+  "case": "udo",
+  "a": "Splunk's survey ranked easy troubleshooting the #1 unmet need four years running. The first vision, a live topology map, stalled at enterprise scale. Chung-Han took the team back to jobs-to-be-done research and reframed monitoring as a maturity path: active, reactive, proactive, automated. They shipped a simpler monitoring portal first, in 3 months instead of 6+, reaching 120+ weekly users."
+ },
+ {
+  "id": "maturity",
+  "q": "What is the monitoring maturity framework?",
+  "aliases": [
+   "active reactive proactive",
+   "monitoring stages",
+   "maturity model"
+  ],
+  "keywords": [
+   "maturity",
+   "reactive",
+   "proactive"
+  ],
+  "case": "udo",
+  "a": "Four stages that meet users where they are. Active: dashboards and search, you watch in real time. Reactive: alerts tell you when to act. Proactive: anomaly detection and root cause analysis warn you before problems land. Automation: the system acts on its own. It became how the roadmap was prioritized."
+ },
+ {
+  "id": "pushback",
+  "q": "How does he handle pushback?",
+  "aliases": [
+   "handling disagreement",
+   "stakeholder disagreement",
+   "conflict with pm",
+   "convince stakeholders",
+   "disagree with leadership"
+  ],
+  "keywords": [
+   "conflict",
+   "disagree"
+  ],
+  "case": "udo",
+  "a": "He leads with research, not opinion. On the observability pivot, once product saw the evidence that users arrive when something is already broken, the reframe was obvious to them too, and engineering got unblocked. He never killed the original topology vision; he sequenced it, so people invested in it could see the path."
+ },
+ {
+  "id": "influence",
+  "q": "How does he influence without authority?",
+  "aliases": [
+   "influence",
+   "get buy in",
+   "drive adoption across teams",
+   "convince other teams",
+   "pendo"
+  ],
+  "keywords": [
+   "influence",
+   "buy",
+   "adoption"
+  ],
+  "a": "He makes the other side's yes rational. At Splunk, adopting Pendo analytics and jobs-to-be-done wasn't in any product team's goals. He partnered with a senior director, ran sessions for every product and engineering manager explaining the why and showing a pilot, then made his own team reference jobs-to-be-done in every design review until it became the default."
+ },
+ {
+  "id": "cross-functional",
+  "q": "How does he work with PMs and engineers?",
+  "aliases": [
+   "product managers",
+   "working with engineering",
+   "cross functional partners",
+   "collaboration",
+   "partnership with pm"
+  ],
+  "keywords": [
+   "engineer",
+   "collaborat",
+   "cross"
+  ],
+  "a": "He brings evidence instead of opinions, often from customers or solutions engineers, and lands decisions together with product and engineering. He also gets involved early, while direction is still being formed, instead of waiting for a finished spec to design screens on top of."
+ },
+ {
+  "id": "ambiguity",
+  "q": "How does he handle ambiguity?",
+  "aliases": [
+   "ambiguous problems",
+   "unclear requirements",
+   "no clear direction",
+   "uncertainty"
+  ],
+  "keywords": [
+   "ambiguity",
+   "ambiguous",
+   "uncertain"
+  ],
+  "case": "onboarding",
+  "a": "He gives the team a shape they can move inside. On a 0-to-1 AI onboarding product, nobody knew how to start, so he broke it into three angles: how people start, how they interact, and how information surfaces. And he likes to make the possibilities visible with quick prototypes instead of waiting for certainty."
+ },
+ {
+  "id": "scope",
+  "q": "How does he scope a problem?",
+  "aliases": [
+   "problem framing",
+   "frame the problem",
+   "right problem",
+   "discovery process"
+  ],
+  "keywords": [
+   "scope",
+   "frame",
+   "discovery"
+  ],
+  "case": "udo",
+  "a": "Outcome first, not feature first. He uses jobs-to-be-done questions: what are people ultimately trying to achieve, when would they reach for this, what does done look like, and what do they already use. That's how a topology map idea became a monitoring framework people actually needed."
+ },
+ {
+  "id": "research",
+  "q": "How does he do user research?",
+  "aliases": [
+   "research methods",
+   "customer research",
+   "user interviews",
+   "validate ideas",
+   "talk to users"
+  ],
+  "keywords": [
+   "research",
+   "interview",
+   "validate"
+  ],
+  "a": "Close to real users and real work: customer sessions, solutions engineers who sit with customers, survey data, and jobs-to-be-done interviews. He shares learnings monthly with partner teams. And he treats ideas as assumptions to test, not positions to defend, like the canvas vs. chatbot question on Guided Onboarding."
+ },
+ {
+  "id": "metrics-success",
+  "q": "How does he measure success?",
+  "aliases": [
+   "success metrics",
+   "how to measure design",
+   "define success",
+   "measure impact of design"
+  ],
+  "keywords": [
+   "metric",
+   "success"
+  ],
+  "a": "Agree on the metric before design starts: time to value, adoption, support load, or conversion. Guided Onboarding taught him to do this earlier, because its tests measured preference instead of task completion."
+ },
+ {
+  "id": "business-user",
+  "q": "How does he balance business and user needs?",
+  "aliases": [
+   "business vs user",
+   "tradeoffs",
+   "business goals",
+   "stakeholder vs user"
+  ],
+  "keywords": [
+   "business",
+   "tradeoff",
+   "balance"
+  ],
+  "case": "uda",
+  "a": "He looks for the version where the business win isn't a user loss. At Splunk, the business needed one portal instead of 100+ tools. A generic form would have shipped faster but served nobody. His framework kept each setup path specific inside one consistent shell, which is how setup dropped to 13 minutes."
+ },
+ {
+  "id": "prioritize",
+  "q": "How does he prioritize?",
+  "aliases": [
+   "roadmap",
+   "prioritization",
+   "planning",
+   "what to build first",
+   "sequencing"
+  ],
+  "keywords": [
+   "priorit",
+   "roadmap",
+   "plan"
+  ],
+  "a": "By customer outcome and what unblocks progress. On observability he sequenced a simpler dashboard before the topology vision, because it worked on a solid foundation. He plans quarterly with partner teams, and each area has one accountable owner, so priorities can shift without reopening the whole roadmap."
+ },
+ {
+  "id": "new-domain",
+  "q": "How does he learn a new domain?",
+  "aliases": [
+   "ramp up",
+   "get up to speed",
+   "learn new industry",
+   "unfamiliar domain"
+  ],
+  "keywords": [
+   "domain",
+   "ramp",
+   "learn"
+  ],
+  "a": "Sit with users, shadow on-call, and use the product on real problems. That's how he learned data pipelines at Splunk. A lot carries over too: Kubernetes and tracing work at Isovalent and years of data pipelines map well onto most infrastructure domains."
+ },
+ {
+  "id": "prototyping",
+  "q": "Does he prototype?",
+  "aliases": [
+   "prototyping",
+   "rapid prototyping",
+   "figma make",
+   "prototype the direction"
+  ],
+  "keywords": [
+   "prototyp"
+  ],
+  "a": "A lot. He prototypes the direction on the hardest problem himself to set the bar, then the team owns execution. He uses Figma Make for early co-creation with product and engineering, and builds working tools with Claude Code. His motto: make the possibilities visible instead of waiting for certainty."
+ },
+ {
+  "id": "weakness",
+  "q": "What is his biggest weakness?",
+  "aliases": [
+   "weaknesses",
+   "area to improve",
+   "what is he working on",
+   "growth area"
+  ],
+  "keywords": [
+   "weakness",
+   "improve"
+  ],
+  "a": "His stories can run long, because he works in technical domains and wants to give context. He's been practicing leading with the conclusion and one example, then stopping. Also, pure visual polish isn't where he's strongest; he's at his best on systems, workflows, and frameworks."
+ },
+ {
+  "id": "ic-manager",
+  "q": "Is he looking for IC or manager roles?",
+  "aliases": [
+   "individual contributor",
+   "manager or ic",
+   "people manager",
+   "staff or principal",
+   "management or hands on"
+  ],
+  "keywords": [
+   "ic",
+   "individual"
+  ],
+  "a": "He cares more about the problem than the title, and stays hands-on either way. What drives him is seeing a solution actually used and customers getting value. As a manager he helps several people make their work great; as an individual contributor he sits inside the complexity directly. For a specific role, chat with him: plmaxi@gmail.com."
+ },
+ {
+  "id": "quality",
+  "q": "How does he raise the quality bar?",
+  "aliases": [
+   "quality bar",
+   "high standards",
+   "design critique",
+   "design quality"
+  ],
+  "keywords": [
+   "quality",
+   "critique",
+   "standard"
+  ],
+  "a": "Consistency first, held through regular critiques and the design system he architected. He also reviewed designs with solutions engineers, so quality meant real customer value, not just polish. The bar stays the same whether the work is in Figma or in code."
+ },
+ {
+  "id": "grow-people",
+  "q": "How does he grow people on his team?",
+  "aliases": [
+   "develop designers",
+   "career growth",
+   "coaching",
+   "mentoring designers",
+   "growing a designer"
+  ],
+  "keywords": [
+   "mentor",
+   "grow",
+   "develop"
+  ],
+  "a": "He teaches to each person's nature, not one fixed standard. For a UI designer who wanted to become a product designer, he mapped her work against the leveling guide point by point, pointed her to targeted reading, and leaned into her structured strengths. Over time her partners' feedback improved noticeably. He also advocates for his people's visibility with leadership."
+ },
+ {
+  "id": "placing",
+  "q": "How does he decide who works on what?",
+  "aliases": [
+   "resource allocation",
+   "staffing",
+   "assigning projects",
+   "matching people to projects"
+  ],
+  "keywords": [
+   "allocat",
+   "assign",
+   "staff"
+  ],
+  "a": "Match people to the problem, not seniority. Some people are strongest at vision, defining ambiguous problems; others at execution, shipping fast within a clear direction. He also weighs comfort with technical depth. Seniority and promotion goals come after that, as a tiebreaker."
+ },
+ {
+  "id": "underperform",
+  "q": "How does he handle underperformance?",
+  "aliases": [
+   "low performer",
+   "performance issues",
+   "difficult conversations",
+   "performance reviews"
+  ],
+  "keywords": [
+   "perform"
+  ],
+  "a": "Make the gap concrete, then coach to the person's strengths. He walks through the leveling expectations side by side with the person so the gap is specific, not vague, then sets up practice that fits how they naturally work, like pairing with a senior designer. He uses goal setting and a 9-box style review to run these conversations systematically."
+ },
+ {
+  "id": "senior-support",
+  "q": "How does he support senior designers?",
+  "aliases": [
+   "principal designers",
+   "senior talent",
+   "staff designers",
+   "retain senior people"
+  ],
+  "keywords": [
+   "senior",
+   "principal"
+  ],
+  "a": "Mostly scope and visibility. With a principal designer on his team, he reshaped the scope to match the level and advocated for his work in front of the wider org, so his impact was seen beyond the team."
+ },
+ {
+  "id": "distributed",
+  "q": "How does he manage a distributed team?",
+  "aliases": [
+   "remote team",
+   "time zones",
+   "global team",
+   "async work"
+  ],
+  "keywords": [
+   "distributed",
+   "async",
+   "timezone"
+  ],
+  "a": "His team spanned the US East Coast, West Coast, and Vancouver, with many partners in Krakow. Async-first rituals, and protecting overlap hours for what truly needs live time."
+ },
+ {
+  "id": "culture",
+  "q": "How does he build team culture?",
+  "aliases": [
+   "team culture",
+   "learning culture",
+   "ai learning club",
+   "knowledge sharing"
+  ],
+  "keywords": [
+   "culture",
+   "club"
+  ],
+  "a": "Hands-on and learning-driven. He hosted a monthly research and AI learning session for product and design, brought in outside tools to show the team new ways to work, and recruited design interns every year since 2020. If a file or a plan is stuck, he jumps in and shows rather than tells."
+ },
+ {
+  "id": "hiring",
+  "q": "How does he hire?",
+  "aliases": [
+   "hiring process",
+   "recruiting designers",
+   "interns",
+   "build a team"
+  ],
+  "keywords": [
+   "hire"
+  ],
+  "a": "He has recruited design interns every year since 2020 and mentored a mid-level designer. When evaluating people he looks first at whether they lean toward vision or execution, then at comfort with technical depth, so he can place them where their strengths meet the bar."
+ },
+ {
+  "id": "uplevel",
+  "q": "How would he uplevel an existing team?",
+  "aliases": [
+   "improve a team",
+   "first 90 days",
+   "new team",
+   "join a team"
+  ],
+  "keywords": [
+   "uplevel",
+   "first"
+  ],
+  "a": "First, listen and map each person's strengths. Then raise the bar through critiques and by prototyping the hardest problem himself. At Splunk, consistency was the bar he held the team to."
+ },
+ {
+  "id": "code-team",
+  "q": "How would he lead a team that ships in code?",
+  "aliases": [
+   "design engineering",
+   "designers who code",
+   "code first team"
+  ],
+  "keywords": [
+   "ship"
+  ],
+  "a": "Prototypes replace static mocks in critiques. He prototypes the direction on the hardest problem to set the bar, then the team owns execution. The quality bar stays the same whether it's in Figma or code."
+ },
+ {
+  "id": "teappo",
+  "q": "What's Teappo?",
+  "aliases": [
+   "tea business",
+   "his tea company",
+   "tea brand",
+   "side business",
+   "small business"
+  ],
+  "keywords": [
+   "teappo",
+   "tea"
+  ],
+  "a": "Teappo is the premium tea brand Chung-Han co-founded with his wife in 2021, sourcing loose-leaf tea from Taiwan and Japan. They sell direct, wholesale on Faire, on marketplaces, and at events. He runs it end to end, from sourcing and inventory to accounting, which gives him a firsthand small-business view. Visit shopteappo.com. (Tea is not for dogs. I checked.)"
+ },
+ {
+  "id": "smb",
+  "q": "Does he understand small businesses?",
+  "aliases": [
+   "smb experience",
+   "shopify",
+   "e commerce",
+   "operator experience",
+   "small business owner"
+  ],
+  "keywords": [
+   "smb",
+   "shopify",
+   "commerce"
+  ],
+  "a": "Firsthand. Running Teappo, he handles sourcing, inventory, accounting, and P&L, and sells through Shopify, Faire wholesale, marketplaces, and events. He feels the gaps in small-business tools directly, which is also why he builds his own AI tools to turn hours of admin into minutes."
+ },
+ {
+  "id": "location",
+  "q": "Where is he based?",
+  "aliases": [
+   "location",
+   "where does he live",
+   "bay area",
+   "palo alto",
+   "is he local"
+  ],
+  "keywords": [
+   "location"
+  ],
+  "a": "Palo Alto, in the San Francisco Bay Area. For questions about hybrid, onsite, or relocation for a specific role, it's best to ask him directly: plmaxi@gmail.com."
+ },
+ {
+  "id": "fun",
+  "q": "Any fun facts about him?",
+  "aliases": [
+   "fun facts",
+   "hobbies",
+   "personal life",
+   "outside of work",
+   "something personal"
+  ],
+  "keywords": [
+   "fun",
+   "hobby"
+  ],
+  "a": "He's a dad and a dog dad: a young daughter and a cockapoo named Cha Cha. Hi. 🐾 He also co-runs a tea business, so there's a lot of tea tasting involved."
+ },
+ {
+  "id": "languages",
+  "q": "What languages does he speak?",
+  "aliases": [
+   "mandarin",
+   "chinese",
+   "bilingual",
+   "english"
+  ],
+  "keywords": [
+   "language",
+   "mandarin",
+   "chinese"
+  ],
+  "a": "English and Mandarin Chinese."
+ },
+ {
+  "id": "education",
+  "q": "Where did he study?",
+  "aliases": [
+   "education",
+   "degree",
+   "university",
+   "school",
+   "masters",
+   "college"
+  ],
+  "keywords": [
+   "study",
+   "degree",
+   "education",
+   "university"
+  ],
+  "a": "M.S. in Information (HCI) from the University of Michigan, 2015. B.A. in Library Science from National Taiwan University, 2008. He also has a Certificate in Disruptive Strategy from Harvard Business School Online, 2023."
+ },
+ {
+  "id": "contact",
+  "q": "How can I contact him?",
+  "aliases": [
+   "get in touch",
+   "email address",
+   "linkedin",
+   "reach out",
+   "contact info",
+   "schedule a call"
+  ],
+  "keywords": [
+   "contact",
+   "linkedin"
+  ],
+  "a": "Email plmaxi@gmail.com, or LinkedIn at linkedin.com/in/chunghantsai. He also writes about building with AI at chunghantsai.substack.com."
+ },
+ {
+  "id": "password",
+  "q": "What's the portfolio password?",
+  "aliases": [
+   "password",
+   "how do i see the projects",
+   "unlock projects",
+   "case studies password"
+  ],
+  "keywords": [
+   "password",
+   "unlock"
+  ],
+  "a": "It's on Chung-Han's resume. Some project details are under NDA, so they sit behind it. No resume handy? Email him at plmaxi@gmail.com and he'll share it. Or tap the 🔒 button to try."
+ },
+ {
+  "id": "writing",
+  "q": "Does he write or blog?",
+  "aliases": [
+   "substack",
+   "blog",
+   "articles",
+   "newsletter"
+  ],
+  "keywords": [
+   "substack",
+   "blog",
+   "write"
+  ],
+  "a": "Yes, at chunghantsai.substack.com: an ongoing log of building real tools with AI, including the wins, the dead ends, and the lessons."
+ },
+ {
+  "id": "industries",
+  "q": "What industries interest him?",
+  "aliases": [
+   "favorite domains",
+   "what domains",
+   "industries",
+   "sectors"
+  ],
+  "keywords": [
+   "industr",
+   "domain",
+   "sector"
+  ],
+  "a": "Anywhere complex systems need to become actionable for people: data and observability, security, developer and admin tools, AI-native workflows, and physical-world systems like IoT and sensors, where a signal has to turn into action."
+ },
+ {
+  "id": "tools",
+  "q": "What tools does he use?",
+  "aliases": [
+   "software he uses",
+   "design tools",
+   "figma",
+   "tool stack",
+   "which apps does he use"
+  ],
+  "keywords": [
+   "figma",
+   "software"
+  ],
+  "a": "Figma for design, including the design systems he architected, and Figma Make for early co-creation with product and engineering. Claude Code for building real tools and prototypes. Pendo analytics and jobs-to-be-done research to ground decisions in data. And Shopify and Faire on the tea business side."
+ },
+ {
+  "id": "conf",
+  "q": "What is .conf?",
+  "aliases": [
+   "splunk conference",
+   "conf 2025",
+   "did he present at a conference",
+   "showcased at conf"
+  ],
+  "keywords": [
+   "conf",
+   "conference"
+  ],
+  "a": ".conf is Splunk's annual conference. At .conf 2025, Splunk showcased three AI initiatives from Chung-Han's area: AI Guided Onboarding, Auto-Schematization, and Root Cause Analysis, and all got positive feedback. His team's platform products, Cloud Data Manager, Edge Processor, and Ingest Processor, were showcased there too."
+ },
+ {
+  "id": "chacha-who",
+  "q": "Who are you?",
+  "aliases": [
+   "who is cha cha",
+   "what are you",
+   "what is cha cha",
+   "are you a dog"
+  ],
+  "keywords": [
+   "cha"
+  ],
+  "a": "I'm Cha Cha, Chung-Han's assistant on this site. In real life I'm his dog, a cockapoo who naps under his desk. Here I answer questions about his work from notes he wrote. 🐾"
+ },
+ {
+  "id": "chacha-real",
+  "q": "Are you the real Chung-Han?",
+  "aliases": [
+   "am i talking to a person",
+   "is this a real person",
+   "are you human",
+   "are you a bot",
+   "is this a bot"
+  ],
+  "keywords": [
+   "real",
+   "human",
+   "person"
+  ],
+  "a": "No, I'm Cha Cha, an assistant that answers from Chung-Han's notes about his work. For anything real, like scheduling or role details, email him at plmaxi@gmail.com or find him on LinkedIn (linkedin.com/in/chunghantsai)."
+ },
+ {
+  "id": "chacha-treat",
+  "q": "What's your favorite treat, Cha Cha?",
+  "aliases": [
+   "favorite food",
+   "do you like treats",
+   "what do you eat"
+  ],
+  "keywords": [
+   "treat",
+   "food"
+  ],
+  "a": "Anything that falls off the desk. Chung-Han says that's not a treat, it's a mistake. I disagree. 🐾"
+ },
+ {
+  "id": "chacha-good",
+  "q": "Good dog!",
+  "aliases": [
+   "good girl",
+   "good boy",
+   "you are cute",
+   "cute dog",
+   "who is a good dog"
+  ],
+  "keywords": [
+   "cute"
+  ],
+  "a": "Thank you! I'm the goodest. Now, want to hear what Chung-Han has shipped with AI? 🐾"
+ },
+ {
+  "id": "chacha-joke",
+  "q": "Tell me a joke.",
+  "aliases": [
+   "make me laugh",
+   "joke",
+   "something funny"
+  ],
+  "keywords": [
+   "joke",
+   "funny"
+  ],
+  "a": "Chung-Han designed a smart home app for 1M+ people. I still can't open the door by myself. 🐾"
+ },
+ {
+  "id": "hello",
+  "q": "Hello!",
+  "aliases": [
+   "hi",
+   "hey",
+   "hi there",
+   "good morning",
+   "yo"
+  ],
+  "keywords": [
+   "hello"
+  ],
+  "a": "Woof, hello! 🐾 Ask me anything about Chung-Han's work, or try one of the questions below."
+ },
+ {
+  "id": "thanks",
+  "q": "Thanks!",
+  "aliases": [
+   "thank you",
+   "thanks cha cha",
+   "appreciate it",
+   "great answer"
+  ],
+  "keywords": [
+   "thank"
+  ],
+  "a": "Happy to help! 🐾 If you want to talk to the human, he's at plmaxi@gmail.com."
+ }
+]

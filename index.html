@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chung-Han Tsai · Hands-on problem solver</title>
-<meta name="description" content="Chung-Han Tsai: a hands-on problem solver with 14 years shipping B2B data platforms and B2C smart home apps. Ask Cha Cha, his AI assistant.">
+<meta name="description" content="Chung-Han Tsai: a hands-on problem solver with 14 years shipping B2B data platforms and B2C smart home apps. Ask Cha Cha, his doggy assistant.">
 <script>try{if(sessionStorage.getItem('auth')==='1')document.documentElement.classList.add('unlocked')}catch(e){}</script>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="assets/favicon.svg">
@@ -632,13 +632,13 @@ html.chat-open .fab { display: none !important; }
         <a class="homecta u-only" href="#work">See the work &darr;</a>
       </div>
       <section class="chat" id="chat" aria-label="Chat with Cha Cha">
-        <div class="chat-head"><img class="av" src="assets/chacha-avatar.png" alt=""><div><b>Cha Cha</b><small>Chung-Han's AI assistant · <span class="ai-badge">AI</span></small></div><button class="navpw chat-lock l-only" type="button" data-unlock><svg class="lk" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="shackle" d="M8 11V7a4 4 0 0 1 8 0v4"/><rect x="5" y="11" width="14" height="10" rx="2.5" fill="currentColor"/><circle cx="12" cy="16" r="1.4" fill="#FAF8F3" stroke="none"/></svg>Projects</button><button class="chat-x" id="chatClose" type="button" aria-label="Close chat" title="Back to home (Esc)">&#x2715;</button></div>
+        <div class="chat-head"><img class="av" src="assets/chacha-avatar.png" alt=""><div><b>Cha Cha</b><small>Chung-Han's doggy assistant 🐾</small></div><button class="navpw chat-lock l-only" type="button" data-unlock><svg class="lk" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="shackle" d="M8 11V7a4 4 0 0 1 8 0v4"/><rect x="5" y="11" width="14" height="10" rx="2.5" fill="currentColor"/><circle cx="12" cy="16" r="1.4" fill="#FAF8F3" stroke="none"/></svg>Projects</button><button class="chat-x" id="chatClose" type="button" aria-label="Close chat" title="Back to home (Esc)">&#x2715;</button></div>
         <div class="log" id="chatLog" aria-live="polite"></div>
         <form class="inbar" id="chatForm"><input id="chatQ" maxlength="500" autocomplete="off" placeholder="Ask anything about Chung-Han…" aria-label="Your question for Cha Cha"><button type="submit">Send</button></form>
-        <p class="disc">Cha Cha is an AI assistant that answers from Chung-Han's resume and portfolio. It can be wrong. For anything important, talk to Chung-Han.</p>
+        <p class="disc">Cha Cha answers from notes Chung-Han wrote about his work. For anything important, talk to Chung-Han.</p>
       </section>
     </div>
-    <div class="hero-art" id="heroArt" role="button" tabindex="0" aria-label="Chat with Cha Cha, Chung-Han's AI assistant">
+    <div class="hero-art" id="heroArt" role="button" tabindex="0" aria-label="Chat with Cha Cha, Chung-Han's doggy assistant">
       <span class="dog-ring" aria-hidden="true"></span><span class="dog-bubble" aria-hidden="true">Ask me about Chung-Han 🐾</span>
       <svg viewBox="0 0 1200 894" xmlns="http://www.w3.org/2000/svg" role="img"
        aria-label="Animated illustration of Chung Han at his desk thinking with AI, with Cha Cha sleeping nearby">
@@ -2108,21 +2108,26 @@ document.addEventListener("keydown", e => {
 })();
 </script>
 <script type="module">
-// Cha Cha chat. Starters answer from data/starters.json; free text streams from /api/chat.
+// Cha Cha chat. Answers come from the written answer bank (data/answers.json), matched in the browser: no AI, no cost.
+// Set ASK_AI_WHEN_UNMATCHED = true (and configure /api/chat) to send unmatched questions to Claude instead.
 import { CASE_IDS, FALLBACK_LINE, parseCaseMarker, stripPartialMarker } from './js/chacha-core.js';
+import { answerQuestion } from './js/chacha-match.js';
+
+const ASK_AI_WHEN_UNMATCHED = false;
 
 const root = document.documentElement;
 const log = document.getElementById('chatLog');
 const chatQ = document.getElementById('chatQ');
 const heroQ = document.getElementById('heroQ');
 const sendBtns = [...document.querySelectorAll('#chatForm button, #heroAsk button')];
-const GREETING = "Woof! I'm Cha Cha 🐾, Chung-Han's AI assistant. I answer from his resume and portfolio. What would you like to know?";
+const GREETING = "Woof! I'm Cha Cha 🐾, Chung-Han's assistant. I answer from his notes about his work. What would you like to know?";
 const history = [];          // [{role, content}] alternating, user first; sent to the API
 const asked = new Set();
-let starters = [];
+let bank = [], starters = [];
 let greeted = false, busy = false, opener = null;
 
-const startersReady = fetch('data/starters.json').then((r) => r.json()).then((d) => { starters = d; }).catch(() => {});
+const startersReady = fetch('data/answers.json').then((r) => r.json())
+  .then((d) => { bank = d; starters = d.filter((e) => e.starter); }).catch(() => {});
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 const scrollDown = () => { log.scrollTop = log.scrollHeight; };
 
@@ -2198,25 +2203,59 @@ function closeChat() {
   if (opener && opener.focus && opener.isConnected && opener.offsetParent !== null) opener.focus();
 }
 
-async function askStarter(s) {
-  if (busy) return;
+// Shows a written answer after a short typing pause. Suggestions replace the follow-up chips when given.
+async function reply(userText, answerText, { caseId = null, suggestions = null, remember = true } = {}) {
   setBusy(true);
   log.querySelectorAll('.chips').forEach((c) => c.remove());
-  add('msg me', s.q);
+  add('msg me', userText);
   const t = add('msg bot thinking', 'Cha Cha is typing…');
-  await wait(700);
+  await wait(600);
   t.className = 'msg bot';
-  t.textContent = s.a;
-  if (s.case) caseCard(s.case);
-  asked.add(s.q);
-  history.push({ role: 'user', content: s.q }, { role: 'assistant', content: s.a.slice(0, 1500) });
+  t.textContent = answerText;
+  if (caseId) caseCard(caseId);
+  if (remember) history.push({ role: 'user', content: userText }, { role: 'assistant', content: answerText.slice(0, 1500) });
   setBusy(false);
-  showChips(3);
+  if (suggestions) showSuggestions(suggestions); else showChips(3);
+}
+
+function showSuggestions(entries) {
+  log.querySelectorAll('.chips').forEach((c) => c.remove());
+  const wrap = document.createElement('div');
+  wrap.className = 'chips';
+  for (const s of entries) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip';
+    b.textContent = s.q;
+    b.addEventListener('click', () => askStarter(s));
+    wrap.appendChild(b);
+  }
+  log.appendChild(wrap);
+  scrollDown();
+}
+
+async function askStarter(s) {
+  if (busy) return;
+  asked.add(s.q);
+  await reply(s.q, s.a, { caseId: s.case });
 }
 
 async function askFree(q) {
   q = q.trim().slice(0, 500);
   if (!q || busy) return;
+  await startersReady;
+  const match = answerQuestion(q, bank);
+  if (match.type === 'answer') {
+    asked.add(match.entry.q);
+    return reply(q, match.entry.a, { caseId: match.entry.case });
+  }
+  if (match.type !== 'none' || !ASK_AI_WHEN_UNMATCHED) {
+    return reply(q, match.text, { suggestions: match.suggestions, remember: false });
+  }
+  return askAI(q);
+}
+
+async function askAI(q) {
   setBusy(true);
   log.querySelectorAll('.chips').forEach((c) => c.remove());
   add('msg me', q);

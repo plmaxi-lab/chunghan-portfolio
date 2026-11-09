@@ -35,23 +35,17 @@ for (const [w, h, mobile, tag] of [[1440, 900, false, 'desk'], [390, 844, true, 
   check(`${tag}: starter answered`, (await b.eval(`[...document.querySelectorAll('#chatLog .msg.bot')].length`)) >= 2);
   check(`${tag}: 3 follow-up chips`, await b.eval(`document.querySelectorAll('#chatLog .chip').length`) === 3);
 
-  await b.eval(`document.getElementById('chatQ').value='How did he pivot?';document.getElementById('chatForm').requestSubmit()`);
-  await b.sleep(900);
-  const seen = await b.eval('window.__seen||[]');
-  check(`${tag}: marker never flashes mid-stream`, !seen.some((t) => t.includes('[[')), JSON.stringify(seen));
-  check(`${tag}: streaming bubble aria-busy, cleared after`, (await b.eval('window.__busy||[]')).slice(1).includes('true') && (await b.eval(`[...document.querySelectorAll('#chatLog .msg.bot')].pop().getAttribute('aria-busy')`)) !== 'true', JSON.stringify(await b.eval('window.__busy||[]')));
-  check(`${tag}: streamed answer clean`, (await b.eval(`[...document.querySelectorAll('#chatLog .msg.bot')].pop().textContent`)) === 'Chung-Han reframed the problem.');
+  const ask = async (q) => { await b.eval(`document.getElementById('chatQ').value=${JSON.stringify(q)};document.getElementById('chatForm').requestSubmit()`); await b.sleep(900); return b.eval(`[...document.querySelectorAll('#chatLog .msg.bot')].pop().textContent`); };
+  const fetches = await b.eval('window.__lastBody===undefined');
+  const pivot = await ask('How did he pivot?');
+  check(`${tag}: typed question answered from the bank`, pivot.includes('topology map'), pivot.slice(0, 60));
   check(`${tag}: case card rendered`, await b.eval(`[...document.querySelectorAll('#chatLog .case-card')].some(c=>c.textContent.includes('Unified Data Observability'))`));
-  const body = await b.eval('window.__lastBody');
-  check(`${tag}: request history alternates and ends with user`, body.messages.every((m, i) => m.role === (i % 2 ? 'assistant' : 'user')) && body.messages.at(-1).role === 'user', JSON.stringify(body.messages.map((m) => m.role)));
-
-  // fallback path keeps history valid
-  await b.eval(`window.__chunks=['Too many questions today. Cha Cha needs a nap 😴 Try one below, or email Chung-Han at plmaxi@gmail.com.']`);
-  await b.eval(`document.getElementById('chatQ').value='x';document.getElementById('chatForm').requestSubmit()`); await b.sleep(600);
-  await b.eval(`window.__chunks=['Ok.']`);
-  await b.eval(`document.getElementById('chatQ').value='y';document.getElementById('chatForm').requestSubmit()`); await b.sleep(600);
-  const body2 = await b.eval('window.__lastBody');
-  check(`${tag}: after fallback, roles still alternate`, body2.messages.every((m, i) => m.role === (i % 2 ? 'assistant' : 'user')) && !body2.messages.some((m) => m.content === 'x'), JSON.stringify(body2.messages.map((m) => m.content.slice(0, 12))));
+  const unknown = await ask('What is the capital of France?');
+  check(`${tag}: unknown question gets not-in-notes line`, unknown.startsWith("I sniffed around, but that's not in my notes"));
+  check(`${tag}: unknown question offers up to 3 suggestions`, await b.eval(`(()=>{const n=document.querySelectorAll('#chatLog .chips:last-of-type .chip').length;return n>0&&n<=3})()`));
+  const salary = await ask('What are his salary expectations?');
+  check(`${tag}: salary gets human-conversation line`, salary.startsWith("I'm just the dog. That's a human conversation"));
+  check(`${tag}: no network call to /api/chat`, fetches && await b.eval('window.__lastBody===undefined'));
   await b.shot(`${OUT}${tag}-2-chat.png`);
 
   await b.key('Escape'); await b.sleep(300);

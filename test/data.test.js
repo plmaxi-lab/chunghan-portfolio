@@ -1,15 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { CASE_IDS } from '../js/chacha-core.js';
 
 const read = (p) => readFileSync(new URL(`../${p}`, import.meta.url), 'utf8');
 const persona = read('data/persona.md');
 const knowledge = read('data/knowledge.md');
-const starters = JSON.parse(read('data/starters.json'));
 
 test('no em dashes in any Cha Cha copy', () => {
-  for (const [name, text] of [['persona', persona], ['knowledge', knowledge], ['starters', JSON.stringify(starters)]]) {
+  for (const [name, text] of [['persona', persona], ['knowledge', knowledge]]) {
     assert.ok(!text.includes('—'), `${name} contains an em dash`);
   }
 });
@@ -31,14 +29,4 @@ test('knowledge uses the stronger Kasa metrics and the problem-solver framing', 
 test('knowledge is written in third person (no first-person claims of his work)', () => {
   assert.doesNotMatch(knowledge, /\bI (led|shipped|built|designed|managed|co-founded)\b/);
   assert.doesNotMatch(knowledge, /\bmy (team|wife|tea business|portfolio)\b/i);
-});
-
-test('starters: 8 entries, third person, valid optional case ids', () => {
-  assert.equal(starters.length, 8);
-  for (const s of starters) {
-    assert.equal(typeof s.q, 'string');
-    assert.equal(typeof s.a, 'string');
-    assert.doesNotMatch(s.a, /\bI (led|shipped|built|designed|managed)\b/, s.q);
-    if (s.case !== undefined) assert.ok(Object.hasOwn(CASE_IDS, s.case), `${s.q}: bad case ${s.case}`);
-  }
 });
