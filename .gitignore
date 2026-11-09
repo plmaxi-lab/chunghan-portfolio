@@ -2,3 +2,4 @@
 node_modules/
 .superpowers/
 .vercel
+scripts/eval-results.md
