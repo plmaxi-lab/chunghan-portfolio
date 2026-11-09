@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chung-Han Tsai — Product Design Leader</title>
-<meta name="description" content="Chung-Han Tsai — a product design leader building enterprise data platforms and AI workflows.">
+<title>Chung-Han Tsai · Hands-on problem solver</title>
+<meta name="description" content="Chung-Han Tsai: a hands-on problem solver with 14 years shipping B2B data platforms and B2C smart home apps. Ask Cha Cha, his doggy assistant.">
+<script>try{if(sessionStorage.getItem('auth')==='1')document.documentElement.classList.add('unlocked')}catch(e){}</script>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="alternate icon" href="assets/favicon.svg">
 <style>
@@ -16,7 +17,8 @@ body { background: #FAF8F3; font-family: 'Plus Jakarta Sans', system-ui, sans-se
 img { display: block; max-width: 100%; }
 a { color: inherit; }
 
-.site { max-width: 1060px; margin: 0 auto; padding: 0 32px; }
+.site { max-width: 1360px; margin: 0 auto; padding: 0 40px; }
+.section, .foot { max-width: 1060px; margin-left: auto; margin-right: auto; }
 .nav { display: flex; justify-content: space-between; align-items: center; padding: 28px 0; }
 .brand { display: flex; align-items: center; gap: 11px; }
 .mark { width: 30px; height: 30px; border-radius: 8px; background: #2A3B47; position: relative; }
@@ -25,16 +27,15 @@ a { color: inherit; }
 .nav-links { display: flex; gap: 26px; font-size: 15px; color: #6E7A82; }
 .nav-links a { text-decoration: none; }
 
-.hero { display: flex; align-items: center; gap: 30px; padding: 50px 0 52px; }
-.hero-text { flex: 1.1; }
-.hero-art { flex: 0.95; min-width: 0; max-width: 470px; }
-.hero-art img { width: 100%; height: auto; }
-.hero .hello { font-size: 16px; color: #6E7A82; }
+.hero { display: grid; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); justify-content: space-between;
+  align-items: center; gap: clamp(48px, 7vw, 110px); padding: 32px 0 48px; min-height: calc(100vh - 92px); }
+/* Intro and chat share one grid cell, so the column height (and the illustration's position) stays fixed when chat opens or closes. */
+.hero-text { min-width: 0; display: grid; align-items: center; }
+.hero-text > .intro, .hero-text > .chat { grid-area: 1 / 1; }
+.hero-art { position: relative; min-width: 0; max-width: 640px; width: 100%; justify-self: end; cursor: pointer; }
+.hero .hello { font-size: 15px; font-weight: 700; color: #1E9145; }
 .hero h1 { font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 700; letter-spacing: -.035em;
-  line-height: 1.1; margin-top: 13px; }
-.stats { font-size: 15.5px; color: #8A929A; margin-top: 22px; line-height: 1.95; }
-.stats b { font-weight: 700; color: #2A3B47; margin-right: 5px; }
-.stats .sep { color: #CDD1D3; margin: 0 7px; }
+  line-height: 1.1; margin-top: 10px; }
 
 .section { padding: 58px 0; }
 .sec-label { font-size: 14px; font-weight: 700; color: #1E9145; }
@@ -95,7 +96,7 @@ a { color: inherit; }
 .ham.open .ham-l3 { transform: translateY(-7px) rotate(-45deg); }
 .mob-menu { display: none; }
 
-.reader { position: fixed; inset: 0; background: #FFFFFF; z-index: 50; display: flex; flex-direction: column;
+.reader { position: fixed; inset: 0; background: #FFFFFF; z-index: 70; display: flex; flex-direction: column;
   transform: translateX(100%); transition: transform .34s cubic-bezier(.4,0,1,.8); will-change: transform; }
 .reader.open { transform: translateX(0); transition: transform .52s cubic-bezier(.32,.72,0,1); }
 .r-bar { display: flex; align-items: center; justify-content: space-between; padding: 22px 32px 14px; max-width: 1120px; margin: 0 auto; width: 100%; }
@@ -234,17 +235,14 @@ a { color: inherit; }
   .mob-link { display: block; font-size: 16px; font-weight: 700; color: #2A3B47; text-decoration: none; padding: 15px 16px; border-bottom: 1px solid #F0EFEA; letter-spacing: -.01em; }
   .mob-link:last-child { border-bottom: none; }
   .section { padding: 40px 0; }
-  .hero { flex-direction: column; align-items: stretch; gap: 14px; padding: 24px 0 28px; }
-  .hero-art { align-self: center; max-width: 320px; }
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 8px 0 32px; min-height: 0; }
+  .hero-art { order: -1; justify-self: center; max-width: 400px; }
   .wrow { flex-direction: column; align-items: stretch; }
   .wshot { width: 100%; }
   .vibe { flex-direction: column; }
   .prin { grid-template-columns: 1fr; }
   .contact { padding: 36px 20px; }
   .foot { flex-direction: column; gap: 8px; padding: 28px 0 44px; }
-
-  /* --- Gate --- */
-  .gate-nav { padding: 16px 16px; }
 
   /* --- Reader shell --- */
   .r-bar { padding: 14px 16px 10px; }
@@ -376,56 +374,7 @@ a { color: inherit; }
 
 @media (prefers-reduced-motion: reduce) { *, .reader, .r-track, .wrow { animation: none !important; transition: none !important; } }
 
-/* ── PASSWORD GATE ─────────────────────────── */
-#gate {
-  position: fixed; inset: 0; z-index: 9999;
-  background: #FAF8F3;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 28px 24px;
-  overflow: hidden;
-  transition: opacity .5s ease;
-}
-#gate.gate-fading { opacity: 0; pointer-events: none; }
-
-.gate-nav {
-  position: absolute; top: 0; left: 0; right: 0;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 28px 32px;
-}
-
-.gate-center {
-  display: flex; flex-direction: column;
-  align-items: center; gap: 12px;
-  max-width: 480px; width: 100%; text-align: center;
-}
-
-.gate-illus-wrap {
-  width: 440px; max-width: 92vw;
-}
-.gate-illus-wrap img {
-  width: 100%; height: auto; display: block;
-  animation: walk-bob .85s ease-in-out infinite;
-}
-.gate-illus-wrap.walking-off { animation: walk-off .75s ease-in forwards; }
-.gate-illus-wrap.walking-off img { animation: none; }
-
-.gate-hello { font-size: 14px; color: #8A929A; margin: 0; }
-
-.gate-headline {
-  font-size: clamp(1.5rem, 2.6vw, 2rem);
-  font-weight: 700; color: #2A3B47;
-  letter-spacing: -.035em; line-height: 1.2;
-  margin: 0; max-width: 640px;
-}
-
-.gate-sub { font-size: 15px; color: #6E7A82; margin: 0; }
-
-.gate-form {
-  width: 100%; display: flex; flex-direction: column; gap: 10px;
-  margin-top: 4px;
-}
-
+/* ── PASSWORD MODAL (shared input styles) ───── */
 #gate-input {
   width: 100%; padding: 13px 16px;
   border: 1.5px solid #CDD1D3; border-radius: 12px;
@@ -480,8 +429,8 @@ a { color: inherit; }
   100% { transform: translateX(110vw); opacity: .6; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .gate-illus-wrap img { animation: none; }
-  .gate-illus-wrap.walking-off { animation: none; opacity: 0; }
+  .pw-walk img { animation: none; }
+  .pw-walk.off { animation: none; opacity: 0; }
 }
 
 /* ── Reader: compact vertical rhythm for mobile landscape ── */
@@ -509,39 +458,150 @@ a { color: inherit; }
   .end-center { padding-bottom: 16px; }
   .endcta { margin-top: 16px; }
 }
+
+/* ── CHA CHA LANDING ───────────────────────── */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+html:not(.unlocked) .u-only, html.unlocked .l-only { display: none !important; }
+/* Locked visitors see only the hero; the portfolio sections stay behind the password. */
+html:not(.unlocked) .site > .section, html:not(.unlocked) .site > .foot { display: none; }
+.nav { gap: 16px; }
+.chat-head > div { min-width: 0; }
+.chat-head small { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nav-links { align-items: center; }
+.nav-links a:hover { color: #2A3B47; }
+.nav-chacha { display: inline-flex; align-items: center; gap: 8px; border: 1.5px solid #D8D4CA; background: #fff; color: #2A3B47;
+  border-radius: 30px; padding: 4px 14px 4px 4px; font: 700 14px/1 inherit; font-family: inherit; cursor: pointer; }
+.nav-chacha:hover, .nav-chacha:focus-visible { border-color: #1E9145; }
+.nav-chacha .av, .mob-chat .av { width: 26px; height: 26px; border-width: 1px; }
+.mob-chat { display: flex; align-items: center; gap: 10px; width: 100%; background: none; border: none; border-bottom: 1px solid #F0EFEA;
+  padding: 12px 16px; font: 700 16px inherit; font-family: inherit; color: #1E7A3D; cursor: pointer; text-align: left; }
+.navpw { display: inline-flex; align-items: center; gap: 7px; border: none; background: #2A3B47; color: #fff;
+  border-radius: 30px; padding: 9px 16px; font: 700 13.5px/1 inherit; font-family: inherit; cursor: pointer; white-space: nowrap; }
+.lk .shackle { transition: transform .3s cubic-bezier(.3,1.6,.5,1); transform-origin: 16px 11px; }
+.navpw:hover .shackle, .skip:hover .shackle, .navpw:focus-visible .shackle, .skip:focus-visible .shackle { transform: translateY(-3px) rotate(28deg); }
+
+.lede2 { display: flex; flex-direction: column; gap: 6px; margin-top: 20px; }
+.lede2 b { font-size: 19px; font-weight: 700; }
+.lede2 span { font-size: 14.5px; color: #6E7A82; display: flex; align-items: flex-start; gap: 10px; }
+.lede2 span::before { content: ""; flex: none; width: 22px; height: 2px; margin-top: 10px; background: #1E9145; border-radius: 2px; }
+.entry { margin-top: 28px; }
+.av { width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid #2A3B47; background: #fff; object-fit: cover; flex: none; }
+.av-md { width: 52px; height: 52px; }
+.meet { display: flex; gap: 12px; align-items: center; margin-bottom: 14px; }
+.meet b { display: block; font-size: 16px; }
+.meet span { font-size: 13px; color: #6E7A82; }
+.askrow { display: flex; align-items: center; gap: 10px; background: #fff; border: 1.5px solid #D8D4CA; border-radius: 16px; padding: 6px 6px 6px 16px; }
+.askrow:focus-within { border-color: #1E9145; }
+.askrow input { flex: 1; min-width: 0; border: none; outline: none; font: 15px inherit; font-family: inherit; color: #2A3B47; padding: 8px 0; background: transparent; }
+.askrow button { border: none; background: #1E9145; color: #fff; width: 38px; height: 38px; border-radius: 11px; cursor: pointer; font-size: 17px; flex: none; }
+.skip { margin-top: 16px; display: inline-flex; align-items: center; gap: 10px; background: none; border: 1.5px dashed #b9b3a6;
+  border-radius: 30px; padding: 9px 16px; font: 700 13.5px inherit; font-family: inherit; color: #2A3B47; cursor: pointer; transition: border-color .2s, background .2s; }
+.skip:hover, .skip:focus-visible { border-style: solid; border-color: #2A3B47; background: #fff; }
+.skip i { font-style: normal; transition: transform .2s; }
+.skip:hover i { transform: translateX(4px); }
+.homecta { display: inline-block; margin-top: 26px; font-weight: 700; text-decoration: none; border-bottom: 2px solid #1E9145; padding-bottom: 3px; }
+
+/* dog cue on the illustration */
+.dog-bubble { position: absolute; left: 60%; top: 64%; z-index: 2; background: #1E9145; color: #fff; border-radius: 16px 16px 4px 16px;
+  padding: 10px 15px; font-size: 14px; font-weight: 700; white-space: nowrap; box-shadow: 0 6px 18px rgba(30,145,69,.3);
+  animation: dogBob 2s ease-in-out infinite; transition: transform .2s; }
+.dog-ring { position: absolute; left: 79%; top: 89%; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%;
+  border: 3px solid #3aa463; animation: dogRing 1.8s ease-out infinite; pointer-events: none; }
+.hero-art:hover .dog-bubble { transform: scale(1.06); }
+.hero-art:focus-visible { outline: 3px solid #1E9145; outline-offset: 6px; border-radius: 12px; }
+@keyframes dogBob { 50% { translate: 0 -5px; } }
+@keyframes dogRing { 0% { transform: scale(.5); opacity: .9; } 100% { transform: scale(1.4); opacity: 0; } }
+html.chat-open .dog-bubble, html.chat-open .dog-ring, html.unlocked .dog-bubble, html.unlocked .dog-ring { display: none; }
+html.chat-open .z1, html.chat-open .z2, html.chat-open .z3 { display: none; }
+html.chat-open .tail { animation-duration: .35s; }
+
+/* chat panel: replaces the intro (locked desktop), floats (unlocked), full sheet (mobile) */
+.chat { display: flex; visibility: hidden; opacity: 0; pointer-events: none; flex-direction: column; background: #fff; border-radius: 22px; box-shadow: 0 10px 40px rgba(42,59,71,.12);
+  padding: 20px; height: clamp(300px, calc(100vh - 172px), 600px); height: clamp(300px, calc(100dvh - 172px), 600px); }
+html.chat-open .chat { visibility: visible; opacity: 1; pointer-events: auto; animation: chatRise .4s ease; }
+html.chat-open:not(.unlocked) .intro { visibility: hidden; }
+html.unlocked .chat { position: fixed; right: 24px; bottom: 24px; width: 380px; height: min(560px, 80vh); z-index: 60; }
+@keyframes chatRise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.chat-head { display: flex; gap: 10px; align-items: center; padding-bottom: 12px; border-bottom: 1px solid #EFEBE3; }
+.chat-head b { display: block; font-size: 15px; }
+.chat-head small { font-size: 11.5px; color: #8A929A; }
+.ai-badge { font-size: 10px; font-weight: 700; letter-spacing: .06em; background: #E6F4EB; color: #1E7A3D; padding: 2px 7px; border-radius: 10px; }
+.chat-lock { margin-left: auto; padding: 7px 12px; font-size: 12.5px; }
+html.unlocked .chat-x { margin-left: auto; }
+.chat-x { border: 1.5px solid #E2DDD2; background: #fff; width: 34px; height: 34px; border-radius: 50%; font-size: 14px; color: #2A3B47; cursor: pointer; flex: none; }
+.chat-x:hover, .chat-x:focus-visible { background: #2A3B47; color: #fff; border-color: #2A3B47; }
+.log { flex: 1; overflow-y: auto; padding: 14px 2px; display: flex; flex-direction: column; gap: 10px; }
+.msg { max-width: 86%; font-size: 14px; line-height: 1.55; padding: 10px 14px; border-radius: 16px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg.bot { background: #F6F3EC; border-bottom-left-radius: 4px; }
+.msg.me { background: #2A3B47; color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+.msg.thinking { color: #8A929A; }
+.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.chip { border: 1.5px solid #cfd8cf; background: #fff; border-radius: 30px; padding: 7px 13px; font: 600 12.5px inherit; font-family: inherit;
+  color: #1E7A3D; cursor: pointer; text-align: left; }
+.chip:hover, .chip:focus-visible { border-color: #1E9145; background: #F3FAF5; }
+.case-card { border: 1.5px solid #E2DDD2; border-radius: 12px; padding: 10px 12px; font: 13px inherit; font-family: inherit; color: #2A3B47;
+  cursor: pointer; background: #fff; max-width: 86%; text-align: left; }
+.case-card:hover, .case-card:focus-visible { border-color: #2A3B47; }
+.case-card b { display: block; }
+.case-card span { color: #8A929A; font-size: 12px; }
+.inbar { display: flex; gap: 8px; border-top: 1px solid #EFEBE3; padding-top: 12px; }
+.inbar input { flex: 1; min-width: 0; border: 1.5px solid #D8D4CA; border-radius: 12px; padding: 11px 13px; font: 14px inherit; font-family: inherit; color: #2A3B47; }
+.inbar input:focus { outline: none; border-color: #1E9145; }
+.inbar button { border: none; background: #2A3B47; color: #fff; border-radius: 12px; padding: 0 16px; font-weight: 700; cursor: pointer; font-family: inherit; }
+.inbar button:disabled, .askrow button:disabled { opacity: .5; cursor: default; }
+.disc { font-size: 10.5px; color: #A0A8AE; margin-top: 7px; text-align: center; }
+.fab { position: fixed; right: 24px; bottom: 24px; z-index: 50; display: flex; align-items: center; gap: 8px; background: #2A3B47; color: #fff;
+  border: none; border-radius: 40px; padding: 6px 16px 6px 6px; font: 700 14px inherit; font-family: inherit; cursor: pointer; box-shadow: 0 8px 24px rgba(42,59,71,.25); }
+.fab .av { width: 34px; height: 34px; border-color: #fff; }
+html.chat-open .fab { display: none !important; }
+
+/* password modal */
+.pw-modal { position: fixed; inset: 0; z-index: 9999; background: rgba(42,59,71,.45); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.pw-modal[hidden] { display: none; }
+.pw-box { background: #fff; border-radius: 20px; padding: 28px; width: 380px; max-width: 100%; text-align: center; overflow: hidden; }
+.pw-walk { width: 260px; max-width: 80%; margin: 0 auto; }
+.pw-walk img { width: 100%; animation: walk-bob .85s ease-in-out infinite; }
+.pw-walk.off { animation: walk-off .75s ease-in forwards; }
+.pw-walk.off img { animation: none; }
+.pw-lock { color: #2A3B47; margin-top: 6px; display: flex; justify-content: center; }
+.pw-lock.open { color: #1E9145; }
+.pw-lock.open .shackle { transform: translateY(-4px) rotate(32deg); }
+.pw-box h2 { font-size: 20px; margin-top: 6px; letter-spacing: -.02em; }
+.pw-note { font-size: 13px; color: #6E7A82; margin-top: 6px; }
+.gate-form { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+
+@media (max-width: 720px) {
+  .site { padding: 0 16px; }
+  .navpw { padding: 8px 12px; font-size: 12.5px; }
+  .nav-links { display: flex; gap: 14px; font-size: 14px; }
+  html.unlocked .nav-links { display: none; }
+  .hero h1 { font-size: 29px; }
+  .lede2 b { font-size: 17px; }
+  .lede2 span { font-size: 13.5px; }
+  .entry { margin-top: 22px; }
+  .askrow input, .inbar input, #gate-input { font-size: 16px; }
+  .skip { width: 100%; justify-content: center; }
+  .dog-bubble { left: auto; right: 2%; top: 60%; font-size: 12.5px; padding: 8px 12px; }
+  .dog-ring { width: 76px; height: 76px; margin: -38px 0 0 -38px; }
+  .brand b { font-size: 15px; }
+  .brand { gap: 8px; min-width: 0; }
+  .chat { display: none; }
+  html.chat-open .chat { display: flex; position: fixed; inset: 0; width: auto; height: 100dvh; border-radius: 0; z-index: 60; padding: 14px 16px; animation: chatSheet .35s ease; }
+  html.chat-open .intro { visibility: visible; }
+  html.chat-open body { overflow: hidden; }
+  .fab { right: 16px; bottom: 16px; }
+}
+@keyframes chatSheet { from { transform: translateY(100%); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .dog-bubble, .dog-ring, .chat { animation: none !important; } }
 </style>
 </head>
 <body>
-<script>if(sessionStorage.getItem('auth')==='1'){document.documentElement.style.setProperty('--gate-display','none');}</script>
-<div id="gate" style="display:var(--gate-display,flex)">
-  <nav class="gate-nav">
-    <div class="brand">
-      <div class="mark"></div>
-      <b>Chung-Han Tsai</b>
-    </div>
-  </nav>
-  <div class="gate-center">
-    <div class="gate-illus-wrap" id="gate-illus">
-      <img src="assets/walking.svg" alt="Chung-Han walking Brynn">
-    </div>
-    <p class="gate-hello">Hi, I'm Chung-Han</p>
-    <h1 class="gate-headline">Ready to see how I turn complex data problems into products?</h1>
-    <p class="gate-sub">Enter the password to find out.</p>
-    <div class="gate-form">
-      <input type="password" id="gate-input" autocomplete="current-password" placeholder="Password">
-      <div class="gate-error" id="gate-error"></div>
-      <button id="gate-btn">Let me in →</button>
-    </div>
-    <a class="gate-cta" href="mailto:plmaxi@gmail.com?subject=Requesting%20Portfolio%20Password&body=Hi%20Chung-Han%2C%0A%0AI%27d%20love%20to%20see%20your%20portfolio.%20Could%20you%20share%20the%20password%3F">No password? Say hello →</a>
-  </div>
-</div>
-
 <div class="site">
   <div class="nav-wrap">
   <nav class="nav">
     <div class="brand"><span class="mark"></span><b>Chung-Han Tsai</b></div>
-    <div class="nav-links"><a href="#work">Work</a><a href="#vibe">Vibe Coding</a><a href="#principles">Principles</a><a href="#contact">Contact</a></div>
-    <button class="ham" id="hamBtn" aria-label="Menu" aria-expanded="false">
+    <div class="nav-links"><button class="nav-chacha u-only" type="button" data-open-chat><img class="av" src="assets/chacha-avatar.png" alt="">Ask Cha Cha</button><a class="u-only" href="#work">Work</a><a class="u-only" href="#vibe">Vibe Coding</a><a class="u-only" href="#principles">Principles</a><a href="mailto:plmaxi@gmail.com?subject=Hi%20Chung-Han">Contact</a><button class="navpw l-only" type="button" data-unlock><svg class="lk" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="shackle" d="M8 11V7a4 4 0 0 1 8 0v4"/><rect x="5" y="11" width="14" height="10" rx="2.5" fill="currentColor"/><circle cx="12" cy="16" r="1.4" fill="#FAF8F3" stroke="none"/></svg>See Projects</button></div>
+    <button class="ham u-only" id="hamBtn" aria-label="Menu" aria-expanded="false">
       <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line class="ham-l1" x1="1" y1="1" x2="21" y2="1" stroke="#2A3B47" stroke-width="2" stroke-linecap="round"/>
         <line class="ham-l2" x1="1" y1="8" x2="21" y2="8" stroke="#2A3B47" stroke-width="2" stroke-linecap="round"/>
@@ -550,6 +610,7 @@ a { color: inherit; }
     </button>
   </nav>
   <div class="mob-menu" id="mobMenu" aria-hidden="true">
+    <button class="mob-chat" type="button" data-open-chat><img class="av" src="assets/chacha-avatar.png" alt="">Ask Cha Cha</button>
     <a href="#work" class="mob-link">Work</a>
     <a href="#vibe" class="mob-link">Vibe Coding</a>
     <a href="#principles" class="mob-link">Principles</a>
@@ -559,11 +620,26 @@ a { color: inherit; }
 
   <header class="hero">
     <div class="hero-text">
-      <div class="hello">Hi, I'm Chung Han</div>
-      <h1>I turn complex data problems into products people actually use.</h1>
-      <div class="stats"><b>14 yrs</b> in product design<br><b>8 yrs</b> in leading teams<br><b>5 yrs</b> in owning roadmaps</div>
+      <div class="intro">
+        <div class="hello">Hi, I'm Chung-Han</div>
+        <h1>I turn complex data problems into products people actually use.</h1>
+        <p class="lede2"><b>Hands-on problem solver.</b><span>14 years shipping B2B data platforms &amp; B2C smart home apps</span></p>
+        <div class="entry l-only">
+          <div class="meet"><img class="av av-md" src="assets/chacha-avatar.png" alt=""><div><b>Meet Cha Cha, my doggy assistant 🐾</b><span>Ask me anything about Chung-Han's work.</span></div></div>
+          <form class="askrow" id="heroAsk"><input id="heroQ" maxlength="500" autocomplete="off" placeholder="Ask Cha Cha anything…" aria-label="Ask Cha Cha anything about Chung-Han"><button type="submit" aria-label="Send">&uarr;</button></form>
+          <button class="skip" type="button" data-unlock><svg class="lk" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="shackle" d="M8 11V7a4 4 0 0 1 8 0v4"/><rect x="5" y="11" width="14" height="10" rx="2.5" fill="currentColor"/><circle cx="12" cy="16" r="1.4" fill="#FAF8F3" stroke="none"/></svg><span>Skip this — unlock the projects</span><i aria-hidden="true">&rarr;</i></button>
+        </div>
+        <a class="homecta u-only" href="#work">See the work &darr;</a>
+      </div>
+      <section class="chat" id="chat" aria-label="Chat with Cha Cha">
+        <div class="chat-head"><img class="av" src="assets/chacha-avatar.png" alt=""><div><b>Cha Cha</b><small>Chung-Han's doggy assistant 🐾</small></div><button class="navpw chat-lock l-only" type="button" data-unlock><svg class="lk" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="shackle" d="M8 11V7a4 4 0 0 1 8 0v4"/><rect x="5" y="11" width="14" height="10" rx="2.5" fill="currentColor"/><circle cx="12" cy="16" r="1.4" fill="#FAF8F3" stroke="none"/></svg>Projects</button><button class="chat-x" id="chatClose" type="button" aria-label="Close chat" title="Back to home (Esc)">&#x2715;</button></div>
+        <div class="log" id="chatLog" aria-live="polite"></div>
+        <form class="inbar" id="chatForm"><input id="chatQ" maxlength="500" autocomplete="off" placeholder="Ask anything about Chung-Han…" aria-label="Your question for Cha Cha"><button type="submit">Send</button></form>
+        <p class="disc">Cha Cha answers from notes Chung-Han wrote about his work. For anything important, talk to Chung-Han.</p>
+      </section>
     </div>
-    <div class="hero-art">
+    <div class="hero-art" id="heroArt" role="button" tabindex="0" aria-label="Chat with Cha Cha, Chung-Han's doggy assistant">
+      <span class="dog-ring" aria-hidden="true"></span><span class="dog-bubble" aria-hidden="true">Ask me about Chung-Han 🐾</span>
       <svg viewBox="0 0 1200 894" xmlns="http://www.w3.org/2000/svg" role="img"
        aria-label="Animated illustration of Chung Han at his desk thinking with AI, with Cha Cha sleeping nearby">
 
@@ -802,6 +878,23 @@ a { color: inherit; }
   </section>
 
   <footer class="foot"><span>Crafted by Chung-Han Tsai</span><a href="assets/Chung-Han_Resume.pdf" target="_blank" rel="noopener">Résumé &rarr;</a></footer>
+</div>
+
+<button class="fab u-only" id="chatFab" type="button"><img class="av" src="assets/chacha-avatar.png" alt="">Ask Cha Cha</button>
+
+<div class="pw-modal" id="pwModal" role="dialog" aria-modal="true" aria-labelledby="pwTitle" hidden>
+  <div class="pw-box">
+    <div class="pw-walk" id="pwWalk"><img src="assets/walking.svg" alt="Chung-Han walking Cha Cha"></div>
+    <div class="pw-lock" id="pwLock"><svg class="lk" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="shackle" d="M8 11V7a4 4 0 0 1 8 0v4"/><rect x="5" y="11" width="14" height="10" rx="2.5" fill="currentColor"/><circle cx="12" cy="16" r="1.4" fill="#FAF8F3" stroke="none"/></svg></div>
+    <h2 id="pwTitle">The full case studies</h2>
+    <p class="pw-note">Some project details are under NDA, so they're behind a password. You'll find it on Chung-Han's resume.</p>
+    <form class="gate-form" id="pwForm">
+      <input type="password" id="gate-input" autocomplete="current-password" placeholder="Password" aria-label="Password">
+      <div class="gate-error" id="gate-error" role="alert"></div>
+      <button id="gate-btn" type="submit">Enter portfolio &rarr;</button>
+    </form>
+    <a class="gate-cta" href="mailto:plmaxi@gmail.com?subject=Requesting%20Portfolio%20Password&body=Hi%20Chung-Han%2C%0A%0AI%27d%20love%20to%20see%20your%20portfolio.%20Could%20you%20share%20the%20password%3F">No password? Say hello &rarr;</a>
+  </div>
 </div>
 
 <div class="reader" id="reader">
@@ -1916,64 +2009,72 @@ document.addEventListener("keydown", e => {
 });
 </script>
 <script>
+// Password modal: Skip, See Projects, and locked case cards all open it.
 (function () {
   var PASSWORD = 'ctsaiwork2026';
-
-  var gate  = document.getElementById('gate');
+  var root = document.documentElement;
+  var modal = document.getElementById('pwModal');
+  var form = document.getElementById('pwForm');
   var input = document.getElementById('gate-input');
-  var btn   = document.getElementById('gate-btn');
+  var btn = document.getElementById('gate-btn');
   var errEl = document.getElementById('gate-error');
-  var illus = document.getElementById('gate-illus');
+  var walk = document.getElementById('pwWalk');
+  var lock = document.getElementById('pwLock');
+  var site = document.querySelector('.site');
+  var pendingCase = null, opener = null;
 
-  if (!gate) return; // already bypassed via sessionStorage
-  if (sessionStorage.getItem('auth') !== '1') {
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
+  function open(caseIndex) {
+    if (root.classList.contains('unlocked')) {
+      if (caseIndex != null) openCase(caseIndex); else document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+    pendingCase = caseIndex == null ? null : caseIndex;
+    opener = document.activeElement;
+    modal.hidden = false;
+    site.inert = true;
+    input.value = '';
+    input.focus();
   }
-
+  function close() {
+    modal.hidden = true;
+    site.inert = false;
+    if (opener && opener.focus) opener.focus();
+  }
   function showError() {
     input.classList.remove('input-shake');
     void input.offsetWidth;
     input.classList.add('input-shake');
     errEl.textContent = 'Not quite. Try again.';
     errEl.classList.add('visible');
-    setTimeout(function () {
-      errEl.classList.remove('visible');
-    }, 1500);
+    setTimeout(function () { errEl.classList.remove('visible'); }, 1500);
   }
-
   function unlock() {
-    illus.classList.add('walking-off');
-    setTimeout(function () { gate.classList.add('gate-fading'); }, 700);
+    btn.disabled = true; input.disabled = true;
+    lock.classList.add('open');
+    setTimeout(function () { walk.classList.add('off'); }, 450);
     setTimeout(function () {
-      gate.parentNode.removeChild(gate);
-      sessionStorage.setItem('auth', '1');
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
-      window.scrollTo(0, 0);
-    }, 1250);
+      try { sessionStorage.setItem('auth', '1'); } catch (e) {}
+      root.classList.add('unlocked');
+      modal.hidden = true;
+      site.inert = false;
+      walk.classList.remove('off'); lock.classList.remove('open');
+      btn.disabled = false; input.disabled = false;
+      if (pendingCase != null) openCase(pendingCase);
+      else setTimeout(function () { document.getElementById('work').scrollIntoView({ behavior: 'smooth' }); }, 100);
+    }, 1300);
   }
 
-  function handleSubmit() {
-    if (input.value.trim() === PASSWORD) {
-      btn.disabled = true;
-      input.disabled = true;
-      unlock();
-    } else {
-      showError();
-      input.value = '';
-      input.focus();
-    }
-  }
-
-  btn.addEventListener('click', handleSubmit);
-  input.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') handleSubmit();
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (input.value.trim() === PASSWORD) unlock();
+    else { showError(); input.value = ''; input.focus(); }
   });
-
-  input.focus();
+  modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-unlock]');
+    if (t) open(null);
+  });
+  window.ChaChaGate = { open: open, close: close, isOpen: function () { return !modal.hidden; } };
 })();
 </script>
 <script>
@@ -2005,6 +2106,228 @@ document.addEventListener("keydown", e => {
     });
   });
 })();
+</script>
+<script type="module">
+// Cha Cha chat. Answers come from the written answer bank (data/answers.json), matched in the browser: no AI, no cost.
+// Set ASK_AI_WHEN_UNMATCHED = true (and configure /api/chat) to send unmatched questions to Claude instead.
+import { CASE_IDS, FALLBACK_LINE, parseCaseMarker, stripPartialMarker } from './js/chacha-core.js';
+import { answerQuestion } from './js/chacha-match.js';
+
+const ASK_AI_WHEN_UNMATCHED = false;
+
+const root = document.documentElement;
+const log = document.getElementById('chatLog');
+const chatQ = document.getElementById('chatQ');
+const heroQ = document.getElementById('heroQ');
+const sendBtns = [...document.querySelectorAll('#chatForm button, #heroAsk button')];
+const GREETING = "Woof! I'm Cha Cha 🐾, Chung-Han's assistant. I answer from his notes about his work. What would you like to know?";
+const history = [];          // [{role, content}] alternating, user first; sent to the API
+const asked = new Set();
+let bank = [], starters = [];
+let greeted = false, busy = false, opener = null;
+
+const startersReady = fetch('data/answers.json').then((r) => r.json())
+  .then((d) => { bank = d; starters = d.filter((e) => e.starter); }).catch(() => {});
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+const scrollDown = () => { log.scrollTop = log.scrollHeight; };
+
+function add(cls, text) {
+  const el = document.createElement('div');
+  el.className = cls;
+  el.textContent = text;
+  log.appendChild(el);
+  scrollDown();
+  return el;
+}
+
+function setBusy(on) {
+  busy = on;
+  sendBtns.forEach((b) => { b.disabled = on; });
+  log.querySelectorAll('.chip').forEach((c) => { c.disabled = on; });
+}
+
+function caseCard(caseId) {
+  const idx = CASE_IDS[caseId];
+  const c = typeof CASES !== 'undefined' ? CASES[idx] : null;
+  if (!c) return;
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'case-card';
+  const b = document.createElement('b');
+  b.textContent = (root.classList.contains('unlocked') ? 'Case study · ' : '🔒 Case study · ') + c.title;
+  const span = document.createElement('span');
+  span.textContent = c.teaser;
+  btn.append(b, span);
+  btn.addEventListener('click', () => window.ChaChaGate.open(idx));
+  log.appendChild(btn);
+  scrollDown();
+}
+
+function showChips(max) {
+  log.querySelectorAll('.chips').forEach((c) => c.remove());
+  const list = starters.filter((s) => !asked.has(s.q)).slice(0, max);
+  if (!list.length) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'chips';
+  for (const s of list) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip';
+    b.textContent = s.q;
+    b.addEventListener('click', () => askStarter(s));
+    wrap.appendChild(b);
+  }
+  log.appendChild(wrap);
+  scrollDown();
+}
+
+async function greet(withChips) {
+  greeted = true;
+  add('msg bot', GREETING);
+  if (withChips) { await startersReady; showChips(6); }
+}
+
+export async function openChat({ question = null } = {}) {
+  if (!root.classList.contains('chat-open')) {
+    opener = document.activeElement;
+    root.classList.add('chat-open');
+  }
+  chatQ.focus({ preventScroll: true });
+  if (!greeted) await greet(!question);
+  if (question) await askFree(question);
+}
+
+function closeChat() {
+  if (!root.classList.contains('chat-open')) return;
+  root.classList.remove('chat-open');
+  if (opener && opener.focus && opener.isConnected && opener.offsetParent !== null) opener.focus();
+}
+
+// Shows a written answer after a short typing pause. Suggestions replace the follow-up chips when given.
+async function reply(userText, answerText, { caseId = null, suggestions = null, remember = true } = {}) {
+  setBusy(true);
+  log.querySelectorAll('.chips').forEach((c) => c.remove());
+  add('msg me', userText);
+  const t = add('msg bot thinking', 'Cha Cha is typing…');
+  await wait(600);
+  t.className = 'msg bot';
+  t.textContent = answerText;
+  if (caseId) caseCard(caseId);
+  if (remember) history.push({ role: 'user', content: userText }, { role: 'assistant', content: answerText.slice(0, 1500) });
+  setBusy(false);
+  if (suggestions) showSuggestions(suggestions); else showChips(3);
+}
+
+function showSuggestions(entries) {
+  log.querySelectorAll('.chips').forEach((c) => c.remove());
+  const wrap = document.createElement('div');
+  wrap.className = 'chips';
+  for (const s of entries) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip';
+    b.textContent = s.q;
+    b.addEventListener('click', () => askStarter(s));
+    wrap.appendChild(b);
+  }
+  log.appendChild(wrap);
+  scrollDown();
+}
+
+async function askStarter(s) {
+  if (busy) return;
+  asked.add(s.q);
+  await reply(s.q, s.a, { caseId: s.case });
+}
+
+async function askFree(q) {
+  q = q.trim().slice(0, 500);
+  if (!q || busy) return;
+  await startersReady;
+  const match = answerQuestion(q, bank);
+  if (match.type === 'answer') {
+    asked.add(match.entry.q);
+    return reply(q, match.entry.a, { caseId: match.entry.case });
+  }
+  if (match.type !== 'none' || !ASK_AI_WHEN_UNMATCHED) {
+    return reply(q, match.text, { suggestions: match.suggestions, remember: false });
+  }
+  return askAI(q);
+}
+
+async function askAI(q) {
+  setBusy(true);
+  log.querySelectorAll('.chips').forEach((c) => c.remove());
+  add('msg me', q);
+  history.push({ role: 'user', content: q });
+  const bubble = add('msg bot thinking', 'Cha Cha is thinking…');
+  bubble.setAttribute('aria-busy', 'true');   // screen readers announce once, when the answer is complete
+  let full = '';
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ messages: history.slice(-9) }),
+    });
+    if (!res.ok || !res.body) throw new Error(`status ${res.status}`);
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      full += decoder.decode(value, { stream: true });
+      const shown = stripPartialMarker(full);
+      if (shown) { bubble.className = 'msg bot'; bubble.textContent = shown; scrollDown(); }
+    }
+  } catch {
+    full = full ? `${full}\n\n${FALLBACK_LINE}` : FALLBACK_LINE;
+  }
+  const { text, caseId } = parseCaseMarker(full);
+  bubble.removeAttribute('aria-busy');
+  bubble.className = 'msg bot';
+  bubble.textContent = text || FALLBACK_LINE;
+  if (!text || text.endsWith(FALLBACK_LINE)) {
+    history.pop();                       // keep roles alternating for the next request
+    setBusy(false);
+    showChips(4);
+    return;
+  }
+  if (caseId) caseCard(caseId);
+  history.push({ role: 'assistant', content: text.slice(0, 1500) });
+  setBusy(false);
+  showChips(3);
+}
+
+document.getElementById('heroArt').addEventListener('click', () => openChat());
+document.getElementById('heroArt').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openChat(); }
+});
+document.getElementById('chatFab').addEventListener('click', () => openChat());
+document.querySelectorAll('[data-open-chat]').forEach((el) => el.addEventListener('click', () => {
+  const menu = document.getElementById('mobMenu');
+  if (menu.classList.contains('open')) document.getElementById('hamBtn').click();
+  openChat();
+}));
+document.getElementById('chatClose').addEventListener('click', closeChat);
+document.getElementById('heroAsk').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const q = heroQ.value.trim();
+  if (!q) return;
+  heroQ.value = '';
+  openChat({ question: q });
+});
+document.getElementById('chatForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const q = chatQ.value;
+  chatQ.value = '';
+  askFree(q);
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  if (document.getElementById('reader').classList.contains('open')) return;
+  if (window.ChaChaGate.isOpen()) window.ChaChaGate.close();
+  else closeChat();
+}, true); // capture: runs before the reader's own Esc handler closes it
 </script>
 </body>
 </html>

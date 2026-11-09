@@ -1,0 +1,18 @@
+{
+  "name": "chunghan-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test \"test/*.test.js\"",
+    "dev": "node --env-file-if-exists=.env.local scripts/dev-server.mjs",
+    "eval": "node scripts/eval-chacha.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.7.0",
+    "@upstash/ratelimit": "^2.2.0",
+    "@upstash/redis": "^1.41.0"
+  }
+}
