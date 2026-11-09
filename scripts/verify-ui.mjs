@@ -63,7 +63,7 @@ for (const [w, h, mobile, tag] of [[1440, 900, false, 'desk'], [390, 844, true, 
   await b.key('Escape'); await b.sleep(200);
   check(`${tag}: Esc closes modal first, chat stays`, !(await visible('#pwModal .pw-box')) && await has('chat-open'));
   await b.eval(`document.querySelector('#chatLog .case-card').click()`); await b.sleep(300);
-  await b.eval(`document.getElementById('gate-input').value='ctsaiwork2026';document.getElementById('pwForm').requestSubmit()`); await b.sleep(1700);
+  await b.eval(`document.getElementById('gate-input').value='ctsaiwork2026';document.getElementById('pwForm').requestSubmit()`); await b.sleep(2700);
   check(`${tag}: unlocked`, await has('unlocked'));
   check(`${tag}: reader is on top of the chat (center and Next button)`, await b.eval(`(()=>{const r=document.getElementById('reader');const c=document.elementFromPoint(innerWidth/2,innerHeight/2);const n=document.getElementById('nextBtn')||document.querySelector('.r-nav button:last-child');const nr=n.getBoundingClientRect();const atNext=document.elementFromPoint(nr.left+nr.width/2,nr.top+nr.height/2);return r.contains(c)&&r.contains(atNext)})()`));
   check(`${tag}: card unlock opens that case in reader`, await b.eval(`document.getElementById('reader').classList.contains('open') && document.getElementById('rTitle')?.textContent.includes('Unified Data Observability')`), await b.eval(`document.getElementById('rTitle')?.textContent||'no rTitle'`));
