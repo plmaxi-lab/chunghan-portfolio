@@ -24,7 +24,10 @@ for (const [w, h, mobile, tag] of [[1440, 900, false, 'desk'], [390, 844, true, 
   check(`${tag}: no horizontal overflow`, await b.eval('document.documentElement.scrollWidth<=innerWidth'), await b.eval('document.documentElement.scrollWidth+"/"+innerWidth'));
   check(`${tag}: locked hides work, vibe, principles, contact, footer`, await b.eval(`['work','vibe','principles','contact'].every(id=>getComputedStyle(document.getElementById(id)).display==='none') && getComputedStyle(document.querySelector('.foot')).display==='none'`));
 
+  const artPos = () => b.eval(`(()=>{const r=document.getElementById('heroArt').getBoundingClientRect();return Math.round(r.top)+','+Math.round(r.left)})()`);
+  const artBefore = await artPos();
   await b.eval(`document.getElementById('heroArt').click()`); await b.sleep(400);
+  check(`${tag}: illustration does not move when chat opens`, (await artPos()) === artBefore);
   check(`${tag}: illustration opens chat`, await has('chat-open') && await visible('#chat'));
   await b.eval(`new Promise(r=>setTimeout(r,800))`);
   check(`${tag}: greeting + 6 starter chips`, await b.eval(`document.querySelectorAll('#chatLog .chip').length`) === 6);

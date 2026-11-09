@@ -29,7 +29,9 @@ a { color: inherit; }
 
 .hero { display: grid; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); justify-content: space-between;
   align-items: center; gap: clamp(48px, 7vw, 110px); padding: 32px 0 48px; min-height: calc(100vh - 92px); }
-.hero-text { min-width: 0; }
+/* Intro and chat share one grid cell, so the column height (and the illustration's position) stays fixed when chat opens or closes. */
+.hero-text { min-width: 0; display: grid; align-items: center; }
+.hero-text > .intro, .hero-text > .chat { grid-area: 1 / 1; }
 .hero-art { position: relative; min-width: 0; max-width: 640px; width: 100%; justify-self: end; cursor: pointer; }
 .hero .hello { font-size: 15px; font-weight: 700; color: #1E9145; }
 .hero h1 { font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 700; letter-spacing: -.035em;
@@ -508,10 +510,10 @@ html.chat-open .z1, html.chat-open .z2, html.chat-open .z3 { display: none; }
 html.chat-open .tail { animation-duration: .35s; }
 
 /* chat panel: replaces the intro (locked desktop), floats (unlocked), full sheet (mobile) */
-.chat { display: none; flex-direction: column; background: #fff; border-radius: 22px; box-shadow: 0 10px 40px rgba(42,59,71,.12);
+.chat { display: flex; visibility: hidden; opacity: 0; pointer-events: none; flex-direction: column; background: #fff; border-radius: 22px; box-shadow: 0 10px 40px rgba(42,59,71,.12);
   padding: 20px; height: clamp(300px, calc(100vh - 172px), 600px); height: clamp(300px, calc(100dvh - 172px), 600px); }
-html.chat-open .chat { display: flex; animation: chatRise .4s ease; }
-html.chat-open:not(.unlocked) .intro { display: none; }
+html.chat-open .chat { visibility: visible; opacity: 1; pointer-events: auto; animation: chatRise .4s ease; }
+html.chat-open:not(.unlocked) .intro { visibility: hidden; }
 html.unlocked .chat { position: fixed; right: 24px; bottom: 24px; width: 380px; height: min(560px, 80vh); z-index: 60; }
 @keyframes chatRise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 .chat-head { display: flex; gap: 10px; align-items: center; padding-bottom: 12px; border-bottom: 1px solid #EFEBE3; }
@@ -577,8 +579,9 @@ html.chat-open .fab { display: none !important; }
   .dog-ring { width: 76px; height: 76px; margin: -38px 0 0 -38px; }
   .brand b { font-size: 15px; }
   .brand { gap: 8px; min-width: 0; }
-  html.chat-open .chat { position: fixed; inset: 0; width: auto; height: 100dvh; border-radius: 0; z-index: 60; padding: 14px 16px; animation: chatSheet .35s ease; }
-  html.chat-open .intro { display: block; }
+  .chat { display: none; }
+  html.chat-open .chat { display: flex; position: fixed; inset: 0; width: auto; height: 100dvh; border-radius: 0; z-index: 60; padding: 14px 16px; animation: chatSheet .35s ease; }
+  html.chat-open .intro { visibility: visible; }
   html.chat-open body { overflow: hidden; }
   .fab { right: 16px; bottom: 16px; }
 }
