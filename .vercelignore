@@ -1,0 +1,5 @@
+docs/
+scripts/
+test/
+.superpowers/
+node_modules/
