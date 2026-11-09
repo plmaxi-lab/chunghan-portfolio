@@ -28,7 +28,7 @@ a { color: inherit; }
 .nav-links a { text-decoration: none; }
 
 .hero { display: grid; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); justify-content: space-between;
-  align-items: center; gap: clamp(48px, 7vw, 110px); padding: 40px 0 60px; min-height: calc(100vh - 90px); }
+  align-items: center; gap: clamp(48px, 7vw, 110px); padding: 32px 0 48px; min-height: calc(100vh - 92px); }
 .hero-text { min-width: 0; }
 .hero-art { position: relative; min-width: 0; max-width: 640px; width: 100%; justify-self: end; cursor: pointer; }
 .hero .hello { font-size: 15px; font-weight: 700; color: #1E9145; }
@@ -509,7 +509,7 @@ html.chat-open .tail { animation-duration: .35s; }
 
 /* chat panel: replaces the intro (locked desktop), floats (unlocked), full sheet (mobile) */
 .chat { display: none; flex-direction: column; background: #fff; border-radius: 22px; box-shadow: 0 10px 40px rgba(42,59,71,.12);
-  padding: 20px; height: min(600px, 78vh); }
+  padding: 20px; height: clamp(300px, calc(100vh - 172px), 600px); height: clamp(300px, calc(100dvh - 172px), 600px); }
 html.chat-open .chat { display: flex; animation: chatRise .4s ease; }
 html.chat-open:not(.unlocked) .intro { display: none; }
 html.unlocked .chat { position: fixed; right: 24px; bottom: 24px; width: 380px; height: min(560px, 80vh); z-index: 60; }
