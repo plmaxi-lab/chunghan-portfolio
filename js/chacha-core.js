@@ -7,7 +7,7 @@ export const FALLBACK_LINE = 'Too many questions today. Cha Cha needs a nap 😴
 
 const MARKER = /\s*\[\[case:([a-z]*)\]\]/g;
 // A marker that has started arriving but is not complete yet, at the very end of the text.
-const PARTIAL_MARKER = /\s*\[(\[(c(a(s(e(:[a-z]*)?)?)?)?)?)?$/;
+const PARTIAL_MARKER = /\s*\[(\[(c(a(s(e(:[a-z]*\]?)?)?)?)?)?)?$/;
 
 export function parseCaseMarker(text) {
   let caseId = null;

@@ -41,3 +41,7 @@ test('stripPartialMarker removes complete markers', () => {
 test('stripPartialMarker keeps ordinary brackets that are not a marker start', () => {
   assert.equal(stripPartialMarker('Steps [1] and [2] shipped.'), 'Steps [1] and [2] shipped.');
 });
+
+test('stripPartialMarker hides a marker missing only its last bracket', () => {
+  assert.equal(stripPartialMarker('Answer [[case:udo]'), 'Answer');
+});

@@ -12,7 +12,7 @@ const check = (name, ok, extra = '') => results.push(`${ok ? 'PASS' : 'FAIL'} ${
 const has = (cls) => b.eval(`document.documentElement.classList.contains('${cls}')`);
 const visible = (sel) => b.eval(`(()=>{const e=document.querySelector('${sel}');if(!e)return false;const r=e.getBoundingClientRect();return r.width>0&&r.height>0&&getComputedStyle(e).visibility!=='hidden'})()`);
 // Fake streaming API: chunks split a case marker across reads.
-const FAKE = `window.__chunks=null;window.fetch=(orig=>async(u,o)=>{if(String(u).includes('/api/chat')){window.__lastBody=JSON.parse(o.body);const parts=window.__chunks||['Chung-Han reframed ','the problem. [[ca','se:udo]]'];return new Response(new ReadableStream({async start(c){for(const p of parts){c.enqueue(new TextEncoder().encode(p));window.__seen=(window.__seen||[]).concat(document.querySelector('#chatLog .msg.bot:last-of-type')?.textContent||'');await new Promise(r=>setTimeout(r,60))}c.close()}}),{status:200})}return orig(u,o)})(window.fetch);`;
+const FAKE = `window.__chunks=null;window.fetch=(orig=>async(u,o)=>{if(String(u).includes('/api/chat')){window.__lastBody=JSON.parse(o.body);const parts=window.__chunks||['Chung-Han reframed ','the problem. [[ca','se:udo]',']'];return new Response(new ReadableStream({async start(c){for(const p of parts){c.enqueue(new TextEncoder().encode(p));window.__seen=(window.__seen||[]).concat(document.querySelector('#chatLog .msg.bot:last-of-type')?.textContent||'');window.__busy=(window.__busy||[]).concat([...document.querySelectorAll('#chatLog .msg.bot')].pop()?.getAttribute('aria-busy'));await new Promise(r=>setTimeout(r,60))}c.close()}}),{status:200})}return orig(u,o)})(window.fetch);`;
 
 for (const [w, h, mobile, tag] of [[1440, 900, false, 'desk'], [390, 844, true, 'mob']]) {
   await b.viewport(w, h, mobile);
@@ -36,6 +36,7 @@ for (const [w, h, mobile, tag] of [[1440, 900, false, 'desk'], [390, 844, true, 
   await b.sleep(900);
   const seen = await b.eval('window.__seen||[]');
   check(`${tag}: marker never flashes mid-stream`, !seen.some((t) => t.includes('[[')), JSON.stringify(seen));
+  check(`${tag}: streaming bubble aria-busy, cleared after`, (await b.eval('window.__busy||[]')).slice(1).includes('true') && (await b.eval(`[...document.querySelectorAll('#chatLog .msg.bot')].pop().getAttribute('aria-busy')`)) !== 'true', JSON.stringify(await b.eval('window.__busy||[]')));
   check(`${tag}: streamed answer clean`, (await b.eval(`[...document.querySelectorAll('#chatLog .msg.bot')].pop().textContent`)) === 'Chung-Han reframed the problem.');
   check(`${tag}: case card rendered`, await b.eval(`[...document.querySelectorAll('#chatLog .case-card')].some(c=>c.textContent.includes('Unified Data Observability'))`));
   const body = await b.eval('window.__lastBody');
@@ -58,6 +59,7 @@ for (const [w, h, mobile, tag] of [[1440, 900, false, 'desk'], [390, 844, true, 
   await b.eval(`document.getElementById('heroArt').click()`); await b.sleep(300);
   await b.eval(`document.querySelector('#chatLog .case-card').click()`); await b.sleep(300);
   check(`${tag}: locked card opens modal`, await visible('#pwModal .pw-box'));
+  check(`${tag}: page behind modal is inert`, await b.eval(`document.querySelector('.site').inert===true`));
   await b.shot(`${OUT}${tag}-3-modal.png`);
   await b.eval(`document.getElementById('gate-input').value='wrong';document.getElementById('pwForm').requestSubmit()`); await b.sleep(200);
   check(`${tag}: wrong password shows error`, (await b.eval(`document.getElementById('gate-error').textContent`)) === 'Not quite. Try again.');
@@ -66,6 +68,7 @@ for (const [w, h, mobile, tag] of [[1440, 900, false, 'desk'], [390, 844, true, 
   await b.eval(`document.querySelector('#chatLog .case-card').click()`); await b.sleep(300);
   await b.eval(`document.getElementById('gate-input').value='ctsaiwork2026';document.getElementById('pwForm').requestSubmit()`); await b.sleep(1700);
   check(`${tag}: unlocked`, await has('unlocked'));
+  check(`${tag}: reader is on top of the chat (center and Next button)`, await b.eval(`(()=>{const r=document.getElementById('reader');const c=document.elementFromPoint(innerWidth/2,innerHeight/2);const n=document.getElementById('nextBtn')||document.querySelector('.r-nav button:last-child');const nr=n.getBoundingClientRect();const atNext=document.elementFromPoint(nr.left+nr.width/2,nr.top+nr.height/2);return r.contains(c)&&r.contains(atNext)})()`));
   check(`${tag}: card unlock opens that case in reader`, await b.eval(`document.getElementById('reader').classList.contains('open') && document.getElementById('rTitle')?.textContent.includes('Unified Data Observability')`), await b.eval(`document.getElementById('rTitle')?.textContent||'no rTitle'`));
   await b.key('Escape'); await b.sleep(300);
   check(`${tag}: Esc closes reader but not chat`, !(await b.eval(`document.getElementById('reader').classList.contains('open')`)) && await has('chat-open'));

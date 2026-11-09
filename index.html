@@ -94,7 +94,7 @@ a { color: inherit; }
 .ham.open .ham-l3 { transform: translateY(-7px) rotate(-45deg); }
 .mob-menu { display: none; }
 
-.reader { position: fixed; inset: 0; background: #FFFFFF; z-index: 50; display: flex; flex-direction: column;
+.reader { position: fixed; inset: 0; background: #FFFFFF; z-index: 70; display: flex; flex-direction: column;
   transform: translateX(100%); transition: transform .34s cubic-bezier(.4,0,1,.8); will-change: transform; }
 .reader.open { transform: translateX(0); transition: transform .52s cubic-bezier(.32,.72,0,1); }
 .r-bar { display: flex; align-items: center; justify-content: space-between; padding: 22px 32px 14px; max-width: 1120px; margin: 0 auto; width: 100%; }
@@ -2010,6 +2010,7 @@ document.addEventListener("keydown", e => {
   var errEl = document.getElementById('gate-error');
   var walk = document.getElementById('pwWalk');
   var lock = document.getElementById('pwLock');
+  var site = document.querySelector('.site');
   var pendingCase = null, opener = null;
 
   function open(caseIndex) {
@@ -2020,11 +2021,13 @@ document.addEventListener("keydown", e => {
     pendingCase = caseIndex == null ? null : caseIndex;
     opener = document.activeElement;
     modal.hidden = false;
+    site.inert = true;
     input.value = '';
     input.focus();
   }
   function close() {
     modal.hidden = true;
+    site.inert = false;
     if (opener && opener.focus) opener.focus();
   }
   function showError() {
@@ -2043,6 +2046,7 @@ document.addEventListener("keydown", e => {
       try { sessionStorage.setItem('auth', '1'); } catch (e) {}
       root.classList.add('unlocked');
       modal.hidden = true;
+      site.inert = false;
       walk.classList.remove('off'); lock.classList.remove('open');
       btn.disabled = false; input.disabled = false;
       if (pendingCase != null) openCase(pendingCase);
@@ -2208,6 +2212,7 @@ async function askFree(q) {
   add('msg me', q);
   history.push({ role: 'user', content: q });
   const bubble = add('msg bot thinking', 'Cha Cha is thinking…');
+  bubble.setAttribute('aria-busy', 'true');   // screen readers announce once, when the answer is complete
   let full = '';
   try {
     const res = await fetch('/api/chat', {
@@ -2229,6 +2234,7 @@ async function askFree(q) {
     full = full ? `${full}\n\n${FALLBACK_LINE}` : FALLBACK_LINE;
   }
   const { text, caseId } = parseCaseMarker(full);
+  bubble.removeAttribute('aria-busy');
   bubble.className = 'msg bot';
   bubble.textContent = text || FALLBACK_LINE;
   if (!text || text.endsWith(FALLBACK_LINE)) {

@@ -114,7 +114,7 @@ test('malformed JSON returns 400', async () => {
 });
 
 test('oversized body returns 413', async () => {
-  const res = await make()(req({ messages: [{ role: 'user', content: 'x' }], pad: 'y'.repeat(13000) }));
+  const res = await make()(req({ messages: [{ role: 'user', content: 'x' }], pad: 'y'.repeat(33000) }));
   assert.equal(res.status, 413);
 });
 
@@ -133,4 +133,33 @@ test('missing origin returns 403', async () => {
 test('non-POST returns 405', async () => {
   const res = await make()(req(null, { method: 'GET' }));
   assert.equal(res.status, 405);
+});
+
+test('a full 9-message history of Chinese text is accepted (not 413)', async () => {
+  const zh = (n) => '數'.repeat(n);
+  const messages = [];
+  for (let i = 0; i < 9; i++) messages.push(i % 2 ? { role: 'assistant', content: zh(1500) } : { role: 'user', content: zh(500) });
+  const res = await make()(req({ messages }));
+  assert.equal(res.status, 200);
+});
+
+test('cancelling the response aborts the model stream', async () => {
+  let aborted = false;
+  const client = { messages: { stream() {
+    return {
+      abort() { aborted = true; },
+      async *[Symbol.asyncIterator]() {
+        yield { type: 'content_block_delta', delta: { type: 'text_delta', text: 'first' } };
+        await new Promise((r) => setTimeout(r, 50));
+        yield { type: 'content_block_delta', delta: { type: 'text_delta', text: 'second' } };
+      },
+      async finalMessage() { return { stop_reason: 'end_turn' }; },
+    };
+  } } };
+  const res = await make({ client })(req(okBody));
+  const reader = res.body.getReader();
+  await reader.read();
+  await reader.cancel();
+  await new Promise((r) => setTimeout(r, 80));
+  assert.equal(aborted, true);
 });
